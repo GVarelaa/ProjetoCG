@@ -2,6 +2,7 @@
 #include "headers/point.h"
 #include "headers/plane.h"
 #include "headers/box.h"
+#include "headers/sphere.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -58,7 +59,13 @@ int main(int argc, char *argv[]){
         //generate_cone();
     }
     else if(regex_match(inp, regex(er_sphere))){
-        //generate_sphere();
+        float radius = atof(argv[2]);
+        int slices = atoi(argv[3]);
+        int stacks = atoi(argv[4]);
+        char* file_path = argv[5];
+        vector<Point *> points = generate_sphere(radius, slices, stacks);
+
+        write_vertices(points, file_path);
     }
     else {
         printf("%s\n", "Invalid input!");

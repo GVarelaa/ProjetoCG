@@ -2,6 +2,7 @@
 #include "headers/point.h"
 #include "headers/plane.h"
 #include "headers/box.h"
+#include "headers/cone.h"
 #include "headers/sphere.h"
 #include <vector>
 #include <iostream>
@@ -56,7 +57,14 @@ int main(int argc, char *argv[]){
         write_vertices(points, file_path);
     }
     else if(regex_match(inp, regex(er_cone))){
-        //generate_cone();
+        float radius = atof(argv[2]);
+        float height = atof(argv[3]);
+        int slices = atoi(argv[4]);
+        int stacks = atoi(argv[5]);
+        char* file_path = argv[6];
+        vector<Point *> points = generate_cone(radius, height, slices, stacks);
+
+        write_vertices(points, file_path);
     }
     else if(regex_match(inp, regex(er_sphere))){
         float radius = atof(argv[2]);

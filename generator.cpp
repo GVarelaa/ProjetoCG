@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <regex>
 
 using namespace std;
 
@@ -72,7 +73,20 @@ void write_vertices(vector<Point *> points, char* path){
 
 
 int main(int argc, char *argv[]){
-    if (strcmp(argv[1], "plane") == 0){
+    string inp;
+
+    for (int i=1; argv[i] != NULL; i++) {
+        inp.append(argv[i]);
+        inp.push_back(' ');
+    }
+    inp.pop_back();
+
+    char er_plane[] = "plane [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
+    char er_box[] = "box [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
+    char er_cone[] = "cone [0-9]+ [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
+    char er_sphere[] = "sphere [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
+
+    if (regex_match(inp, regex(er_plane))){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
         char* file_path = argv[4];
@@ -80,14 +94,17 @@ int main(int argc, char *argv[]){
 
         write_vertices(points, file_path);
     }
-    else if(strcmp(argv[1], "box")){
+    else if(regex_match(inp, regex(er_box))){
         //generate_box();
     }
-    else if(strcmp(argv[1], "cone")){
+    else if(regex_match(inp, regex(er_cone))){
         //generate_cone();
     }
-    else if(strcmp(argv[1], "sphere")){
+    else if(regex_match(inp, regex(er_sphere))){
         //generate_sphere();
+    }
+    else {
+        printf("%s\n", "Invalid input!");
     }
 
     //write_vertices();

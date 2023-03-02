@@ -5,7 +5,7 @@ vector<Point *> generate_sphere(float radius, int slices, int stacks){
     vector<Point *> points;
 
     float alpha = (2 * M_PI) / slices;
-    float beta = M_PI / stacks; // pi/10
+    float beta = M_PI / stacks;
 
     for(int i = 0; i < slices; i++){
         for(int j = 0; j < stacks; j++){

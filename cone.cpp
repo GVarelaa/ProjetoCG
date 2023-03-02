@@ -55,7 +55,7 @@ vector<Point *> generate_cone(float radius, float height, int slices, int stacks
     vector<Point *> base_points = generate_cone_base(radius, slices);
     vector<Point *> face_points = generate_cone_faces(radius, height, slices, stacks);
 
-    //points.insert(points.end(), base_points.begin(), base_points.end());
+    points.insert(points.end(), base_points.begin(), base_points.end());
     points.insert(points.end(), face_points.begin(), face_points.end());
 
     return points;

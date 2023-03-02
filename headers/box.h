@@ -1,7 +1,7 @@
 #ifndef __BOX__
 #define __BOX__
 
-#include "headers/point.h"
+#include "point.h"
 #include <vector>
 
 using namespace std;

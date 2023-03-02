@@ -1,4 +1,5 @@
 #include "headers/box.h"
+#include <stdio.h>
 
 vector<Point *> generate_xz_square(Point* point, float length, bool is_visible){
     vector<Point *> vetor;
@@ -11,24 +12,24 @@ vector<Point *> generate_xz_square(Point* point, float length, bool is_visible){
 
     if(is_visible){
         // primeiro triangulo
-        Point* p1 = new Point(x, y, z);
-        Point* p2 = new Point(x, y, z-length);
-        Point* p3 = new Point(x-length, y, z);
+        p1 = new Point(x, y, z);
+        p2 = new Point(x, y, z-length);
+        p3 = new Point(x-length, y, z);
 
         // segundo triangulo
-        Point* p4 = new Point(x, y, z-length);
-        Point* p5 = new Point(x-length, y, z-length);
-        Point* p6 = new Point(x-length, y, z);
+        p4 = new Point(x, y, z-length);
+        p5 = new Point(x-length, y, z-length);
+        p6 = new Point(x-length, y, z);
     }
     else{
-        Point* p1 = new Point(x, y, z);
-        Point* p2 = new Point(x-length, y, z);
-        Point* p3 = new Point(x, y, z-length);
+        p1 = new Point(x, y, z);
+        p2 = new Point(x-length, y, z);
+        p3 = new Point(x, y, z-length);
 
         // segundo triangulo
-        Point* p4 = new Point(x, y, z-length);
-        Point* p5 = new Point(x-length, y, z);
-        Point* p6 = new Point(x-length, y, z-length);
+        p4 = new Point(x, y, z-length);
+        p5 = new Point(x-length, y, z);
+        p6 = new Point(x-length, y, z-length);
     }
 
     vetor.push_back(p1);
@@ -52,24 +53,24 @@ vector<Point *> generate_yz_square(Point* point, float length, bool is_visible){
 
     if(is_visible){
         // primeiro triangulo
-        Point* p1 = new Point(x, y, z-length);
-        Point* p2 = new Point(x, y+length, z);
-        Point* p3 = new Point(x, y, z);
+        p1 = new Point(x, y, z-length);
+        p2 = new Point(x, y+length, z);
+        p3 = new Point(x, y, z);
 
         // segundo triangulo
-        Point* p4 = new Point(x, y, z-length);
-        Point* p5 = new Point(x, y+length, z-length);
-        Point* p6 = new Point(x, y+length, z);
+        p4 = new Point(x, y, z-length);
+        p5 = new Point(x, y+length, z-length);
+        p6 = new Point(x, y+length, z);
     }
     else{
-        Point* p1 = new Point(x, y, z);
-        Point* p2 = new Point(x, y+length, z);
-        Point* p3 = new Point(x, y, z-length);
+        p1 = new Point(x, y, z);
+        p2 = new Point(x, y+length, z);
+        p3 = new Point(x, y, z-length);
 
         // segundo triangulo
-        Point* p4 = new Point(x, y, z-length);
-        Point* p5 = new Point(x, y+length, z);
-        Point* p6 = new Point(x, y+length, z-length);
+        p4 = new Point(x, y, z-length);
+        p5 = new Point(x, y+length, z);
+        p6 = new Point(x, y+length, z-length);
     }
 
     vetor.push_back(p1);
@@ -82,6 +83,7 @@ vector<Point *> generate_yz_square(Point* point, float length, bool is_visible){
     return vetor;
 }
 
+
 vector<Point *> generate_xy_square(Point* point, float length, bool is_visible){
     vector<Point *> vetor;
 
@@ -93,25 +95,25 @@ vector<Point *> generate_xy_square(Point* point, float length, bool is_visible){
 
     if(is_visible){
       // primeiro triangulo
-      Point* p1 = new Point(x, y, z);
-      Point* p2 = new Point(x, y+length, z);
-      Point* p3 = new Point(x-length, y, z);
+      p1 = new Point(x, y, z);
+      p2 = new Point(x, y+length, z);
+      p3 = new Point(x-length, y, z);
 
       // segundo triangulo
-      Point* p4 = new Point(x-length, y, z);
-      Point* p5 = new Point(x, y+length, z);
-      Point* p6 = new Point(x-length, y+length, z);
+      p4 = new Point(x-length, y, z);
+      p5 = new Point(x, y+length, z);
+      p6 = new Point(x-length, y+length, z);
     }
     else{
       //primeiro triangulo
-      Point* p1 = new Point(x, y, z);
-      Point* p2 = new Point(x-length, y, z);
-      Point* p3 = new Point(x, y+length, z);
+      p1 = new Point(x, y, z);
+      p2 = new Point(x-length, y, z);
+      p3 = new Point(x, y+length, z);
       
       // segundo triangulo
-      Point* p4 = new Point(x-length, y, z);
-      Point* p5 = new Point(x-length, y+length, z);
-      Point* p6 = new Point(x, y+length, z);
+      p4 = new Point(x-length, y, z);
+      p5 = new Point(x-length, y+length, z);
+      p6 = new Point(x, y+length, z);
     }
 
     vetor.push_back(p1);
@@ -144,7 +146,6 @@ vector<Point *> generate_xz_plane(Point* initial_point, float length, int divisi
         initial_x -= length/divisions;
     }
 
-
     return points;
 }
 
@@ -169,9 +170,9 @@ vector<Point *> generate_yz_plane(Point* initial_point, float length, int divisi
         initial_y -= length/divisions;
     }
 
-
     return points;
 }
+
 
 vector<Point *> generate_xy_plane(Point* initial_point, float length, int divisions, bool is_visible){
     vector<Point *> points;
@@ -193,9 +194,9 @@ vector<Point *> generate_xy_plane(Point* initial_point, float length, int divisi
         initial_y -= length/divisions;
     }
 
-
     return points;
 }
+
 
 vector<Point *> generate_box(float length, int divisions){
     vector<Point *> points;
@@ -217,6 +218,13 @@ vector<Point *> generate_box(float length, int divisions){
 
     vector<Point *> xy_plane1 = generate_xy_plane(xy_p1, length, divisions, false);
     vector<Point *> xy_plane2 = generate_xy_plane(xy_p2, length, divisions, true);
+
+    points.insert(points.end(), xz_plane1.begin(), xz_plane1.end());
+    points.insert(points.end(), xz_plane2.begin(), xz_plane2.end());
+    points.insert(points.end(), yz_plane1.begin(), yz_plane1.end());
+    points.insert(points.end(), yz_plane2.begin(), yz_plane2.end());
+    points.insert(points.end(), xy_plane1.begin(), xy_plane1.end());
+    points.insert(points.end(), xy_plane2.begin(), xy_plane2.end());
 
     return points;
 }

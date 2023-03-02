@@ -1,6 +1,7 @@
 #include <string.h>
 #include "headers/point.h"
 #include "headers/plane.h"
+#include "headers/box.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -10,7 +11,7 @@ using namespace std;
 
 void write_vertices(vector<Point *> points, char* path){
     ofstream file; 
-    file.open (path);
+    file.open(path);
 
     char buffer[1024];
     for(int i = 0; i < points.size(); i++){
@@ -46,7 +47,12 @@ int main(int argc, char *argv[]){
         write_vertices(points, file_path);
     }
     else if(regex_match(inp, regex(er_box))){
-        //generate_box();
+        float length = atof(argv[2]);
+        int divisions = atoi(argv[3]);
+        char* file_path = argv[4];
+        vector<Point *> points = generate_box(length, divisions);
+
+        write_vertices(points, file_path);
     }
     else if(regex_match(inp, regex(er_cone))){
         //generate_cone();

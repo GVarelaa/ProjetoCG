@@ -53,10 +53,10 @@ vector<Point *> generate_yz_square(Point* point, float length, bool is_visible){
 
     if(is_visible){
         // primeiro triangulo
-        p1 = new Point(x, y, z-length);
-        p2 = new Point(x, y+length, z);
-        p3 = new Point(x, y, z);
-
+        p1 = new Point(x, y, z);
+        p2 = new Point(x, y, z-length);
+        p3 = new Point(x, y+length, z);
+        
         // segundo triangulo
         p4 = new Point(x, y, z-length);
         p5 = new Point(x, y+length, z-length);
@@ -129,7 +129,7 @@ vector<Point *> generate_xy_square(Point* point, float length, bool is_visible){
 vector<Point *> generate_xz_plane(Point* initial_point, float length, int divisions, bool is_visible){
     vector<Point *> points;
 
-    float square_length = length/divisions;
+    float square_length = length/(float)divisions;
     float initial_x = initial_point->getX();
     float initial_y = initial_point->getY();
     float initial_z = initial_point->getZ();
@@ -153,7 +153,7 @@ vector<Point *> generate_xz_plane(Point* initial_point, float length, int divisi
 vector<Point *> generate_yz_plane(Point* initial_point, float length, int divisions, bool is_visible){
     vector<Point *> points;
 
-    float square_length = length/divisions;
+    float square_length = length/(float)divisions;
     float initial_x = initial_point->getX();
     float initial_y = initial_point->getY();
     float initial_z = initial_point->getZ();
@@ -167,7 +167,7 @@ vector<Point *> generate_yz_plane(Point* initial_point, float length, int divisi
             z_aux -= length/divisions;
         }
 
-        initial_y -= length/divisions;
+        initial_y += length/divisions;
     }
 
     return points;
@@ -185,13 +185,13 @@ vector<Point *> generate_xy_plane(Point* initial_point, float length, int divisi
     for(int i = 0; i < divisions; i++){
         float x_aux = initial_x;
         for(int j = 0; j < divisions; j++){
-            vector<Point *> square_points = generate_yz_square(new Point(x_aux, initial_y, initial_z), square_length, is_visible);
+            vector<Point *> square_points = generate_xy_square(new Point(x_aux, initial_y, initial_z), square_length, is_visible);
             points.insert(points.end(), square_points.begin(), square_points.end());
 
             x_aux -= length/divisions;
         }
 
-        initial_y -= length/divisions;
+        initial_y += length/divisions;
     }
 
     return points;
@@ -200,7 +200,7 @@ vector<Point *> generate_xy_plane(Point* initial_point, float length, int divisi
 
 vector<Point *> generate_box(float length, int divisions){
     vector<Point *> points;
-
+    printf("%f\n", length/2.0);
     Point* xz_p1 = new Point(length/2.0, -length/2.0, length/2.0);
     Point* xz_p2 = new Point(length/2.0, length/2.0, length/2.0);
 
@@ -213,11 +213,11 @@ vector<Point *> generate_box(float length, int divisions){
     vector<Point *> xz_plane1 = generate_xz_plane(xz_p1, length, divisions, false);
     vector<Point *> xz_plane2 = generate_xz_plane(xz_p2, length, divisions, true);
 
-    vector<Point *> yz_plane1 = generate_yz_plane(yz_p1, length, divisions, false);
-    vector<Point *> yz_plane2 = generate_yz_plane(yz_p2, length, divisions, true);
+    vector<Point *> yz_plane1 = generate_yz_plane(yz_p1, length, divisions, true);
+    vector<Point *> yz_plane2 = generate_yz_plane(yz_p2, length, divisions, false);
 
-    vector<Point *> xy_plane1 = generate_xy_plane(xy_p1, length, divisions, false);
-    vector<Point *> xy_plane2 = generate_xy_plane(xy_p2, length, divisions, true);
+    vector<Point *> xy_plane1 = generate_xy_plane(xy_p1, length, divisions, true);
+    vector<Point *> xy_plane2 = generate_xy_plane(xy_p2, length, divisions, false);
 
     points.insert(points.end(), xz_plane1.begin(), xz_plane1.end());
     points.insert(points.end(), xz_plane2.begin(), xz_plane2.end());

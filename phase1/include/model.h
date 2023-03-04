@@ -10,6 +10,6 @@ class Model{
     private:
     vector<Point> points;
     vector<Triangle> triangles;
-}
+};
 
 #endif

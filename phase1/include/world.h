@@ -1,9 +1,10 @@
 #ifndef __WORLD__
 #define __WORLD__
 
-#include "../point.h"
-#include "../model.h"
 #include <vector>
+#include "point.h"
+#include "model.h"
+
 using namespace std;
 
 class Window{
@@ -12,6 +13,7 @@ class Window{
     int height;
 
     public:
+    Window(int new_height, int new_width);
     int get_width();
     int get_height();
 };
@@ -23,6 +25,7 @@ class Projection{
     float far;
 
     public:
+    Projection(float new_fov, float new_near, float new_far);
     float get_fov();
     float get_near();
     float get_far();
@@ -37,6 +40,7 @@ class Camera{
     Projection projection;
 
     public:
+    Camera(Point new_position, Point new_lookAt, Point new_up, Projection new_projection);
     Point get_position();
     Point get_lookAt();
     Point get_up();
@@ -46,6 +50,9 @@ class Camera{
 class Group{
     private:
     vector<Model> models;
+
+    public:
+    Group(vector<Model> new_models);
 };
 
 class World{
@@ -55,10 +62,10 @@ class World{
     Group group;
 
     public:
+    World(Window new_window, Camera new_camera, Group new_group);
     Window get_window();
-
+    Camera get_camera();
+    Group get_group();
 };
-
-
 
 #endif

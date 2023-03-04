@@ -37,7 +37,7 @@ vector<Point> generate_plane(float length, int divisions){
     for(int i = 0; i < divisions; i++){
         float z_aux = initial_z;
         for(int j = 0; j < divisions; j++){
-            vector<Point> square_points = generate_square(new Point(initial_x, 0, z_aux), square_length);
+            vector<Point> square_points = generate_square(Point(initial_x, 0, z_aux), square_length);
             points.insert(points.end(), square_points.begin(), square_points.end());
 
             z_aux -= length/divisions;

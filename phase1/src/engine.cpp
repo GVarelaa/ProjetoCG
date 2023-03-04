@@ -127,23 +127,9 @@ void renderScene(void) {
 
 
 int main(int argc, char **argv) {
-	/*XMLDocument xml_doc;
-	XMLError result = xml_doc.LoadFile(argv[1]);
-
-	XMLNode *root = xml_doc.FirstChild();
-	if(root){
-		XMLElement *camera = root->FirstChildElement("camera");
-		if(camera){
-			XMLElement *position = camera->FirstChildElement();
-			printf("aqui\n");
-			printf("%s\n", position->Attribute("x"));	
+	World world = World(argv[1]);
 	
-		}
-	}
-	*/
-
-
-    points_global = read_model(argv[1]);
+    //points_global = read_model(argv[1]);
 
 // init GLUT and the window
 	glutInit(&argc, argv);

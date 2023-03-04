@@ -37,9 +37,9 @@ int main(int argc, char *argv[]){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
         char *file_path = argv[4];
-        vector<Point> points = generate_box(length, divisions);
+        Model box = generate_box(length, divisions);
 
-        //plane.to_file(file_path);
+        box.to_file(file_path);
     }
     else if(regex_match(inp, regex(er_cone))){
         float radius = atof(argv[2]);

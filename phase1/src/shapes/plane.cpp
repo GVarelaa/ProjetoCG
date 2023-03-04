@@ -39,7 +39,7 @@ Model generate_plane(float length, int divisions){
         }
     }
 
-    // Segndamente, construímos os trianguls com os índices dos vértices
+    // Segndamente, construímos os triangulos com os índices dos vértices
     for(int i = 0; i < divisions; i++){
         for(int j = 0; j < divisions; j++){
             vector<Triangle> square_triangles = generate_square(i, j, divisions);

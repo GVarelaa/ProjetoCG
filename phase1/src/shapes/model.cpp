@@ -7,6 +7,13 @@ Model::Model(vector<Point> new_vertices, vector<Triangle> new_triangles){
     n_triangles = new_triangles.size();
 }
 
+Model::Model(char* path){
+    vertices = vector<Point>();
+    triangles = vector<Triangle>();
+    n_vertices = 0;
+    n_triangles = 0;
+}
+
 vector<Point> Model::getVertices(){
     return vertices;
 }
@@ -25,12 +32,14 @@ void Model::to_file(char* path){
 
     //Vertices
     for(int i = 0; i < n_vertices; i++){
-        file << vertices[i].getX() << " " << vertices[i].getY() << " " << vertices[i].getZ() << "\n";
+        sprintf(buffer, "%f %f %f\n", vertices[i].getX(), vertices[i].getY(), vertices[i].getZ());
+        file << buffer;
     }
 
     //Triangles
     for(int i = 0; i < n_triangles; i++){
-        file << triangles[i].getIndP1() << " " << triangles[i].getIndP2() << " " << triangles[i].getIndP3() << "\n";
+        sprintf(buffer, "%d %d %d\n", triangles[i].getIndP1(), triangles[i].getIndP2(), triangles[i].getIndP3());
+        file << buffer;
     }
 
     file.close();

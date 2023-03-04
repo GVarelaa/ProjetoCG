@@ -4,8 +4,10 @@
 #include <vector>
 #include "point.h"
 #include "model.h"
+#include "tinyxml2/tinyxml2.h"
 
 using namespace std;
+using namespace tinyxml2;
 
 class Window{
     private:
@@ -31,7 +33,6 @@ class Projection{
     float get_fov();
     float get_near();
     float get_far();
-
 };
 
 class Camera{
@@ -67,9 +68,11 @@ class World{
 
     public:
     World(Window new_window, Camera new_camera, Group new_group);
+    World(char *path);
     Window get_window();
     Camera get_camera();
     Group get_group();
+    void parser(char *path);
 };
 
 #endif

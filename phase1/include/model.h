@@ -18,6 +18,7 @@ class Model{
 
     public:
     Model(vector<Point> vertices, vector<Triangle> triangles);
+    Model(char* path);
     vector<Point> getVertices();
     vector<Triangle> getTriangles();
     void to_file(char* path);

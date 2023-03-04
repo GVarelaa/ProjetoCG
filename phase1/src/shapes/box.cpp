@@ -1,229 +1,167 @@
 #include "../../include/box.h"
 #include <stdio.h>
 
-vector<Point> generate_xz_square(Point point, float length, bool is_visible){
-    vector<Point> vetor;
+vector<Triangle> generate_square_box(int i, int j, int divisions, int *index, bool is_visible){
+    vector<Triangle> triangles;
 
-    float x = point.getX();
-    float y = point.getY();
-    float z = point.getZ();
+    int bottom_left_index = (divisions+1)*i + j + *index;
+    int bottom_right_index = (divisions+1)*(i+1) + j + *index;
+    int top_left_index = (divisions+1)*i + (j+1) + *index;
+    int top_right_index = (divisions+1)*(i+1) + (j+1) + *index;
 
-    Point p1, p2, p3, p4, p5, p6;
-
+    Triangle t1, t2;
     if(is_visible){
-        // primeiro triangulo
-        p1 = Point(x, y, z);
-        p2 = Point(x, y, z-length);
-        p3 = Point(x-length, y, z);
-
-        // segundo triangulo
-        p4 = Point(x, y, z-length);
-        p5 = Point(x-length, y, z-length);
-        p6 = Point(x-length, y, z);
+        t1 = Triangle(bottom_left_index, bottom_right_index, top_left_index);
+        t2 = Triangle(bottom_right_index, top_right_index, top_left_index);
     }
     else{
-        p1 = Point(x, y, z);
-        p2 = Point(x-length, y, z);
-        p3 = Point(x, y, z-length);
-
-        // segundo triangulo
-        p4 = Point(x, y, z-length);
-        p5 = Point(x-length, y, z);
-        p6 = Point(x-length, y, z-length);
+        t1 = Triangle(top_left_index, bottom_right_index, bottom_left_index);
+        t2 = Triangle(top_left_index, top_right_index, bottom_right_index);
     }
 
-    vetor.push_back(p1);
-    vetor.push_back(p2);
-    vetor.push_back(p3);
-    vetor.push_back(p4);
-    vetor.push_back(p5);
-    vetor.push_back(p6);
+    triangles.push_back(t1);
+    triangles.push_back(t2);
 
-    return vetor;
-}
-
-vector<Point> generate_yz_square(Point point, float length, bool is_visible){
-    vector<Point> vetor;
-
-    float x = point.getX();
-    float y = point.getY();
-    float z = point.getZ();
-
-    Point p1, p2, p3, p4, p5, p6;
-
-    if(is_visible){
-        // primeiro triangulo
-        p1 = Point(x, y, z);
-        p2 = Point(x, y, z-length);
-        p3 = Point(x, y+length, z);
-        
-        // segundo triangulo
-        p4 = Point(x, y, z-length);
-        p5 = Point(x, y+length, z-length);
-        p6 = Point(x, y+length, z);
-    }
-    else{
-        p1 = Point(x, y, z);
-        p2 = Point(x, y+length, z);
-        p3 = Point(x, y, z-length);
-
-        // segundo triangulo
-        p4 = Point(x, y, z-length);
-        p5 = Point(x, y+length, z);
-        p6 = Point(x, y+length, z-length);
-    }
-
-    vetor.push_back(p1);
-    vetor.push_back(p2);
-    vetor.push_back(p3);
-    vetor.push_back(p4);
-    vetor.push_back(p5);
-    vetor.push_back(p6);
-
-    return vetor;
+    return triangles;
 }
 
 
-vector<Point> generate_xy_square(Point point, float length, bool is_visible){
-    vector<Point> vetor;
-
-    float x = point.getX();
-    float y = point.getY();
-    float z = point.getZ();
-
-    Point p1, p2, p3, p4, p5, p6;
-
-    if(is_visible){
-      // primeiro triangulo
-      p1 = Point(x, y, z);
-      p2 = Point(x, y+length, z);
-      p3 = Point(x-length, y, z);
-
-      // segundo triangulo
-      p4 = Point(x-length, y, z);
-      p5 = Point(x, y+length, z);
-      p6 = Point(x-length, y+length, z);
-    }
-    else{
-      //primeiro triangulo
-      p1 = Point(x, y, z);
-      p2 = Point(x-length, y, z);
-      p3 = Point(x, y+length, z);
-      
-      // segundo triangulo
-      p4 = Point(x-length, y, z);
-      p5 = Point(x-length, y+length, z);
-      p6 = Point(x, y+length, z);
-    }
-
-    vetor.push_back(p1);
-    vetor.push_back(p2);
-    vetor.push_back(p3);
-    vetor.push_back(p4);
-    vetor.push_back(p5);
-    vetor.push_back(p6);
-
-    return vetor;
-}
-
-vector<Point> generate_xz_plane(Point initial_point, float length, int divisions, bool is_visible){
-    vector<Point> points;
-
-    float square_length = length/(float)divisions;
-    float initial_x = initial_point.getX();
-    float initial_y = initial_point.getY();
-    float initial_z = initial_point.getZ();
-
-    for(int i = 0; i < divisions; i++){
-        float z_aux = initial_z;
-        for(int j = 0; j < divisions; j++){
-            vector<Point> square_points = generate_xz_square(Point(initial_x, initial_y, z_aux), square_length, is_visible);
-            points.insert(points.end(), square_points.begin(), square_points.end());
-
-            z_aux -= length/divisions;
-        }
-
-        initial_x -= length/divisions;
-    }
-
-    return points;
-}
-
-
-vector<Point> generate_yz_plane(Point initial_point, float length, int divisions, bool is_visible){
-    vector<Point> points;
-
-    float square_length = length/(float)divisions;
-    float initial_x = initial_point.getX();
-    float initial_y = initial_point.getY();
-    float initial_z = initial_point.getZ();
-
-    for(int i = 0; i < divisions; i++){
-        float z_aux = initial_z;
-        for(int j = 0; j < divisions; j++){
-            vector<Point> square_points = generate_yz_square(Point(initial_x, initial_y, z_aux), square_length, is_visible);
-            points.insert(points.end(), square_points.begin(), square_points.end());
-
-            z_aux -= length/divisions;
-        }
-
-        initial_y += length/divisions;
-    }
-
-    return points;
-}
-
-
-vector<Point> generate_xy_plane(Point initial_point, float length, int divisions, bool is_visible){
-    vector<Point> points;
+pair<vector<Point>, vector<Triangle> > generate_xz_plane(Point initial_point, float length, int divisions, int *index, bool is_visible){
+    vector<Point> vertices;
+    vector<Triangle> triangles;
 
     float square_length = length/divisions;
     float initial_x = initial_point.getX();
     float initial_y = initial_point.getY();
-    float initial_z = initial_point.getZ();
+    float initial_z = initial_point.getY();
 
-    for(int i = 0; i < divisions; i++){
-        float x_aux = initial_x;
-        for(int j = 0; j < divisions; j++){
-            vector<Point> square_points = generate_xy_square(Point(x_aux, initial_y, initial_z), square_length, is_visible);
-            points.insert(points.end(), square_points.begin(), square_points.end());
+    float x = initial_x;
+    float z = initial_z;
 
-            x_aux -= length/divisions;
+    // Primeiramente, calculamos os vértices do plano
+    for(int i = 0; i <= divisions; i++){
+        x = initial_x;
+        z = initial_z - i*square_length;
+        
+        for(int j = 0; j <= divisions; j++){
+            x = initial_x - j*square_length;
+            vertices.push_back(Point(x, initial_y, z));
         }
-
-        initial_y += length/divisions;
     }
 
-    return points;
+    // Segndamente, construímos os triangulos com os índices dos vértices
+    for(int i = 0; i < divisions; i++){
+        for(int j = 0; j < divisions; j++){
+            vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
+            triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+        }
+    }
+
+    *index += vertices.size();
+    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }
 
 
-vector<Point> generate_box(float length, int divisions){
-    vector<Point> points;
-    Point xz_p1 (length/2.0, -length/2.0, length/2.0);
-    Point xz_p2 (length/2.0, length/2.0, length/2.0);
+pair<vector<Point>, vector<Triangle> > generate_yz_plane(Point initial_point, float length, int divisions, int *index, bool is_visible){
+    vector<Point> vertices;
+    vector<Triangle> triangles;
 
-    Point yz_p1 (length/2.0, -length/2.0, length/2.0);
-    Point yz_p2 (-length/2.0, -length/2.0, length/2.0);
+    float square_length = length/divisions;
+    float initial_x = initial_point.getX();
+    float initial_y = initial_point.getY();
+    float initial_z = initial_point.getY();
 
-    Point xy_p1 (length/2.0, -length/2.0, length/2.0);
-    Point xy_p2 (length/2.0, -length/2.0, -length/2.0);
+    float y = initial_y;
+    float z = initial_z;
 
-    vector<Point> xz_plane1 = generate_xz_plane(xz_p1, length, divisions, false);
-    vector<Point> xz_plane2 = generate_xz_plane(xz_p2, length, divisions, true);
+    // Primeiramente, calculamos os vértices do plano
+    for(int i = 0; i <= divisions; i++){
+        y = initial_y;
+        z = initial_z - i*square_length;
+        
+        for(int j = 0; j <= divisions; j++){
+            y = initial_y + j*square_length;
+            vertices.push_back(Point(initial_x, y, z));
+        }
+    }
 
-    vector<Point> yz_plane1 = generate_yz_plane(yz_p1, length, divisions, true);
-    vector<Point> yz_plane2 = generate_yz_plane(yz_p2, length, divisions, false);
+    // Segndamente, construímos os triangulos com os índices dos vértices
+    for(int i = 0; i < divisions; i++){
+        for(int j = 0; j < divisions; j++){
+            vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
+            triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+        }
+    }
 
-    vector<Point> xy_plane1 = generate_xy_plane(xy_p1, length, divisions, true);
-    vector<Point> xy_plane2 = generate_xy_plane(xy_p2, length, divisions, false);
+    *index += vertices.size();
+    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
+}
 
-    points.insert(points.end(), xz_plane1.begin(), xz_plane1.end());
-    points.insert(points.end(), xz_plane2.begin(), xz_plane2.end());
-    points.insert(points.end(), yz_plane1.begin(), yz_plane1.end());
-    points.insert(points.end(), yz_plane2.begin(), yz_plane2.end());
-    points.insert(points.end(), xy_plane1.begin(), xy_plane1.end());
-    points.insert(points.end(), xy_plane2.begin(), xy_plane2.end());
 
-    return points;
+pair<vector<Point>, vector<Triangle> > generate_xy_plane(Point initial_point, float length, int divisions, int *index, bool is_visible){
+    vector<Point> vertices;
+    vector<Triangle> triangles;
+
+    float square_length = length/divisions;
+    float initial_x = initial_point.getX();
+    float initial_y = initial_point.getY();
+    float initial_z = initial_point.getY();
+
+    float x = initial_x;
+    float y = initial_y;
+
+    // Primeiramente, calculamos os vértices do plano
+    for(int i = 0; i <= divisions; i++){
+        y = initial_y;
+        x = initial_x + i*square_length;
+        
+        for(int j = 0; j <= divisions; j++){
+            y = initial_y + j*square_length;
+            vertices.push_back(Point(x, y, initial_z));
+        }
+    }
+
+    // Segndamente, construímos os triangulos com os índices dos vértices
+    for(int i = 0; i < divisions; i++){
+        for(int j = 0; j < divisions; j++){
+            vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
+            triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+        }
+    }
+
+    *index += vertices.size();
+    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
+}
+
+
+Model generate_box(float length, int divisions){
+    vector<Point> vertices;
+    vector<Triangle> triangles;
+    int index = 0;
+    float hl = length/2;
+
+    pair<vector<Point>, vector<Triangle> > xz_plane1  = generate_xz_plane(Point(hl, hl, hl), length, divisions, &index, true);
+    pair<vector<Point>, vector<Triangle> > xz_plane2  = generate_xz_plane(Point(hl, -hl, hl), length, divisions, &index, false);
+
+    pair<vector<Point>, vector<Triangle> > yz_plane1 = generate_yz_plane(Point(hl, -hl, hl), length, divisions, &index, true);
+    pair<vector<Point>, vector<Triangle> > yz_plane2 = generate_yz_plane(Point(-hl, -hl, hl), length, divisions, &index, false);
+
+    pair<vector<Point>, vector<Triangle> > xy_plane1 = generate_xy_plane(Point(-hl, -hl, hl), length, divisions, &index, true);
+    pair<vector<Point>, vector<Triangle> > xy_plane2 = generate_xy_plane(Point(-hl, -hl, -hl), length, divisions, &index, false);
+
+    vertices.insert(vertices.end(), xz_plane1.first.begin(), xz_plane1.first.end());
+    vertices.insert(vertices.end(), xz_plane2.first.begin(), xz_plane2.first.end());
+    vertices.insert(vertices.end(), yz_plane1.first.begin(), yz_plane1.first.end());
+    vertices.insert(vertices.end(), yz_plane2.first.begin(), yz_plane2.first.end());
+    vertices.insert(vertices.end(), xy_plane1.first.begin(), xy_plane1.first.end());
+    vertices.insert(vertices.end(), xy_plane2.first.begin(), xy_plane2.first.end());
+
+    triangles.insert(triangles.end(), xz_plane1.second.begin(), xz_plane1.second.end());
+    triangles.insert(triangles.end(), xz_plane2.second.begin(), xz_plane2.second.end());
+    triangles.insert(triangles.end(), yz_plane1.second.begin(), yz_plane1.second.end());
+    triangles.insert(triangles.end(), yz_plane2.second.begin(), yz_plane2.second.end());
+    triangles.insert(triangles.end(), xy_plane1.second.begin(), xy_plane1.second.end());
+    triangles.insert(triangles.end(), xy_plane2.second.begin(), xy_plane2.second.end());
+
+    return Model(vertices, triangles);
 }

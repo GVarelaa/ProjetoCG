@@ -9,6 +9,7 @@ class Point {
         float z;
 
     public:
+        Point();
         Point(float x1, float y1, float z1);
         float getX();
         float getY();

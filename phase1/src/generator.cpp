@@ -11,14 +11,14 @@
 
 using namespace std;
 
-void write_vertices(vector<Point *> points, char* path){
+void write_vertices(vector<Point> points, char *path){
     ofstream file; 
     file.open(path);
 
     char buffer[1024];
     for(int i = 0; i < points.size(); i++){
-        Point* point = points[i];
-        sprintf(buffer, "%f %f %f\n", point->getX(), point->getY(), point->getZ());
+        Point point = points[i];
+        sprintf(buffer, "%f %f %f\n", point.getX(), point.getY(), point.getZ());
         file << buffer;
     }
 
@@ -43,16 +43,16 @@ int main(int argc, char *argv[]){
     if (regex_match(inp, regex(er_plane))){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
-        char* file_path = argv[4];
-        vector<Point *> points = generate_plane(length, divisions);
+        char *file_path = argv[4];
+        vector<Point> points = generate_plane(length, divisions);
 
         write_vertices(points, file_path);
     }
     else if(regex_match(inp, regex(er_box))){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
-        char* file_path = argv[4];
-        vector<Point *> points = generate_box(length, divisions);
+        char *file_path = argv[4];
+        vector<Point> points = generate_box(length, divisions);
 
         write_vertices(points, file_path);
     }
@@ -61,8 +61,8 @@ int main(int argc, char *argv[]){
         float height = atof(argv[3]);
         int slices = atoi(argv[4]);
         int stacks = atoi(argv[5]);
-        char* file_path = argv[6];
-        vector<Point *> points = generate_cone(radius, height, slices, stacks);
+        char *file_path = argv[6];
+        vector<Point> points = generate_cone(radius, height, slices, stacks);
 
         write_vertices(points, file_path);
     }
@@ -70,8 +70,8 @@ int main(int argc, char *argv[]){
         float radius = atof(argv[2]);
         int slices = atoi(argv[3]);
         int stacks = atoi(argv[4]);
-        char* file_path = argv[5];
-        vector<Point *> points = generate_sphere(radius, slices, stacks);
+        char *file_path = argv[5];
+        vector<Point> points = generate_sphere(radius, slices, stacks);
 
         write_vertices(points, file_path);
     }

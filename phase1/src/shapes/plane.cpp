@@ -1,51 +1,51 @@
 #include "../../include/plane.h"
 
-vector<Point> generate_square(Point point, float length){
-    vector<Point> vetor;
+vector<Triangle> generate_square(int iter_x, int iter_z, int divisions){
+    vector<Triangle> triangles;
 
-    float x = point.getX();
-    float y = point.getY();
-    float z = point.getZ();
+    int bottom_left_index = (divisions+1)*iter_x + iter_z;
+    int bottom_right_index = (divisions+1)*(iter_x+1) + iter_z;
+    int top_left_index = (divisions+1)*iter_x + (iter_z+1);
+    int top_right_index = (divisions+1)*(iter_x+1) + (iter_z+1);
 
-    // primeiro triangulo
-    Point p1 = Point(x, y, z);
-    Point p2 = Point(x, y, z-length);
-    Point p3 = Point(x-length, y, z);
+    Triangle t1 = Triangle(bottom_left_index, bottom_right_index, top_left_index);
+    Triangle t2 = Triangle(bottom_right_index, top_right_index, top_left_index);
+    
+    triangles.push_back(t1);
+    triangles.push_back(t2);
 
-    // segundo triangulo
-    Point p4 = Point(x, y, z-length);
-    Point p5 = Point(x-length, y, z-length);
-    Point p6 = Point(x-length, y, z);
-
-    vetor.push_back(p1);
-    vetor.push_back(p2);
-    vetor.push_back(p3);
-    vetor.push_back(p4);
-    vetor.push_back(p5);
-    vetor.push_back(p6);
-
-    return vetor;
+    return triangles;
 }
 
-vector<Point> generate_plane(float length, int divisions){
-    vector<Point> points;
+Model generate_plane(float length, int divisions){
+    vector<Point> vertices;
+    vector<Triangle> triangles;
 
     float square_length = length/divisions;
     float initial_x = length/2.0;
     float initial_z = length/2.0;
 
-    for(int i = 0; i < divisions; i++){
-        float z_aux = initial_z;
-        for(int j = 0; j < divisions; j++){
-            vector<Point> square_points = generate_square(Point(initial_x, 0, z_aux), square_length);
-            points.insert(points.end(), square_points.begin(), square_points.end());
+    float x = initial_x;
+    float z = initial_z;
 
-            z_aux -= length/divisions;
+    // Primeiramente, calculamos os vértices do plano
+    for(int i = 0; i <= divisions; i++){
+        x = initial_x;
+        z = initial_z - i*square_length;
+        
+        for(int j = 0; j <= divisions; j++){
+            x = initial_x - j*square_length;
+            vertices.push_back(Point(x, 0, z));
         }
-
-        initial_x -= length/divisions;
     }
 
+    // Segndamente, construímos os trianguls com os índices dos vértices
+    for(int i = 0; i < divisions; i++){
+        for(int j = 0; j < divisions; j++){
+            vector<Triangle> square_triangles = generate_square(i, j, divisions);
+            triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+        }
+    }
 
-    return points;
+    return Model(vertices, triangles);
 }

@@ -4,14 +4,14 @@
 
 class Triangle { 
     private:   
-        int indx;  
-        int indy;  
-        int indz;
+        int indP1;  
+        int indP2;  
+        int indP3;
     public:
-        Triangle(int indx, int indy, int indz);
-        int getIndX();
-        int getIndY();
-        int getIndZ();
+        Triangle(int indP1, int indP2, int indzP3);
+        int getIndP1();
+        int getIndP2();
+        int getIndP3();
 };
 
 #endif

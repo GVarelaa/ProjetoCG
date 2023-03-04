@@ -1,21 +1,21 @@
 #include "../../include/triangle.h"
 
-Triangle::Triangle(int indxx, int indyy, int indzz){
-    indx = indxx;
-    indy = indyy;
-    indz = indzz;
+Triangle::Triangle(int new_indP1, int new_indP2, int new_indP3){
+    indP1 = new_indP1;
+    indP2 = new_indP2;
+    indP3 = new_indP3;
 }
 
-int Triangle::getIndX(){
-    return indx;
+int Triangle::getIndP1(){
+    return indP1;
 }
 
-int Triangle::getIndY(){
-    return indy;
+int Triangle::getIndP2(){
+    return indP2;
 }
 
-int Triangle::getIndZ(){
-    return indz;
+int Triangle::getIndP3(){
+    return indP3;
 }
 
 

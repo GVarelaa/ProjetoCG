@@ -11,21 +11,6 @@
 
 using namespace std;
 
-void write_vertices(vector<Point> points, char *path){
-    ofstream file; 
-    file.open(path);
-
-    char buffer[1024];
-    for(int i = 0; i < points.size(); i++){
-        Point point = points[i];
-        sprintf(buffer, "%f %f %f\n", point.getX(), point.getY(), point.getZ());
-        file << buffer;
-    }
-
-    file.close();
-}
-
-
 int main(int argc, char *argv[]){
     string inp;
 
@@ -44,9 +29,9 @@ int main(int argc, char *argv[]){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
         char *file_path = argv[4];
-        vector<Point> points = generate_plane(length, divisions);
-
-        write_vertices(points, file_path);
+        Model plane = generate_plane(length, divisions);
+        
+        plane.to_file(file_path);
     }
     else if(regex_match(inp, regex(er_box))){
         float length = atof(argv[2]);
@@ -54,7 +39,7 @@ int main(int argc, char *argv[]){
         char *file_path = argv[4];
         vector<Point> points = generate_box(length, divisions);
 
-        write_vertices(points, file_path);
+        //plane.to_file(file_path);
     }
     else if(regex_match(inp, regex(er_cone))){
         float radius = atof(argv[2]);
@@ -64,7 +49,7 @@ int main(int argc, char *argv[]){
         char *file_path = argv[6];
         vector<Point> points = generate_cone(radius, height, slices, stacks);
 
-        write_vertices(points, file_path);
+        //plane.to_file(file_path);
     }
     else if(regex_match(inp, regex(er_sphere))){
         float radius = atof(argv[2]);
@@ -73,7 +58,7 @@ int main(int argc, char *argv[]){
         char *file_path = argv[5];
         vector<Point> points = generate_sphere(radius, slices, stacks);
 
-        write_vertices(points, file_path);
+        //plane.to_file(file_path);
     }
     else {
         printf("%s\n", "Invalid input!");

@@ -13,6 +13,7 @@ class Window{
     int height;
 
     public:
+    Window();
     Window(int new_height, int new_width);
     int get_width();
     int get_height();
@@ -25,6 +26,7 @@ class Projection{
     float far;
 
     public:
+    Projection();
     Projection(float new_fov, float new_near, float new_far);
     float get_fov();
     float get_near();
@@ -40,6 +42,7 @@ class Camera{
     Projection projection;
 
     public:
+    Camera();
     Camera(Point new_position, Point new_lookAt, Point new_up, Projection new_projection);
     Point get_position();
     Point get_lookAt();
@@ -52,6 +55,7 @@ class Group{
     vector<Model> models;
 
     public:
+    Group();
     Group(vector<Model> new_models);
 };
 

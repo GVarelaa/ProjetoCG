@@ -11,6 +11,7 @@
 #include <string>
 #include <sstream>
 #include "../include/point.h"
+#include "../include/world.h"
 #include "../include/tinyxml2/tinyxml2.h"
 
 using namespace tinyxml2;
@@ -141,7 +142,13 @@ int main(int argc, char **argv) {
 	}
 	*/
 
-    points_global = read_model(argv[1]);
+
+	Point p = Point(0.0f, 0.0f, 0.0f);
+	Projection pr = Projection(1.0f, 1.0f, 1.0f);
+	Camera c = Camera(p, p , p , pr);
+
+	printf("%f\n", c.get_projection().get_fov());
+    //points_global = read_model(argv[1]);
 
 // init GLUT and the window
 	glutInit(&argc, argv);

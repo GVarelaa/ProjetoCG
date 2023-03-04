@@ -1,5 +1,9 @@
 #include "../include/world.h"
 
+Window::Window(){
+    
+}
+
 Window::Window(int new_width, int new_height){
     width = new_width;
     height = new_height;
@@ -12,6 +16,10 @@ int Window::get_width(){
 
 int Window::get_height(){
     return height;
+}
+
+Projection::Projection(){
+
 }
 
 Projection::Projection(float new_fov, float new_near, float new_far){
@@ -31,6 +39,10 @@ float Projection::get_near(){
 
 float Projection::get_far(){
     return far;
+}
+
+Camera::Camera(){
+
 }
 
 Camera::Camera(Point new_position, Point new_lookAt, Point new_up, Projection new_projection){
@@ -54,6 +66,9 @@ Point Camera::get_up(){
 
 Projection Camera::get_projection(){
     return projection;
+}
+
+Group::Group(){
 }
 
 Group::Group(vector<Model> new_models){

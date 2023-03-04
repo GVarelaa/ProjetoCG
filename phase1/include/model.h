@@ -10,6 +10,10 @@ class Model{
     private:
     vector<Point> points;
     vector<Triangle> triangles;
-}
+    public:
+    Model(vector<Point> points, vector<Triangle> triangles);
+    vector<Point> getPoints();
+    vector<Triangle> getTriangles();
+};
 
 #endif

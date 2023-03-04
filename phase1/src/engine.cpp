@@ -143,12 +143,7 @@ int main(int argc, char **argv) {
 	*/
 
 
-	Point p = Point(0.0f, 0.0f, 0.0f);
-	Projection pr = Projection(1.0f, 1.0f, 1.0f);
-	Camera c = Camera(p, p , p , pr);
-
-	printf("%f\n", c.get_projection().get_fov());
-    //points_global = read_model(argv[1]);
+    points_global = read_model(argv[1]);
 
 // init GLUT and the window
 	glutInit(&argc, argv);

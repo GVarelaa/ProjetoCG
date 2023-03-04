@@ -11,7 +11,9 @@
 #include <string>
 #include <sstream>
 #include "../include/point.h"
+#include "../include/tinyxml2/tinyxml2.h"
 
+using namespace tinyxml2;
 using namespace std;
 
 vector<Point*> points_global;
@@ -124,7 +126,24 @@ void renderScene(void) {
 
 
 int main(int argc, char **argv) {
-    points_global = read_model(argv[1]);
+	XMLDocument xml_doc;
+	XMLError result = xml_doc.LoadFile(argv[1]);
+
+	XMLNode *root = xml_doc.FirstChild();
+	if(root){
+		XMLElement *camera = root->FirstChildElement("camera");
+		if(camera){
+			XMLElement *position = camera->FirstChildElement();
+			printf("aqui\n");
+			printf("%s\n", position->Attribute("x"));	
+	
+		}
+	}
+	//XMLElement *window = root->FirstChildElement("window");
+	//cout << window->GetText();
+	//printf("%s\n", window->GetText());
+
+    //points_global = read_model(argv[1]);
 
 // init GLUT and the window
 	glutInit(&argc, argv);

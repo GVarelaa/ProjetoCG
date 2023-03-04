@@ -6,6 +6,6 @@
 
 using namespace std;
 
-vector<Point *> generate_box(float length, int divisions);
+vector<Point> generate_box(float length, int divisions);
 
 #endif

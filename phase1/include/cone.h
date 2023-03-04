@@ -6,6 +6,6 @@
 
 using namespace std;
 
-vector<Point *> generate_cone(float radius, float height, int slices, int stacks);
+vector<Point> generate_cone(float radius, float height, int slices, int stacks);
 
 #endif

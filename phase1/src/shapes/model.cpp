@@ -38,14 +38,6 @@ Model::Model(char* path){
     file.close();
 }
 
-vector<Point> Model::getVertices(){
-    return vertices;
-}
-
-vector<Triangle> Model::getTriangles(){
-    return triangles;
-}
-
 void Model::to_file(char* path){
     ofstream file; 
     file.open(path);

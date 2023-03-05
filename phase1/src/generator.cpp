@@ -56,9 +56,9 @@ int main(int argc, char *argv[]){
         int slices = atoi(argv[3]);
         int stacks = atoi(argv[4]);
         char *file_path = argv[5];
-        vector<Point> points = generate_sphere(radius, slices, stacks);
+        Model sphere = generate_sphere(radius, slices, stacks);
 
-        //plane.to_file(file_path);
+        sphere.to_file(file_path);
     }
     else {
         printf("%s\n", "Invalid input!");

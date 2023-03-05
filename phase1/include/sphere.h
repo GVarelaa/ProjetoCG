@@ -8,6 +8,6 @@
 
 using namespace std;
 
-Model generate_sphere(float radius, int slices, int stacks);
+Model generateSphere(float radius, int slices, int stacks);
 
 #endif

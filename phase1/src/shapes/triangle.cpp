@@ -2,8 +2,8 @@
 
 Triangle::Triangle(){}
 
-Triangle::Triangle(int new_indP1, int new_indP2, int new_indP3){
-    indP1 = new_indP1;
-    indP2 = new_indP2;
-    indP3 = new_indP3;
+Triangle::Triangle(int newIndP1, int newIndP2, int newIndP3){
+    indP1 = newIndP1;
+    indP2 = newIndP2;
+    indP3 = newIndP3;
 }

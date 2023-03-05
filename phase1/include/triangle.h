@@ -8,7 +8,7 @@ class Triangle {
         int indP2;  
         int indP3;
         Triangle();
-        Triangle(int indP1, int indP2, int indzP3);
+        Triangle(int indP1, int indP2, int indP3);
 };
 
 #endif

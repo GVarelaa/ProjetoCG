@@ -1,10 +1,10 @@
 #include "../../include/model.h"
 
-Model::Model(vector<Point> new_vertices, vector<Triangle> new_triangles){
-    vertices = new_vertices;
-    triangles = new_triangles;
-    n_vertices = new_vertices.size();
-    n_triangles = new_triangles.size();
+Model::Model(vector<Point> newVertices, vector<Triangle> newTriangles){
+    vertices = newVertices;
+    triangles = newTriangles;
+    nVertices = newVertices.size();
+    nTriangles = newTriangles.size();
 }
 
 Model::Model(char* path){
@@ -13,13 +13,13 @@ Model::Model(char* path){
     getline(file, line);
     
     stringstream ss(line);
-    string n_vertices_str, n_triangles_str;
-    ss >> n_vertices_str >> n_triangles_str;
+    string nVerticesStr, nTrianglesStr;
+    ss >> nVerticesStr >> nTrianglesStr;
 
-    int n_vertices = stoi(n_vertices_str);
-    int n_triangles = stoi(n_triangles_str);
+    int nVertices = stoi(nVerticesStr);
+    int nTriangles = stoi(nTrianglesStr);
     
-    for(int i = 0; i < n_vertices; i++){
+    for(int i = 0; i < nVertices; i++){
         getline(file, line);
         stringstream ss(line);
         string x, y, z;
@@ -27,33 +27,33 @@ Model::Model(char* path){
         vertices.push_back(Point(stof(x), stof(y), stof(z)));
     }
 
-    for(int i = 0; i < n_triangles; i++){
+    for(int i = 0; i < nTriangles; i++){
         getline(file, line);
         stringstream ss(line);
-        string indp1, indp2, indp3;
-        ss >> indp1 >> indp2 >> indp3;
-        triangles.push_back(Triangle(stoi(indp1), stoi(indp2), stoi(indp3)));
+        string indP1, indP2, indP3;
+        ss >> indP1 >> indP2 >> indP3;
+        triangles.push_back(Triangle(stoi(indP1), stoi(indP2), stoi(indP3)));
     }
 
     file.close();
 }
 
-void Model::to_file(char* path){
+void Model::toFile(char* path){
     ofstream file; 
     file.open(path);
     char buffer[1024];
     
-    //First line (n_vertices e n_triangles)
-    file << n_vertices << " " << n_triangles << "\n";
+    //First line (nVertices e nTriangles)
+    file << nVertices << " " << nTriangles << "\n";
 
     //Vertices
-    for(int i = 0; i < n_vertices; i++){
+    for(int i = 0; i < nVertices; i++){
         sprintf(buffer, "%f %f %f\n", vertices[i].x, vertices[i].y, vertices[i].z);
         file << buffer;
     }
 
     //Triangles
-    for(int i = 0; i < n_triangles; i++){
+    for(int i = 0; i < nTriangles; i++){
         sprintf(buffer, "%d %d %d\n", triangles[i].indP1, triangles[i].indP2, triangles[i].indP3);
         file << buffer;
     }

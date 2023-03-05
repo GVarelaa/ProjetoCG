@@ -4,89 +4,89 @@ Window::Window(){
     
 }
 
-Window::Window(int new_width, int new_height){
-    width = new_width;
-    height = new_height;
+Window::Window(int newWidth, int newHeight){
+    width = newWidth;
+    height = newHeight;
 }
 
 Projection::Projection(){}
 
-Projection::Projection(float new_fov, float new_near, float new_far){
-    fov = new_fov;
-    near = new_near;
-    far = new_far;
+Projection::Projection(float newFov, float newNear, float newFar){
+    fov = newFov;
+    near = newNear;
+    far = newFar;
 }
 
 Camera::Camera(){}
 
-Camera::Camera(Point new_position, Point new_lookAt, Point new_up, Projection new_projection){
-    position = new_position;
-    lookAt = new_lookAt;
-    up = new_up;
-    projection = new_projection;
+Camera::Camera(Point newPosition, Point newLookAt, Point newUp, Projection newProjection){
+    position = newPosition;
+    lookAt = newLookAt;
+    up = newUp;
+    projection = newProjection;
 }
 
 Group::Group(){}
 
-Group::Group(vector<Model> new_models){
-    models = new_models;
+Group::Group(vector<Model> newModels){
+    models = newModels;
 }
 
 World::World(){}
 
-World::World(Window new_window, Camera new_camera, Group new_group){
-    window = new_window;
-    camera = new_camera;
-    group = new_group;
+World::World(Window newWindow, Camera newCamera, Group newGroup){
+    window = newWindow;
+    camera = newCamera;
+    group = newGroup;
 }
 
 World::World(char *path){
-    XMLDocument xml_doc;
-	XMLError result = xml_doc.LoadFile(path);
-	XMLNode *root = xml_doc.FirstChild();
+    XMLDocument xmlDoc;
+	XMLError result = xmlDoc.LoadFile(path);
+	XMLNode *root = xmlDoc.FirstChild();
     
 	if(root){
-        XMLElement *window_element = root->FirstChildElement("window");
-        if(window_element){
-            int width = atoi(window_element->Attribute("width"));
-            int height = atoi(window_element->Attribute("height"));
+        XMLElement *windowElement = root->FirstChildElement("window");
+        if(windowElement){
+            int width = atoi(windowElement->Attribute("width"));
+            int height = atoi(windowElement->Attribute("height"));
             window = Window(width, height);
         }
 
-        XMLElement *camera_element = root->FirstChildElement("camera");
-        if(camera_element){
-            XMLElement *position_element = camera_element->FirstChildElement("position");
-            float position_x = atof(position_element->Attribute("x"));
-            float position_y = atof(position_element->Attribute("y"));
-            float position_z = atof(position_element->Attribute("z"));
+        XMLElement *cameraElement = root->FirstChildElement("camera");
+        if(cameraElement){
+            XMLElement *positionElement = cameraElement->FirstChildElement("position");
+            float positionX = atof(positionElement->Attribute("x"));
+            float positionY = atof(positionElement->Attribute("y"));
+            float positionZ = atof(positionElement->Attribute("z"));
             
 
-            XMLElement *lookAt_element = camera_element->FirstChildElement("lookAt");
-            float lookAt_x = atof(lookAt_element->Attribute("x"));
-            float lookAt_y = atof(lookAt_element->Attribute("y"));
-            float lookAt_z = atof(lookAt_element->Attribute("z"));
+            XMLElement *lookAtElement = cameraElement->FirstChildElement("lookAt");
+            float lookAtX = atof(lookAtElement->Attribute("x"));
+            float lookAtY = atof(lookAtElement->Attribute("y"));
+            float lookAtZ = atof(lookAtElement->Attribute("z"));
         
-            XMLElement *up_element = camera_element->FirstChildElement("up");
-            float up_x = atof(up_element->Attribute("x"));
-            float up_y = atof(up_element->Attribute("y"));
-            float up_z = atof(up_element->Attribute("z"));
+            XMLElement *upElement = cameraElement->FirstChildElement("up");
+            float upX = atof(upElement->Attribute("x"));
+            float upY = atof(upElement->Attribute("y"));
+            float upZ = atof(upElement->Attribute("z"));
 
-            XMLElement *projection_element = camera_element->FirstChildElement("projection");
-            float projection_fov = atof(projection_element->Attribute("fov"));
-            float projection_near = atof(projection_element->Attribute("near"));
-            float projection_far = atof(projection_element->Attribute("far"));
+            XMLElement *projectionElement = cameraElement->FirstChildElement("projection");
+            float projectionFov = atof(projectionElement->Attribute("fov"));
+            float projectionNear = atof(projectionElement->Attribute("near"));
+            float projectionFar = atof(projectionElement->Attribute("far"));
 
-            camera = Camera(Point(position_x, position_y, position_z), Point(lookAt_x, lookAt_y, lookAt_z), Point(up_x, up_y, up_z), Projection(projection_fov, projection_near, projection_far));
+            camera = Camera(Point(positionX, positionY, positionZ), Point(lookAtX, lookAtY, lookAtZ), Point(upX, upY, upZ), Projection(projectionFov, projectionNear, projectionFar));
         }
         
-        XMLElement *group_element = root->FirstChildElement("group");
+        XMLElement *groupElement = root->FirstChildElement("group");
 
-        if(group_element){
-            XMLElement *models_element = group_element->FirstChildElement("models");
-            if(models_element){
+        if(groupElement){
+            XMLElement *modelsElement = groupElement->FirstChildElement("models");
+            if(modelsElement){
                 vector<Model> models;
-                for (XMLElement *model_element = models_element->FirstChildElement("model"); model_element; model_element = model_element->NextSiblingElement("model")){
-                   char *path = (char *)model_element->Attribute("file");
+                for (XMLElement *modelElement = modelsElement->FirstChildElement("model"); modelElement; modelElement = modelElement->NextSiblingElement("model")){
+                   char *path = (char *)modelElement->Attribute("file");
                    models.push_back(Model(path));
                 }
                 group = Group(models);

@@ -8,6 +8,6 @@
 
 using namespace std;
 
-Model generate_box(float length, int divisions);
+Model generateBox(float length, int divisions);
 
 #endif

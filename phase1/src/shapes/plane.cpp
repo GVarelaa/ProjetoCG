@@ -28,7 +28,6 @@ Model generate_plane(float length, int divisions){
     float x = initial_x;
     float z = initial_z;
 
-    // Primeiramente, calculamos os vértices do plano
     for(int i = 0; i <= divisions; i++){
         x = initial_x;
         z = initial_z - i*square_length;
@@ -36,14 +35,11 @@ Model generate_plane(float length, int divisions){
         for(int j = 0; j <= divisions; j++){
             x = initial_x - j*square_length;
             vertices.push_back(Point(x, 0, z));
-        }
-    }
 
-    // Segndamente, construímos os triangulos com os índices dos vértices
-    for(int i = 0; i < divisions; i++){
-        for(int j = 0; j < divisions; j++){
-            vector<Triangle> square_triangles = generate_square(i, j, divisions);
-            triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+            if (i != divisions && j != divisions){
+                vector<Triangle> square_triangles = generate_square(i, j, divisions);
+                triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+            }
         }
     }
 

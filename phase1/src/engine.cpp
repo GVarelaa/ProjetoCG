@@ -99,8 +99,7 @@ void renderScene(void) {
 		
 	glEnd();
 
-	// put the geometric transformations here
-
+	// put the geometric transformations here	
 
 	// put drawing instructions here
 	Group group = world.group;

@@ -47,7 +47,7 @@ int main(int argc, char *argv[]){
         int slices = atoi(argv[4]);
         int stacks = atoi(argv[5]);
         char *file_path = argv[6];
-        vector<Point> points = generate_cone(radius, height, slices, stacks);
+        //vector<Point> points = generate_cone(radius, height, slices, stacks);
 
         //plane.to_file(file_path);
     }

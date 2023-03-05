@@ -2,8 +2,9 @@
 #include "../../include/cone.h"
 
 
-vector<Point> generate_cone_base(float radius, int slices){
+pair<vector<Point>, vector<Triangle> > generate_cone_base(float radius, int slices){
     vector<Point> points;
+    vector<Triangle> triangles;
 
     float alpha = (2 * M_PI) / slices;
     for(int i = 0; i < slices; i++){
@@ -16,7 +17,7 @@ vector<Point> generate_cone_base(float radius, int slices){
         points.push_back(p3);
     }
 
-    return points;
+    return pair<vector<Point>, vector<Triangle> >(points, triangles);
 }
 
 vector<Point> generate_cone_faces(float radius, float height, int slices, int stacks){
@@ -49,8 +50,10 @@ vector<Point> generate_cone_faces(float radius, float height, int slices, int st
 }
 
 
-vector<Point> generate_cone(float radius, float height, int slices, int stacks){
+Model generate_cone(float radius, float height, int slices, int stacks){
     vector<Point> points;
+    vector<Triangle> triangles;
+    int index=0;
 
     vector<Point> base_points = generate_cone_base(radius, slices);
     vector<Point> face_points = generate_cone_faces(radius, height, slices, stacks);
@@ -58,6 +61,6 @@ vector<Point> generate_cone(float radius, float height, int slices, int stacks){
     points.insert(points.end(), base_points.begin(), base_points.end());
     points.insert(points.end(), face_points.begin(), face_points.end());
 
-    return points;
+    return Model(points, triangles);
 }
 

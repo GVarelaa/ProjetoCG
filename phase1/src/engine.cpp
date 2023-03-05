@@ -118,7 +118,6 @@ int main(int argc, char **argv) {
 	world = World(argv[1]);
 
 	
-
 // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);

@@ -20,45 +20,45 @@ int main(int argc, char *argv[]){
     }
     inp.pop_back();
 
-    char er_plane[] = "plane [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
-    char er_box[] = "box [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
-    char er_cone[] = "cone [0-9]+ [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
-    char er_sphere[] = "sphere [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
+    char erPlane[] = "plane [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
+    char erBox[] = "box [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
+    char erCone[] = "cone [0-9]+ [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
+    char erSphere[] = "sphere [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
 
-    if (regex_match(inp, regex(er_plane))){
+    if (regex_match(inp, regex(erPlane))){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
-        char *file_path = argv[4];
-        Model plane = generate_plane(length, divisions);
+        char *filePath = argv[4];
+        Model plane = generatePlane(length, divisions);
         
-        plane.to_file(file_path);
+        plane.toFile(filePath);
     }
-    else if(regex_match(inp, regex(er_box))){
+    else if(regex_match(inp, regex(erBox))){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
-        char *file_path = argv[4];
-        Model box = generate_box(length, divisions);
+        char *filePath = argv[4];
+        Model box = generateBox(length, divisions);
 
-        box.to_file(file_path);
+        box.toFile(filePath);
     }
-    else if(regex_match(inp, regex(er_cone))){
+    else if(regex_match(inp, regex(erCone))){
         float radius = atof(argv[2]);
         float height = atof(argv[3]);
         int slices = atoi(argv[4]);
         int stacks = atoi(argv[5]);
-        char *file_path = argv[6];
+        char *filePath = argv[6];
         //vector<Point> points = generate_cone(radius, height, slices, stacks);
 
         //plane.to_file(file_path);
     }
-    else if(regex_match(inp, regex(er_sphere))){
+    else if(regex_match(inp, regex(erSphere))){
         float radius = atof(argv[2]);
         int slices = atoi(argv[3]);
         int stacks = atoi(argv[4]);
-        char *file_path = argv[5];
-        Model sphere = generate_sphere(radius, slices, stacks);
+        char *filePath = argv[5];
+        Model sphere = generateSphere(radius, slices, stacks);
 
-        sphere.to_file(file_path);
+        sphere.toFile(filePath);
     }
     else {
         printf("%s\n", "Invalid input!");

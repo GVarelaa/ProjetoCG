@@ -14,11 +14,11 @@ class Model{
     public:
         vector<Point> vertices;
         vector<Triangle> triangles;
-        int n_vertices;
-        int n_triangles;
+        int nVertices;
+        int nTriangles;
         Model(vector<Point> vertices, vector<Triangle> triangles);
         Model(char* path); 
-        void to_file(char* path);
+        void toFile(char* path);
 };
 
 #endif

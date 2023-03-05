@@ -1,22 +1,22 @@
 #include "../../include/box.h"
 #include <stdio.h>
 
-vector<Triangle> generate_square_box(int i, int j, int divisions, int *index, bool is_visible){
+vector<Triangle> generateSquareBox(int i, int j, int divisions, int *index, bool isVisible){
     vector<Triangle> triangles;
 
-    int bottom_left_index = (divisions+1)*i + j + *index;
-    int bottom_right_index = (divisions+1)*(i+1) + j + *index;
-    int top_left_index = (divisions+1)*i + (j+1) + *index;
-    int top_right_index = (divisions+1)*(i+1) + (j+1) + *index;
+    int bottomLeftIndex = (divisions+1)*i + j + *index;
+    int bottomRightIndex = (divisions+1)*(i+1) + j + *index;
+    int topLeftIndex = (divisions+1)*i + (j+1) + *index;
+    int topRightIndex = (divisions+1)*(i+1) + (j+1) + *index;
 
     Triangle t1, t2;
-    if(is_visible){
-        t1 = Triangle(bottom_left_index, bottom_right_index, top_left_index);
-        t2 = Triangle(bottom_right_index, top_right_index, top_left_index);
+    if(isVisible){
+        t1 = Triangle(bottomLeftIndex, bottomRightIndex, topLeftIndex);
+        t2 = Triangle(bottomRightIndex, topRightIndex, topLeftIndex);
     }
     else{
-        t1 = Triangle(top_left_index, bottom_right_index, bottom_left_index);
-        t2 = Triangle(top_left_index, top_right_index, bottom_right_index);
+        t1 = Triangle(topLeftIndex, bottomRightIndex, bottomLeftIndex);
+        t2 = Triangle(topLeftIndex, topRightIndex, bottomRightIndex);
     }
 
     triangles.push_back(t1);
@@ -26,29 +26,29 @@ vector<Triangle> generate_square_box(int i, int j, int divisions, int *index, bo
 }
 
 
-pair<vector<Point>, vector<Triangle> > generate_xz_plane(Point initial_point, float length, int divisions, int *index, bool is_visible){
+pair<vector<Point>, vector<Triangle> > generateXZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible){
     vector<Point> vertices;
     vector<Triangle> triangles;
 
-    float square_length = length/divisions;
-    float initial_x = initial_point.x;
-    float initial_y = initial_point.y;
-    float initial_z = initial_point.z;
+    float squareLength = length/divisions;
+    float initialX = initialPoint.x;
+    float initialY = initialPoint.y;
+    float initialZ = initialPoint.z;
 
-    float x = initial_x;
-    float z = initial_z;
+    float x = initialX;
+    float z = initialZ;
 
     for(int i = 0; i <= divisions; i++){
-        x = initial_x;
-        z = initial_z - i*square_length;
+        x = initialX;
+        z = initialZ - i*squareLength;
         
         for(int j = 0; j <= divisions; j++){
-            x = initial_x - j*square_length;
-            vertices.push_back(Point(x, initial_y, z));
+            x = initialX - j*squareLength;
+            vertices.push_back(Point(x, initialY, z));
             
             if (i != divisions && j != divisions){
-                vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
-                triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+                vector<Triangle> squareTriangles = generateSquareBox(i, j, divisions, index, isVisible);
+                triangles.insert(triangles.end(), squareTriangles.begin(), squareTriangles.end());
             }
         }
     }
@@ -58,29 +58,29 @@ pair<vector<Point>, vector<Triangle> > generate_xz_plane(Point initial_point, fl
 }
 
 
-pair<vector<Point>, vector<Triangle> > generate_yz_plane(Point initial_point, float length, int divisions, int *index, bool is_visible){
+pair<vector<Point>, vector<Triangle> > generateYZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible){
     vector<Point> vertices;
     vector<Triangle> triangles;
 
-    float square_length = length/divisions;
-    float initial_x = initial_point.x;
-    float initial_y = initial_point.y;
-    float initial_z = initial_point.z;
+    float squareLength = length/divisions;
+    float initialX = initialPoint.x;
+    float initialY = initialPoint.y;
+    float initialZ = initialPoint.z;
 
-    float y = initial_y;
-    float z = initial_z;
+    float y = initialY;
+    float z = initialZ;
 
     for(int i = 0; i <= divisions; i++){
-        y = initial_y;
-        z = initial_z - i*square_length;
+        y = initialY;
+        z = initialZ - i*squareLength;
         
         for(int j = 0; j <= divisions; j++){
-            y = initial_y + j*square_length;
-            vertices.push_back(Point(initial_x, y, z));
+            y = initialY + j*squareLength;
+            vertices.push_back(Point(initialX, y, z));
 
             if (i != divisions && j != divisions){
-                vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
-                triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+                vector<Triangle> squareTriangles = generateSquareBox(i, j, divisions, index, isVisible);
+                triangles.insert(triangles.end(), squareTriangles.begin(), squareTriangles.end());
             }
         }
     }
@@ -90,29 +90,29 @@ pair<vector<Point>, vector<Triangle> > generate_yz_plane(Point initial_point, fl
 }
 
 
-pair<vector<Point>, vector<Triangle> > generate_xy_plane(Point initial_point, float length, int divisions, int *index, bool is_visible){
+pair<vector<Point>, vector<Triangle> > generateXYplane(Point initialPoint, float length, int divisions, int *index, bool isVisible){
     vector<Point> vertices;
     vector<Triangle> triangles;
 
-    float square_length = length/divisions;
-    float initial_x = initial_point.x;
-    float initial_y = initial_point.y;
-    float initial_z = initial_point.z;
+    float squareLength = length/divisions;
+    float initialX = initialPoint.x;
+    float initialY = initialPoint.y;
+    float initialZ = initialPoint.z;
 
-    float x = initial_x;
-    float y = initial_y;
+    float x = initialX;
+    float y = initialY;
 
     for(int i = 0; i <= divisions; i++){
-        y = initial_y;
-        x = initial_x + i*square_length;
+        y = initialY;
+        x = initialX + i*squareLength;
         
         for(int j = 0; j <= divisions; j++){
-            y = initial_y + j*square_length;
-            vertices.push_back(Point(x, y, initial_z));
+            y = initialY + j*squareLength;
+            vertices.push_back(Point(x, y, initialZ));
             
             if (i != divisions && j != divisions){
-                vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
-                triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+                vector<Triangle> squareTriangles = generateSquareBox(i, j, divisions, index, isVisible);
+                triangles.insert(triangles.end(), squareTriangles.begin(), squareTriangles.end());
             } 
         }
     }
@@ -122,34 +122,34 @@ pair<vector<Point>, vector<Triangle> > generate_xy_plane(Point initial_point, fl
 }
 
 
-Model generate_box(float length, int divisions){
+Model generateBox(float length, int divisions){
     vector<Point> vertices;
     vector<Triangle> triangles;
     int index = 0;
     float hl = length/2;
 
-    pair<vector<Point>, vector<Triangle> > xz_plane1  = generate_xz_plane(Point(hl, hl, hl), length, divisions, &index, true);
-    pair<vector<Point>, vector<Triangle> > xz_plane2  = generate_xz_plane(Point(hl, -hl, hl), length, divisions, &index, false);
+    pair<vector<Point>, vector<Triangle> > xzPlane1  = generateXZplane(Point(hl, hl, hl), length, divisions, &index, true);
+    pair<vector<Point>, vector<Triangle> > xzPlane2  = generateXZplane(Point(hl, -hl, hl), length, divisions, &index, false);
 
-    pair<vector<Point>, vector<Triangle> > yz_plane1 = generate_yz_plane(Point(hl, -hl, hl), length, divisions, &index, true);
-    pair<vector<Point>, vector<Triangle> > yz_plane2 = generate_yz_plane(Point(-hl, -hl, hl), length, divisions, &index, false);
+    pair<vector<Point>, vector<Triangle> > yzPlane1 = generateYZplane(Point(hl, -hl, hl), length, divisions, &index, true);
+    pair<vector<Point>, vector<Triangle> > yzPlane2 = generateYZplane(Point(-hl, -hl, hl), length, divisions, &index, false);
 
-    pair<vector<Point>, vector<Triangle> > xy_plane1 = generate_xy_plane(Point(-hl, -hl, hl), length, divisions, &index, true);
-    pair<vector<Point>, vector<Triangle> > xy_plane2 = generate_xy_plane(Point(-hl, -hl, -hl), length, divisions, &index, false);
+    pair<vector<Point>, vector<Triangle> > xyPlane1 = generateXYplane(Point(-hl, -hl, hl), length, divisions, &index, true);
+    pair<vector<Point>, vector<Triangle> > xyPlane2 = generateXYplane(Point(-hl, -hl, -hl), length, divisions, &index, false);
 
-    vertices.insert(vertices.end(), xz_plane1.first.begin(), xz_plane1.first.end());
-    vertices.insert(vertices.end(), xz_plane2.first.begin(), xz_plane2.first.end());
-    vertices.insert(vertices.end(), yz_plane1.first.begin(), yz_plane1.first.end());
-    vertices.insert(vertices.end(), yz_plane2.first.begin(), yz_plane2.first.end());
-    vertices.insert(vertices.end(), xy_plane1.first.begin(), xy_plane1.first.end());
-    vertices.insert(vertices.end(), xy_plane2.first.begin(), xy_plane2.first.end());
+    vertices.insert(vertices.end(), xzPlane1.first.begin(), xzPlane1.first.end());
+    vertices.insert(vertices.end(), xzPlane2.first.begin(), xzPlane2.first.end());
+    vertices.insert(vertices.end(), yzPlane1.first.begin(), yzPlane1.first.end());
+    vertices.insert(vertices.end(), yzPlane2.first.begin(), yzPlane2.first.end());
+    vertices.insert(vertices.end(), xyPlane1.first.begin(), xyPlane1.first.end());
+    vertices.insert(vertices.end(), xyPlane2.first.begin(), xyPlane2.first.end());
 
-    triangles.insert(triangles.end(), xz_plane1.second.begin(), xz_plane1.second.end());
-    triangles.insert(triangles.end(), xz_plane2.second.begin(), xz_plane2.second.end());
-    triangles.insert(triangles.end(), yz_plane1.second.begin(), yz_plane1.second.end());
-    triangles.insert(triangles.end(), yz_plane2.second.begin(), yz_plane2.second.end());
-    triangles.insert(triangles.end(), xy_plane1.second.begin(), xy_plane1.second.end());
-    triangles.insert(triangles.end(), xy_plane2.second.begin(), xy_plane2.second.end());
+    triangles.insert(triangles.end(), xzPlane1.second.begin(), xzPlane1.second.end());
+    triangles.insert(triangles.end(), xzPlane2.second.begin(), xzPlane2.second.end());
+    triangles.insert(triangles.end(), yzPlane1.second.begin(), yzPlane1.second.end());
+    triangles.insert(triangles.end(), yzPlane2.second.begin(), yzPlane2.second.end());
+    triangles.insert(triangles.end(), xyPlane1.second.begin(), xyPlane1.second.end());
+    triangles.insert(triangles.end(), xyPlane2.second.begin(), xyPlane2.second.end());
 
     return Model(vertices, triangles);
 }

@@ -8,6 +8,6 @@
 
 using namespace std;
 
-Model generate_plane(float length, int divisions);
+Model generatePlane(float length, int divisions);
 
 #endif

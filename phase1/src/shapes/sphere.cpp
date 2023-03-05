@@ -1,7 +1,7 @@
 #include <math.h>
 #include "../../include/sphere.h"
 
-Model generate_sphere(float radius, int slices, int stacks){
+Model generateSphere(float radius, int slices, int stacks){
     vector<Point> points;
     vector<Triangle> triangles;
 

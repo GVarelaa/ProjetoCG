@@ -1,15 +1,15 @@
 #include "../../include/plane.h"
 
-vector<Triangle> generate_square(int iter_x, int iter_z, int divisions){
+vector<Triangle> generateSquare(int iterX, int iterZ, int divisions){
     vector<Triangle> triangles;
 
-    int bottom_left_index = (divisions+1)*iter_x + iter_z;
-    int bottom_right_index = (divisions+1)*(iter_x+1) + iter_z;
-    int top_left_index = (divisions+1)*iter_x + (iter_z+1);
-    int top_right_index = (divisions+1)*(iter_x+1) + (iter_z+1);
+    int bottomLeftIndex = (divisions+1)*iterX + iterZ;
+    int bottomRightIndex = (divisions+1)*(iterX+1) + iterZ;
+    int topLeftIndex = (divisions+1)*iterX + (iterZ+1);
+    int topRightIndex = (divisions+1)*(iterX+1) + (iterZ+1);
 
-    Triangle t1 = Triangle(bottom_left_index, bottom_right_index, top_left_index);
-    Triangle t2 = Triangle(bottom_right_index, top_right_index, top_left_index);
+    Triangle t1 = Triangle(bottomLeftIndex, bottomRightIndex, topLeftIndex);
+    Triangle t2 = Triangle(bottomRightIndex, topRightIndex, topLeftIndex);
     
     triangles.push_back(t1);
     triangles.push_back(t2);
@@ -17,28 +17,28 @@ vector<Triangle> generate_square(int iter_x, int iter_z, int divisions){
     return triangles;
 }
 
-Model generate_plane(float length, int divisions){
+Model generatePlane(float length, int divisions){
     vector<Point> vertices;
     vector<Triangle> triangles;
 
-    float square_length = length/divisions;
-    float initial_x = length/2.0;
-    float initial_z = length/2.0;
+    float squareLength = length/divisions;
+    float initialX = length/2.0;
+    float initialZ = length/2.0;
 
-    float x = initial_x;
-    float z = initial_z;
+    float x = initialX;
+    float z = initialZ;
 
     for(int i = 0; i <= divisions; i++){
-        x = initial_x;
-        z = initial_z - i*square_length;
+        x = initialX;
+        z = initialZ - i*squareLength;
         
         for(int j = 0; j <= divisions; j++){
-            x = initial_x - j*square_length;
+            x = initialX - j*squareLength;
             vertices.push_back(Point(x, 0, z));
 
             if (i != divisions && j != divisions){
-                vector<Triangle> square_triangles = generate_square(i, j, divisions);
-                triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+                vector<Triangle> squareTriangles = generateSquare(i, j, divisions);
+                triangles.insert(triangles.end(), squareTriangles.begin(), squareTriangles.end());
             }
         }
     }

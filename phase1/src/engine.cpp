@@ -72,9 +72,12 @@ void renderScene(void) {
 	// set the camera
 	Camera camera = world.camera;
 	glLoadIdentity();
-	gluLookAt(camera.position.x,camera.position.y,camera.position.z, 
+	gluLookAt(5.0,5.0,5.0, 
+				0.0,0.0,0.0,
+				0.0f,1.0f,0.0f);
+	/*gluLookAt(camera.position.x,camera.position.y,camera.position.z, 
 	        camera.lookAt.x,camera.lookAt.y,camera.lookAt.z,
-	        camera.up.x,camera.up.y,camera.up.z);
+	        camera.up.x,camera.up.y,camera.up.z);*/
 
 	glPolygonMode(GL_FRONT, GL_LINE);
 	

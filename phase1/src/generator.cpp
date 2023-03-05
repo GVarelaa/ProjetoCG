@@ -47,9 +47,9 @@ int main(int argc, char *argv[]){
         int slices = atoi(argv[4]);
         int stacks = atoi(argv[5]);
         char *file_path = argv[6];
-        //vector<Point> points = generate_cone(radius, height, slices, stacks);
+        Model cone = generate_cone(radius, height, slices, stacks);
 
-        //plane.to_file(file_path);
+        cone.to_file(file_path);
     }
     else if(regex_match(inp, regex(er_sphere))){
         float radius = atof(argv[2]);
@@ -63,8 +63,6 @@ int main(int argc, char *argv[]){
     else {
         printf("%s\n", "Invalid input!");
     }
-
-    //write_vertices();
 
     return 0;
 }

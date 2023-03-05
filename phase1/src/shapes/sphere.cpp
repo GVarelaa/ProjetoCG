@@ -15,8 +15,8 @@ Model generate_sphere(float radius, int slices, int stacks){
             points.push_back(p);
 
             if (i != slices && j != stacks){
-                Triangle t1 = Triangle(i*(slices+1) + j, (i+1)*(slices+1) + j, i*(slices+1) + j+1);
-                Triangle t2 = Triangle((i+1)*(slices+1) + j, (i+1)*(slices+1) + j+1, i*(slices+1) + j+1);
+                Triangle t1 = Triangle(i*(stacks+1) + j, (i+1)*(stacks+1) + j, i*(stacks+1) + j+1);
+                Triangle t2 = Triangle((i+1)*(stacks+1) + j, (i+1)*(stacks+1) + j+1, i*(stacks+1) + j+1);
 
                 triangles.push_back(t1);
                 triangles.push_back(t2);

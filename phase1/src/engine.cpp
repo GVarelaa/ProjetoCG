@@ -22,7 +22,6 @@ World world;
 
 
 void drawModel(Model model){
-	printf("aqui\n");
 	vector<Point> vertices = model.vertices;
 	vector<Triangle> triangles = model.triangles;
 
@@ -71,12 +70,14 @@ void renderScene(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// set the camera
+	Camera camera = world.camera;
 	glLoadIdentity();
-	gluLookAt(5.0,5.0,5.0, 
-			0.0,0.0,0.0,
-			0.0f,1.0f,0.0f);
-	
+	gluLookAt(camera.position.x,camera.position.y,camera.position.z, 
+	        camera.lookAt.x,camera.lookAt.y,camera.lookAt.z,
+	        camera.up.x,camera.up.y,camera.up.z);
+
 	glPolygonMode(GL_FRONT, GL_LINE);
+	
 
 	// put axis drawing in here
 	glBegin(GL_LINES);
@@ -120,11 +121,12 @@ int main(int argc, char **argv) {
 	
 
 // init GLUT and the window
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
-	glutInitWindowPosition(100,100);
-	glutInitWindowSize(800,800);
-	glutCreateWindow("CG@DI-UM");
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
+    glutInitWindowPosition(100,100);
+    glutInitWindowSize(world.window.width,world.window.height);
+    glutCreateWindow("CG@DI-UM");
+        
 		
 // Required callback registry 
 	glutDisplayFunc(renderScene);

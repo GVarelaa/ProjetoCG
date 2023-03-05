@@ -38,7 +38,6 @@ pair<vector<Point>, vector<Triangle> > generate_xz_plane(Point initial_point, fl
     float x = initial_x;
     float z = initial_z;
 
-    // Primeiramente, calculamos os vértices do plano
     for(int i = 0; i <= divisions; i++){
         x = initial_x;
         z = initial_z - i*square_length;
@@ -46,14 +45,11 @@ pair<vector<Point>, vector<Triangle> > generate_xz_plane(Point initial_point, fl
         for(int j = 0; j <= divisions; j++){
             x = initial_x - j*square_length;
             vertices.push_back(Point(x, initial_y, z));
-        }
-    }
-
-    // Segndamente, construímos os triangulos com os índices dos vértices
-    for(int i = 0; i < divisions; i++){
-        for(int j = 0; j < divisions; j++){
-            vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
-            triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+            
+            if (i != divisions && j != divisions){
+                vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
+                triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+            }
         }
     }
 
@@ -74,7 +70,6 @@ pair<vector<Point>, vector<Triangle> > generate_yz_plane(Point initial_point, fl
     float y = initial_y;
     float z = initial_z;
 
-    // Primeiramente, calculamos os vértices do plano
     for(int i = 0; i <= divisions; i++){
         y = initial_y;
         z = initial_z - i*square_length;
@@ -82,14 +77,11 @@ pair<vector<Point>, vector<Triangle> > generate_yz_plane(Point initial_point, fl
         for(int j = 0; j <= divisions; j++){
             y = initial_y + j*square_length;
             vertices.push_back(Point(initial_x, y, z));
-        }
-    }
 
-    // Segndamente, construímos os triangulos com os índices dos vértices
-    for(int i = 0; i < divisions; i++){
-        for(int j = 0; j < divisions; j++){
-            vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
-            triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+            if (i != divisions && j != divisions){
+                vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
+                triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+            }
         }
     }
 
@@ -110,7 +102,6 @@ pair<vector<Point>, vector<Triangle> > generate_xy_plane(Point initial_point, fl
     float x = initial_x;
     float y = initial_y;
 
-    // Primeiramente, calculamos os vértices do plano
     for(int i = 0; i <= divisions; i++){
         y = initial_y;
         x = initial_x + i*square_length;
@@ -118,14 +109,11 @@ pair<vector<Point>, vector<Triangle> > generate_xy_plane(Point initial_point, fl
         for(int j = 0; j <= divisions; j++){
             y = initial_y + j*square_length;
             vertices.push_back(Point(x, y, initial_z));
-        }
-    }
-
-    // Segndamente, construímos os triangulos com os índices dos vértices
-    for(int i = 0; i < divisions; i++){
-        for(int j = 0; j < divisions; j++){
-            vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
-            triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+            
+            if (i != divisions && j != divisions){
+                vector<Triangle> square_triangles = generate_square_box(i, j, divisions, index, is_visible);
+                triangles.insert(triangles.end(), square_triangles.begin(), square_triangles.end());
+            } 
         }
     }
 

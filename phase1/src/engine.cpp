@@ -57,7 +57,9 @@ void changeSize(int w, int h) {
     glViewport(0, 0, w, h);
 
 	// Set perspective
-	gluPerspective(45.0f ,ratio, 1.0f ,1000.0f);
+	Projection projection = world.camera.projection;
+
+	gluPerspective(projection.fov ,ratio, projection.near , projection.far);
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
@@ -72,12 +74,10 @@ void renderScene(void) {
 	// set the camera
 	Camera camera = world.camera;
 	glLoadIdentity();
-	gluLookAt(5.0,5.0,5.0, 
-				0.0,0.0,0.0,
-				0.0f,1.0f,0.0f);
-	/*gluLookAt(camera.position.x,camera.position.y,camera.position.z, 
+
+	gluLookAt(camera.position.x,camera.position.y,camera.position.z, 
 	        camera.lookAt.x,camera.lookAt.y,camera.lookAt.z,
-	        camera.up.x,camera.up.y,camera.up.z);*/
+	        camera.up.x,camera.up.y,camera.up.z);
 
 	glPolygonMode(GL_FRONT, GL_LINE);
 	

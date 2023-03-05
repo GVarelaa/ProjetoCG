@@ -8,8 +8,8 @@ vector<Triangle> generateSquare(int iterX, int iterZ, int divisions){
     int topLeftIndex = (divisions+1)*iterX + (iterZ+1);
     int topRightIndex = (divisions+1)*(iterX+1) + (iterZ+1);
 
-    Triangle t1 = Triangle(bottomLeftIndex, bottomRightIndex, topLeftIndex);
-    Triangle t2 = Triangle(bottomRightIndex, topRightIndex, topLeftIndex);
+    Triangle t1 = Triangle(bottomLeftIndex, bottomRightIndex, topRightIndex);
+    Triangle t2 = Triangle(bottomLeftIndex, topRightIndex, topLeftIndex);
     
     triangles.push_back(t1);
     triangles.push_back(t2);

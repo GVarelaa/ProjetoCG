@@ -1,37 +1,5 @@
 #include "../include/world.h"
 
-Window::Window(){
-    
-}
-
-Window::Window(int newWidth, int newHeight){
-    width = newWidth;
-    height = newHeight;
-}
-
-Projection::Projection(){}
-
-Projection::Projection(float newFov, float newNear, float newFar){
-    fov = newFov;
-    near = newNear;
-    far = newFar;
-}
-
-Camera::Camera(){}
-
-Camera::Camera(Point newPosition, Point newLookAt, Point newUp, Projection newProjection){
-    position = newPosition;
-    lookAt = newLookAt;
-    up = newUp;
-    projection = newProjection;
-}
-
-Group::Group(){}
-
-Group::Group(vector<Model> newModels){
-    models = newModels;
-}
-
 World::World(){}
 
 World::World(Window newWindow, Camera newCamera, Group newGroup){
@@ -48,39 +16,15 @@ World::World(char *path){
 	if(root){
         XMLElement *windowElement = root->FirstChildElement("window");
         if(windowElement){
-            int width = atoi(windowElement->Attribute("width"));
-            int height = atoi(windowElement->Attribute("height"));
-            window = Window(width, height);
+            window = Window(windowElement);
         }
 
         XMLElement *cameraElement = root->FirstChildElement("camera");
         if(cameraElement){
-            XMLElement *positionElement = cameraElement->FirstChildElement("position");
-            float positionX = atof(positionElement->Attribute("x"));
-            float positionY = atof(positionElement->Attribute("y"));
-            float positionZ = atof(positionElement->Attribute("z"));
-            
-
-            XMLElement *lookAtElement = cameraElement->FirstChildElement("lookAt");
-            float lookAtX = atof(lookAtElement->Attribute("x"));
-            float lookAtY = atof(lookAtElement->Attribute("y"));
-            float lookAtZ = atof(lookAtElement->Attribute("z"));
-        
-            XMLElement *upElement = cameraElement->FirstChildElement("up");
-            float upX = atof(upElement->Attribute("x"));
-            float upY = atof(upElement->Attribute("y"));
-            float upZ = atof(upElement->Attribute("z"));
-
-            XMLElement *projectionElement = cameraElement->FirstChildElement("projection");
-            float projectionFov = atof(projectionElement->Attribute("fov"));
-            float projectionNear = atof(projectionElement->Attribute("near"));
-            float projectionFar = atof(projectionElement->Attribute("far"));
-
-            camera = Camera(Point(positionX, positionY, positionZ), Point(lookAtX, lookAtY, lookAtZ), Point(upX, upY, upZ), Projection(projectionFov, projectionNear, projectionFar));
+            camera = Camera(cameraElement);
         }
-        
+    
         XMLElement *groupElement = root->FirstChildElement("group");
-
         if(groupElement){
             XMLElement *modelsElement = groupElement->FirstChildElement("models");
             if(modelsElement){
@@ -93,4 +37,76 @@ World::World(char *path){
             }
         } 
 	}
+}
+
+
+
+Window::Window(){
+    
+}
+
+Window::Window(int newWidth, int newHeight){
+    width = newWidth;
+    height = newHeight;
+}
+
+Window::Window(XMLElement *windowElement){
+    width = atoi(windowElement->Attribute("width"));
+    height = atoi(windowElement->Attribute("height"));
+}
+
+
+Camera::Camera(){}
+
+Camera::Camera(Point newPosition, Point newLookAt, Point newUp, Projection newProjection){
+    position = newPosition;
+    lookAt = newLookAt;
+    up = newUp;
+    projection = newProjection;
+}
+
+Camera::Camera(XMLElement *cameraElement){
+    XMLElement *positionElement = cameraElement->FirstChildElement("position");
+    float positionX = atof(positionElement->Attribute("x"));
+    float positionY = atof(positionElement->Attribute("y"));
+    float positionZ = atof(positionElement->Attribute("z"));
+    
+
+    XMLElement *lookAtElement = cameraElement->FirstChildElement("lookAt");
+    float lookAtX = atof(lookAtElement->Attribute("x"));
+    float lookAtY = atof(lookAtElement->Attribute("y"));
+    float lookAtZ = atof(lookAtElement->Attribute("z"));
+
+    XMLElement *upElement = cameraElement->FirstChildElement("up");
+    float upX = atof(upElement->Attribute("x"));
+    float upY = atof(upElement->Attribute("y"));
+    float upZ = atof(upElement->Attribute("z"));
+
+    XMLElement *projectionElement = cameraElement->FirstChildElement("projection");
+    float projectionFov = atof(projectionElement->Attribute("fov"));
+    float projectionNear = atof(projectionElement->Attribute("near"));
+    float projectionFar = atof(projectionElement->Attribute("far"));
+
+    position = Point(positionX, positionY, positionZ);
+    lookAt = Point(lookAtX, lookAtY, lookAtZ);
+    up = Point(upX, upY, upZ);
+    projection = Projection(projectionFov, projectionNear, projectionFar);
+}
+
+
+Group::Group(){}
+
+Group::Group(vector<Model> newModels){
+    models = newModels;
+}
+
+
+Projection::Projection(){
+
+}
+
+Projection::Projection(float newFov, float newNear, float newFar){
+    fov = newFov;
+    near = newNear;
+    far = newFar;
 }

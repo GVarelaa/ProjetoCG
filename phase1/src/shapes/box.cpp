@@ -11,12 +11,12 @@ vector<Triangle> generateSquareBox(int i, int j, int divisions, int *index, bool
 
     Triangle t1, t2;
     if(isVisible){
-        t1 = Triangle(bottomLeftIndex, bottomRightIndex, topLeftIndex);
-        t2 = Triangle(bottomRightIndex, topRightIndex, topLeftIndex);
+        t1 = Triangle(bottomLeftIndex, bottomRightIndex, topRightIndex);
+        t2 = Triangle(bottomLeftIndex, topRightIndex, topLeftIndex);
     }
     else{
-        t1 = Triangle(topLeftIndex, bottomRightIndex, bottomLeftIndex);
-        t2 = Triangle(topLeftIndex, topRightIndex, bottomRightIndex);
+        t1 = Triangle(topRightIndex, bottomRightIndex, bottomLeftIndex);
+        t2 = Triangle(topLeftIndex, topRightIndex, bottomLeftIndex);
     }
 
     triangles.push_back(t1);
@@ -71,11 +71,11 @@ pair<vector<Point>, vector<Triangle> > generateYZplane(Point initialPoint, float
     float z = initialZ;
 
     for(int i = 0; i <= divisions; i++){
-        y = initialY;
-        z = initialZ - i*squareLength;
+        z = initialZ;
+        y = initialY - i*squareLength;
         
         for(int j = 0; j <= divisions; j++){
-            y = initialY + j*squareLength;
+            z = initialZ - j*squareLength;
             vertices.push_back(Point(initialX, y, z));
 
             if (i != divisions && j != divisions){
@@ -131,8 +131,8 @@ Model generateBox(float length, int divisions){
     pair<vector<Point>, vector<Triangle> > xzPlane1  = generateXZplane(Point(hl, hl, hl), length, divisions, &index, true);
     pair<vector<Point>, vector<Triangle> > xzPlane2  = generateXZplane(Point(hl, -hl, hl), length, divisions, &index, false);
 
-    pair<vector<Point>, vector<Triangle> > yzPlane1 = generateYZplane(Point(hl, -hl, hl), length, divisions, &index, true);
-    pair<vector<Point>, vector<Triangle> > yzPlane2 = generateYZplane(Point(-hl, -hl, hl), length, divisions, &index, false);
+    pair<vector<Point>, vector<Triangle> > yzPlane1 = generateYZplane(Point(hl, hl, hl), length, divisions, &index, true);
+    pair<vector<Point>, vector<Triangle> > yzPlane2 = generateYZplane(Point(-hl, hl, hl), length, divisions, &index, false);
 
     pair<vector<Point>, vector<Triangle> > xyPlane1 = generateXYplane(Point(-hl, -hl, hl), length, divisions, &index, true);
     pair<vector<Point>, vector<Triangle> > xyPlane2 = generateXYplane(Point(-hl, -hl, -hl), length, divisions, &index, false);

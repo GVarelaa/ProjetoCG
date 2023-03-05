@@ -14,10 +14,19 @@ class Window{
         int width;
         int height;
         Window();
-        Window(int new_height, int new_width);
-        int get_width();
-        int get_height();
+        Window(int newHeight, int newWidth);
+        Window(XMLElement *windowElement);
 };
+
+
+
+class Group{
+    public:
+        vector<Model> models;
+        Group();
+        Group(vector<Model> newModels);
+};
+
 
 class Projection{
     public:
@@ -25,32 +34,21 @@ class Projection{
         float near;
         float far;
         Projection();
-        Projection(float new_fov, float new_near, float new_far);
-        float get_fov();
-        float get_near();
-        float get_far();
+        Projection(float newFov, float newNear, float newFar);
 };
+
 
 class Camera{
     public:
         Point position;
         Point lookAt;
-        Point up; // vetor
+        Point up; 
         Projection projection;
         Camera();
-        Camera(Point new_position, Point new_lookAt, Point new_up, Projection new_projection);
-        Point get_position();
-        Point get_lookAt();
-        Point get_up();
-        Projection get_projection();
+        Camera(Point newPosition, Point newLookAt, Point newUp, Projection newProjection);
+        Camera(XMLElement *cameraElement);
 };
 
-class Group{
-    public:
-        vector<Model> models;
-        Group();
-        Group(vector<Model> new_models);
-};
 
 class World{
     public:
@@ -58,9 +56,8 @@ class World{
         Camera camera;
         Group group;
         World();
-        World(Window new_window, Camera new_camera, Group new_group);
+        World(Window newWindow, Camera newCamera, Group newGroup);
         World(char *path);
-        void parser(char *path);
 };
 
 #endif

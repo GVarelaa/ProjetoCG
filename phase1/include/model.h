@@ -10,18 +10,14 @@
 using namespace std;
 
 class Model{
-    private:
-    vector<Point> vertices;
-    vector<Triangle> triangles;
-    int n_vertices;
-    int n_triangles;
-
     public:
-    Model(vector<Point> vertices, vector<Triangle> triangles);
-    Model(char* path);
-    vector<Point> getVertices();
-    vector<Triangle> getTriangles();
-    void to_file(char* path);
+        vector<Point> vertices;
+        vector<Triangle> triangles;
+        int n_vertices;
+        int n_triangles;
+        Model(vector<Point> vertices, vector<Triangle> triangles);
+        Model(char* path);
+        void to_file(char* path);
 };
 
 #endif

@@ -56,13 +56,13 @@ void Model::to_file(char* path){
 
     //Vertices
     for(int i = 0; i < n_vertices; i++){
-        sprintf(buffer, "%f %f %f\n", vertices[i].getX(), vertices[i].getY(), vertices[i].getZ());
+        sprintf(buffer, "%f %f %f\n", vertices[i].x, vertices[i].y, vertices[i].z);
         file << buffer;
     }
 
     //Triangles
     for(int i = 0; i < n_triangles; i++){
-        sprintf(buffer, "%d %d %d\n", triangles[i].getIndP1(), triangles[i].getIndP2(), triangles[i].getIndP3());
+        sprintf(buffer, "%d %d %d\n", triangles[i].indP1, triangles[i].indP2, triangles[i].indP3);
         file << buffer;
     }
 

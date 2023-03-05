@@ -31,9 +31,9 @@ pair<vector<Point>, vector<Triangle> > generate_xz_plane(Point initial_point, fl
     vector<Triangle> triangles;
 
     float square_length = length/divisions;
-    float initial_x = initial_point.getX();
-    float initial_y = initial_point.getY();
-    float initial_z = initial_point.getZ();
+    float initial_x = initial_point.x;
+    float initial_y = initial_point.y;
+    float initial_z = initial_point.z;
 
     float x = initial_x;
     float z = initial_z;
@@ -67,9 +67,9 @@ pair<vector<Point>, vector<Triangle> > generate_yz_plane(Point initial_point, fl
     vector<Triangle> triangles;
 
     float square_length = length/divisions;
-    float initial_x = initial_point.getX();
-    float initial_y = initial_point.getY();
-    float initial_z = initial_point.getZ();
+    float initial_x = initial_point.x;
+    float initial_y = initial_point.y;
+    float initial_z = initial_point.z;
 
     float y = initial_y;
     float z = initial_z;
@@ -103,9 +103,9 @@ pair<vector<Point>, vector<Triangle> > generate_xy_plane(Point initial_point, fl
     vector<Triangle> triangles;
 
     float square_length = length/divisions;
-    float initial_x = initial_point.getX();
-    float initial_y = initial_point.getY();
-    float initial_z = initial_point.getZ();
+    float initial_x = initial_point.x;
+    float initial_y = initial_point.y;
+    float initial_z = initial_point.z;
 
     float x = initial_x;
     float y = initial_y;

@@ -23,18 +23,18 @@ World world;
 
 void drawModel(Model model){
 	printf("aqui\n");
-	vector<Point> vertices = model.getVertices();
-	vector<Triangle> triangles = model.getTriangles();
+	vector<Point> vertices = model.vertices;
+	vector<Triangle> triangles = model.triangles;
 
 	glBegin(GL_TRIANGLES);
 		for(int i = 0; i < triangles.size(); i++){
-			Point p1 = vertices[triangles[i].getIndP1()];
-			Point p2 = vertices[triangles[i].getIndP2()];
-			Point p3 = vertices[triangles[i].getIndP3()];
+			Point p1 = vertices[triangles[i].indP1];
+			Point p2 = vertices[triangles[i].indP2];
+			Point p3 = vertices[triangles[i].indP3];
 
-			glVertex3f(p1.getX(), p1.getY(), p1.getZ());
-			glVertex3f(p2.getX(), p2.getY(), p2.getZ());
-			glVertex3f(p3.getX(), p3.getY(), p3.getZ());
+			glVertex3f(p1.x, p1.y, p1.z);
+			glVertex3f(p2.x, p2.y, p2.z);
+			glVertex3f(p3.x, p3.y, p3.z);
 		}
 	glEnd();
 }
@@ -103,7 +103,7 @@ void renderScene(void) {
 
 
 	// put drawing instructions here
-	Group group = world.get_group();
+	Group group = world.group;
 	vector<Model> models = group.models;
 	for(int i = 0; i < models.size(); i++){
 		drawModel(models[i]);

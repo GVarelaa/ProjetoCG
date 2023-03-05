@@ -17,43 +17,27 @@
 using namespace tinyxml2;
 using namespace std;
 
-vector<Point*> points_global;
 
-vector<Point*> read_model(char* path){
-    vector<Point*> points;
-    ifstream file(path);
+World world;
 
-    if (file.is_open()){
-        string line;
 
-        while (getline(file, line)){
-            stringstream ss(line);
-            string x, y, z;
-            ss >> x >> y >> z;
-            Point* p = new Point(stof(x), stof(y), stof(z));
-            points.push_back(p);
-        }
+void drawModel(Model model){
+	printf("aqui\n");
+	vector<Point> vertices = model.getVertices();
+	vector<Triangle> triangles = model.getTriangles();
 
-        file.close();
-    }
-    else{
-        cout << "File not found!" << endl;
-    }
+	glBegin(GL_TRIANGLES);
+		for(int i = 0; i < triangles.size(); i++){
+			Point p1 = vertices[triangles[i].getIndP1()];
+			Point p2 = vertices[triangles[i].getIndP2()];
+			Point p3 = vertices[triangles[i].getIndP3()];
 
-    return points;
+			glVertex3f(p1.getX(), p1.getY(), p1.getZ());
+			glVertex3f(p2.getX(), p2.getY(), p2.getZ());
+			glVertex3f(p3.getX(), p3.getY(), p3.getZ());
+		}
+	glEnd();
 }
-
-
-void draw_model(vector<Point*> points){
-    glBegin(GL_TRIANGLES);
-
-    for (int i=0; i < points.size(); i++){
-        glVertex3f(points[i]->getX(), points[i]->getY(), points[i]->getZ());
-    }
-
-    glEnd();
-}
-
 
 void changeSize(int w, int h) {
 
@@ -88,7 +72,7 @@ void renderScene(void) {
 
 	// set the camera
 	glLoadIdentity();
-	gluLookAt(-5.0,5.0,-5.0, 
+	gluLookAt(5.0,5.0,5.0, 
 			0.0,0.0,0.0,
 			0.0f,1.0f,0.0f);
 	
@@ -119,7 +103,11 @@ void renderScene(void) {
 
 
 	// put drawing instructions here
-    draw_model(points_global);
+	Group group = world.get_group();
+	vector<Model> models = group.models;
+	for(int i = 0; i < models.size(); i++){
+		drawModel(models[i]);
+	}
 
 	//  End of frame
 	glutSwapBuffers();
@@ -127,9 +115,9 @@ void renderScene(void) {
 
 
 int main(int argc, char **argv) {
-	World world = World(argv[1]);
+	world = World(argv[1]);
+
 	
-    //points_global = read_model(argv[1]);
 
 // init GLUT and the window
 	glutInit(&argc, argv);

@@ -52,10 +52,8 @@ class Camera{
 };
 
 class Group{
-    private:
-    vector<Model> models;
-
     public:
+    vector<Model> models;
     Group();
     Group(vector<Model> new_models);
 };
@@ -67,6 +65,7 @@ class World{
     Group group;
 
     public:
+    World();
     World(Window new_window, Camera new_camera, Group new_group);
     World(char *path);
     Window get_window();

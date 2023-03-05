@@ -10,68 +10,57 @@ using namespace std;
 using namespace tinyxml2;
 
 class Window{
-    private:
-    int width;
-    int height;
-
     public:
-    Window();
-    Window(int new_height, int new_width);
-    int get_width();
-    int get_height();
+        int width;
+        int height;
+        Window();
+        Window(int new_height, int new_width);
+        int get_width();
+        int get_height();
 };
 
 class Projection{
-    private:
-    float fov;
-    float near;
-    float far;
-
     public:
-    Projection();
-    Projection(float new_fov, float new_near, float new_far);
-    float get_fov();
-    float get_near();
-    float get_far();
+        float fov;
+        float near;
+        float far;
+        Projection();
+        Projection(float new_fov, float new_near, float new_far);
+        float get_fov();
+        float get_near();
+        float get_far();
 };
 
 class Camera{
-    private:
-    Point position;
-    Point lookAt;
-    Point up; // vetor
-    Projection projection;
-
     public:
-    Camera();
-    Camera(Point new_position, Point new_lookAt, Point new_up, Projection new_projection);
-    Point get_position();
-    Point get_lookAt();
-    Point get_up();
-    Projection get_projection();
+        Point position;
+        Point lookAt;
+        Point up; // vetor
+        Projection projection;
+        Camera();
+        Camera(Point new_position, Point new_lookAt, Point new_up, Projection new_projection);
+        Point get_position();
+        Point get_lookAt();
+        Point get_up();
+        Projection get_projection();
 };
 
 class Group{
     public:
-    vector<Model> models;
-    Group();
-    Group(vector<Model> new_models);
+        vector<Model> models;
+        Group();
+        Group(vector<Model> new_models);
 };
 
 class World{
-    private:
-    Window window;
-    Camera camera;
-    Group group;
-
     public:
-    World();
-    World(Window new_window, Camera new_camera, Group new_group);
-    World(char *path);
-    Window get_window();
-    Camera get_camera();
-    Group get_group();
-    void parser(char *path);
+        Window window;
+        Camera camera;
+        Group group;
+        World();
+        World(Window new_window, Camera new_camera, Group new_group);
+        World(char *path);
+        void parser(char *path);
 };
 
 #endif

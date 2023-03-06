@@ -19,6 +19,8 @@ using namespace std;
 
 
 World world;
+float alpha_camera = 0, beta_camera = 0, radius_camera = 10;
+bool explore_mode = false;
 
 
 void drawModel(Model model){
@@ -75,9 +77,21 @@ void renderScene(void) {
 	Camera camera = world.camera;
 	glLoadIdentity();
 
-	gluLookAt(camera.position.x,camera.position.y,camera.position.z, 
+	// Modo explorador desativado
+	if(explore_mode == false){
+		gluLookAt(camera.position.x,camera.position.y,camera.position.z , 
 	        camera.lookAt.x,camera.lookAt.y,camera.lookAt.z,
 	        camera.up.x,camera.up.y,camera.up.z);
+	}
+	else{
+		float px = radius_camera * cos (beta_camera) * sin (alpha_camera);
+		float py = radius_camera * sin (beta_camera);
+		float pz = radius_camera * cos (beta_camera) * cos (alpha_camera);
+
+		gluLookAt(px, py, pz, 
+	        camera.lookAt.x,camera.lookAt.y,camera.lookAt.z,
+	        camera.up.x,camera.up.y,camera.up.z);
+	}
 
 	glPolygonMode(GL_FRONT, GL_LINE);
 	
@@ -116,6 +130,47 @@ void renderScene(void) {
 	glutSwapBuffers();
 }
 
+void processKeys(unsigned char c, int x, int y){
+	if(explore_mode == true){
+		if(c == 'c'){
+			explore_mode = false;
+		}
+		else if (c == '+'){
+			radius_camera += 1;
+		}
+		else if (c == '-'){
+			radius_camera -= 1;
+		}
+	}
+	else{
+		if(c == 'c'){
+			explore_mode = true;
+		}
+	}
+
+	glutPostRedisplay();
+}
+
+void processSpecialKeys(int key, int x, int y){
+	if(explore_mode == true){
+		if (key == GLUT_KEY_LEFT){
+			alpha_camera -= M_PI / 20;
+		}
+		else if (key == GLUT_KEY_RIGHT){
+			alpha_camera += M_PI / 20;
+		}
+		else if (key == GLUT_KEY_UP && beta_camera + M_PI / 20 <= M_PI / 2){
+			beta_camera += M_PI / 20;
+		}
+		else if (key == GLUT_KEY_DOWN && beta_camera - M_PI / 20 >= - M_PI / 2){
+			beta_camera -= M_PI / 20;
+		}
+
+		glutPostRedisplay();
+	}
+}
+
+
 
 int main(int argc, char **argv) {
 	world = World(argv[1]);
@@ -135,8 +190,8 @@ int main(int argc, char **argv) {
 
 	
 // put here the registration of the keyboard callbacks
-	//glutKeyboardFunc(keyboardFunc);
-	//glutSpecialFunc(keyboardFunc2);
+	glutKeyboardFunc(processKeys);
+	glutSpecialFunc(processSpecialKeys);
 
 
 //  OpenGL settings

@@ -21,11 +21,11 @@ int main(int argc, char *argv[]){
     }
     inp.pop_back();
 
-    char erPlane[] = "plane [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
-    char erBox[] = "box [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
-    char erCone[] = "cone [0-9]+ [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
-    char erSphere[] = "sphere [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
-    char erCylinder[] = "cylinder [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
+    char erPlane[] = "plane ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
+    char erBox[] = "box ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
+    char erCone[] = "cone ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
+    char erSphere[] = "sphere ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
+    char erCylinder[] = "cylinder ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
 
     if (regex_match(inp, regex(erPlane))){
         float length = atof(argv[2]);

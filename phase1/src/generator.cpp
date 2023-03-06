@@ -4,6 +4,7 @@
 #include "../include/box.h"
 #include "../include/cone.h"
 #include "../include/sphere.h"
+#include "../include/cylinder.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -24,6 +25,7 @@ int main(int argc, char *argv[]){
     char erBox[] = "box [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
     char erCone[] = "cone [0-9]+ [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
     char erSphere[] = "sphere [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
+    char erCylinder[] = "cylinder [0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+.3d$";
 
     if (regex_match(inp, regex(erPlane))){
         float length = atof(argv[2]);
@@ -60,6 +62,16 @@ int main(int argc, char *argv[]){
         Model sphere = generateSphere(radius, slices, stacks);
 
         sphere.toFile(filePath);
+    }
+    else if(regex_match(inp, regex(erCylinder))){
+        float radius = atof(argv[2]);
+        float height = atof(argv[3]);
+        int slices = atoi(argv[4]);
+        char *filePath = argv[5];
+
+        Model cylinder = generateCylinder(radius, height, slices);
+
+        cylinder.toFile(filePath);
     }
     else {
         printf("%s\n", "Invalid input!");

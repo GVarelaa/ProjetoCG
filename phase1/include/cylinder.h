@@ -1,5 +1,5 @@
-#ifndef __CONE__
-#define __CONE__
+#ifndef __CYLINDER__
+#define __CYLINDER__
 
 #include "point.h"
 #include "triangle.h"
@@ -9,6 +9,6 @@
 
 using namespace std;
 
-Model generate_cone(float radius, float height, int slices, int stacks);
+Model generateCylinder(float radius, float height, int slices);
 
 #endif

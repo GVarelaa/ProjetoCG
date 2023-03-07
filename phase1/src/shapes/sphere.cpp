@@ -15,14 +15,14 @@ Model generateSphere(float radius, int slices, int stacks){
     for(int i = 0; i < slices; i++){
         if(i==slices-1){
             Triangle t1 = Triangle(0, 2, i*(stacks-1) + 2);
-            triangles.push_back(t1);
             Triangle t2 = Triangle(1, i*(stacks-1) + stacks, stacks);
+            triangles.push_back(t1);
             triangles.push_back(t2);
         }
         else{
             Triangle t1 = Triangle(0, (i+1)*(stacks-1) + 2, i*(stacks-1) + 2);
-            triangles.push_back(t1);
             Triangle t2 = Triangle(1, i*(stacks-1) + stacks, (i+1)*(stacks-1) + stacks);
+            triangles.push_back(t1);
             triangles.push_back(t2);
         }
 

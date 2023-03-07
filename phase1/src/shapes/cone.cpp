@@ -1,71 +1,52 @@
 #include "../../include/cone.h"
 
-
-pair<vector<Point>, vector<Triangle> > generateConeBase(float radius, int slices, int *index){
-    vector<Point> points;
-    vector<Triangle> triangles;
-
-    float alpha = (2 * M_PI) / slices;
-    Point centralPoint = Point(0 , 0, 0);
-
-    points.push_back(centralPoint);
-
-    //Vértices
-    for(int i = 0; i < slices; i++){
-        Point p = Point(radius * sin(i*alpha), 0, radius * cos(i*alpha));
-        points.push_back(p);
-    }
-
-    //Triângulos
-    for(int i = 0; i < slices; i++){
-        Triangle t = Triangle(i+2, i+1, 0);
-        triangles.push_back(t);
-    }
-
-    *index += points.size();
-    return pair<vector<Point>, vector<Triangle> >(points, triangles);
-}
-
-pair<vector<Point>, vector<Triangle> > generateConeFaces(float radius, float height, int slices, int stacks, int *index){
-    vector<Point> points;
-    vector<Triangle> triangles;
-
-    float alpha = (2 * M_PI) / slices;
-    float h_part = height / stacks;
-    float r_part = radius / stacks;
-    
-    for(int i = 0; i <= slices; i++){
-        for(int j = 0; j <= stacks; j++){
-            Point p = Point((radius - j*r_part) * sin(i*alpha), j*h_part, (radius - j*r_part) * cos(i*alpha));
-            points.push_back(p);
-
-            if(i != slices && j != stacks){
-                Triangle t1 = Triangle(i*(stacks+1) + j + *index, (i+1)*(stacks+1) + j + *index, i*(stacks+1) + j+1 + *index);
-                Triangle t2 = Triangle((i+1)*(stacks+1) + j + *index, (i+1)*(stacks+1) + j+1 + *index, i*(stacks+1) + j+1 + *index);
-                triangles.push_back(t1);
-                triangles.push_back(t2);
-            }
-        }
-    }
-
-    *index += points.size();
-    return pair<vector<Point>, vector<Triangle> >(points, triangles);
-}
-
-
 Model generateCone(float radius, float height, int slices, int stacks){
     vector<Point> points;
     vector<Triangle> triangles;
-    int index=0;
 
-    pair<vector<Point>, vector<Triangle> > base = generateConeBase(radius, slices, &index);
-    pair<vector<Point>, vector<Triangle> > faces = generateConeFaces(radius, height, slices, stacks, &index);
+    float alpha = (2 * M_PI) / slices;
+    float hPart = height / stacks;
+    float rPart = radius / stacks;
+    
+    Point centralPoint = Point(0, 0, 0);
+    Point topPoint = Point(0, height, 0);
+    points.push_back(centralPoint);
+    points.push_back(topPoint);
 
-    points.insert(points.end(), base.first.begin(), base.first.end());
-    points.insert(points.end(), faces.first.begin(), faces.first.end());
+    for(int i = 0; i < slices; i++){
+        if(i==slices-1){
+            Triangle base_triangle = Triangle(i*stacks + 2 , 0, 2);
+            Triangle top_triangle = Triangle(i*stacks + 1 + stacks, stacks + 1, 1);
+            triangles.push_back(base_triangle);
+            triangles.push_back(top_triangle);
+        }
+        else{
+            Triangle base_triangle = Triangle(i*stacks + 2, 0, (i+1)*stacks + 2);
+            Triangle top_triangle = Triangle(i*stacks + 1 + stacks, (i+1)*stacks + 1 + stacks, 1);
+            triangles.push_back(base_triangle);
+            triangles.push_back(top_triangle);
+        }
 
-    triangles.insert(triangles.end(), base.second.begin(), base.second.end());
-    triangles.insert(triangles.end(), faces.second.begin(), faces.second.end());
+        for(int j = 0; j < stacks; j++){
+            Point p = Point((radius - j*rPart) * sin(i*alpha), j*hPart, (radius - j*rPart) * cos(i*alpha));
+            points.push_back(p);
+
+            if(j!=stacks-1){
+                if(i==slices-1){
+                    Triangle t1 = Triangle(i*stacks + j + 2, j + 2, i*stacks + j + 2 + 1);
+                    Triangle t2 = Triangle(j + 2, j+ 2 + 1, i*stacks + j + 2 + 1);
+                    triangles.push_back(t1);
+                    triangles.push_back(t2); 
+                }
+                else{
+                    Triangle t1 = Triangle(i*stacks + j + 2, (i+1)*stacks + j + 2, i*stacks + j + 1 + 2);
+                    Triangle t2 = Triangle((i+1)*stacks + j + 2, (i+1)*stacks + j + 2 + 1, i*stacks + j + 2 + 1);
+                    triangles.push_back(t1);
+                    triangles.push_back(t2);
+                }
+            }
+        }
+    }
 
     return Model(points, triangles);
 }

@@ -1,7 +1,7 @@
 #include "../../include/cone.h"
 
 
-pair<vector<Point>, vector<Triangle> > generate_cone_base(float radius, int slices, int *index){
+pair<vector<Point>, vector<Triangle> > generateConeBase(float radius, int slices, int *index){
     vector<Point> points;
     vector<Triangle> triangles;
 
@@ -26,7 +26,7 @@ pair<vector<Point>, vector<Triangle> > generate_cone_base(float radius, int slic
     return pair<vector<Point>, vector<Triangle> >(points, triangles);
 }
 
-pair<vector<Point>, vector<Triangle> > generate_cone_faces(float radius, float height, int slices, int stacks, int *index){
+pair<vector<Point>, vector<Triangle> > generateConeFaces(float radius, float height, int slices, int stacks, int *index){
     vector<Point> points;
     vector<Triangle> triangles;
 
@@ -53,13 +53,13 @@ pair<vector<Point>, vector<Triangle> > generate_cone_faces(float radius, float h
 }
 
 
-Model generate_cone(float radius, float height, int slices, int stacks){
+Model generateCone(float radius, float height, int slices, int stacks){
     vector<Point> points;
     vector<Triangle> triangles;
     int index=0;
 
-    pair<vector<Point>, vector<Triangle> > base = generate_cone_base(radius, slices, &index);
-    pair<vector<Point>, vector<Triangle> > faces = generate_cone_faces(radius, height, slices, stacks, &index);
+    pair<vector<Point>, vector<Triangle> > base = generateConeBase(radius, slices, &index);
+    pair<vector<Point>, vector<Triangle> > faces = generateConeFaces(radius, height, slices, stacks, &index);
 
     points.insert(points.end(), base.first.begin(), base.first.end());
     points.insert(points.end(), faces.first.begin(), faces.first.end());

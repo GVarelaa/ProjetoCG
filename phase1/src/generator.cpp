@@ -50,7 +50,7 @@ int main(int argc, char *argv[]){
         int stacks = atoi(argv[5]);
         char *filePath = argv[6];
 
-        Model cone = generate_cone(radius, height, slices, stacks);
+        Model cone = generateCone(radius, height, slices, stacks);
 
         cone.toFile(filePath);
     }

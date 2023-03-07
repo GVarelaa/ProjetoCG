@@ -9,6 +9,6 @@
 
 using namespace std;
 
-Model generate_cone(float radius, float height, int slices, int stacks);
+Model generateCone(float radius, float height, int slices, int stacks);
 
 #endif

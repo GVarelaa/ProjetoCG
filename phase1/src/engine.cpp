@@ -18,28 +18,50 @@
 using namespace tinyxml2;
 using namespace std;
 
-
 World world;
-float alpha_camera = 0, beta_camera = 0, radius_camera = 10;
-bool explore_mode = false;
+float alphaCamera = 0, betaCamera = 0, radiusCamera = 10;
+float pxCamera = 0, pyCamera = 0, pzCamera = 0;
+bool explorerMode = false;
+int timebase = 0, frames = 0;
 
 
-void drawModel(Model model){
-	vector<Point> vertices = model.vertices;
-	vector<Triangle> triangles = model.triangles;
+void showFPS(){
+	frames++;
+    int fps;
+    int time = glutGet(GLUT_ELAPSED_TIME);
 
-	glBegin(GL_TRIANGLES);
-		for(int i = 0; i < triangles.size(); i++){
-			Point p1 = vertices[triangles[i].indP1];
-			Point p2 = vertices[triangles[i].indP2];
-			Point p3 = vertices[triangles[i].indP3];
+    if (time - timebase > 1000){
+        fps = frames*1000.0 / (time-timebase);
+        timebase = time; frames = 0;
+        char title[20];
+        sprintf(title, "CG@G48 | %d FPS", fps);
+        glutSetWindowTitle(title);
+    }
+}
 
-			glVertex3f(p1.x, p1.y, p1.z);
-			glVertex3f(p2.x, p2.y, p2.z);
-			glVertex3f(p3.x, p3.y, p3.z);
-		}
+
+void showAxis(){
+	glBegin(GL_LINES);
+	// X axis in red
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(-100.0f, 0.0f, 0.0f);
+	glVertex3f(100.0f, 0.0f, 0.0f);
+	
+	// Y axis in green
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(0.0f, -100.0f, 0.0f);
+	glVertex3f(0.0f, 100.0f, 0.0f);
+	
+	// Z axis in blue
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(0.0f, 0.0f, -100.0f);
+	glVertex3f(0.0f, 0.0f, 100.0f);
+
+	glColor3f(255.0f, 255.0f, 255.0f);
+		
 	glEnd();
 }
+
 
 void changeSize(int w, int h) {
 
@@ -70,7 +92,6 @@ void changeSize(int w, int h) {
 
 
 void renderScene(void) {
-
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -79,43 +100,19 @@ void renderScene(void) {
 	glLoadIdentity();
 
 	// Modo explorador desativado
-	if(explore_mode == false){
-		gluLookAt(camera.position.x,camera.position.y,camera.position.z , 
-	        camera.lookAt.x,camera.lookAt.y,camera.lookAt.z,
-	        camera.up.x,camera.up.y,camera.up.z);
+	if(explorerMode == false){
+		gluLookAt(camera.position.x, camera.position.y, camera.position.z,
+	        camera.lookAt.x, camera.lookAt.y, camera.lookAt.z,
+	        camera.up.x, camera.up.y, camera.up.z);
 	}
 	else{
-		float px = radius_camera * cos (beta_camera) * sin (alpha_camera);
-		float py = radius_camera * sin (beta_camera);
-		float pz = radius_camera * cos (beta_camera) * cos (alpha_camera);
-
-		gluLookAt(px, py, pz, 
-	        camera.lookAt.x,camera.lookAt.y,camera.lookAt.z,
-	        camera.up.x,camera.up.y,camera.up.z);
+		gluLookAt(pxCamera, pyCamera, pzCamera, 
+	        camera.lookAt.x, camera.lookAt.y, camera.lookAt.z,
+	        camera.up.x, camera.up.y, camera.up.z);
 	}
 
-	
-
 	// put axis drawing in here
-	glBegin(GL_LINES);
-		// X axis in red
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(-100.0f, 0.0f, 0.0f);
-		glVertex3f(100.0f, 0.0f, 0.0f);
-		
-		// Y axis in green
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(0.0f, -100.0f, 0.0f);
-		glVertex3f(0.0f, 100.0f, 0.0f);
-		
-		// Z axis in blue
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f(0.0f, 0.0f, -100.0f);
-		glVertex3f(0.0f, 0.0f, 100.0f);
-
-        glColor3f(255.0f, 255.0f, 255.0f);
-		
-	glEnd();
+	showAxis();
 
 	// put the geometric transformations here	
 
@@ -126,48 +123,76 @@ void renderScene(void) {
 		models[i].draw();
 	}
 
+	showFPS();
+
 	//  End of frame
 	glutSwapBuffers();
 }
 
+
 void processKeys(unsigned char c, int x, int y){
-	if(explore_mode == true){
+	if(explorerMode == true){
 		if(c == 'c'){
-			explore_mode = false;
-		}
-		else if (c == '+'){
-			radius_camera += 1;
+			explorerMode = false;
 		}
 		else if (c == '-'){
-			radius_camera -= 1;
+			radiusCamera += 1;
+
+			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
+			pyCamera = radiusCamera * sin (betaCamera);
+			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
+		}
+		else if (c == '+'){
+			radiusCamera -= 1;
+
+			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
+			pyCamera = radiusCamera * sin (betaCamera);
+			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
 		}
 	}
 	else{
 		if(c == 'c'){
-			explore_mode = true;
+			explorerMode = true;
 		}
 	}
 
 	glutPostRedisplay();
 }
 
+
 void processSpecialKeys(int key, int x, int y){	
-	if (explore_mode == true){
+	if (explorerMode == true){
 		if (key == GLUT_KEY_LEFT){
-			alpha_camera -= M_PI / 20;
+			alphaCamera -= M_PI / 20;
+
+			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
+			pyCamera = radiusCamera * sin (betaCamera);
+			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
 		}
 		else if (key == GLUT_KEY_RIGHT){
-			alpha_camera += M_PI / 20;
+			alphaCamera += M_PI / 20;
+
+			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
+			pyCamera = radiusCamera * sin (betaCamera);
+			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
 		}
 		else if (key == GLUT_KEY_UP){
-			beta_camera += M_PI / 20;
+			betaCamera += M_PI / 20;
 
-			if (beta_camera > M_PI / 2) beta_camera = M_PI / 2;
+			if (betaCamera > M_PI / 2) betaCamera = M_PI / 2;
+
+			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
+			pyCamera = radiusCamera * sin (betaCamera);
+			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
 		}
 		else if (key == GLUT_KEY_DOWN){
-			beta_camera -= M_PI / 20;
+			betaCamera -= M_PI / 20;
 
-			if (beta_camera < -M_PI / 2) beta_camera = -M_PI / 2;
+			if (betaCamera < -M_PI / 2) betaCamera = -M_PI / 2;
+
+			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
+			pyCamera = radiusCamera * sin (betaCamera);
+			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
 		}
 
 		glutPostRedisplay();
@@ -187,6 +212,7 @@ int main(int argc, char **argv) {
         
 		
 // Required callback registry 
+	glutIdleFunc(renderScene);
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
 
@@ -207,6 +233,7 @@ int main(int argc, char **argv) {
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	world.loadGroup();
+	timebase = glutGet(GLUT_ELAPSED_TIME);
 	
 // enter GLUT's main cycle
 	glutMainLoop();

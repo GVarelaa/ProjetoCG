@@ -22,6 +22,7 @@ using namespace std;
 World world;
 float alpha_camera = 0, beta_camera = 0, radius_camera = 10;
 bool explore_mode = false;
+int timebase, frames = 0;
 
 
 void drawModel(Model model){
@@ -40,6 +41,7 @@ void drawModel(Model model){
 		}
 	glEnd();
 }
+
 
 void changeSize(int w, int h) {
 
@@ -93,7 +95,6 @@ void renderScene(void) {
 	        camera.lookAt.x,camera.lookAt.y,camera.lookAt.z,
 	        camera.up.x,camera.up.y,camera.up.z);
 	}
-
 	
 
 	// put axis drawing in here

@@ -182,7 +182,7 @@ int main(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(100,100);
-    glutInitWindowSize(800,800); // trocar
+    glutInitWindowSize(world.window.width, world.window.height); // trocar
     glutCreateWindow("CG@DI-UM");
         
 		

@@ -38,18 +38,35 @@ pair<vector<Point>, vector<Triangle> > generateXZplane(Point initialPoint, float
     float x = initialX;
     float z = initialZ;
 
-    for(int i = 0; i <= divisions; i++){
+    for(int i = 0; i < divisions; i++){
         x = initialX;
         z = initialZ - i*squareLength;
         
-        for(int j = 0; j <= divisions; j++){
+        for(int j = 0; j < divisions; j++){
             x = initialX - j*squareLength;
-            vertices.push_back(Point(x, initialY, z));
             
-            if (i != divisions && j != divisions){
-                vector<Triangle> squareTriangles = generateSquareBox(i, j, divisions, index, isVisible);
-                triangles.insert(triangles.end(), squareTriangles.begin(), squareTriangles.end());
+            Point p1 = Point(x, initialY, z);
+            Point p2 = Point(x, initialY, z-squareLength);
+            Point p3 = Point(x-squareLength, initialY, z-squareLength);
+            Point p4 = Point(x-squareLength, initialY, z);
+            
+            vertices.push_back(p1);
+            vertices.push_back(p2);
+            vertices.push_back(p3);
+            vertices.push_back(p4);
+
+            Triangle t1, t2;
+            if(isVisible){
+                t1 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + 2 + *index);
+                t2 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + 3 + *index);
             }
+            else {
+                t1 = Triangle(i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index);
+                t2 = Triangle(i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 3 + *index);
+            }
+
+            triangles.push_back(t1);
+            triangles.push_back(t2);
         }
     }
 
@@ -70,18 +87,35 @@ pair<vector<Point>, vector<Triangle> > generateYZplane(Point initialPoint, float
     float y = initialY;
     float z = initialZ;
 
-    for(int i = 0; i <= divisions; i++){
+    for(int i = 0; i < divisions; i++){
         z = initialZ;
         y = initialY - i*squareLength;
         
-        for(int j = 0; j <= divisions; j++){
+        for(int j = 0; j < divisions; j++){
             z = initialZ - j*squareLength;
-            vertices.push_back(Point(initialX, y, z));
 
-            if (i != divisions && j != divisions){
-                vector<Triangle> squareTriangles = generateSquareBox(i, j, divisions, index, isVisible);
-                triangles.insert(triangles.end(), squareTriangles.begin(), squareTriangles.end());
+            Point p1 = Point(initialX, y, z);
+            Point p2 = Point(initialX, y, z-squareLength);
+            Point p3 = Point(initialX, y-squareLength, z-squareLength);
+            Point p4 = Point(initialX, y-squareLength, z);
+            
+            vertices.push_back(p1);
+            vertices.push_back(p2);
+            vertices.push_back(p3);
+            vertices.push_back(p4);
+
+            Triangle t1, t2;
+            if(isVisible){
+                t1 = Triangle(i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index);
+                t2 = Triangle(i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 3 + *index);
             }
+            else {
+                t1 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + 2 + *index);
+                t2 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + 3 + *index);
+            }
+
+            triangles.push_back(t1);
+            triangles.push_back(t2);
         }
     }
 
@@ -102,18 +136,35 @@ pair<vector<Point>, vector<Triangle> > generateXYplane(Point initialPoint, float
     float x = initialX;
     float y = initialY;
 
-    for(int i = 0; i <= divisions; i++){
+    for(int i = 0; i < divisions; i++){
         y = initialY;
         x = initialX + i*squareLength;
         
-        for(int j = 0; j <= divisions; j++){
+        for(int j = 0; j < divisions; j++){
             y = initialY + j*squareLength;
-            vertices.push_back(Point(x, y, initialZ));
+
+            Point p1 = Point(x, y, initialZ);
+            Point p2 = Point(x, y+squareLength, initialZ);
+            Point p3 = Point(x+squareLength, y+squareLength, initialZ);
+            Point p4 = Point(x+squareLength, y, initialZ);
             
-            if (i != divisions && j != divisions){
-                vector<Triangle> squareTriangles = generateSquareBox(i, j, divisions, index, isVisible);
-                triangles.insert(triangles.end(), squareTriangles.begin(), squareTriangles.end());
-            } 
+            vertices.push_back(p1);
+            vertices.push_back(p2);
+            vertices.push_back(p3);
+            vertices.push_back(p4);
+
+            Triangle t1, t2;
+            if(isVisible){
+                t1 = Triangle(i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index);
+                t2 = Triangle(i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 3 + *index);
+            }
+            else {
+                t1 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + 2 + *index);
+                t2 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + 3 + *index);
+            }
+
+            triangles.push_back(t1);
+            triangles.push_back(t2);
         }
     }
 

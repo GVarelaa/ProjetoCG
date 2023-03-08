@@ -1,22 +1,5 @@
 #include "../../include/plane.h"
 
-vector<Triangle> generateSquare(int iterX, int iterZ, int divisions){
-    vector<Triangle> triangles;
-
-    int bottomLeftIndex = (divisions+1)*iterX + iterZ;
-    int bottomRightIndex = (divisions+1)*(iterX+1) + iterZ;
-    int topLeftIndex = (divisions+1)*iterX + (iterZ+1);
-    int topRightIndex = (divisions+1)*(iterX+1) + (iterZ+1);
-
-    Triangle t1 = Triangle(bottomLeftIndex, bottomRightIndex, topRightIndex);
-    Triangle t2 = Triangle(bottomLeftIndex, topRightIndex, topLeftIndex);
-    
-    triangles.push_back(t1);
-    triangles.push_back(t2);
-
-    return triangles;
-}
-
 Model generatePlane(float length, int divisions){
     vector<Point> vertices;
     vector<Triangle> triangles;

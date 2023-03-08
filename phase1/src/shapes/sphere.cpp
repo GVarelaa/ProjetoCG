@@ -8,7 +8,6 @@ Model generateSphere(float radius, int slices, int stacks){
     float alpha = (2 * M_PI) / slices;
     float beta = M_PI / stacks;
 
-
     for(int i = 0; i < slices; i++){
         //Ponto superior
         Point centralBottomPoint = Point(0, -radius, 0);

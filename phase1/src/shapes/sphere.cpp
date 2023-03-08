@@ -2,53 +2,44 @@
 #include "../../include/sphere.h"
 
 Model generateSphere(float radius, int slices, int stacks){
-    vector<Point> points;
+    vector<Point> vertices;
     vector<Triangle> triangles;
 
     float alpha = (2 * M_PI) / slices;
     float beta = M_PI / stacks;
 
-    //Ponto superior e inferior
-    points.push_back(Point(0, -radius, 0));
-    points.push_back(Point(0, radius, 0));
 
     for(int i = 0; i < slices; i++){
-        if(i==slices-1){
-            Triangle t1 = Triangle(0, 2, i*(stacks-1) + 2);
-            Triangle t2 = Triangle(1, i*(stacks-1) + stacks, stacks);
-            triangles.push_back(t1);
-            triangles.push_back(t2);
-        }
-        else{
-            Triangle t1 = Triangle(0, (i+1)*(stacks-1) + 2, i*(stacks-1) + 2);
-            Triangle t2 = Triangle(1, i*(stacks-1) + stacks, (i+1)*(stacks-1) + stacks);
-            triangles.push_back(t1);
-            triangles.push_back(t2);
-        }
+        //Ponto superior
+        Point centralBottomPoint = Point(0, -radius, 0);
+        vertices.push_back(centralBottomPoint);   
+
+        Triangle baseTriangle = Triangle(i*(2*stacks), i*(2*stacks) + 2, i*(2*stacks) + 1);
+        triangles.push_back(baseTriangle);
 
         for(int j = 1; j < stacks; j++){
-            Point p = Point(radius * cos(j*beta-M_PI_2) * sin(i*alpha), radius * sin(j*beta-M_PI_2), radius * cos(j*beta-M_PI_2) * cos(i*alpha));
-            points.push_back(p);
-        
+            Point p1 = Point(radius * cos(j*beta-M_PI_2) * sin(i*alpha), radius * sin(j*beta-M_PI_2), radius * cos(j*beta-M_PI_2) * cos(i*alpha));
+            Point p2 = Point(radius * cos(j*beta-M_PI_2) * sin((i+1)*alpha), radius * sin(j*beta-M_PI_2), radius * cos(j*beta-M_PI_2) * cos((i+1)*alpha));
+            vertices.push_back(p1);
+            vertices.push_back(p2);
+            
             if(j!=stacks-1){
-                if(i==slices-1){
-                    Triangle t1 = Triangle(i*(stacks-1) + j + 1, j + 1, i*(stacks-1) + j + 2);
-                    Triangle t2 = Triangle(j + 1, j + 2, i*(stacks-1) + j+2);
+                Triangle t1 = Triangle(i*(2*stacks) + j*2 - 1, i*(2*stacks) + j*2, i*(2*stacks) + j*2 + 1);
+                Triangle t2 = Triangle(i*(2*stacks) + j*2, i*(2*stacks) + j*2 + 2, i*(2*stacks) + j*2 + 1);
 
-                    triangles.push_back(t1);
-                    triangles.push_back(t2);
-                }
-                else{
-                    Triangle t1 = Triangle(i*(stacks-1) + j + 1, (i+1)*(stacks-1) + j + 1, i*(stacks-1) + j + 2);
-                    Triangle t2 = Triangle((i+1)*(stacks-1) + j + 1, (i+1)*(stacks-1) + j + 2, i*(stacks-1) + j+2);
-
-                    triangles.push_back(t1);
-                    triangles.push_back(t2);
-                }
+                triangles.push_back(t1);
+                triangles.push_back(t2);
             }
         }
+
+        //Ponto superior
+        Point topCentralPoint = Point(0, radius, 0);
+        vertices.push_back(topCentralPoint);
+
+        Triangle topTriangle = Triangle(i*(2*stacks) + stacks*2 - 3, i*(2*stacks) + stacks*2 - 2, i*(2*stacks) + stacks*2 - 1);
+        triangles.push_back(topTriangle);
     }
 
-    return Model(points, triangles);
+    return Model(vertices, triangles);
 }
 

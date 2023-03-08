@@ -1,6 +1,7 @@
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
+#include <GL/glew.h>
 #include <GL/glut.h>
 #endif
 
@@ -93,7 +94,6 @@ void renderScene(void) {
 	        camera.up.x,camera.up.y,camera.up.z);
 	}
 
-	glPolygonMode(GL_FRONT, GL_LINE);
 	
 
 	// put axis drawing in here
@@ -123,7 +123,7 @@ void renderScene(void) {
 	Group group = world.group;
 	vector<Model> models = group.models;
 	for(int i = 0; i < models.size(); i++){
-		drawModel(models[i]);
+		models[i].draw();
 	}
 
 	//  End of frame
@@ -177,14 +177,12 @@ void processSpecialKeys(int key, int x, int y){
 
 
 int main(int argc, char **argv) {
-	world = World(argv[1]);
-
-	
 // init GLUT and the window
+	world = World(argv[1]);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(100,100);
-    glutInitWindowSize(world.window.width,world.window.height);
+    glutInitWindowSize(800,800); // trocar
     glutCreateWindow("CG@DI-UM");
         
 		
@@ -197,10 +195,18 @@ int main(int argc, char **argv) {
 	glutKeyboardFunc(processKeys);
 	glutSpecialFunc(processSpecialKeys);
 
+// init GLEW
+#ifndef __APPLE__
+    glewInit();
+#endif
 
 //  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
+	glPolygonMode(GL_FRONT, GL_LINE);
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	world.loadGroup();
 	
 // enter GLUT's main cycle
 	glutMainLoop();

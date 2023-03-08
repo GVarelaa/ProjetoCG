@@ -22,9 +22,11 @@ class Window{
 
 class Group{
     public:
+        vector<string> modelsPaths;
         vector<Model> models;
         Group();
-        Group(vector<Model> newModels);
+        Group(vector<Model> models);
+        Group(vector<string> modelsPaths);
 };
 
 
@@ -58,6 +60,7 @@ class World{
         World();
         World(Window newWindow, Camera newCamera, Group newGroup);
         World(char *path);
+        void loadGroup();
 };
 
 #endif

@@ -28,17 +28,22 @@ World::World(char *path){
         if(groupElement){
             XMLElement *modelsElement = groupElement->FirstChildElement("models");
             if(modelsElement){
-                vector<Model> models;
-                for (XMLElement *modelElement = modelsElement->FirstChildElement("model"); modelElement; modelElement = modelElement->NextSiblingElement("model")){
-                   char *path = (char *)modelElement->Attribute("file");
-                   models.push_back(Model(path));
+                vector<string> modelsPaths;
+                for (XMLElement *modelElement = modelsElement->FirstChildElement("model"); modelElement; modelElement = modelElement->NextSiblingElement("model")){               
+                    const char *path = (char *)modelElement->Attribute("file");
+                    modelsPaths.push_back(string(path));
                 }
-                group = Group(models);
+                group = Group(modelsPaths);
             }
-        } 
+        }
 	}
 }
 
+void World::loadGroup(){
+    for(int i = 0; i<group.modelsPaths.size(); i++){
+        group.models.push_back(Model((char *)group.modelsPaths[i].c_str()));
+    }
+}
 
 
 Window::Window(){
@@ -98,6 +103,11 @@ Group::Group(){}
 
 Group::Group(vector<Model> newModels){
     models = newModels;
+}
+
+
+Group::Group(vector<string> newModelsPaths){
+    modelsPaths = newModelsPaths;
 }
 
 

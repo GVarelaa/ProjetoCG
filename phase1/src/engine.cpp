@@ -151,19 +151,23 @@ void processKeys(unsigned char c, int x, int y){
 	glutPostRedisplay();
 }
 
-void processSpecialKeys(int key, int x, int y){
-	if(explore_mode == true){
+void processSpecialKeys(int key, int x, int y){	
+	if (explore_mode == true){
 		if (key == GLUT_KEY_LEFT){
 			alpha_camera -= M_PI / 20;
 		}
 		else if (key == GLUT_KEY_RIGHT){
 			alpha_camera += M_PI / 20;
 		}
-		else if (key == GLUT_KEY_UP && beta_camera + M_PI / 20 <= M_PI / 2){
+		else if (key == GLUT_KEY_UP){
 			beta_camera += M_PI / 20;
+
+			if (beta_camera > M_PI / 2) beta_camera = M_PI / 2;
 		}
-		else if (key == GLUT_KEY_DOWN && beta_camera - M_PI / 20 >= - M_PI / 2){
+		else if (key == GLUT_KEY_DOWN){
 			beta_camera -= M_PI / 20;
+
+			if (beta_camera < -M_PI / 2) beta_camera = -M_PI / 2;
 		}
 
 		glutPostRedisplay();

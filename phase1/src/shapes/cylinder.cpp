@@ -7,30 +7,30 @@ Model generateCylinder(float radius, float height, int slices) {
     float h_2 = height / 2.0;
     float alpha = (2 * M_PI) / slices;
 
-    points.push_back(Point(0, h_2, 0)); // indice 0
-    points.push_back(Point(0, -h_2, 0)); // indice 1
-
-    for(int i = 0; i <= slices; i++){
+    for(int i = 0; i < slices; i++){
+        Point topPoint = Point(0, h_2, 0);
         Point p1 = Point(radius * sin(i*alpha), h_2, radius * cos(i*alpha));
-        Point p2 = Point(radius * sin(i*alpha), -h_2, radius * cos(i*alpha));
+        Point p2 = Point(radius * sin((i+1)*alpha), h_2, radius * cos((i+1)*alpha));
+        Point p3 = Point(radius * sin(i*alpha), -h_2, radius * cos(i*alpha));
+        Point p4 = Point(radius * sin((i+1)*alpha), -h_2, radius * cos((i+1)*alpha));
+        Point bottomPoint = Point(0, -h_2, 0);
+        
+        points.push_back(topPoint);
         points.push_back(p1);
         points.push_back(p2);
+        points.push_back(p3);
+        points.push_back(p4);
+        points.push_back(bottomPoint);
 
-        if(i!=slices){
-            // base superior 
-            Triangle t1 = Triangle(0, 2 + i*2, 2 + (i+1)*2);
-            triangles.push_back(t1);
+        Triangle topTriangle = Triangle(i*6, i*6 + 1, i*6 + 2);
+        Triangle t1 = Triangle(i*6 + 1, i*6 + 4, i*6 + 2);
+        Triangle t2 = Triangle(i*6 + 1, i*6 + 3, i*6 + 4);
+        Triangle bottomTriangle = Triangle(i*6 + 3, i*6 + 5, i*6 + 4);
 
-            //base inferior
-            Triangle t2 = Triangle(3 + (i+1)*2, 3 + i*2, 1);
-            triangles.push_back(t2);
-
-            //faces
-            Triangle t3 = Triangle(2 + (i+1)*2, 2 + i*2, 3 + (i+1)*2);
-            Triangle t4 = Triangle(2 + i*2, 3 + i*2, 3 + (i+1)*2);
-            triangles.push_back(t3);
-            triangles.push_back(t4);
-        }
+        triangles.push_back(topTriangle);
+        triangles.push_back(t1);
+        triangles.push_back(t2);
+        triangles.push_back(bottomTriangle);
 	}
 
     return Model(points, triangles);

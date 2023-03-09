@@ -1,31 +1,6 @@
 #include "../../include/box.h"
 #include <stdio.h>
 
-vector<Triangle> generateSquareBox(int i, int j, int divisions, int *index, bool isVisible){
-    vector<Triangle> triangles;
-
-    int bottomLeftIndex = (divisions+1)*i + j + *index;
-    int bottomRightIndex = (divisions+1)*(i+1) + j + *index;
-    int topLeftIndex = (divisions+1)*i + (j+1) + *index;
-    int topRightIndex = (divisions+1)*(i+1) + (j+1) + *index;
-
-    Triangle t1, t2;
-    if(isVisible){
-        t1 = Triangle(bottomLeftIndex, bottomRightIndex, topRightIndex);
-        t2 = Triangle(bottomLeftIndex, topRightIndex, topLeftIndex);
-    }
-    else{
-        t1 = Triangle(topRightIndex, bottomRightIndex, bottomLeftIndex);
-        t2 = Triangle(topLeftIndex, topRightIndex, bottomLeftIndex);
-    }
-
-    triangles.push_back(t1);
-    triangles.push_back(t2);
-
-    return triangles;
-}
-
-
 pair<vector<Point>, vector<Triangle> > generateXZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible){
     vector<Point> vertices;
     vector<Triangle> triangles;

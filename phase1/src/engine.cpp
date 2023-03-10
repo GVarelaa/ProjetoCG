@@ -107,7 +107,7 @@ void renderScene(void) {
 	}
 	else{
 		gluLookAt(pxCamera, pyCamera, pzCamera, 
-	        camera.lookAt.x, camera.lookAt.y, camera.lookAt.z,
+	        0, 0, 0,
 	        camera.up.x, camera.up.y, camera.up.z);
 	}
 

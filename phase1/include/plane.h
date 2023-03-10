@@ -1,10 +1,10 @@
 #ifndef __PLANE__
 #define __PLANE__
 
+#include <vector>
 #include "point.h"
 #include "triangle.h"
 #include "model.h"
-#include <vector>
 
 using namespace std;
 

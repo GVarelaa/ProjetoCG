@@ -1,11 +1,11 @@
 #ifndef __CYLINDER__
 #define __CYLINDER__
 
+#include <math.h>
+#include <vector>
 #include "point.h"
 #include "triangle.h"
 #include "model.h"
-#include <math.h>
-#include <vector>
 
 using namespace std;
 

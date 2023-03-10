@@ -1,14 +1,14 @@
 #include <string.h>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <regex>
 #include "../include/point.h"
 #include "../include/plane.h"
 #include "../include/box.h"
 #include "../include/cone.h"
 #include "../include/sphere.h"
 #include "../include/cylinder.h"
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include <regex>
 
 using namespace std;
 
@@ -72,9 +72,7 @@ int main(int argc, char *argv[]){
 
         cylinder.toFile(filePath);
     }
-    else {
-        printf("%s\n", "Invalid input!");
-    }
+    else cout << "Invalid input!" << endl;
 
     return 0;
 }

@@ -63,7 +63,7 @@ void showAxis(){
 }
 
 
-void changeSize(int w, int h) {
+void changeSize(int w, int h){
 
 	// Prevent a divide by zero, when window is too short
 	// (you cant make a window with zero width).
@@ -84,14 +84,14 @@ void changeSize(int w, int h) {
 	// Set perspective
 	Projection projection = world.camera.projection;
 
-	gluPerspective(projection.fov ,ratio, projection.near , projection.far);
+	gluPerspective(projection.fov ,ratio, projection.near, projection.far);
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
 }
 
 
-void renderScene(void) {
+void renderScene(void){
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -107,19 +107,19 @@ void renderScene(void) {
 	}
 	else{
 		gluLookAt(pxCamera, pyCamera, pzCamera, 
-	        0, 0, 0,
-	        camera.up.x, camera.up.y, camera.up.z);
+	        	  0, 0, 0,
+	        	  camera.up.x, camera.up.y, camera.up.z);
 	}
 
-	// put axis drawing in here
+	// axis drawing
 	showAxis();
 
-	// put the geometric transformations here	
+	// geometric transformations
 
-	// put drawing instructions here
+	// drawing instructions
 	Group group = world.group;
 	vector<VBO> vbos = group.vbos;
-	for(int i = 0; i < vbos.size(); i++){
+	for(int i=0; i < vbos.size(); i++){
 		vbos[i].draw();
 	}
 
@@ -200,33 +200,30 @@ void processSpecialKeys(int key, int x, int y){
 }
 
 
-
 int main(int argc, char **argv) {
-// init GLUT and the window
+	// init GLUT and the window
 	world = World(argv[1]);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(100,100);
-    glutInitWindowSize(world.window.width, world.window.height); // trocar
+    glutInitWindowSize(world.window.width, world.window.height);
     glutCreateWindow("CG@DI-UM");
-        
 		
-// Required callback registry 
+	// Required callback registry 
 	glutIdleFunc(renderScene);
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
-
 	
-// put here the registration of the keyboard callbacks
+	// registration of the keyboard callbacks
 	glutKeyboardFunc(processKeys);
 	glutSpecialFunc(processSpecialKeys);
 
-// init GLEW
-#ifndef __APPLE__
-    glewInit();
-#endif
+	// init GLEW
+	#ifndef __APPLE__
+	    glewInit();
+	#endif
 
-//  OpenGL settings
+	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glPolygonMode(GL_FRONT, GL_LINE);
@@ -235,7 +232,7 @@ int main(int argc, char **argv) {
 	world.loadGroup();
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 	
-// enter GLUT's main cycle
+	// GLUT's main cycle
 	glutMainLoop();
 	
 	return 1;

@@ -1,11 +1,11 @@
 #ifndef __CONE__
 #define __CONE__
 
+#include <math.h>
+#include <vector>
 #include "point.h"
 #include "triangle.h"
 #include "model.h"
-#include <math.h>
-#include <vector>
 
 using namespace std;
 

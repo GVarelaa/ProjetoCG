@@ -8,7 +8,7 @@
 #include <GL/glut.h>
 #endif
 
-#include<vector>
+#include <vector>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -21,7 +21,6 @@ class VBO {
         int nIndexes;
         GLuint vertices_buffer;
         GLuint indexes_buffer;
-
         VBO(char* path);
         void draw();
 };

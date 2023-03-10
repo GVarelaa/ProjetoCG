@@ -18,8 +18,6 @@ class Window{
         Window(XMLElement *windowElement);
 };
 
-
-
 class Group{
     public:
         vector<string> modelsPaths;
@@ -29,7 +27,6 @@ class Group{
         Group(vector<string> modelsPaths);
 };
 
-
 class Projection{
     public:
         float fov;
@@ -38,7 +35,6 @@ class Projection{
         Projection();
         Projection(float newFov, float newNear, float newFar);
 };
-
 
 class Camera{
     public:
@@ -50,7 +46,6 @@ class Camera{
         Camera(Point newPosition, Point newLookAt, Point newUp, Projection newProjection);
         Camera(XMLElement *cameraElement);
 };
-
 
 class World{
     public:

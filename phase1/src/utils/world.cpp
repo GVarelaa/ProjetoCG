@@ -41,7 +41,7 @@ World::World(char *path){
 
 void World::loadGroup(){
     for(int i = 0; i<group.modelsPaths.size(); i++){
-        group.models.push_back(Model((char *)group.modelsPaths[i].c_str()));
+        group.vbos.push_back(VBO((char *)group.modelsPaths[i].c_str()));
     }
 }
 
@@ -101,8 +101,8 @@ Camera::Camera(XMLElement *cameraElement){
 
 Group::Group(){}
 
-Group::Group(vector<Model> newModels){
-    models = newModels;
+Group::Group(vector<VBO> newVBOS){
+    vbos = newVBOS;
 }
 
 

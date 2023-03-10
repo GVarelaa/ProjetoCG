@@ -118,9 +118,9 @@ void renderScene(void) {
 
 	// put drawing instructions here
 	Group group = world.group;
-	vector<Model> models = group.models;
-	for(int i = 0; i < models.size(); i++){
-		models[i].draw();
+	vector<VBO> vbos = group.vbos;
+	for(int i = 0; i < vbos.size(); i++){
+		vbos[i].draw();
 	}
 
 	showFPS();

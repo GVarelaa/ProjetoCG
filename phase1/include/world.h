@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "point.h"
-#include "model.h"
+#include "vbo.h"
 #include "tinyxml2/tinyxml2.h"
 
 using namespace std;
@@ -23,9 +23,9 @@ class Window{
 class Group{
     public:
         vector<string> modelsPaths;
-        vector<Model> models;
+        vector<VBO> vbos;
         Group();
-        Group(vector<Model> models);
+        Group(vector<VBO> vbos);
         Group(vector<string> modelsPaths);
 };
 

@@ -1,10 +1,11 @@
 #ifndef __SPHERE__
 #define __SPHERE__
 
+#include <math.h>
+#include <vector>
 #include "point.h"
 #include "triangle.h"
 #include "model.h"
-#include <vector>
 
 using namespace std;
 

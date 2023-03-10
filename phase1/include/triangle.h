@@ -1,7 +1,6 @@
 #ifndef __TRIANGLE__
 #define __TRIANGLE__
 
-
 class Triangle { 
     public:
         int indP1;  

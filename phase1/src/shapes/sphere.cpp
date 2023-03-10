@@ -1,4 +1,3 @@
-#include <math.h>
 #include "../../include/sphere.h"
 
 Model generateSphere(float radius, int slices, int stacks){

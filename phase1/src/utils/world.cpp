@@ -45,10 +45,8 @@ void World::loadGroup(){
     }
 }
 
-
-Window::Window(){
-    
-}
+// -----------WINDOW-----------
+Window::Window(){}
 
 Window::Window(int newWidth, int newHeight){
     width = newWidth;
@@ -61,6 +59,7 @@ Window::Window(XMLElement *windowElement){
 }
 
 
+// -----------CAMERA-----------
 Camera::Camera(){}
 
 Camera::Camera(Point newPosition, Point newLookAt, Point newUp, Projection newProjection){
@@ -99,21 +98,20 @@ Camera::Camera(XMLElement *cameraElement){
 }
 
 
+// -----------GROUP-----------
 Group::Group(){}
 
 Group::Group(vector<VBO> newVBOS){
     vbos = newVBOS;
 }
 
-
 Group::Group(vector<string> newModelsPaths){
     modelsPaths = newModelsPaths;
 }
 
 
-Projection::Projection(){
-
-}
+// -----------PROJECTION-----------
+Projection::Projection(){}
 
 Projection::Projection(float newFov, float newNear, float newFar){
     fov = newFov;

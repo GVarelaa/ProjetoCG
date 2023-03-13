@@ -16,6 +16,7 @@ class Model{
         vector<Triangle> triangles;
 
         Model(vector<Point> vertices, vector<Triangle> triangles);
+        Model();
         void toFile(char* path);
 };
 

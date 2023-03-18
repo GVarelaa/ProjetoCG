@@ -12,7 +12,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "../tinyxml2/tinyxml2.h"
 
+using namespace tinyxml2;
 using namespace std;
 
 class Model{
@@ -21,8 +23,10 @@ class Model{
         int nIndexes;
         GLuint vertices_buffer;
         GLuint indexes_buffer;
+        char *path;
 
         Model(char* path);
+        Model(XMLElement *elem);
 	Model();
         void draw();
 };

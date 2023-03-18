@@ -1,4 +1,4 @@
-#include "../../include/model.h"
+#include "../../include/engine/model.h"
 
 Model::Model(char* path){
     glGenBuffers(1, &vertices_buffer);
@@ -47,6 +47,10 @@ Model::Model(char* path){
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * indexes.size(), indexes.data(), GL_STATIC_DRAW);
 
     nIndexes = indexes.size();
+}
+
+Model::Model(XMLElement *elem){
+    path = (char *)elem->Attribute("file");
 }
 
 void Model::draw(){

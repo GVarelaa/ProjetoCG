@@ -9,6 +9,6 @@
 
 using namespace std;
 
-Model generateCone(float radius, float height, int slices, int stacks);
+pair<vector<Point>, vector<Triangle> > generateCone(float radius, float height, int slices, int stacks);
 
 #endif

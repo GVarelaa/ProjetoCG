@@ -15,7 +15,7 @@ class World{
     public:
         Window window;
         Camera camera;
-        Group group;
+        vector<Group> groups;
         World();
         World(Window newWindow, Camera newCamera, Group newGroup);
         World(char *path);

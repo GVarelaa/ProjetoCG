@@ -9,6 +9,6 @@
 
 using namespace std;
 
-Model generateSphere(float radius, int slices, int stacks);
+pair<vector<Point>, vector<Triangle> > generateSphere(float radius, int slices, int stacks);
 
 #endif

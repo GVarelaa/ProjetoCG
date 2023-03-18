@@ -147,7 +147,7 @@ pair<vector<Point>, vector<Triangle> > generateXYplane(Point initialPoint, float
 }
 
 
-Model generateBox(float length, int divisions){
+pair<vector<Point>, vector<Triangle> > generateBox(float length, int divisions){
     vector<Point> vertices;
     vector<Triangle> triangles;
     int index = 0;
@@ -176,5 +176,5 @@ Model generateBox(float length, int divisions){
     triangles.insert(triangles.end(), xyPlane1.second.begin(), xyPlane1.second.end());
     triangles.insert(triangles.end(), xyPlane2.second.begin(), xyPlane2.second.end());
 
-    return Model(vertices, triangles);
+    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }

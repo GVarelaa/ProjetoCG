@@ -8,6 +8,6 @@
 
 using namespace std;
 
-Model generateBox(float length, int divisions);
+pair<vector<Point>, vector<Triangle> > generateBox(float length, int divisions);
 
 #endif

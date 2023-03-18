@@ -8,6 +8,6 @@
 
 using namespace std;
 
-Model generatePlane(float length, int divisions);
+pair<vector<Point>, vector<Triangle> > generatePlane(float length, int divisions);
 
 #endif

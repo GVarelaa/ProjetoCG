@@ -5,7 +5,7 @@ PROJECT(generator)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} generator/generator.cpp utils/point.cpp utils/triangle.cpp utils/model.cpp generator/shapes/plane.cpp generator/shapes/box.cpp generator/shapes/cone.cpp generator/shapes/sphere.cpp generator/shapes/cylinder.cpp generator/shapes/torus.cpp ../include/tinyxml2/tinyxml2.cpp)
+add_executable(${PROJECT_NAME} generator/generator.cpp utils/point.cpp utils/triangle.cpp generator/shapes/plane.cpp generator/shapes/box.cpp generator/shapes/cone.cpp generator/shapes/sphere.cpp generator/shapes/cylinder.cpp generator/shapes/torus.cpp ../include/tinyxml2/tinyxml2.cpp)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
@@ -73,7 +73,7 @@ PROJECT(engine)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} engine/engine.cpp utils/point.cpp utils/triangle.cpp utils/model.cpp ../include/tinyxml2/tinyxml2.cpp engine/world.cpp engine/group.cpp engine/settings.cpp engine/vbo.cpp)
+add_executable(${PROJECT_NAME} engine/engine.cpp utils/point.cpp utils/triangle.cpp ../include/tinyxml2/tinyxml2.cpp engine/model.cpp engine/world.cpp engine/group.cpp engine/settings.cpp)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})

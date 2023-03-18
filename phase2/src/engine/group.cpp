@@ -4,19 +4,29 @@ Group::Group(){}
 
 Group::Group(XMLElement *groupElement){
     for(XMLElement *elem = groupElement->FirstChildElement(); elem; elem = elem->NextSiblingElement()){
-        if(!strcmp(elem->Name(), "transform")){
+        string name(elem->Name());
+
+        if(name == "transform"){
             for(XMLElement *transformElem = elem; transformElem; transformElem = transformElem->NextSiblingElement()){
-                if(!strcmp(transformElem->Name(), "translate")){
-                    transforms.push_back(Transform(transformElem));
+                string transform(transformElem->Name());
+
+                if(transform == "translate"){
+                    transforms.push_back(Translate(transformElem));
+                }
+                else if(transform == "rotate"){
+                    transforms.push_back(Rotate(transformElem));
+                }
+                else if(transform == "scale"){
+                    transforms.push_back(Scale(transformElem));
                 }
             }
         }
-        else if(!strcmp(elem->Name(), "models")){
-            for(XMLElement *modelELem = elem; modelELem; modelELem = modelELem->NextSiblingElement()){
+        else if(name == "model"){
+            for(XMLElement *modelElem = elem; modelElem; modelElem = modelElem->NextSiblingElement()){
                 models.push_back(Model(modelElem));
             }
         }
-        else if(!strcmp(elem->Name(), "group")){
+        else if(name == "group"){
             groups.push_back(Group(elem));
         }
     }
@@ -26,6 +36,3 @@ Group::Group(vector<Model> newModels){
     models = newModels;
 }
 
-Group::Group(vector<string> newModelsPaths){
-    modelsPaths = newModelsPaths;
-}

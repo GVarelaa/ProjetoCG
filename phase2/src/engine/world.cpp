@@ -11,36 +11,20 @@ World::World(Window newWindow, Camera newCamera, vector<Group> newGroups){
 World::World(char *path){
     XMLDocument xmlDoc;
 	XMLError result = xmlDoc.LoadFile(path);
-	XMLNode *root = xmlDoc.FirstChild();
+	XMLElement *root = xmlDoc.FirstChildElement("world");
     
-	if(root){
-        XMLElement *windowElement = root->FirstChildElement("window");
-        if(windowElement){
-            window = Window(windowElement);
-        }
+    for(XMLElement *elem = root->FirstChildElement(); elem; elem=elem->NextSiblingElement()){
+        string name(elem->Name());
 
-        XMLElement *cameraElement = root->FirstChildElement("camera");
-        if(cameraElement){
-            camera = Camera(cameraElement);
+        if(name == "window"){
+            window = Window(elem);
         }
-    
-        XMLElement *groupElement = root->FirstChildElement("group");
-        if(groupElement){
-            XMLElement *modelsElement = groupElement->FirstChildElement("models");
-            if(modelsElement){
-                vector<string> modelsPaths;
-                for (XMLElement *modelElement = modelsElement->FirstChildElement("model"); modelElement; modelElement = modelElement->NextSiblingElement("model")){               
-                    const char *path = (char *)modelElement->Attribute("file");
-                    modelsPaths.push_back(string(path));
-                }
-                group = Group(modelsPaths);
-            }
+        else if(name == "camera"){
+            camera = Camera(elem);
         }
-	}
-}
-
-void World::loadGroup(){
-    for(int i = 0; i<group.modelsPaths.size(); i++){
-        group.vbos.push_back(VBO((char *)group.modelsPaths[i].c_str()));
+        else if(name == "group"){
+            groups.push_back(Group(elem));
+        }
     }
 }
+

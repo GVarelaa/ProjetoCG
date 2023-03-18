@@ -17,9 +17,8 @@ class World{
         vector<Group> groups;
         
         World();
-        World(Window newWindow, Camera newCamera, Group newGroup);
+        World(Window newWindow, Camera newCamera, vector<Group> newGroup);
         World(char *path);
-        void loadGroup();
 };
 
 #endif

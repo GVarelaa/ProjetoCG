@@ -5,7 +5,6 @@
 #include <vector>
 #include "../point.h"
 #include "../triangle.h"
-#include "../model.h"
 
 using namespace std;
 

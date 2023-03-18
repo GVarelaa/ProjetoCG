@@ -19,7 +19,6 @@ class Group{
         Group();
         Group(XMLElement *groupElement);
         Group(vector<Model> models);
-        Group(vector<string> modelsPaths);
 };
 
 #endif

@@ -5,9 +5,10 @@ Group::Group(){}
 Group::Group(XMLElement *groupElement){
     for(XMLElement *elem = groupElement->FirstChildElement(); elem; elem = elem->NextSiblingElement()){
         string name(elem->Name());
+        //cout << name << endl;
 
         if(name == "transform"){
-            for(XMLElement *transformElem = elem; transformElem; transformElem = transformElem->NextSiblingElement()){
+            for(XMLElement *transformElem = elem->FirstChildElement(); transformElem; transformElem = transformElem->NextSiblingElement()){
                 string transform(transformElem->Name());
 
                 if(transform == "translate"){
@@ -21,8 +22,8 @@ Group::Group(XMLElement *groupElement){
                 }
             }
         }
-        else if(name == "model"){
-            for(XMLElement *modelElem = elem; modelElem; modelElem = modelElem->NextSiblingElement()){
+        else if(name == "models"){
+            for(XMLElement *modelElem = elem->FirstChildElement(); modelElem; modelElem = modelElem->NextSiblingElement()){
                 models.push_back(Model(modelElem));
             }
         }
@@ -32,7 +33,23 @@ Group::Group(XMLElement *groupElement){
     }
 }
 
-Group::Group(vector<Model> newModels){
-    models = newModels;
+void Group::loadModels(){
+    for(int i = 0; i < models.size(); i++){
+        models[i].load();
+    }
+
+    for(int i = 0; i < groups.size(); i++){
+        groups[i].loadModels();
+    }
 }
 
+
+void Group::drawModels(){
+    for(int i = 0; i < models.size(); i++){
+        models[i].draw();
+    }    
+
+    for(int i = 0; i < groups.size(); i++){
+        groups[i].drawModels();
+    }
+}

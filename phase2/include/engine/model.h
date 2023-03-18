@@ -24,7 +24,6 @@ class Model{
         int nIndexes;
         GLuint vertices_buffer;
         GLuint indexes_buffer;
-        char *path;
 
         Model();
         Model(XMLElement *elem);

@@ -28,3 +28,16 @@ World::World(char *path){
     }
 }
 
+
+void World::loadModels(){
+    for(int i = 0; i < groups.size(); i++){
+        groups[i].loadModels();
+    }
+}
+
+
+void World::drawModels(){
+    for(int i = 0; i < groups.size(); i++){
+        groups[i].drawModels();
+    }
+}

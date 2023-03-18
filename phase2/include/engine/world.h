@@ -19,6 +19,8 @@ class World{
         World();
         World(Window newWindow, Camera newCamera, vector<Group> newGroup);
         World(char *path);
+        void loadModels();
+        void drawModels();
 };
 
 #endif

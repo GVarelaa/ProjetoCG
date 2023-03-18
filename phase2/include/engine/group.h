@@ -18,7 +18,8 @@ class Group{
         
         Group();
         Group(XMLElement *groupElement);
-        Group(vector<Model> models);
+        void loadModels();
+        void drawModels();
 };
 
 #endif

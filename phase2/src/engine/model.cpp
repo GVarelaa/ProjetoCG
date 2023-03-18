@@ -2,7 +2,7 @@
 
 
 Model::Model(XMLElement *elem){
-    path = (char *)elem->Attribute("file");
+    path = strdup((char *)elem->Attribute("file"));
 }
 
 
@@ -58,7 +58,7 @@ void Model::load(){
 
 void Model::draw(){
     glBindBuffer(GL_ARRAY_BUFFER, vertices_buffer);
-    glVertexPointer(3,GL_FLOAT,0,0);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexes_buffer);
     glDrawElements(GL_TRIANGLES, nIndexes, GL_UNSIGNED_INT, NULL);

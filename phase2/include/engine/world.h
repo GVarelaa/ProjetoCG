@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "../point.h"
-#include "vbo.h"
 #include "group.h"
 #include "settings.h"
 #include "../tinyxml2/tinyxml2.h"
@@ -16,6 +15,7 @@ class World{
         Window window;
         Camera camera;
         vector<Group> groups;
+        
         World();
         World(Window newWindow, Camera newCamera, Group newGroup);
         World(char *path);

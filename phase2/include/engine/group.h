@@ -3,9 +3,12 @@
 
 #include <vector>
 #include <string.h>
-#include "vbo.h"
 #include "model.h"
 #include "transform.h"
+#include "../tinyxml2/tinyxml2.h"
+
+using namespace tinyxml2;
+using namespace std;
 
 class Group{
     public:
@@ -14,7 +17,8 @@ class Group{
         vector<Transform> transforms;
         
         Group();
-        Group(vector<VBO> vbos);
+        Group(XMLElement *groupElement);
+        Group(vector<Model> models);
         Group(vector<string> modelsPaths);
 };
 

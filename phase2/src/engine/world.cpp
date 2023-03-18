@@ -2,10 +2,10 @@
 
 World::World(){}
 
-World::World(Window newWindow, Camera newCamera, Group newGroup){
+World::World(Window newWindow, Camera newCamera, vector<Group> newGroups){
     window = newWindow;
     camera = newCamera;
-    group = newGroup;
+    groups = newGroups;
 }
 
 World::World(char *path){

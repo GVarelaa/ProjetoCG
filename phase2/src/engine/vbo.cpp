@@ -1,4 +1,4 @@
-#include "../../include/vbo.h"
+#include "../../include/engine/vbo.h"
 
 VBO::VBO(char* path){
     glGenBuffers(1, &vertices_buffer);

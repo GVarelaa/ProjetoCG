@@ -1,4 +1,4 @@
-#include "../../../include/cone.h"
+#include "../../../include/generator/cone.h"
 
 Model generateCone(float radius, float height, int slices, int stacks){
     vector<Point> points;

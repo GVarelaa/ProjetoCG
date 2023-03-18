@@ -1,4 +1,4 @@
-#include "../../../include/sphere.h"
+#include "../../../include/generator/sphere.h"
 
 Model generateSphere(float radius, int slices, int stacks){
     vector<Point> vertices;

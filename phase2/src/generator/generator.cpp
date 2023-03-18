@@ -4,12 +4,12 @@
 #include <fstream>
 #include <regex>
 #include "../../include/point.h"
-#include "../../include/plane.h"
-#include "../../include/box.h"
-#include "../../include/cone.h"
-#include "../../include/sphere.h"
-#include "../../include/cylinder.h"
-#include "../../include/torus.h"
+#include "../../include/generator/plane.h"
+#include "../../include/generator/box.h"
+#include "../../include/generator/cone.h"
+#include "../../include/generator/sphere.h"
+#include "../../include/generator/cylinder.h"
+#include "../../include/generator/torus.h"
 
 using namespace std;
 

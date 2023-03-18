@@ -1,3 +1,6 @@
+#ifndef __GROUP__
+#define __GROUP__
+
 #include <vector>
 #include <string.h>
 #include "vbo.h"
@@ -10,3 +13,5 @@ class Group{
         Group(vector<VBO> vbos);
         Group(vector<string> modelsPaths);
 };
+
+#endif

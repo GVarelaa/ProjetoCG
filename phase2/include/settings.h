@@ -4,6 +4,9 @@
 #include "point.h"
 #include "tinyxml2/tinyxml2.h"
 
+using namespace std;
+using namespace tinyxml2;
+
 class Window{
     public:
         int width;

@@ -73,7 +73,7 @@ PROJECT(engine)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} engine.cpp utils/point.cpp utils/triangle.cpp utils/model.cpp shapes/plane.cpp shapes/box.cpp shapes/cone.cpp shapes/sphere.cpp shapes/cylinder.cpp shapes/torus.cpp ../include/tinyxml2/tinyxml2.cpp utils/world.cpp utils/vbo.cpp)
+add_executable(${PROJECT_NAME} engine.cpp utils/point.cpp utils/triangle.cpp utils/model.cpp shapes/plane.cpp shapes/box.cpp shapes/cone.cpp shapes/sphere.cpp shapes/cylinder.cpp shapes/torus.cpp ../include/tinyxml2/tinyxml2.cpp utils/world.cpp utils/group.cpp utils/settings.cpp utils/vbo.cpp)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})

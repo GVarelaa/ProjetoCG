@@ -1,6 +1,6 @@
 #include "../../../include/generator/cone.h"
 
-Model generateCone(float radius, float height, int slices, int stacks){
+pair<vector<Point>, vector<Triangle> > generateCone(float radius, float height, int slices, int stacks){
     vector<Point> points;
     vector<Triangle> triangles;
 
@@ -36,6 +36,6 @@ Model generateCone(float radius, float height, int slices, int stacks){
         triangles.push_back(topTriangle);
     }
 
-    return Model(points, triangles);
+    return pair<vector<Point>, vector<Triangle> >(points, triangles);
 }
 

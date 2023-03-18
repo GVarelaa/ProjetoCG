@@ -1,6 +1,6 @@
 #include "../../../include/generator/torus.h"
 
-Model generateTorus(float radiusIn, float radiusOut, int slices, int layers){
+pair<vector<Point>, vector<Triangle> > generateTorus(float radiusIn, float radiusOut, int slices, int layers){
     vector<Point> vertices;
     vector<Triangle> triangles;
 
@@ -25,5 +25,5 @@ Model generateTorus(float radiusIn, float radiusOut, int slices, int layers){
         }
     }
 
-    return Model(vertices, triangles);
+    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }

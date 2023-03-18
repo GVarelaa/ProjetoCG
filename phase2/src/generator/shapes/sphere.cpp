@@ -1,6 +1,6 @@
 #include "../../../include/generator/sphere.h"
 
-Model generateSphere(float radius, int slices, int stacks){
+pair<vector<Point>, vector<Triangle> > generateSphere(float radius, int slices, int stacks){
     vector<Point> vertices;
     vector<Triangle> triangles;
 
@@ -38,6 +38,6 @@ Model generateSphere(float radius, int slices, int stacks){
         triangles.push_back(topTriangle);
     }
 
-    return Model(vertices, triangles);
+    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }
 

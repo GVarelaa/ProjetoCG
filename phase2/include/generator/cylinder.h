@@ -9,6 +9,6 @@
 
 using namespace std;
 
-Model generateCylinder(float radius, float height, int slices);
+pair<vector<Point>, vector<Triangle> > generateCylinder(float radius, float height, int slices);
 
 #endif

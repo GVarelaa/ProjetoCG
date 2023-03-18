@@ -1,6 +1,6 @@
 #include "../../../include/generator/cylinder.h"
 
-Model generateCylinder(float radius, float height, int slices) {
+pair<vector<Point>, vector<Triangle> > generateCylinder(float radius, float height, int slices) {
     vector<Point> points;
     vector<Triangle> triangles;
 
@@ -33,5 +33,5 @@ Model generateCylinder(float radius, float height, int slices) {
         triangles.push_back(bottomTriangle);
 	}
 
-    return Model(points, triangles);
+    return pair<vector<Point>, vector<Triangle> >(points, triangles);
 }

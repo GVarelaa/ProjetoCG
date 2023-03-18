@@ -9,6 +9,6 @@
 
 using namespace std;
 
-Model generateTorus(float radiusIn, float radiusOut, int slices, int layers);
+pair<vector<Point>, vector<Triangle> > generateTorus(float radiusIn, float radiusOut, int slices, int layers);
 
 #endif

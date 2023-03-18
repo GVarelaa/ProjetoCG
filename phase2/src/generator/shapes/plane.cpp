@@ -1,6 +1,6 @@
 #include "../../../include/generator/plane.h"
 
-Model generatePlane(float length, int divisions){
+pair<vector<Point>, vector<Triangle> > generatePlane(float length, int divisions){
     vector<Point> vertices;
     vector<Triangle> triangles;
 
@@ -36,5 +36,5 @@ Model generatePlane(float length, int divisions){
         }
     }
 
-    return Model(vertices, triangles);
+    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }

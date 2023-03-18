@@ -1,6 +1,6 @@
 #include "../../include/model.h"
 
-Model::Model(char* path){
+void Model::load(){
     glGenBuffers(1, &vertices_buffer);
     glGenBuffers(1, &indexes_buffer);
 

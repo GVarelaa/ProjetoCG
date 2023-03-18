@@ -12,18 +12,21 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include 
 
 using namespace std;
 
 class Model{
     public:
+        char *path;
         int nVertices;
         int nIndexes;
         GLuint vertices_buffer;
         GLuint indexes_buffer;
 
-        Model(char* path);
-	Model();
+        Model();
+        Model(XMLElement *elem);
+        void load();
         void draw();
 };
 

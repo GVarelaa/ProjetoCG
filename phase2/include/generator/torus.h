@@ -3,9 +3,9 @@
 
 #include <vector>
 #include <math.h>
-#include "point.h"
-#include "triangle.h"
-#include "model.h"
+#include "../point.h"
+#include "../triangle.h"
+#include "../model.h"
 
 using namespace std;
 

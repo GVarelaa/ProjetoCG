@@ -3,13 +3,13 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
-#include "../include/point.h"
-#include "../include/plane.h"
-#include "../include/box.h"
-#include "../include/cone.h"
-#include "../include/sphere.h"
-#include "../include/cylinder.h"
-#include "../include/torus.h"
+#include "../../include/point.h"
+#include "../../include/plane.h"
+#include "../../include/box.h"
+#include "../../include/cone.h"
+#include "../../include/sphere.h"
+#include "../../include/cylinder.h"
+#include "../../include/torus.h"
 
 using namespace std;
 

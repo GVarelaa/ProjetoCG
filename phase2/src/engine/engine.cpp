@@ -11,9 +11,9 @@
 #include <vector>
 #include <string>
 #include <sstream>
-#include "../include/point.h"
-#include "../include/world.h"
-#include "../include/tinyxml2/tinyxml2.h"
+#include "../../include/point.h"
+#include "../../include/world.h"
+#include "../../include/tinyxml2/tinyxml2.h"
 
 using namespace tinyxml2;
 using namespace std;

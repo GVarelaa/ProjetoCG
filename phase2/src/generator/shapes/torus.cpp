@@ -1,4 +1,4 @@
-#include "../../include/torus.h"
+#include "../../../include/torus.h"
 
 Model generateTorus(float radiusIn, float radiusOut, int slices, int layers){
     vector<Point> vertices;

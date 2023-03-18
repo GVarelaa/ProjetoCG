@@ -1,4 +1,4 @@
-#include "../../include/plane.h"
+#include "../../../include/plane.h"
 
 Model generatePlane(float length, int divisions){
     vector<Point> vertices;

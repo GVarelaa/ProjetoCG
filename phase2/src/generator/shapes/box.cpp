@@ -1,4 +1,4 @@
-#include "../../include/box.h"
+#include "../../../include/box.h"
 
 pair<vector<Point>, vector<Triangle> > generateXZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible){
     vector<Point> vertices;

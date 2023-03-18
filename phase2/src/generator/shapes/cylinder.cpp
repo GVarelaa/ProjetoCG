@@ -1,4 +1,4 @@
-#include "../../include/cylinder.h"
+#include "../../../include/cylinder.h"
 
 Model generateCylinder(float radius, float height, int slices) {
     vector<Point> points;

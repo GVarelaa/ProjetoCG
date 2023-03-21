@@ -14,7 +14,7 @@ class Group{
     public:
         vector<Group> groups;
         vector<Model> models;
-        vector<Transform> transforms;
+        vector<Transform *> transforms;
         
         Group();
         Group(XMLElement *groupElement);

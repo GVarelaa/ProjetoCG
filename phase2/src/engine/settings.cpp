@@ -25,31 +25,40 @@ Camera::Camera(Point newPosition, Point newLookAt, Point newUp, Projection newPr
 }
 
 Camera::Camera(XMLElement *cameraElement){
-    XMLElement *positionElement = cameraElement->FirstChildElement("position");
-    float positionX = atof(positionElement->Attribute("x"));
-    float positionY = atof(positionElement->Attribute("y"));
-    float positionZ = atof(positionElement->Attribute("z"));
-    
+    up = Point(0, 1, 0); // Default value
+    projection = Projection(60, 1, 1000); // Default value
+    mode = STATIC;
 
-    XMLElement *lookAtElement = cameraElement->FirstChildElement("lookAt");
-    float lookAtX = atof(lookAtElement->Attribute("x"));
-    float lookAtY = atof(lookAtElement->Attribute("y"));
-    float lookAtZ = atof(lookAtElement->Attribute("z"));
+    if(cameraElement->Attribute("mode")){
+        string name(cameraElement->Attribute("mode"));
 
-    XMLElement *upElement = cameraElement->FirstChildElement("up");
-    float upX = atof(upElement->Attribute("x"));
-    float upY = atof(upElement->Attribute("y"));
-    float upZ = atof(upElement->Attribute("z"));
+        if(name == "static"){
+            mode = STATIC;
+        }
+        else if(name == "explorer"){
+            mode = EXPLORER;
+        }
+        else if(name == "FPS"){
+            mode = FPS;
+        }
+    }
 
-    XMLElement *projectionElement = cameraElement->FirstChildElement("projection");
-    float projectionFov = atof(projectionElement->Attribute("fov"));
-    float projectionNear = atof(projectionElement->Attribute("near"));
-    float projectionFar = atof(projectionElement->Attribute("far"));
-
-    position = Point(positionX, positionY, positionZ);
-    lookAt = Point(lookAtX, lookAtY, lookAtZ);
-    up = Point(upX, upY, upZ);
-    projection = Projection(projectionFov, projectionNear, projectionFar);
+    for(XMLElement *elem = cameraElement->FirstChildElement(); elem; elem=elem->NextSiblingElement()){
+        string name(elem->Name());
+        
+        if(name == "position"){
+            position = Point(atof(elem->Attribute("x")), atof(elem->Attribute("y")), atof(elem->Attribute("z")));
+        }
+        else if(name == "lookAt"){
+            lookAt = Point(atof(elem->Attribute("x")), atof(elem->Attribute("y")), atof(elem->Attribute("z")));
+        }
+        else if(name == "up"){
+            up = Point(atof(elem->Attribute("x")), atof(elem->Attribute("y")), atof(elem->Attribute("z")));
+        }
+        else if(name == "projection"){
+            projection = Projection(atof(elem->Attribute("fov")), atof(elem->Attribute("near")), atof(elem->Attribute("far")));
+        }
+    }
 }
 
 

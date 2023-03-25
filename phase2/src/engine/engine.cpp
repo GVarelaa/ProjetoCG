@@ -199,11 +199,6 @@ void processSpecialKeys(int key, int x, int y){
 int main(int argc, char **argv) {
 	// init GLUT and the window
 	world = World(argv[1]);
-	Group g = world.groups[0];
-
-	for(int i = 0; i < g.models.size(); i++){
-		printf("%s\n", g.models[i].path);
-	}
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);

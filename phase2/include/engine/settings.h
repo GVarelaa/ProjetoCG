@@ -40,6 +40,7 @@ enum Mode{STATIC, EXPLORER, FPS};
 class Camera{
     public:
         Point position;
+        Point direction;
         Point lookAt;
         Point up; 
         Projection projection;
@@ -54,6 +55,7 @@ class Camera{
         void processNormalKeys(unsigned char key);
         void processSpecialKeys(int key);
         void updatePosition();
+        void updateFPSPosition();
 };
 
 #endif

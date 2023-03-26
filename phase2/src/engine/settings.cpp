@@ -19,6 +19,7 @@ Camera::Camera(XMLElement *cameraElement){
     radius = 10;
     alpha = 0;
     beta = 0;
+    direction = Point(1,0,0);
 
     if(cameraElement->Attribute("mode")){
         string name(cameraElement->Attribute("mode"));
@@ -29,7 +30,7 @@ Camera::Camera(XMLElement *cameraElement){
         else if(name == "explorer"){
             mode = EXPLORER;
         }
-        else if(name == "FPS"){
+        else if(name == "fps"){
             mode = FPS;
         }
     }
@@ -58,6 +59,12 @@ void Camera::updatePosition(){
     position.z = radius * cos(beta) * cos(alpha);
 }
 
+void Camera::updateFPSPosition(){
+    position.x = position.x + direction.x * 1;
+    position.y = position.y + direction.y * 1;
+    position.z = position.z + direction.z * 1;
+}
+
 void Camera::processNormalKeys(unsigned char key){
     switch(key){
         case 'c':
@@ -76,6 +83,12 @@ void Camera::processNormalKeys(unsigned char key){
             if(mode == EXPLORER){
                 radius -= 1;
                 updatePosition();
+            }
+            break;
+        case 'w':
+            if(mode == FPS){
+                printf("aqui\n");
+                updateFPSPosition();
             }
             break;
     }

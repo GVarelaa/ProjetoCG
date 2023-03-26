@@ -4,6 +4,14 @@
 #include "../point.h"
 #include "../tinyxml2/tinyxml2.h"
 #include <string>
+#include <math.h>
+
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glew.h>
+#include <GL/glut.h>
+#endif
 
 using namespace std;
 using namespace tinyxml2;
@@ -12,8 +20,8 @@ class Window{
     public:
         int width;
         int height;
+
         Window();
-        Window(int newHeight, int newWidth);
         Window(XMLElement *windowElement);
 };
 
@@ -22,11 +30,12 @@ class Projection{
         float fov;
         float near;
         float far;
+
         Projection();
         Projection(float newFov, float newNear, float newFar);
 };
 
-enum mode{STATIC, EXPLORER, FPS};
+enum Mode{STATIC, EXPLORER, FPS};
 
 class Camera{
     public:
@@ -34,10 +43,17 @@ class Camera{
         Point lookAt;
         Point up; 
         Projection projection;
-        mode mode;
+        Mode mode;
+
+        float radius;
+        float alpha;
+        float beta;
+
         Camera();
-        Camera(Point newPosition, Point newLookAt, Point newUp, Projection newProjection);
         Camera(XMLElement *cameraElement);
+        void processNormalKeys(unsigned char key);
+        void processSpecialKeys(int key);
+        void updatePosition();
 };
 
 #endif

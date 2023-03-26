@@ -19,6 +19,7 @@ using namespace tinyxml2;
 using namespace std;
 
 World world;
+int window;
 float alphaCamera = 0, betaCamera = 0, radiusCamera = 10;
 float pxCamera = 0, pyCamera = 0, pzCamera = 0;
 bool explorerMode = false;
@@ -99,17 +100,9 @@ void renderScene(void){
 	Camera camera = world.camera;
 	glLoadIdentity();
 
-	// Modo explorador desativado
-	if(explorerMode == false){
-		gluLookAt(camera.position.x, camera.position.y, camera.position.z,
-	        camera.lookAt.x, camera.lookAt.y, camera.lookAt.z,
-	        camera.up.x, camera.up.y, camera.up.z);
-	}
-	else{
-		gluLookAt(pxCamera, pyCamera, pzCamera, 
-	        	  0, 0, 0,
-	        	  camera.up.x, camera.up.y, camera.up.z);
-	}
+	gluLookAt(camera.position.x, camera.position.y, camera.position.z,
+			  camera.lookAt.x  , camera.lookAt.y  , camera.lookAt.z  ,
+			  camera.up.x      , camera.up.y      , camera.up.z       );
 
 	// axis drawing
 	showAxis();
@@ -126,30 +119,13 @@ void renderScene(void){
 }
 
 
-void processKeys(unsigned char c, int x, int y){
-	if(explorerMode == true){
-		if(c == 'c'){
-			explorerMode = false;
-		}
-		else if (c == '-'){
-			radiusCamera += 1;
-
-			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
-			pyCamera = radiusCamera * sin (betaCamera);
-			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
-		}
-		else if (c == '+'){
-			radiusCamera -= 1;
-
-			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
-			pyCamera = radiusCamera * sin (betaCamera);
-			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
-		}
-	}
-	else{
-		if(c == 'c'){
-			explorerMode = true;
-		}
+void processNormalKeys(unsigned char key, int x, int y){
+	switch(key){
+		case 27: // ESCAPE
+			glutDestroyWindow(window);
+			exit(0);
+		default:
+			world.camera.processNormalKeys(key);
 	}
 
 	glutPostRedisplay();
@@ -157,42 +133,12 @@ void processKeys(unsigned char c, int x, int y){
 
 
 void processSpecialKeys(int key, int x, int y){	
-	if (explorerMode == true){
-		if (key == GLUT_KEY_LEFT){
-			alphaCamera -= M_PI / 20;
-
-			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
-			pyCamera = radiusCamera * sin (betaCamera);
-			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
-		}
-		else if (key == GLUT_KEY_RIGHT){
-			alphaCamera += M_PI / 20;
-
-			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
-			pyCamera = radiusCamera * sin (betaCamera);
-			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
-		}
-		else if (key == GLUT_KEY_UP){
-			betaCamera += M_PI / 20;
-
-			if (betaCamera > M_PI / 2) betaCamera = M_PI / 2;
-
-			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
-			pyCamera = radiusCamera * sin (betaCamera);
-			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
-		}
-		else if (key == GLUT_KEY_DOWN){
-			betaCamera -= M_PI / 20;
-
-			if (betaCamera < -M_PI / 2) betaCamera = -M_PI / 2;
-
-			pxCamera = radiusCamera * cos (betaCamera) * sin (alphaCamera);
-			pyCamera = radiusCamera * sin (betaCamera);
-			pzCamera = radiusCamera * cos (betaCamera) * cos (alphaCamera);
-		}
-
-		glutPostRedisplay();
+	switch(key){
+		default:
+			world.camera.processSpecialKeys(key);
 	}
+
+	glutPostRedisplay();
 }
 
 
@@ -204,7 +150,7 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(100,100);
     glutInitWindowSize(world.window.width, world.window.height);
-    glutCreateWindow("CG@DI-UM");
+    window = glutCreateWindow("CG@DI-UM");
 		
 	// Required callback registry 
 	glutIdleFunc(renderScene);
@@ -212,7 +158,7 @@ int main(int argc, char **argv) {
 	glutReshapeFunc(changeSize);
 	
 	// registration of the keyboard callbacks
-	glutKeyboardFunc(processKeys);
+	glutKeyboardFunc(processNormalKeys);
 	glutSpecialFunc(processSpecialKeys);
 
 	// init GLEW

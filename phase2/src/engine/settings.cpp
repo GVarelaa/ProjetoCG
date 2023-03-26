@@ -3,11 +3,6 @@
 // -----------WINDOW-----------
 Window::Window(){}
 
-Window::Window(int newWidth, int newHeight){
-    width = newWidth;
-    height = newHeight;
-}
-
 Window::Window(XMLElement *windowElement){
     width = atoi(windowElement->Attribute("width"));
     height = atoi(windowElement->Attribute("height"));
@@ -17,17 +12,13 @@ Window::Window(XMLElement *windowElement){
 // -----------CAMERA-----------
 Camera::Camera(){}
 
-Camera::Camera(Point newPosition, Point newLookAt, Point newUp, Projection newProjection){
-    position = newPosition;
-    lookAt = newLookAt;
-    up = newUp;
-    projection = newProjection;
-}
-
 Camera::Camera(XMLElement *cameraElement){
     up = Point(0, 1, 0); // Default value
     projection = Projection(60, 1, 1000); // Default value
     mode = STATIC;
+    radius = 10;
+    alpha = 0;
+    beta = 0;
 
     if(cameraElement->Attribute("mode")){
         string name(cameraElement->Attribute("mode"));
@@ -61,6 +52,67 @@ Camera::Camera(XMLElement *cameraElement){
     }
 }
 
+void Camera::updatePosition(){
+    position.x = radius * cos(beta) * sin(alpha);
+    position.y = radius             * sin(beta);
+    position.z = radius * cos(beta) * cos(alpha);
+}
+
+void Camera::processNormalKeys(unsigned char key){
+    switch(key){
+        case 'c':
+            if(mode == STATIC)
+                mode = EXPLORER;
+            else if(mode == EXPLORER)
+                mode = STATIC;
+            break;
+        case '-':
+            if(mode == EXPLORER){
+                radius += 1;
+                updatePosition();
+            }
+            break;
+        case '+':
+            if(mode == EXPLORER){
+                radius -= 1;
+                updatePosition();
+            }
+            break;
+    }
+}
+
+void Camera::processSpecialKeys(int key){
+    switch(key){
+        case GLUT_KEY_LEFT:
+            if(mode == EXPLORER){
+                alpha -= M_PI / 20;
+                updatePosition();
+            }
+            break;
+        case GLUT_KEY_RIGHT:
+            if(mode == EXPLORER){
+                alpha += M_PI / 20;
+                updatePosition();
+            }
+            break;
+        case GLUT_KEY_UP:
+            if(mode == EXPLORER){
+                beta += M_PI / 20;
+
+			    if (beta > M_PI / 2) beta = M_PI / 2;
+                updatePosition();
+            }
+            break;
+        case GLUT_KEY_DOWN:
+            if(mode == EXPLORER){
+                beta -= M_PI / 20;
+
+			    if (beta < -M_PI / 2) beta = -M_PI / 2;
+                updatePosition();
+            }
+            break;
+    }
+}
 
 // -----------PROJECTION-----------
 Projection::Projection(){}

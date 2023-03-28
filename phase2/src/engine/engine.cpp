@@ -124,8 +124,10 @@ void processNormalKeys(unsigned char key, int x, int y){
 		case 27: // ESCAPE
 			glutDestroyWindow(window);
 			exit(0);
+			break;
 		default:
 			world.camera.processNormalKeys(key);
+			break;
 	}
 
 	glutPostRedisplay();
@@ -136,6 +138,7 @@ void processSpecialKeys(int key, int x, int y){
 	switch(key){
 		default:
 			world.camera.processSpecialKeys(key);
+			break;
 	}
 
 	glutPostRedisplay();

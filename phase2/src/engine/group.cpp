@@ -3,6 +3,8 @@
 Group::Group(){}
 
 Group::Group(XMLElement *groupElement){
+    color = Point(255.0f, 255.0f, 255.0f); // Cor default -> branco
+
     for(XMLElement *elem = groupElement->FirstChildElement(); elem; elem = elem->NextSiblingElement()){
         string name(elem->Name());
 
@@ -29,6 +31,11 @@ Group::Group(XMLElement *groupElement){
         else if(name == "group"){
             groups.push_back(Group(elem));
         }
+        else if(name == "color"){
+            color.x = atof((char *)elem->Attribute("R"));
+            color.y = atof((char *)elem->Attribute("G"));
+            color.z = atof((char *)elem->Attribute("B"));
+        }
     }
 }
 
@@ -51,6 +58,7 @@ void Group::drawModels(){
     }
     
     for(int i = 0; i < models.size(); i++){
+        glColor3f(color.x/255.0, color.y/255.0, color.z/255.0);
         models[i].draw();
     }    
 

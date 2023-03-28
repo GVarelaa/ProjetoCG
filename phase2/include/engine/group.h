@@ -5,6 +5,7 @@
 #include <string.h>
 #include "model.h"
 #include "transform.h"
+#include "../point.h"
 #include "../tinyxml2/tinyxml2.h"
 
 using namespace tinyxml2;
@@ -15,7 +16,8 @@ class Group{
         vector<Group> groups;
         vector<Model> models;
         vector<Transform *> transforms;
-        
+        Point color;
+
         Group();
         Group(XMLElement *groupElement);
         void loadModels();

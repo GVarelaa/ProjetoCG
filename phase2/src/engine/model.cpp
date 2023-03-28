@@ -3,6 +3,18 @@
 
 Model::Model(XMLElement *elem){
     path = strdup((char *)elem->Attribute("file"));
+    color = NULL;
+
+    XMLElement *child = elem->FirstChildElement();
+    if(child != NULL){
+        string name(child->Name());
+        if(name == "color"){
+            float r = atof((char *)child->Attribute("R"));
+            float g = atof((char *)child->Attribute("G"));
+            float b = atof((char *)child->Attribute("B"));
+            color = new Point(r, g, b);
+        }
+    }
 }
 
 
@@ -57,6 +69,10 @@ void Model::load(){
 
 
 void Model::draw(){
+    if(color != NULL){
+        glColor3f(color->x, color->y, color->z);
+    }
+
     glBindBuffer(GL_ARRAY_BUFFER, vertices_buffer);
     glVertexPointer(3, GL_FLOAT, 0, 0);
 

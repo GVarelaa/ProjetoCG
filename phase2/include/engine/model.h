@@ -12,6 +12,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <stdlib.h>
+#include "../point.h"
 #include "../tinyxml2/tinyxml2.h"
 
 using namespace tinyxml2;
@@ -24,6 +26,7 @@ class Model{
         int nIndexes;
         GLuint vertices_buffer;
         GLuint indexes_buffer;
+        Point *color;
 
         Model();
         Model(XMLElement *elem);

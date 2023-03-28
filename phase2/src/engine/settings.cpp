@@ -55,7 +55,7 @@ Camera::Camera(XMLElement *cameraElement){
 
 void Camera::updatePosition(){
     position.x = radius * cos(beta) * sin(alpha);
-    position.y = radius             * sin(beta);
+    position.y = radius * sin(beta);
     position.z = radius * cos(beta) * cos(alpha);
 }
 

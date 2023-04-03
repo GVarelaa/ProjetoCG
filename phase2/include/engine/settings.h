@@ -4,6 +4,7 @@
 #include "../point.h"
 #include "../tinyxml2/tinyxml2.h"
 #include <string>
+#include <cctype>
 #include <math.h>
 
 #ifdef __APPLE__
@@ -40,11 +41,12 @@ enum Mode{STATIC, EXPLORER, FPS};
 class Camera{
     public:
         Point position;
-        Point direction;
         Point lookAt;
         Point up; 
+        Point direction; // vetor d e r
         Projection projection;
         Mode mode;
+        float speed;
 
         float radius;
         float alpha;
@@ -54,8 +56,10 @@ class Camera{
         Camera(XMLElement *cameraElement);
         void processNormalKeys(unsigned char key);
         void processSpecialKeys(int key);
+        void updateDirection();
+        void updateLateralDirection();
         void updatePosition();
-        void updateFPSPosition();
+        void updateFPSPosition(int coef);
 };
 
 #endif

@@ -16,10 +16,11 @@ Camera::Camera(XMLElement *cameraElement){
     up = Point(0, 1, 0); // Default value
     projection = Projection(60, 1, 1000); // Default value
     mode = STATIC;
-    radius = 10;
+    radius = 2;
     alpha = 0;
     beta = 0;
-    direction = Point(1,0,0);
+    speed = 1;
+    //direction = Point(1,0,0);
 
     if(cameraElement->Attribute("mode")){
         string name(cameraElement->Attribute("mode"));
@@ -53,19 +54,48 @@ Camera::Camera(XMLElement *cameraElement){
     }
 }
 
+void Camera::updateDirection(){
+    // Vetor D
+    direction.x = lookAt.x - position.x;
+    direction.y = lookAt.y - position.y;
+    direction.z = lookAt.z - position.z;
+    
+    // Normalizar o vetor
+    direction.normalizeVector();
+}
+
+
+void Camera::updateLateralDirection(){
+    // Vetor R
+    direction.x = lookAt.x - position.x;
+    direction.y = lookAt.y - position.y;
+    direction.z = lookAt.z - position.z;
+    
+    // Produto externo
+    direction.crossProduct(up);
+
+    // Normalizar o vetor
+    direction.normalizeVector();
+}
+
 void Camera::updatePosition(){
     position.x = radius * cos(beta) * sin(alpha);
     position.y = radius * sin(beta);
     position.z = radius * cos(beta) * cos(alpha);
 }
 
-void Camera::updateFPSPosition(){
-    position.x = position.x + direction.x * 1;
-    position.y = position.y + direction.y * 1;
-    position.z = position.z + direction.z * 1;
+void Camera::updateFPSPosition(int coef){
+    position.x = position.x + coef * speed * direction.x;
+    position.y = position.y + coef * speed * direction.y;
+    position.z = position.z + coef * speed * direction.z;
+
+    lookAt.x = lookAt.x + coef * speed * direction.x;
+    lookAt.y = lookAt.y + coef * speed * direction.y;
+    lookAt.z = lookAt.z + coef * speed * direction.z;
 }
 
 void Camera::processNormalKeys(unsigned char key){
+    key = tolower(key);
     switch(key){
         case 'c':
             if(mode == STATIC)
@@ -75,20 +105,38 @@ void Camera::processNormalKeys(unsigned char key){
             break;
         case '-':
             if(mode == EXPLORER){
-                radius += 1;
+                radius += 5;
                 updatePosition();
             }
             break;
         case '+':
             if(mode == EXPLORER){
-                radius -= 1;
+                radius -= 5;
                 updatePosition();
             }
             break;
         case 'w':
             if(mode == FPS){
-                printf("aqui\n");
-                updateFPSPosition();
+                updateDirection();
+                updateFPSPosition(1);
+            }
+            break;
+        case 's':
+            if(mode == FPS){
+                updateDirection();
+                updateFPSPosition(-1);
+            }
+            break;
+        case 'a':
+            if(mode == FPS){
+                updateLateralDirection();
+                updateFPSPosition(-1);
+            }
+            break;
+        case 'd':
+            if(mode == FPS){
+                updateLateralDirection();
+                updateFPSPosition(1);
             }
             break;
     }

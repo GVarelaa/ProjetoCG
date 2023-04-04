@@ -21,7 +21,8 @@ void Point::normalizeVector(){
 }
 
 void Point::crossProduct(Point v){
-    x = y * v.z - z * v.y;
-    y = z * v.x - x * v.z; 
-    z = x * v.y - y * v.x;
+    float xAux = x, yAux = y, zAux = z;
+    x = yAux * v.z - zAux * v.y;
+    y = zAux * v.x - xAux * v.z; 
+    z = xAux * v.y - yAux * v.x;
 }

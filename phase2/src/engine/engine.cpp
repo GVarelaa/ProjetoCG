@@ -145,6 +145,11 @@ void processSpecialKeys(int key, int x, int y){
 }
 
 
+void processMouseMotion(int x, int y){
+	world.camera.processMouseMotion(x, y);
+}
+
+
 int main(int argc, char **argv) {
 	// init GLUT and the window
 	world = World(argv[1]);
@@ -163,6 +168,7 @@ int main(int argc, char **argv) {
 	// registration of the keyboard callbacks
 	glutKeyboardFunc(processNormalKeys);
 	glutSpecialFunc(processSpecialKeys);
+	glutPassiveMotionFunc(processMouseMotion);
 
 	// init GLEW
 	#ifndef __APPLE__

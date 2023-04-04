@@ -19,7 +19,8 @@ Camera::Camera(XMLElement *cameraElement){
     radius = 5;
     alpha = 0;
     beta = 0;
-    speed = 1;
+    speed = 2;
+    firstTime = true;
     //direction = Point(1,0,0);
 
     if(cameraElement->Attribute("mode")){
@@ -172,6 +173,32 @@ void Camera::processSpecialKeys(int key){
                 updatePosition();
             }
             break;
+    }
+}
+
+void Camera::processMouseMotion(int x, int y){
+    if(mode == FPS || mode == EXPLORER){
+        if(firstTime){
+            firstTime = false;
+            startX = x;
+            startY = y;
+        }
+
+        float deltaX = (x - startX) * 0.01;
+        float deltaY = (y - startY) * 0.01;
+
+        startX = x;
+        startY = y;
+
+        alpha += deltaX;
+
+        if(beta + deltaY <= M_PI && beta + deltaY >= 0){
+            beta += deltaY;
+        }
+
+        lookAt.x = position.x + sin(alpha) * sin(beta);
+        lookAt.y = position.y + cos(beta);
+        lookAt.z = position.z - cos(alpha) * sin(beta);
     }
 }
 

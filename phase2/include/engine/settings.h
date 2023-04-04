@@ -52,10 +52,15 @@ class Camera{
         float alpha;
         float beta;
 
+        float startX;
+        float startY;
+        bool firstTime;
+
         Camera();
         Camera(XMLElement *cameraElement);
         void processNormalKeys(unsigned char key);
         void processSpecialKeys(int key);
+        void processMouseMotion(int x, int y);
         void updateDirection();
         void updateLateralDirection();
         void updatePosition();

@@ -2,6 +2,7 @@
 #define __POINT__
 
 #include <math.h>
+#include <stdio.h>
 
 class Point { 
     public:

@@ -10,6 +10,7 @@
 #include "../../include/generator/sphere.h"
 #include "../../include/generator/cylinder.h"
 #include "../../include/generator/torus.h"
+#include "../../include/generator/ellipsoid.h"
 
 using namespace std;
 
@@ -53,6 +54,7 @@ int main(int argc, char *argv[]){
     char erSphere[] = "sphere ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erCylinder[] = "cylinder ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erTorus[] = "torus ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
+    char erEllipsoid[] = "ellipsoid ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
 
     if (regex_match(inp, regex(erPlane))){
         float length = atof(argv[2]);
@@ -108,6 +110,17 @@ int main(int argc, char *argv[]){
 
 	    pair<vector<Point>, vector<Triangle> > torus = generateTorus(radiusIn, radiusOut, slices, layers);
 	    toFile(filePath, torus);
+    }
+    else if(regex_match(inp, regex(erEllipsoid))){
+	    float a = atof(argv[2]);
+	    float b = atof(argv[3]);
+	    float c = atoi(argv[4]);
+	    int slices = atoi(argv[5]);
+        int stacks = atoi(argv[6]);
+	    char *filePath = argv[7];
+
+	    pair<vector<Point>, vector<Triangle> > ellipsoid = generateEllipsoid(a, b, c, slices, stacks);
+	    toFile(filePath, ellipsoid);
     }
     else cout << "Invalid input!" << endl;
 

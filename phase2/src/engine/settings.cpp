@@ -16,7 +16,7 @@ Camera::Camera(XMLElement *cameraElement){
     up = Point(0, 1, 0); // Default value
     projection = Projection(60, 1, 1000); // Default value
     mode = STATIC;
-    radius = 2;
+    radius = 5;
     alpha = 0;
     beta = 0;
     speed = 1;

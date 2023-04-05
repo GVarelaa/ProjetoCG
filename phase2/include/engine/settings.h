@@ -45,13 +45,15 @@ class Camera{
         Point up; 
         Point direction; // vetor d e r
         Projection projection;
+
         Mode mode;
-        float speed;
 
         float radius;
         float alpha;
         float beta;
 
+        float moveSpeed;
+        float rotationSpeed;
         float startX;
         float startY;
         bool firstTime;

@@ -63,7 +63,7 @@ class Camera{
         void processMouseMotion(int x, int y);
         void updateDirection();
         void updateLateralDirection();
-        void updatePosition();
+        void updateExplorerPosition();
         void updateFPSPosition(int coef);
 };
 

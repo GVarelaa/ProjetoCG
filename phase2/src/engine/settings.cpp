@@ -79,7 +79,7 @@ void Camera::updateLateralDirection(){
     direction.normalizeVector();
 }
 
-void Camera::updatePosition(){
+void Camera::updateExplorerPosition(){
     position.x = radius * cos(beta) * sin(alpha);
     position.y = radius * sin(beta);
     position.z = radius * cos(beta) * cos(alpha);
@@ -101,13 +101,13 @@ void Camera::processNormalKeys(unsigned char key){
         case '-':
             if(mode == EXPLORER){
                 radius += 5;
-                updatePosition();
+                updateExplorerPosition();
             }
             break;
         case '+':
             if(mode == EXPLORER){
                 radius -= 5;
-                updatePosition();
+                updateExplorerPosition();
             }
             break;
         case 'w':
@@ -142,13 +142,13 @@ void Camera::processSpecialKeys(int key){
         case GLUT_KEY_LEFT:
             if(mode == EXPLORER){
                 alpha -= M_PI / 20;
-                updatePosition();
+                updateExplorerPosition();
             }
             break;
         case GLUT_KEY_RIGHT:
             if(mode == EXPLORER){
                 alpha += M_PI / 20;
-                updatePosition();
+                updateExplorerPosition();
             }
             break;
         case GLUT_KEY_UP:
@@ -156,7 +156,7 @@ void Camera::processSpecialKeys(int key){
                 beta += M_PI / 20;
 
 			    if (beta > M_PI / 2) beta = M_PI / 2;
-                updatePosition();
+                updateExplorerPosition();
             }
             break;
         case GLUT_KEY_DOWN:
@@ -164,7 +164,7 @@ void Camera::processSpecialKeys(int key){
                 beta -= M_PI / 20;
 
 			    if (beta < -M_PI / 2) beta = -M_PI / 2;
-                updatePosition();
+                updateExplorerPosition();
             }
             break;
     }
@@ -196,7 +196,7 @@ void Camera::processMouseMotion(int x, int y){
             lookAt.z = position.z - cos(alpha) * sin(beta);
         }
         else if(mode == EXPLORER){
-            updatePosition();
+            updateExplorerPosition();
         }
     }
 }

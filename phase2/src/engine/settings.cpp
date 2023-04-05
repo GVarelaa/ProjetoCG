@@ -98,12 +98,6 @@ void Camera::updateFPSPosition(int coef){
 void Camera::processNormalKeys(unsigned char key){
     key = tolower(key);
     switch(key){
-        case 'c':
-            if(mode == STATIC)
-                mode = EXPLORER;
-            else if(mode == EXPLORER)
-                mode = STATIC;
-            break;
         case '-':
             if(mode == EXPLORER){
                 radius += 5;
@@ -196,9 +190,14 @@ void Camera::processMouseMotion(int x, int y){
             beta += deltaY;
         }
 
-        lookAt.x = position.x + sin(alpha) * sin(beta);
-        lookAt.y = position.y + cos(beta);
-        lookAt.z = position.z - cos(alpha) * sin(beta);
+        if(mode == FPS){
+            lookAt.x = position.x + sin(alpha) * sin(beta);
+            lookAt.y = position.y + cos(beta);
+            lookAt.z = position.z - cos(alpha) * sin(beta);
+        }
+        else if(mode == EXPLORER){
+            updatePosition();
+        }
     }
 }
 

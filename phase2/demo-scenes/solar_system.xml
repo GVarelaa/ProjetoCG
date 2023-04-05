@@ -123,6 +123,12 @@
         </models>  
     </group>
 
+    <group>
+        <models>
+            <belt file="ellipsoid.3d" n="10" seed="1" radiusIn="1" radiusOut="10"/>
+        </models>
+    </group>
+
 	<!-- ORBITS-->
     <group>
         <models>

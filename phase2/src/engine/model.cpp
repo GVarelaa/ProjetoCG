@@ -18,9 +18,8 @@ Model::Model(XMLElement *elem){
 }
 
 
-Model::Model(char *newPath, Point *newColor){
+Model::Model(char *newPath){
     path = strdup(newPath);
-    color = newColor; // clone ??
 }
 
 

@@ -31,12 +31,12 @@ Group::Group(XMLElement *groupElement){
                     models.push_back(Model(modelElem));
                 }
                 else if(name == "belt"){
-                    char *path = strdup((char *)elem->Attribute("file"));
+                    char *path = strdup((char *)modelElem->Attribute("file"));
                     int n = atoi((char *)modelElem->Attribute("n"));
                     float radiusIn = atof((char *)modelElem->Attribute("radiusIn"));
-                    float radiutOut = atof((char *)modelElem->Attribute("radiusOut"));
+                    float radiusOut = atof((char *)modelElem->Attribute("radiusOut"));
                     int seed = atoi((char *)modelElem->Attribute("seed"));
-                    Point *color = NULL;
+                    Point color;
 
                     XMLElement *child = elem->FirstChildElement();
                     if(child != NULL){
@@ -45,14 +45,22 @@ Group::Group(XMLElement *groupElement){
                             float r = atof((char *)child->Attribute("R"));
                             float g = atof((char *)child->Attribute("G"));
                             float b = atof((char *)child->Attribute("B"));
-                            color = new Point(r, g, b);
+                            color = Point(r, g, b);
                         }
                     }
-
+                    
                     srand(seed);
                     for(int i = 0; i<n; i++){
                         vector<Model> models;
-                        models.push_back(Model(path, color));
+                        vector<Transform *> transforms;
+
+                        models.push_back(Model(path));
+
+                        float angle = rand() / RAND_MAX;
+                        angle *= 2*M_PI;
+                        transforms.push_back(new Translate((radiusOut + radiusIn*cos(angle))*cos(angle), radiusIn * sin(angle), (radiusOut + radiusIn*cos(angle))*sin(angle)));
+                        
+                        groups.push_back(Group(models, transforms));
                     }
                 }
                 
@@ -68,6 +76,14 @@ Group::Group(XMLElement *groupElement){
         }
     }
 }
+
+
+Group::Group(vector<Model> newModels, vector<Transform *> newTransforms){
+    models = newModels;
+    transforms = newTransforms;
+    color = Point(255, 255, 255);
+}
+
 
 void Group::loadModels(){
     for(int i = 0; i < models.size(); i++){

@@ -31,7 +31,7 @@ class Model{
 
         Model();
         Model(XMLElement *elem);
-        Model(char *path, Point *color);
+        Model(char *path);
         void load();
         void draw();
 };

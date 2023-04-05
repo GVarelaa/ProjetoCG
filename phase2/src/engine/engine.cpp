@@ -150,6 +150,32 @@ void processMouseMotion(int x, int y){
 }
 
 
+void menuCamChoice(int choice){
+    switch (choice) {
+        case 0:
+            world.camera.mode = STATIC;
+            break;
+        case 1:
+            world.camera.mode = EXPLORER;
+            break;
+        case 2:
+            world.camera.mode = FPS;
+            break;
+        default:
+            break;
+    }
+}
+
+
+void cameraMenu(){
+	glutCreateMenu(menuCamChoice);
+	glutAddMenuEntry("Static Camera", 0);
+    glutAddMenuEntry("Explorer Camera", 1);
+	glutAddMenuEntry("FPS Camera", 2);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
+
+
 int main(int argc, char **argv) {
 	// init GLUT and the window
 	world = World(argv[1]);
@@ -183,6 +209,8 @@ int main(int argc, char **argv) {
 
 	world.loadModels();
 	timebase = glutGet(GLUT_ELAPSED_TIME);
+
+	cameraMenu();
 	
 	// GLUT's main cycle
 	glutMainLoop();

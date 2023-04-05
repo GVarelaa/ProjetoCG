@@ -18,8 +18,8 @@
     <!-- MERCURY -->
     <group>
         <transform> 
-            <translate x="0" y="0" z="-10.5"/>
-            <scale x="0.0102" y="0.0102" z="0.0102"/>
+            <translate x="0" y="0" z="-12"/>
+            <scale x="0.017" y="0.017" z="0.017"/>
         </transform>
         <color R="206.0" G="204.0" B="209.0"/>
         <models> 
@@ -30,8 +30,8 @@
     <!-- VENUS -->
     <group>
         <transform> 
-            <translate x="0" y="0" z="-18.75" />
-            <scale x="0.0258" y="0.0258" z="0.0258"/>
+            <translate x="0" y="0" z="-21" />
+            <scale x="0.043" y="0.043" z="0.043"/>
         </transform>
         <color R="165.0" G="124.0" B="27.0"/>
         <models> 
@@ -42,8 +42,8 @@
     <!-- EARTH -->
     <group>
         <transform> 
-            <translate x="0" y="0" z="-27.5" />
-            <scale x="0.0273" y="0.0273" z="0.0273"/>
+            <translate x="0" y="0" z="-30" />
+            <scale x="0.0455" y="0.0455" z="0.0455"/>
         </transform>
         <color R="159.0" G="193.0" B="100.0"/>
         <models> 
@@ -54,8 +54,8 @@
     <!-- MARS -->
     <group>
         <transform> 
-            <translate x="0" y="0" z="-41.25" />
-            <scale x="0.0144" y="0.0144" z="0.0144"/>
+            <translate x="0" y="0" z="-45" />
+            <scale x="0.024" y="0.024" z="0.024"/>
         </transform>
         <color R="193.0" G="68.0" B="14.0"/>
         <models> 
@@ -66,8 +66,8 @@
     <!-- JUPITER -->
     <group>
         <transform> 
-            <translate x="0" y="0" z="-140" />
-            <scale x="0.3" y="0.3" z="0.3"/>
+            <translate x="0" y="0" z="-156" />
+            <scale x="0.5" y="0.5" z="0.5"/>
         </transform>
         <color R="165.0" G="145.0" B="134.0"/>
         <models> 
@@ -78,8 +78,8 @@
     <!-- SATURN -->
     <group>
         <transform> 
-            <translate x="0" y="0" z="-250" />
-            <scale x="0.252" y="0.252" z="0.252"/>
+            <translate x="0" y="0" z="-285" />
+            <scale x="0.42" y="0.42" z="0.42"/>
         </transform>
         <color R="234.0" G="214.0" B="184.0"/>
         <models> 
@@ -88,12 +88,13 @@
         
         <!-- RING -->
         <group> 
-            <transform> 
+            <transform>
+                <scale x="2.38" y="2.38" z="2.38"/>
                 <rotate angle="45" x="0" y="0" z="1"/>
             </transform>
             <color R="255.0" G="233.0" B="201.0"/>
             <models> 
-                <model file="ring.3d"/> <!-- generator torus 1 10 50 50 ring.3d -->
+                <model file="ring.3d"/> <!-- generator torus 0.5 4 50 2 ring.3d -->
             </models>
 		</group>
     </group>
@@ -101,8 +102,8 @@
     <!-- URANUS -->
     <group>
         <transform> 
-            <translate x="0" y="0" z="-500" />
-            <scale x="0.209" y="0.231" z="0.231"/>
+            <translate x="0" y="0" z="-570" />
+            <scale x="0.17" y="0.17" z="0.17"/>
         </transform>
         <color R="206.0" G="204.0" B="209.0"/>
         <models> 
@@ -113,8 +114,8 @@
     <!-- NEPTUNE -->
     <group>
         <transform> 
-            <translate x="0" y="0" z="-750" />
-            <scale x="0.099" y="0.099" z="0.099"/>
+            <translate x="0" y="0" z="-900" />
+            <scale x="0.165" y="0.165" z="0.165"/>
         </transform>
         <color R="91.0" G="93.0" B="223.0"/>
         <models> 
@@ -122,84 +123,17 @@
         </models>  
     </group>
 
-	<!-- MERCURY'S ORBIT -->
+	<!-- ORBITS-->
     <group>
-        <transform>
-            <scale x="10.5" y="10.5" z="10.5"/>
-        </transform>
         <models>
-            <model file="torus.3d"/> <!-- generator torus 0.0005 1 80 80 torus.3d -->
+            <model file="mercury_orbit.3d"/> <!-- ./generator torus 0.01 12 80 80 mercury_orbit.3d -->
+            <model file="venus_orbit.3d"/> <!-- ./generator torus 0.01 21 80 80 venus_orbit.3d -->
+            <model file="earth_orbit.3d"/> <!-- ./generator torus 0.01 30 80 80 earth_orbit.3d -->
+            <model file="mars_orbit.3d"/> <!-- ./generator torus 0.01 45 80 80 mars_orbit.3d -->
+            <model file="jupiter_orbit.3d"/> <!-- ./generator torus 0.01 156 80 80 jupiter_orbit.3d -->
+            <model file="saturn_orbit.3d"/> <!-- ./generator torus 0.01 285 80 80 saturn_orbit.3d -->
+            <model file="uranus_orbit.3d"/> <!-- ./generator torus 0.01 570 80 80 uranus_orbit.3d -->
+            <model file="neptune_orbit.3d"/> <!-- ./generator torus 0.01 900 80 80 neptune_orbit.3d -->
         </models>
     </group>
-    
-    <!-- VENUS' ORBIT -->
-    <group>
-        <transform>
-            <scale x="18.75" y="18.75" z="18.75"/>
-        </transform>
-        <models>
-            <model file="torus.3d"/> <!-- generator torus 0.0005 1 80 80 torus.3d -->
-        </models>
-    </group>
-   
-   	<!-- EARTH'S ORBIT -->
-    <group>
-        <transform>
-            <scale x="27.5" y="27.5" z="27.5"/>
-        </transform>
-        <models>
-            <model file="torus.3d"/> <!-- generator torus 0.0005 1 80 80 torus.3d -->
-        </models>
-    </group>
-   
-   	<!-- MARS' ORBIT -->
-    <group>
-        <transform>
-            <scale x="41.25" y="41.25" z="41.25"/>
-        </transform>
-        <models>
-            <model file="torus.3d"/> <!-- generator torus 0.0005 1 80 80 torus.3d -->
-        </models>
-    </group>
-   
-   	<!-- JUPITER'S ORBIT -->
-    <group>
-        <transform>
-            <scale x="140" y="140" z="140"/>
-        </transform>
-        <models>
-            <model file="torus.3d"/> <!-- generator torus 0.0005 1 80 80 torus.3d -->
-        </models>
-    </group>
-   
-   	<!-- SATURN'S ORBIT -->
-    <group>
-        <transform>
-            <scale x="250" y="250" z="250"/>
-        </transform>
-        <models>
-            <model file="torus.3d"/> <!-- generator torus 0.0005 1 80 80 torus.3d -->
-        </models>
-    </group>
-    
-    <!-- URANUS' ORBIT -->
-    <group>
-        <transform>
-            <scale x="500" y="500" z="500"/>
-        </transform>
-        <models>
-            <model file="torus.3d"/> <!-- generator torus 0.0005 1 80 80 torus.3d -->
-        </models>
-    </group>
-   
-   	<!-- NEPTUNE'S ORBIT -->
-    <group>
-        <transform>
-            <scale x="750" y="750" z="750"/>
-        </transform>
-        <models>
-            <model file="torus.3d"/> <!-- generator torus 0.0005 1 80 80 torus.3d -->
-        </models>
-    </group>
-
 </world>

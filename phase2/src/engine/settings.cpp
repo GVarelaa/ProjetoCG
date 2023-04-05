@@ -19,7 +19,7 @@ Camera::Camera(XMLElement *cameraElement){
     radius = 5;
     alpha = 0;
     beta = 0;
-    moveSpeed = 2;
+    moveSpeed = 15;
     rotationSpeed = 0.01;
     firstTime = true;
     //direction = Point(1,0,0);
@@ -176,13 +176,13 @@ void Camera::processMouseButtons(int button){
     switch (button) {
         case 3:
             if (mode == EXPLORER){
-                radius -= 5;
+                radius += 5;
                 updateExplorerPosition();
             }
             break;
         case 4:
             if (mode == EXPLORER){
-                radius += 5;
+                radius -= 5;
                 updateExplorerPosition();
             }
             break;

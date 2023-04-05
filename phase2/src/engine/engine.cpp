@@ -105,7 +105,7 @@ void renderScene(void){
 			  camera.up.x      , camera.up.y      , camera.up.z       );
 
 	// axis drawing
-	showAxis();
+	//showAxis();
 
 	// geometric transformations
 
@@ -182,74 +182,6 @@ void cameraMenu(){
 }
 
 
-/*
-void menuChoice(int num) {
-    switch (num) {
-        case 1:
-            //show_axis = !show_axis;
-            break;
-        case 2:
-            //show_orbits = !show_orbits;
-            break;
-        case -1:
-            glutDestroyWindow(window);
-            exit(0);
-    }
-}
-
-void menuCamChoice(int num) {
-    switch (num) {
-        case 1:
-            //camOption = 1;
-            break;
-        case 0:
-            //camOption = 0;
-            break;
-
-    }
-}
-
-void menuModeChoice(int num) {
-    switch (num) {
-        case 0:
-            //mode = GL_LINE;
-            break;
-        case 1:
-            //mode = GL_FILL;
-            break;
-        case 2:
-            //mode = GL_POINT;
-            break;
-        default:
-            break;
-    }
-
-}
-
-void createMenu() {
-    int camMenu, modeMenu;
-    camMenu = glutCreateMenu(menuCamChoice);
-    glutAddMenuEntry("FPS Camera", 1);
-    glutAddMenuEntry("Static Camera", 0);
-
-    modeMenu = glutCreateMenu(menuModeChoice);
-    glutAddMenuEntry("GL_LINE", 0);
-    glutAddMenuEntry("GL_FILL", 1);
-    glutAddMenuEntry("GL_POINT", 2);
-
-    glutCreateMenu(menuChoice);
-
-    glutAddSubMenu("Camera", camMenu);
-    glutAddSubMenu("Mode", modeMenu);
-    glutAddMenuEntry("Toggle Orbits",2);
-    glutAddMenuEntry("Togle Axis", 1);
-    glutAddMenuEntry("Quit", -1);
-
-    glutAttachMenu(GLUT_RIGHT_BUTTON);
-}*/
-
-
-
 int main(int argc, char **argv) {
 	// init GLUT and the window
 	world = World(argv[1]);
@@ -279,13 +211,12 @@ int main(int argc, char **argv) {
 	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
-	glPolygonMode(GL_FRONT, GL_LINE);
+	//glPolygonMode(GL_FRONT, GL_LINE);
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	world.loadModels();
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 
-	//createMenu();
 	cameraMenu();
 	
 	// GLUT's main cycle

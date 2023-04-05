@@ -4,6 +4,7 @@
 #include <vector>
 #include <string.h>
 #include "model.h"
+#include "belt.h"
 #include "transform.h"
 #include "../point.h"
 #include "../tinyxml2/tinyxml2.h"

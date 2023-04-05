@@ -18,6 +18,12 @@ Model::Model(XMLElement *elem){
 }
 
 
+Model::Model(char *newPath, Point *newColor){
+    path = strdup(newPath);
+    color = newColor; // clone ??
+}
+
+
 void Model::load(){
     glGenBuffers(1, &vertices_buffer);
     glGenBuffers(1, &indexes_buffer);

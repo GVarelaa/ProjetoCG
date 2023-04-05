@@ -22,14 +22,16 @@ using namespace std;
 class Model{
     public:
         char *path;
+        Point *color;
         int nVertices;
         int nIndexes;
         GLuint vertices_buffer;
         GLuint indexes_buffer;
-        Point *color;
+        
 
         Model();
         Model(XMLElement *elem);
+        Model(char *path, Point *color);
         void load();
         void draw();
 };

@@ -171,6 +171,26 @@ void Camera::processSpecialKeys(int key){
     }
 }
 
+
+void Camera::processMouseButtons(int button){
+    switch (button) {
+        case 3:
+            if (mode == EXPLORER){
+                radius -= 5;
+                updateExplorerPosition();
+            }
+            break;
+        case 4:
+            if (mode == EXPLORER){
+                radius += 5;
+                updateExplorerPosition();
+            }
+            break;
+        default:
+            break;
+    }
+}
+
 void Camera::processMouseMotion(int x, int y){
     if(mode == FPS || mode == EXPLORER){
         if(firstTime){

@@ -144,6 +144,9 @@ void processSpecialKeys(int key, int x, int y){
 	glutPostRedisplay();
 }
 
+void processMouseButtons(int button, int state, int x, int y){
+	world.camera.processMouseButtons(button);
+}
 
 void processMouseMotion(int x, int y){
 	world.camera.processMouseMotion(x, y);
@@ -265,6 +268,7 @@ int main(int argc, char **argv) {
 	// registration of the keyboard callbacks
 	glutKeyboardFunc(processNormalKeys);
 	glutSpecialFunc(processSpecialKeys);
+	glutMouseFunc(processMouseButtons);
 	glutPassiveMotionFunc(processMouseMotion);
 
 	// init GLEW

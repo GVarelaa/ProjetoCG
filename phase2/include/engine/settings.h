@@ -62,6 +62,7 @@ class Camera{
         Camera(XMLElement *cameraElement);
         void processNormalKeys(unsigned char key);
         void processSpecialKeys(int key);
+        void processMouseButtons(int button);
         void processMouseMotion(int x, int y);
         void updateDirection();
         void updateLateralDirection();

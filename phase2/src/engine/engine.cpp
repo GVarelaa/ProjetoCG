@@ -85,7 +85,7 @@ void changeSize(int w, int h){
 	// Set perspective
 	Projection projection = world.camera.projection;
 
-	gluPerspective(projection.fov ,ratio, projection.near, projection.far);
+	gluPerspective(projection.fov, ratio, projection.near, projection.far);
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
@@ -157,9 +157,12 @@ void menuCamChoice(int choice){
             break;
         case 1:
             world.camera.mode = EXPLORER;
+			world.camera.beta = 0;
             break;
         case 2:
             world.camera.mode = FPS;
+			world.camera.beta = 0;
+			world.camera.firstTime = true;
             break;
         default:
             break;
@@ -174,6 +177,74 @@ void cameraMenu(){
 	glutAddMenuEntry("FPS Camera", 2);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
+
+
+/*
+void menuChoice(int num) {
+    switch (num) {
+        case 1:
+            //show_axis = !show_axis;
+            break;
+        case 2:
+            //show_orbits = !show_orbits;
+            break;
+        case -1:
+            glutDestroyWindow(window);
+            exit(0);
+    }
+}
+
+void menuCamChoice(int num) {
+    switch (num) {
+        case 1:
+            //camOption = 1;
+            break;
+        case 0:
+            //camOption = 0;
+            break;
+
+    }
+}
+
+void menuModeChoice(int num) {
+    switch (num) {
+        case 0:
+            //mode = GL_LINE;
+            break;
+        case 1:
+            //mode = GL_FILL;
+            break;
+        case 2:
+            //mode = GL_POINT;
+            break;
+        default:
+            break;
+    }
+
+}
+
+void createMenu() {
+    int camMenu, modeMenu;
+    camMenu = glutCreateMenu(menuCamChoice);
+    glutAddMenuEntry("FPS Camera", 1);
+    glutAddMenuEntry("Static Camera", 0);
+
+    modeMenu = glutCreateMenu(menuModeChoice);
+    glutAddMenuEntry("GL_LINE", 0);
+    glutAddMenuEntry("GL_FILL", 1);
+    glutAddMenuEntry("GL_POINT", 2);
+
+    glutCreateMenu(menuChoice);
+
+    glutAddSubMenu("Camera", camMenu);
+    glutAddSubMenu("Mode", modeMenu);
+    glutAddMenuEntry("Toggle Orbits",2);
+    glutAddMenuEntry("Togle Axis", 1);
+    glutAddMenuEntry("Quit", -1);
+
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
+}*/
+
 
 
 int main(int argc, char **argv) {
@@ -210,6 +281,7 @@ int main(int argc, char **argv) {
 	world.loadModels();
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 
+	//createMenu();
 	cameraMenu();
 	
 	// GLUT's main cycle

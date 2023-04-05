@@ -19,7 +19,8 @@ Camera::Camera(XMLElement *cameraElement){
     radius = 5;
     alpha = 0;
     beta = 0;
-    speed = 2;
+    moveSpeed = 2;
+    rotationSpeed = 0.01;
     firstTime = true;
     //direction = Point(1,0,0);
 
@@ -86,13 +87,13 @@ void Camera::updateExplorerPosition(){
 }
 
 void Camera::updateFPSPosition(int coef){
-    position.x = position.x + coef * speed * direction.x;
-    position.y = position.y + coef * speed * direction.y;
-    position.z = position.z + coef * speed * direction.z;
+    position.x = position.x + coef * moveSpeed * direction.x;
+    position.y = position.y + coef * moveSpeed * direction.y;
+    position.z = position.z + coef * moveSpeed * direction.z;
 
-    lookAt.x = lookAt.x + coef * speed * direction.x;
-    lookAt.y = lookAt.y + coef * speed * direction.y;
-    lookAt.z = lookAt.z + coef * speed * direction.z;
+    lookAt.x = lookAt.x + coef * moveSpeed * direction.x;
+    lookAt.y = lookAt.y + coef * moveSpeed * direction.y;
+    lookAt.z = lookAt.z + coef * moveSpeed * direction.z;
 }
 
 void Camera::processNormalKeys(unsigned char key){
@@ -178,24 +179,29 @@ void Camera::processMouseMotion(int x, int y){
             startY = y;
         }
 
-        float deltaX = (x - startX) * 0.01;
-        float deltaY = (y - startY) * 0.01;
+        float deltaX = (x - startX) * rotationSpeed;
+        float deltaY = (y - startY) * rotationSpeed;
 
         startX = x;
         startY = y;
 
         alpha += deltaX;
 
-        if(beta + deltaY <= M_PI && beta + deltaY >= 0){
-            beta += deltaY;
-        }
-
-        if(mode == FPS){
+        if(mode == FPS){        
+            if(beta + deltaY <= M_PI && beta + deltaY >= 0){
+                beta += deltaY;
+            }
+            
+            // Criar função para isto
             lookAt.x = position.x + sin(alpha) * sin(beta);
             lookAt.y = position.y + cos(beta);
             lookAt.z = position.z - cos(alpha) * sin(beta);
         }
         else if(mode == EXPLORER){
+            if(beta + deltaY <= M_PI_2 && beta + deltaY >= -M_PI_2){
+                beta += deltaY;
+            }
+
             updateExplorerPosition();
         }
     }

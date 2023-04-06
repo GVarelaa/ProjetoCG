@@ -125,21 +125,8 @@
 
     <group>
         <models>
-            <belt file="ellipsoid.3d" n="10" seed="1" radiusIn="1" radiusOut="10"/>
+            <belt file="asteroid.3d" n="1000" seed="51" radiusIn="15" radiusOut="90"/> <!-- ./generator sphere 0.05 20 20 asteroid.3d   -->
         </models>
     </group>
 
-	<!-- ORBITS-->
-    <group>
-        <models>
-            <model file="mercury_orbit.3d"/> <!-- ./generator torus 0.01 12 80 80 mercury_orbit.3d -->
-            <model file="venus_orbit.3d"/> <!-- ./generator torus 0.01 21 80 80 venus_orbit.3d -->
-            <model file="earth_orbit.3d"/> <!-- ./generator torus 0.01 30 80 80 earth_orbit.3d -->
-            <model file="mars_orbit.3d"/> <!-- ./generator torus 0.01 45 80 80 mars_orbit.3d -->
-            <model file="jupiter_orbit.3d"/> <!-- ./generator torus 0.01 156 80 80 jupiter_orbit.3d -->
-            <model file="saturn_orbit.3d"/> <!-- ./generator torus 0.01 285 80 80 saturn_orbit.3d -->
-            <model file="uranus_orbit.3d"/> <!-- ./generator torus 0.01 570 80 80 uranus_orbit.3d -->
-            <model file="neptune_orbit.3d"/> <!-- ./generator torus 0.01 900 80 80 neptune_orbit.3d -->
-        </models>
-    </group>
 </world>

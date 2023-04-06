@@ -2,10 +2,23 @@
 
 Group::Group(){}
 
-Group::Group(vector<Model> newModels, vector<Transform *> newTransforms){
-    models = newModels;
-    transforms = newTransforms;
-    color = Point(255.0f, 255.0f, 255.0f);
+//Construção de um grupo para um único asteróide
+Group::Group(char *path, float radiusIn, float radiusOut, int i, float anglePart){
+    color = Point(255.0f, 255.0f, 255.0f); // Cor default -> branco
+    models.push_back(Model(path));
+
+    float randNumber = (float) rand() / RAND_MAX;
+    printf("%f\n", randNumber);
+
+    float scale = (float) rand() / RAND_MAX;
+    scale = scale + 0.5;
+    float angle = (randNumber * 2 * M_PI) + anglePart * i;
+    float randomRadius = (float) rand() / RAND_MAX;
+    randomRadius = randomRadius * radiusIn;
+
+    transforms.push_back(new Translate((radiusOut + randomRadius*cos(angle))*cos(angle), randomRadius*sin(angle), (radiusOut + randomRadius*cos(angle))*sin(angle)));
+    transforms.push_back(new Rotate((float) rand() / RAND_MAX, (float) rand() / RAND_MAX, (float) rand() / RAND_MAX, randNumber*360.0));
+    transforms.push_back(new Scale((float) rand() / RAND_MAX, (float) rand() / RAND_MAX, (float) rand() / RAND_MAX));
 }
 
 Group::Group(XMLElement *groupElement){
@@ -42,6 +55,7 @@ Group::Group(XMLElement *groupElement){
                     float radiusIn = atof((char *)modelElem->Attribute("radiusIn"));
                     float radiusOut = atof((char *)modelElem->Attribute("radiusOut"));
                     int seed = atoi((char *)modelElem->Attribute("seed"));
+                    printf("%d\n", seed);
                     //Point color;
 
                     /*XMLElement *child = elem->FirstChildElement();
@@ -58,18 +72,7 @@ Group::Group(XMLElement *groupElement){
                     srand(seed);
                     float anglePart = 2 * M_PI / (float)n;
                     for(int i = 0; i<n; i++){
-                        vector<Model> models;
-                        vector<Transform *> transforms;
-
-                        models.push_back(Model(path));
-
-                        float angle = (float) rand() / RAND_MAX; // varia entre 0 e 1
-                        angle = (angle * anglePart) + anglePart * i;
-                        printf("%f\n", angle);
-                        transforms.push_back(new Translate((radiusOut + radiusIn*cos(angle))*cos(angle), radiusIn * sin(angle), (radiusOut + radiusIn*cos(angle))*sin(angle)));
-                        transforms.push_back(new Rotate((float) rand() / RAND_MAX, (float) rand() / RAND_MAX, (float) rand() / RAND_MAX, angle));
-                        
-                        groups.push_back(Group(models, transforms));
+                        groups.push_back(Group(path, radiusIn, radiusOut, i, anglePart));
                     }
                 }
                 

@@ -36,9 +36,9 @@ Group::Group(XMLElement *groupElement){
                     float radiusIn = atof((char *)modelElem->Attribute("radiusIn"));
                     float radiusOut = atof((char *)modelElem->Attribute("radiusOut"));
                     int seed = atoi((char *)modelElem->Attribute("seed"));
-                    Point color;
+                    //Point color;
 
-                    XMLElement *child = elem->FirstChildElement();
+                    /*XMLElement *child = elem->FirstChildElement();
                     if(child != NULL){
                         string name(child->Name());
                         if(name == "color"){
@@ -47,18 +47,21 @@ Group::Group(XMLElement *groupElement){
                             float b = atof((char *)child->Attribute("B"));
                             color = Point(r, g, b);
                         }
-                    }
+                    }*/
                     
                     srand(seed);
+                    float anglePart = 2 * M_PI / (float)n;
                     for(int i = 0; i<n; i++){
                         vector<Model> models;
                         vector<Transform *> transforms;
 
                         models.push_back(Model(path));
 
-                        float angle = rand() / RAND_MAX;
-                        angle *= 2*M_PI;
+                        float angle = (float) rand() / RAND_MAX; // varia entre 0 e 1
+                        angle = (angle * anglePart) + anglePart * i;
+                        printf("%f\n", angle);
                         transforms.push_back(new Translate((radiusOut + radiusIn*cos(angle))*cos(angle), radiusIn * sin(angle), (radiusOut + radiusIn*cos(angle))*sin(angle)));
+                        transforms.push_back(new Rotate((float) rand() / RAND_MAX, (float) rand() / RAND_MAX, (float) rand() / RAND_MAX, angle));
                         
                         groups.push_back(Group(models, transforms));
                     }
@@ -81,7 +84,7 @@ Group::Group(XMLElement *groupElement){
 Group::Group(vector<Model> newModels, vector<Transform *> newTransforms){
     models = newModels;
     transforms = newTransforms;
-    color = Point(255, 255, 255);
+    color = Point(255.0f, 255.0f, 255.0f);
 }
 
 

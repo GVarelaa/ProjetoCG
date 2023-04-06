@@ -2,6 +2,12 @@
 
 Group::Group(){}
 
+Group::Group(vector<Model> newModels, vector<Transform *> newTransforms){
+    models = newModels;
+    transforms = newTransforms;
+    color = Point(255.0f, 255.0f, 255.0f);
+}
+
 Group::Group(XMLElement *groupElement){
     color = Point(255.0f, 255.0f, 255.0f); // Cor default -> branco
 
@@ -78,13 +84,6 @@ Group::Group(XMLElement *groupElement){
             color.z = atof((char *)elem->Attribute("B"));
         }
     }
-}
-
-
-Group::Group(vector<Model> newModels, vector<Transform *> newTransforms){
-    models = newModels;
-    transforms = newTransforms;
-    color = Point(255.0f, 255.0f, 255.0f);
 }
 
 

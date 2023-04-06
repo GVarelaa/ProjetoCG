@@ -19,7 +19,7 @@ Camera::Camera(XMLElement *cameraElement){
     radius = 5;
     alpha = 0;
     beta = 0;
-    moveSpeed = 15;
+    moveSpeed = 2;
     rotationSpeed = 0.01;
     firstTime = true;
     //direction = Point(1,0,0);

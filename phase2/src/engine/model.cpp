@@ -20,6 +20,7 @@ Model::Model(XMLElement *elem){
 
 Model::Model(char *newPath){
     path = strdup(newPath);
+    color = NULL;
 }
 
 

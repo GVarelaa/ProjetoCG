@@ -125,7 +125,9 @@
 
     <group>
         <models>
-            <belt file="asteroid.3d" n="1000" seed="51" radiusIn="15" radiusOut="90"/> <!-- ./generator sphere 0.05 20 20 asteroid.3d   -->
+            <belt file="asteroid.3d" n="1000" seed="51" radiusIn="15" radiusOut="90"> <!-- ./generator sphere 0.1 20 20 asteroid.3d   -->
+                <color R="147" G="146" B="140"/>            
+            </belt>
         </models>
     </group>
 

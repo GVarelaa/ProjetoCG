@@ -3,13 +3,19 @@
 Group::Group(){}
 
 //Construção de um grupo para um único asteróide
-Group::Group(char *path, float radiusIn, float radiusOut, int i, float anglePart){
-    color = Point(255.0f, 255.0f, 255.0f); // Cor default -> branco
-    models.push_back(Model(path));
+Group::Group(pair<vector<float>, vector<int> > vectors, float radiusIn, float radiusOut, int i, float anglePart, Point *newColor){
+    if(newColor != NULL){
+        color.x = newColor->x;
+        color.y = newColor->y;
+        color.z = newColor->z;
+    }
+    else{
+        color = Point(255.0f, 255.0f, 255.0f); // Cor default -> branco    
+    }
+    
+    models.push_back(Model(vectors.first, vectors.second));
 
     float randNumber = (float) rand() / RAND_MAX;
-    printf("%f\n", randNumber);
-
     float scale = (float) rand() / RAND_MAX;
     scale = scale + 0.5;
     float angle = (randNumber * 2 * M_PI) + anglePart * i;
@@ -20,6 +26,7 @@ Group::Group(char *path, float radiusIn, float radiusOut, int i, float anglePart
     transforms.push_back(new Rotate((float) rand() / RAND_MAX, (float) rand() / RAND_MAX, (float) rand() / RAND_MAX, randNumber*360.0));
     transforms.push_back(new Scale((float) rand() / RAND_MAX, (float) rand() / RAND_MAX, (float) rand() / RAND_MAX));
 }
+
 
 Group::Group(XMLElement *groupElement){
     color = Point(255.0f, 255.0f, 255.0f); // Cor default -> branco
@@ -55,24 +62,24 @@ Group::Group(XMLElement *groupElement){
                     float radiusIn = atof((char *)modelElem->Attribute("radiusIn"));
                     float radiusOut = atof((char *)modelElem->Attribute("radiusOut"));
                     int seed = atoi((char *)modelElem->Attribute("seed"));
-                    printf("%d\n", seed);
-                    //Point color;
+                    pair<vector<float>, vector<int> > vectors = Model::readFile(path);
+                    Point *color = NULL;
 
-                    /*XMLElement *child = elem->FirstChildElement();
+                    XMLElement *child = modelElem->FirstChildElement();
                     if(child != NULL){
                         string name(child->Name());
                         if(name == "color"){
                             float r = atof((char *)child->Attribute("R"));
                             float g = atof((char *)child->Attribute("G"));
                             float b = atof((char *)child->Attribute("B"));
-                            color = Point(r, g, b);
+                            color = new Point(r, g, b);
                         }
-                    }*/
-                    
+                    }
+
                     srand(seed);
                     float anglePart = 2 * M_PI / (float)n;
                     for(int i = 0; i<n; i++){
-                        groups.push_back(Group(path, radiusIn, radiusOut, i, anglePart));
+                        groups.push_back(Group(vectors, radiusIn, radiusOut, i, anglePart, color));
                     }
                 }
                 

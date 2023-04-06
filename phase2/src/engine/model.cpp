@@ -1,36 +1,7 @@
 #include "../../include/engine/model.h"
 
 
-Model::Model(XMLElement *elem){
-    path = strdup((char *)elem->Attribute("file"));
-    color = NULL;
-
-    XMLElement *child = elem->FirstChildElement();
-    if(child != NULL){
-        string name(child->Name());
-        if(name == "color"){
-            float r = atof((char *)child->Attribute("R"));
-            float g = atof((char *)child->Attribute("G"));
-            float b = atof((char *)child->Attribute("B"));
-            color = new Point(r, g, b);
-        }
-    }
-}
-
-
-Model::Model(char *newPath){
-    path = strdup(newPath);
-    color = NULL;
-}
-
-
-void Model::load(){
-    glGenBuffers(1, &vertices_buffer);
-    glGenBuffers(1, &indexes_buffer);
-
-    vector<float> points;
-    vector<int> indexes;
-
+pair<vector<float>, vector<int> > Model::readFile(char *path){
     ifstream file(path);
     string line;
     getline(file, line);
@@ -39,8 +10,10 @@ void Model::load(){
     string nVerticesStr, nTrianglesStr;
     ss >> nVerticesStr >> nTrianglesStr;
 
-    nVertices = stoi(nVerticesStr);
+    int nVertices = stoi(nVerticesStr);
     int nTriangles = stoi(nTrianglesStr);
+    vector<float> points;
+    vector<int> indexes;
     
     for(int i = 0; i < nVertices; i++){
         getline(file, line);
@@ -64,13 +37,55 @@ void Model::load(){
 
     file.close();
 
+    return pair<vector<float>, vector<int> >(points, indexes);
+}
+
+
+Model::Model(XMLElement *elem){
+    char *path = strdup((char *)elem->Attribute("file"));
+    color = NULL;
+
+    XMLElement *child = elem->FirstChildElement();
+    if(child != NULL){
+        string name(child->Name());
+        if(name == "color"){
+            float r = atof((char *)child->Attribute("R"));
+            float g = atof((char *)child->Attribute("G"));
+            float b = atof((char *)child->Attribute("B"));
+            color = new Point(r, g, b);
+        }
+    }
+
+    pair<vector<float>, vector<int> > vectors = Model::readFile(path);
+
+    points = vectors.first;
+    indexes = vectors.second;
+    nVertices = points.size();
+    nIndexes = indexes.size();
+}
+
+
+Model::Model(vector<float> newPoints, vector<int> newIndexes){
+    points = newPoints;
+    indexes = newIndexes;
+    nVertices = points.size();
+    nIndexes = indexes.size();
+    color = NULL;
+}
+
+
+void Model::load(){
+    glGenBuffers(1, &vertices_buffer);
+    glGenBuffers(1, &indexes_buffer);
+
     glBindBuffer(GL_ARRAY_BUFFER, vertices_buffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * points.size(), points.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * nVertices, points.data(), GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexes_buffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * indexes.size(), indexes.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * nIndexes, indexes.data(), GL_STATIC_DRAW);
 
-    nIndexes = indexes.size();
+    points.clear();
+    indexes.clear();
 }
 
 

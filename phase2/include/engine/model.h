@@ -21,19 +21,21 @@ using namespace std;
 
 class Model{
     public:
-        char *path;
+        vector<float> points;
+        vector<int> indexes;
         Point *color;
+
         int nVertices;
         int nIndexes;
         GLuint vertices_buffer;
-        GLuint indexes_buffer;
-        
+        GLuint indexes_buffer;        
 
         Model();
         Model(XMLElement *elem);
-        Model(char *path);
+        Model(vector<float> points, vector<int> indexes);
         void load();
         void draw();
+        static pair<vector<float>, vector<int> > readFile(char *path);
 };
 
 #endif

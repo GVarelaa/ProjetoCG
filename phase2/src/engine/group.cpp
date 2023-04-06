@@ -3,7 +3,7 @@
 Group::Group(){}
 
 //Construção de um grupo para um único asteróide
-Group::Group(pair<vector<float>, vector<int> > vectors, float radiusIn, float radiusOut, int i, float anglePart, Point *newColor){
+Group::Group(pair<vector<float>, vector<int> > vectors, float radiusIn, float radiusOut, float verticalAngle, Point *newColor){
     if(newColor != NULL){
         color.x = newColor->x;
         color.y = newColor->y;
@@ -15,15 +15,18 @@ Group::Group(pair<vector<float>, vector<int> > vectors, float radiusIn, float ra
     
     models.push_back(Model(vectors.first, vectors.second));
 
-    float randNumber = (float) rand() / RAND_MAX;
-    float scale = (float) rand() / RAND_MAX;
-    scale = scale + 0.5;
-    float angle = (randNumber * 2 * M_PI) + anglePart * i;
-    float randomRadius = (float) rand() / RAND_MAX;
-    randomRadius = randomRadius * radiusIn;
+    float angle = (float) rand() / RAND_MAX;
+    angle = angle * 360.0; // 0 e 360
 
-    transforms.push_back(new Translate((radiusOut + randomRadius*cos(angle))*cos(angle), randomRadius*sin(angle), (radiusOut + randomRadius*cos(angle))*sin(angle)));
-    transforms.push_back(new Rotate((float) rand() / RAND_MAX, (float) rand() / RAND_MAX, (float) rand() / RAND_MAX, randNumber*360.0));
+    float vAngle = (float) rand() / RAND_MAX;
+    vAngle = (vAngle * verticalAngle) - verticalAngle/2.0;
+
+    float deltaX = (float) rand() / RAND_MAX;
+    deltaX = (deltaX * radiusIn) - radiusIn/2.0;
+
+    transforms.push_back(new Rotate(0, 1, 0, angle));
+    transforms.push_back(new Rotate(0, 0, 1, vAngle));
+    transforms.push_back(new Translate(radiusOut + deltaX, 0, 0));
     transforms.push_back(new Scale((float) rand() / RAND_MAX, (float) rand() / RAND_MAX, (float) rand() / RAND_MAX));
 }
 
@@ -61,6 +64,7 @@ Group::Group(XMLElement *groupElement){
                     int n = atoi((char *)modelElem->Attribute("n"));
                     float radiusIn = atof((char *)modelElem->Attribute("radiusIn"));
                     float radiusOut = atof((char *)modelElem->Attribute("radiusOut"));
+                    float verticalAngle = atof((char *)modelElem->Attribute("verticalAngle"));
                     int seed = atoi((char *)modelElem->Attribute("seed"));
                     pair<vector<float>, vector<int> > vectors = Model::readFile(path);
                     Point *color = NULL;
@@ -79,7 +83,7 @@ Group::Group(XMLElement *groupElement){
                     srand(seed);
                     float anglePart = 2 * M_PI / (float)n;
                     for(int i = 0; i<n; i++){
-                        groups.push_back(Group(vectors, radiusIn, radiusOut, i, anglePart, color));
+                        groups.push_back(Group(vectors, radiusIn, radiusOut, verticalAngle, color));
                     }
                 }
                 

@@ -20,7 +20,7 @@ class Group{
 
         Group();
         Group(XMLElement *groupElement);
-        Group(pair<vector<float>, vector<int> > vectors, float radiusIn, float radiusOut, int i, float anglePart, Point *color);
+        Group(pair<vector<float>, vector<int> > vectors, float radiusIn, float radiusOut, float verticalAngle, Point *color);
         void loadModels();
         void drawModels();
 };

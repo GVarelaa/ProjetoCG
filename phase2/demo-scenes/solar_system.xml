@@ -35,7 +35,7 @@
         </transform>
         <color R="165.0" G="124.0" B="27.0"/>
         <models> 
-            <model file="sphere.3d"/> <!-- generator sphere 10 50 50 sphere.3d -->
+            <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
         </models>  
     </group>
 
@@ -48,7 +48,19 @@
         <color R="159.0" G="193.0" B="100.0"/>
         <models> 
             <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
-        </models>  
+        </models>
+
+        <!-- MOON -->
+        <group>
+            <transform>
+                <translate x="8.44" y="0" z="0"/>
+                <scale x="0.25" y="0.25" z="0.25"/>
+            </transform>
+            <color R="246" G="241" B="213"/>
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
     </group>
 
     <!-- MARS -->
@@ -61,6 +73,29 @@
         <models> 
             <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
         </models>  
+
+        <!-- PHOBOS -->
+        <group>
+            <transform>
+                <translate x="9" y="0" z="0"/>
+                <scale x="0.003" y="0.003" z="0.003"/>
+            </transform>
+            <color R="32" G="32" B="32"/>
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- DEIMOS -->
+        <group>
+            <transform>
+                <translate x="22.5" y="0" z="10"/>
+                <scale x="0.0018" y="0.0018" z="0.0018"/>
+            </transform>
+            <color R="168" G="124" B="74"/>
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
     </group>
     
     <!-- JUPITER -->
@@ -72,7 +107,52 @@
         <color R="165.0" G="145.0" B="134.0"/>
         <models> 
             <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
-        </models>  
+        </models> 
+
+        <!-- IO -->
+        <group>
+            <transform>
+                <translate x="0.843" y="0" z="0"/>
+                <scale x="0.026" y="0.026" z="0.026"/>
+            </transform>
+            <color R="237" G="200" B="142"/>
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- EUROPA -->
+        <group>
+            <transform>
+                <translate x="1.341" y="0" z="0"/>
+                <scale x="0.022" y="0.022" z="0.022"/>
+            </transform>
+            <color R="229" G="229" B="229"/>
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- GANYMEDE -->
+        <group>
+            <transform>
+                <translate x="2.142" y="0" z="0"/>
+                <scale x="0.038" y="0.038" z="0.038"/>
+            </transform>
+            <color R="181" G="186" B="197"/> <!-- LIGHT (232, 226, 206) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- CALLISTO -->
+        <group>
+            <transform>
+                <translate x="3.765" y="0" z="0"/>
+                <scale x="0.034" y="0.034" z="0.034"/>
+            </transform>
+            <color R="59" G="57" B="55"/> <!-- LIGHT (150, 150, 150) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
     </group>
     
     <!-- SATURN -->
@@ -97,6 +177,84 @@
                 <model file="ring.3d"/> <!-- generator torus 0.5 4 50 2 ring.3d -->
             </models>
 		</group>
+
+        <!-- TITAN -->
+        <group>
+            <transform>
+                <translate x="2.91" y="0" z="0"/>
+                <scale x="0.044" y="0.044" z="0.044"/>
+            </transform>
+            <color R="157" G="123" B="92"/> <!-- LIGHT (230, 212, 170) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- RHEA -->
+        <group>
+            <transform>
+                <translate x="1.25" y="0" z="0"/>
+                <scale x="0.013" y="0.013" z="0.013"/>
+            </transform>
+            <color R="183" G="182" B="180"/> <!-- LIGHT (90, 54, 38) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- TETHYS -->
+        <group>
+            <transform>
+                <translate x="0.7" y="0" z="0"/>
+                <scale x="0.0091" y="0.0091" z="0.0091"/>
+            </transform>
+            <color R="212" G="212" B="212"/> <!-- LIGHT (188, 109, 44) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- DIONE -->
+        <group>
+            <transform>
+                <translate x="0.9" y="0" z="0"/>
+                <scale x="0.0096" y="0.0096" z="0.0096"/>
+            </transform>
+            <color R="219" G="219" B="219"/> <!-- LIGHT (152, 168, 184) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- ENCELADUS -->
+        <group>
+            <transform>
+                <translate x="0.57" y="0" z="0"/>
+                <scale x="0.0043" y="0.0043" z="0.0043"/>
+            </transform>
+            <color R="235" G="235" B="235"/> <!-- LIGHT  (155, 170, 183) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- IAPETUS -->
+        <group>
+            <transform>
+                <translate x="8.48" y="0" z="0"/>
+                <scale x="0.0126" y="0.0126" z="0.0126"/>
+            </transform>
+            <color R="80" G="46" B="37"/> <!-- LIGHT (220, 220, 220) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- MIMAS -->
+        <group>
+            <transform>
+                <translate x="0.44" y="0" z="0"/>
+                <scale x="0.0034" y="0.0034" z="0.0034"/>
+            </transform>
+            <color R="222" G="222" B="222"/> <!-- LIGHT (153, 166, 183) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
     </group>
     
     <!-- URANUS -->
@@ -108,7 +266,63 @@
         <color R="206.0" G="204.0" B="209.0"/>
         <models> 
             <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
-        </models>  
+        </models>
+
+        <!-- MIRANDA -->
+        <group>
+            <transform>
+                <translate x="0.76" y="0" z="0"/>
+                <scale x="0.0093" y="0.0093" z="0.0093"/>
+            </transform>
+            <color R="212" G="212" B="212"/> <!-- LIGHT (152, 168, 184)-->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- ARIEL -->
+        <group>
+            <transform>
+                <translate x="1.125" y="0" z="0"/>
+                <scale x="0.0228" y="0.0228" z="0.0228"/>
+            </transform>
+            <color R="219" G="219" B="219"/> <!-- LIGHT (153, 166, 183) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- UMBRIEL -->
+        <group>
+            <transform>
+                <translate x="1.56" y="0" z="0"/>
+                <scale x="0.0231" y="0.0231" z="0.0231"/>
+            </transform>
+            <color R="61" G="54" B="47"/> <!-- LIGHT (100, 120, 135) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- OBERON -->
+        <group>
+            <transform>
+                <translate x="3.43" y="0" z="0"/>
+                <scale x="0.03" y="0.03" z="0.03"/>
+            </transform>
+            <color R="89" G="70" B="59"/> <!-- LIGHT (120, 140, 160) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- TITANIA -->
+        <group>
+            <transform>
+                <translate x="2.57" y="0" z="0"/>
+                <scale x="0.0312" y="0.0312" z="0.0312"/>
+            </transform>
+            <color R="217" G="217" B="217"/> <!-- LIGHT (153, 166, 183) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
     </group>
     
     <!-- NEPTUNE -->
@@ -120,7 +334,30 @@
         <color R="91.0" G="93.0" B="223.0"/>
         <models> 
             <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
-        </models>  
+        </models>
+
+        <!-- PROTEUS -->
+        <group>
+            <transform>
+                <translate x="0.71" y="0" z="0"/>
+                <scale x="0.0085" y="0.0085" z="0.0085"/>
+            </transform>
+            <color R="43" G="43" B="43"/> <!-- LIGHT (60, 80, 100) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
+        <!-- TRITON -->
+        <group>
+            <transform>
+                <translate x="2.15" y="0" z="0"/>
+                <scale x="0.0550" y="0.0550" z="0.0550"/>
+            </transform>
+            <color R="218" G="193" B="172"/> <!-- LIGHT (110, 125, 145) -->
+            <models>
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>
+        </group>
     </group>
 
     <group>

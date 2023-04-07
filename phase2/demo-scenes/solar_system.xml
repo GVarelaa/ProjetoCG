@@ -166,15 +166,27 @@
             <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
         </models>
         
-        <!-- RING -->
+        <!-- INNER RING -->
         <group> 
             <transform>
                 <scale x="2.38" y="2.38" z="2.38"/>
                 <rotate angle="45" x="0" y="0" z="1"/>
             </transform>
-            <color R="255.0" G="233.0" B="201.0"/>
+            <color R="180.0" G="196.0" B="211.0"/>
             <models> 
-                <model file="ring.3d"/> <!-- generator torus 0.5 4 50 2 ring.3d -->
+                <model file="ring.3d"/> <!-- generator torus 0.5 4 100 2 ring.3d -->
+            </models>
+		</group>
+        
+        <!-- OUTER RING -->
+        <group> 
+            <transform>
+                <scale x="3.2" y="3.2" z="3.2"/>
+                <rotate angle="45" x="0" y="0" z="1"/>
+            </transform>
+            <color R="201.0" G="183.0" B="150.0"/>
+            <models> 
+                <model file="ring.3d"/> <!-- generator torus 0.5 4 100 2 ring.3d -->
             </models>
 		</group>
 

@@ -145,7 +145,7 @@
         <group>
             <transform>
 		<rotate x="0" y="0" z="1" angle="20"/> 
-                <rotate x="0" y="1" z="0" angle="-100"/>
+                <rotate x="0" y="1" z="0" angle="-130"/>
                 <translate x="20.32" y="0" z="0"/>
                 <scale x="0.038" y="0.038" z="0.038"/>
             </transform>
@@ -158,7 +158,7 @@
         <group>
             <transform>
 		<rotate x="0" y="0" z="1" angle="-70"/> 
-                <rotate x="0" y="1" z="0" angle="60"/>
+                <rotate x="0" y="1" z="0" angle="30"/>
                 <translate x="35.7" y="0" z="0"/>
                 <scale x="0.034" y="0.034" z="0.034"/>
             </transform>

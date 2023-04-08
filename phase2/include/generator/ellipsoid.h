@@ -8,6 +8,6 @@
 
 using namespace std;
 
-pair<vector<Point>, vector<Triangle> > generateEllipsoid(float a, float b, int c, int slices, int stacks);
+pair<vector<Point>, vector<Triangle> > generateEllipsoid(float a, float b, float c, int slices, int stacks);
 
 #endif

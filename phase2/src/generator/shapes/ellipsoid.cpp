@@ -1,6 +1,6 @@
 #include "../../../include/generator/ellipsoid.h"
 
-pair<vector<Point>, vector<Triangle> > generateEllipsoid(float a, float b, int c, int slices, int stacks){
+pair<vector<Point>, vector<Triangle> > generateEllipsoid(float a, float b, float c, int slices, int stacks){
     vector<Point> vertices;
     vector<Triangle> triangles;
 

@@ -114,7 +114,8 @@ int main(int argc, char *argv[]){
     else if(regex_match(inp, regex(erEllipsoid))){
 	    float a = atof(argv[2]);
 	    float b = atof(argv[3]);
-	    float c = atoi(argv[4]);
+	    float c = atof(argv[4]);
+        printf("%f | %f | %f\n", a,b,c);
 	    int slices = atoi(argv[5]);
         int stacks = atoi(argv[6]);
 	    char *filePath = argv[7];

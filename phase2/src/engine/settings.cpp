@@ -19,10 +19,10 @@ Camera::Camera(XMLElement *cameraElement){
     radius = 5;
     alpha = 0;
     beta = 0;
-    moveSpeed = 20;
+    moveSpeed = 3;
     rotationSpeed = 0.01;
     firstTime = true;
-    //direction = Point(1,0,0);
+
 
     if(cameraElement->Attribute("mode")){
         string name(cameraElement->Attribute("mode"));
@@ -98,6 +98,7 @@ void Camera::updateFPSPosition(int coef){
 
 void Camera::processNormalKeys(unsigned char key){
     key = tolower(key);
+
     switch(key){
         case '-':
             if(mode == EXPLORER){
@@ -113,6 +114,14 @@ void Camera::processNormalKeys(unsigned char key){
             break;
         case 'w':
             if(mode == FPS){
+                int mod = glutGetModifiers();
+                if (mod == GLUT_ACTIVE_SHIFT) {
+                    moveSpeed = 15;
+                }
+                else {
+                    moveSpeed = 3;
+                }
+
                 updateDirection();
                 updateFPSPosition(1);
             }
@@ -134,6 +143,8 @@ void Camera::processNormalKeys(unsigned char key){
                 updateLateralDirection();
                 updateFPSPosition(1);
             }
+            break;
+        default:
             break;
     }
 }

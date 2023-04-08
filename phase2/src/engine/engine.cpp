@@ -21,10 +21,8 @@ using namespace std;
 
 World world;
 int window;
-float alphaCamera = 0, betaCamera = 0, radiusCamera = 10;
-float pxCamera = 0, pyCamera = 0, pzCamera = 0;
-bool explorerMode = false;
 int timebase = 0, frames = 0;
+bool axis = true;
 
 
 void showFPS(){
@@ -46,18 +44,18 @@ void showAxis(){
 	glBegin(GL_LINES);
 	// X axis in red
 	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(-100.0f, 0.0f, 0.0f);
-	glVertex3f(100.0f, 0.0f, 0.0f);
+	glVertex3f(-1500.0f, 0.0f, 0.0f);
+	glVertex3f(1500.0f, 0.0f, 0.0f);
 	
 	// Y axis in green
 	glColor3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(0.0f, -100.0f, 0.0f);
-	glVertex3f(0.0f, 100.0f, 0.0f);
+	glVertex3f(0.0f, -1500.0f, 0.0f);
+	glVertex3f(0.0f, 1500.0f, 0.0f);
 	
 	// Z axis in blue
 	glColor3f(0.0f, 0.0f, 1.0f);
-	glVertex3f(0.0f, 0.0f, -100.0f);
-	glVertex3f(0.0f, 0.0f, 100.0f);
+	glVertex3f(0.0f, 0.0f, -1500.0f);
+	glVertex3f(0.0f, 0.0f, 1500.0f);
 
 	glColor3f(255.0f, 255.0f, 255.0f);
 		
@@ -100,13 +98,23 @@ void renderScene(void){
 	// set the camera
 	Camera camera = world.camera;
 	glLoadIdentity();
+	GLfloat matriz[4][4];
+	glGetFloatv(GL_MODELVIEW_MATRIX, &matriz[0][0]);
+
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			printf("%f\n", matriz[i][j]);
+		}
+	}
 
 	gluLookAt(camera.position.x, camera.position.y, camera.position.z,
 			  camera.lookAt.x  , camera.lookAt.y  , camera.lookAt.z  ,
 			  camera.up.x      , camera.up.y      , camera.up.z       );
 
 	// axis drawing
-	showAxis();
+	if (axis) {
+		showAxis();
+	}
 
 	// geometric transformations
 
@@ -174,11 +182,46 @@ void menuCamChoice(int choice){
 }
 
 
+void modeChoice(int choice){
+	switch (choice) {
+		case 0:
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+			break;
+		case 1:
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			break;
+		case 2:
+			glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+			break;
+		default:
+			break;
+	}
+}
+
+void menuChoice(int choice) {
+	switch (choice) {
+		case 0:
+			axis = axis ^ 1;
+			break;
+	}
+}
+
 void cameraMenu(){
-	glutCreateMenu(menuCamChoice);
+	int cameraMenu = glutCreateMenu(menuCamChoice);
 	glutAddMenuEntry("Static Camera", 0);
     glutAddMenuEntry("Explorer Camera", 1);
 	glutAddMenuEntry("FPS Camera", 2);
+
+	int modeMenu = glutCreateMenu(modeChoice);
+	glutAddMenuEntry("Lines", 0);
+	glutAddMenuEntry("Fill", 1);
+	glutAddMenuEntry("Points", 2);
+
+	glutCreateMenu(menuChoice);
+	glutAddMenuEntry("Toggle axis", 0);
+
+	glutAddSubMenu("Camera", cameraMenu);
+	glutAddSubMenu("Mode", modeMenu);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
@@ -212,7 +255,6 @@ int main(int argc, char **argv) {
 	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
-	glPolygonMode(GL_FRONT, GL_LINE);
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	world.loadModels();

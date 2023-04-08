@@ -41,3 +41,7 @@ void World::drawModels(){
         groups[i].drawModels();
     }
 }
+
+Point World::getResultantPoint(vector<Transform*> transforms) {
+    return Point(0, 0, 0);
+}

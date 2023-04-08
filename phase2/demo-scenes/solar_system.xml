@@ -1,10 +1,10 @@
 <world> <!-- a world can have a camera, a window definition, and a single group -->
     <window width="512" height="512" />
-    <camera mode="fps"> 
+    <camera> 
 	    <position x="10" y="10" z="10" />
 	    <lookAt x="0" y="0" z="0" />
 	    <up x="0" y="1" z="0" /> <!-- optional, use these values as default-->
-        <projection fov="60" near="1" far="1000" /> <!-- optional, use these values as default-->
+        <projection fov="60" near="1" far="1200" /> <!-- optional, use these values as default-->
     </camera>
 
     <!-- SUN -->
@@ -421,7 +421,7 @@
             </belt>
             
             <!-- KUIPER BELT-->
-            <belt file="asteroid.3d" n="20000" seed="12" radiusIn="300" radiusOut="1200" verticalAngle="5"> <!-- ./generator sphere 0.15 20 20 asteroid.3d   -->
+            <belt file="asteroid.3d" n="20000" seed="12" radiusIn="300" radiusOut="1200" verticalAngle="1"> <!-- ./generator sphere 0.15 20 20 asteroid.3d   -->
                 <color R="147" G="146" B="140"/>            
             </belt>
         </models>

@@ -421,7 +421,7 @@
             </belt>
             
             <!-- KUIPER BELT-->
-            <belt file="asteroid.3d" n="2000" seed="51" radiusIn="300" radiusOut="1200" verticalAngle="5"> <!-- ./generator sphere 0.15 20 20 asteroid.3d   -->
+            <belt file="asteroid.3d" n="20000" seed="12" radiusIn="300" radiusOut="1200" verticalAngle="5"> <!-- ./generator sphere 0.15 20 20 asteroid.3d   -->
                 <color R="147" G="146" B="140"/>            
             </belt>
         </models>

@@ -1,6 +1,14 @@
 #ifndef __MODEL__
 #define __MODEL__
 
+#include <stdlib.h>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include "../point.h"
+#include "../tinyxml2/tinyxml2.h"
+
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
@@ -8,13 +16,6 @@
 #include <GL/glut.h>
 #endif
 
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <stdlib.h>
-#include "../point.h"
-#include "../tinyxml2/tinyxml2.h"
 
 using namespace tinyxml2;
 using namespace std;

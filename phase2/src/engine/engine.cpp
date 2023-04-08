@@ -1,10 +1,4 @@
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glew.h>
-#include <GL/glut.h>
-#endif
-
+#define _USE_MATH_DEFINES
 #include <math.h>
 #include <iostream>
 #include <fstream>
@@ -14,6 +8,13 @@
 #include "../../include/point.h"
 #include "../../include/engine/world.h"
 #include "../../include/tinyxml2/tinyxml2.h"
+
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glew.h>
+#include <GL/glut.h>
+#endif
 
 using namespace tinyxml2;
 using namespace std;
@@ -185,7 +186,7 @@ void cameraMenu(){
 int main(int argc, char **argv) {
 	// init GLUT and the window
 	world = World(argv[1]);
-
+	
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(100,100);

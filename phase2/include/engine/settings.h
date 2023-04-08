@@ -1,6 +1,7 @@
 #ifndef __SETTINGS__
 #define __SETTINGS__
 
+#define _USE_MATH_DEFINES
 #include "../point.h"
 #include "../tinyxml2/tinyxml2.h"
 #include <string>

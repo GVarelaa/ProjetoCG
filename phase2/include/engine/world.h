@@ -2,9 +2,9 @@
 #define __WORLD__
 
 #include <vector>
-#include "../point.h"
 #include "group.h"
 #include "settings.h"
+#include "../point.h"
 #include "../tinyxml2/tinyxml2.h"
 
 using namespace std;

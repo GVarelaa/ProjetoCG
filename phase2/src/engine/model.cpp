@@ -3,6 +3,7 @@
 
 pair<vector<float>, vector<int> > Model::readFile(char *path){
     ifstream file(path);
+
     string line;
     getline(file, line);
     

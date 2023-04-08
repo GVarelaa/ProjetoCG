@@ -1,14 +1,15 @@
 #ifndef __TRANSFORM__
 #define __TRANSFORM__
 
+
+#include "../tinyxml2/tinyxml2.h"
+
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
 #include <GL/glew.h>
 #include <GL/glut.h>
 #endif
-
-#include "../tinyxml2/tinyxml2.h"
 
 using namespace tinyxml2;
 

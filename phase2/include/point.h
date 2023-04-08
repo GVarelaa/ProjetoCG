@@ -1,6 +1,7 @@
 #ifndef __POINT__
 #define __POINT__
 
+#define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdio.h>
 

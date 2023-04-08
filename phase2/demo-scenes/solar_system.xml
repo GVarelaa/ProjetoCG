@@ -53,7 +53,7 @@
         <!-- MOON -->
         <group>
             <transform>
-                <translate x="8.44" y="0" z="0"/>
+                <translate x="6.87" y="4.22" z="2.5"/>
                 <scale x="0.25" y="0.25" z="0.25"/>
             </transform>
             <color R="246" G="241" B="213"/>
@@ -77,8 +77,8 @@
         <!-- PHOBOS -->
         <group>
             <transform>
-                <translate x="9" y="0" z="0"/>
-                <scale x="0.003" y="0.003" z="0.003"/>
+                <translate x="8" y="0" z="0"/>
+                <scale x="0.1" y="0.1" z="0.1"/>
             </transform>
             <color R="32" G="32" B="32"/>
             <models>
@@ -88,8 +88,8 @@
         <!-- DEIMOS -->
         <group>
             <transform>
-                <translate x="22.5" y="0" z="10"/>
-                <scale x="0.0018" y="0.0018" z="0.0018"/>
+                <translate x="20.1" y="0" z="10"/>
+                <scale x="0.06" y="0.06" z="0.06"/>
             </transform>
             <color R="168" G="124" B="74"/>
             <models>
@@ -112,7 +112,7 @@
         <!-- IO -->
         <group>
             <transform>
-                <translate x="0.843" y="0" z="0"/>
+                <translate x="8" y="0" z="0"/>
                 <scale x="0.026" y="0.026" z="0.026"/>
             </transform>
             <color R="237" G="200" B="142"/>
@@ -123,7 +123,7 @@
         <!-- EUROPA -->
         <group>
             <transform>
-                <translate x="1.341" y="0" z="0"/>
+                <translate x="12.7" y="0" z="0"/>
                 <scale x="0.022" y="0.022" z="0.022"/>
             </transform>
             <color R="229" G="229" B="229"/>
@@ -134,7 +134,7 @@
         <!-- GANYMEDE -->
         <group>
             <transform>
-                <translate x="2.142" y="0" z="0"/>
+                <translate x="20.32" y="0" z="0"/>
                 <scale x="0.038" y="0.038" z="0.038"/>
             </transform>
             <color R="181" G="186" B="197"/> <!-- LIGHT (232, 226, 206) -->
@@ -145,7 +145,7 @@
         <!-- CALLISTO -->
         <group>
             <transform>
-                <translate x="3.765" y="0" z="0"/>
+                <translate x="35.7" y="0" z="0"/>
                 <scale x="0.034" y="0.034" z="0.034"/>
             </transform>
             <color R="59" G="57" B="55"/> <!-- LIGHT (150, 150, 150) -->
@@ -193,7 +193,7 @@
         <!-- TITAN -->
         <group>
             <transform>
-                <translate x="2.91" y="0" z="0"/>
+                <translate x="52.9" y="0" z="0"/>
                 <scale x="0.044" y="0.044" z="0.044"/>
             </transform>
             <color R="157" G="123" B="92"/> <!-- LIGHT (230, 212, 170) -->
@@ -204,7 +204,7 @@
         <!-- RHEA -->
         <group>
             <transform>
-                <translate x="1.25" y="0" z="0"/>
+                <translate x="22.7" y="0" z="0"/>
                 <scale x="0.013" y="0.013" z="0.013"/>
             </transform>
             <color R="183" G="182" B="180"/> <!-- LIGHT (90, 54, 38) -->
@@ -215,7 +215,7 @@
         <!-- TETHYS -->
         <group>
             <transform>
-                <translate x="0.7" y="0" z="0"/>
+                <translate x="12.73" y="0" z="0"/>
                 <scale x="0.0091" y="0.0091" z="0.0091"/>
             </transform>
             <color R="212" G="212" B="212"/> <!-- LIGHT (188, 109, 44) -->
@@ -226,7 +226,7 @@
         <!-- DIONE -->
         <group>
             <transform>
-                <translate x="0.9" y="0" z="0"/>
+                <translate x="16.36" y="0" z="0"/>
                 <scale x="0.0096" y="0.0096" z="0.0096"/>
             </transform>
             <color R="219" G="219" B="219"/> <!-- LIGHT (152, 168, 184) -->
@@ -237,7 +237,7 @@
         <!-- ENCELADUS -->
         <group>
             <transform>
-                <translate x="0.57" y="0" z="0"/>
+                <translate x="10.36" y="0" z="0"/>
                 <scale x="0.0043" y="0.0043" z="0.0043"/>
             </transform>
             <color R="235" G="235" B="235"/> <!-- LIGHT  (155, 170, 183) -->
@@ -248,7 +248,7 @@
         <!-- IAPETUS -->
         <group>
             <transform>
-                <translate x="8.48" y="0" z="0"/>
+                <translate x="154.18" y="0" z="0"/>
                 <scale x="0.0126" y="0.0126" z="0.0126"/>
             </transform>
             <color R="80" G="46" B="37"/> <!-- LIGHT (220, 220, 220) -->
@@ -259,7 +259,7 @@
         <!-- MIMAS -->
         <group>
             <transform>
-                <translate x="0.44" y="0" z="0"/>
+                <translate x="8" y="0" z="0"/>
                 <scale x="0.0034" y="0.0034" z="0.0034"/>
             </transform>
             <color R="222" G="222" B="222"/> <!-- LIGHT (153, 166, 183) -->
@@ -283,7 +283,7 @@
         <!-- MIRANDA -->
         <group>
             <transform>
-                <translate x="0.76" y="0" z="0"/>
+                <translate x="8" y="0" z="0"/>
                 <scale x="0.0093" y="0.0093" z="0.0093"/>
             </transform>
             <color R="212" G="212" B="212"/> <!-- LIGHT (152, 168, 184)-->
@@ -294,7 +294,7 @@
         <!-- ARIEL -->
         <group>
             <transform>
-                <translate x="1.125" y="0" z="0"/>
+                <translate x="11.84" y="0" z="0"/>
                 <scale x="0.0228" y="0.0228" z="0.0228"/>
             </transform>
             <color R="219" G="219" B="219"/> <!-- LIGHT (153, 166, 183) -->
@@ -305,7 +305,7 @@
         <!-- UMBRIEL -->
         <group>
             <transform>
-                <translate x="1.56" y="0" z="0"/>
+                <translate x="16.42" y="0" z="0"/>
                 <scale x="0.0231" y="0.0231" z="0.0231"/>
             </transform>
             <color R="61" G="54" B="47"/> <!-- LIGHT (100, 120, 135) -->
@@ -316,7 +316,7 @@
         <!-- OBERON -->
         <group>
             <transform>
-                <translate x="3.43" y="0" z="0"/>
+                <translate x="36.11" y="0" z="0"/>
                 <scale x="0.03" y="0.03" z="0.03"/>
             </transform>
             <color R="89" G="70" B="59"/> <!-- LIGHT (120, 140, 160) -->
@@ -327,7 +327,7 @@
         <!-- TITANIA -->
         <group>
             <transform>
-                <translate x="2.57" y="0" z="0"/>
+                <translate x="27.05" y="0" z="0"/>
                 <scale x="0.0312" y="0.0312" z="0.0312"/>
             </transform>
             <color R="217" G="217" B="217"/> <!-- LIGHT (153, 166, 183) -->
@@ -351,7 +351,7 @@
         <!-- PROTEUS -->
         <group>
             <transform>
-                <translate x="0.71" y="0" z="0"/>
+                <translate x="8" y="0" z="0"/>
                 <scale x="0.0085" y="0.0085" z="0.0085"/>
             </transform>
             <color R="43" G="43" B="43"/> <!-- LIGHT (60, 80, 100) -->
@@ -362,7 +362,7 @@
         <!-- TRITON -->
         <group>
             <transform>
-                <translate x="2.15" y="0" z="0"/>
+                <translate x="24.23" y="0" z="0"/>
                 <scale x="0.0550" y="0.0550" z="0.0550"/>
             </transform>
             <color R="218" G="193" B="172"/> <!-- LIGHT (110, 125, 145) -->

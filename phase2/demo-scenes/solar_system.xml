@@ -94,7 +94,7 @@
             <transform>
                 <rotate x="0" y="0" z="1" angle="-20"/> 
                 <rotate x="0" y="1" z="0" angle="-100"/>
-                <translate x="20.1" y="0" z="10"/> <!-- ??? -->
+                <translate x="20.1" y="0" z="0"/>
                 <scale x="0.06" y="0.06" z="0.06"/>
             </transform>
             <color R="168" G="124" B="74"/>
@@ -118,7 +118,7 @@
         <!-- IO -->
         <group>
             <transform>
-		<rotate x="0" y="0" z="1" angle="80"/> 
+		        <rotate x="0" y="0" z="1" angle="80"/> 
                 <rotate x="0" y="1" z="0" angle="-30"/>
                 <translate x="8" y="0" z="0"/>
                 <scale x="0.026" y="0.026" z="0.026"/>
@@ -131,7 +131,7 @@
         <!-- EUROPA -->
         <group>
             <transform>
-		<rotate x="0" y="0" z="1" angle="-40"/> 
+		        <rotate x="0" y="0" z="1" angle="-40"/> 
                 <rotate x="0" y="1" z="0" angle="150'"/>
                 <translate x="12.7" y="0" z="0"/>
                 <scale x="0.022" y="0.022" z="0.022"/>
@@ -144,7 +144,7 @@
         <!-- GANYMEDE -->
         <group>
             <transform>
-		<rotate x="0" y="0" z="1" angle="20"/> 
+		        <rotate x="0" y="0" z="1" angle="50"/> 
                 <rotate x="0" y="1" z="0" angle="-130"/>
                 <translate x="20.32" y="0" z="0"/>
                 <scale x="0.038" y="0.038" z="0.038"/>
@@ -157,7 +157,7 @@
         <!-- CALLISTO -->
         <group>
             <transform>
-		<rotate x="0" y="0" z="1" angle="-70"/> 
+		        <rotate x="0" y="0" z="1" angle="-30"/> 
                 <rotate x="0" y="1" z="0" angle="30"/>
                 <translate x="35.7" y="0" z="0"/>
                 <scale x="0.034" y="0.034" z="0.034"/>
@@ -207,6 +207,8 @@
         <!-- TITAN -->
         <group>
             <transform>
+            	<rotate x="0" y="0" z="1" angle="20"/> 
+                <rotate x="0" y="1" z="0" angle="30"/>
                 <translate x="52.9" y="0" z="0"/>
                 <scale x="0.044" y="0.044" z="0.044"/>
             </transform>
@@ -218,6 +220,8 @@
         <!-- RHEA -->
         <group>
             <transform>
+            	<rotate x="0" y="0" z="1" angle="60"/> 
+                <rotate x="0" y="1" z="0" angle="110"/>
                 <translate x="22.7" y="0" z="0"/>
                 <scale x="0.013" y="0.013" z="0.013"/>
             </transform>
@@ -229,6 +233,8 @@
         <!-- TETHYS -->
         <group>
             <transform>
+		        <rotate x="0" y="0" z="1" angle="-25"/> 
+                <rotate x="0" y="1" z="0" angle="170"/>            
                 <translate x="12.73" y="0" z="0"/>
                 <scale x="0.0091" y="0.0091" z="0.0091"/>
             </transform>
@@ -240,6 +246,8 @@
         <!-- DIONE -->
         <group>
             <transform>
+            	<rotate x="0" y="0" z="1" angle="-75"/> 
+                <rotate x="0" y="1" z="0" angle="240"/>
                 <translate x="16.36" y="0" z="0"/>
                 <scale x="0.0096" y="0.0096" z="0.0096"/>
             </transform>
@@ -251,6 +259,8 @@
         <!-- ENCELADUS -->
         <group>
             <transform>
+		        <rotate x="0" y="0" z="1" angle="90"/> 
+                <rotate x="0" y="1" z="0" angle="290"/>
                 <translate x="10.36" y="0" z="0"/>
                 <scale x="0.0043" y="0.0043" z="0.0043"/>
             </transform>
@@ -262,6 +272,8 @@
         <!-- IAPETUS -->
         <group>
             <transform>
+            	<rotate x="0" y="0" z="1" angle="30"/> 
+                <rotate x="0" y="1" z="0" angle="330"/>
                 <translate x="154.18" y="0" z="0"/>
                 <scale x="0.0126" y="0.0126" z="0.0126"/>
             </transform>
@@ -297,6 +309,8 @@
         <!-- MIRANDA -->
         <group>
             <transform>
+            	<rotate x="0" y="0" z="1" angle="-30"/> 
+                <rotate x="0" y="1" z="0" angle="70"/>
                 <translate x="8" y="0" z="0"/>
                 <scale x="0.0093" y="0.0093" z="0.0093"/>
             </transform>
@@ -308,6 +322,8 @@
         <!-- ARIEL -->
         <group>
             <transform>
+		        <rotate x="0" y="0" z="1" angle="-50"/> 
+                <rotate x="0" y="1" z="0" angle="150"/>
                 <translate x="11.84" y="0" z="0"/>
                 <scale x="0.0228" y="0.0228" z="0.0228"/>
             </transform>
@@ -319,6 +335,8 @@
         <!-- UMBRIEL -->
         <group>
             <transform>
+		        <rotate x="0" y="0" z="1" angle="40"/> 
+                <rotate x="0" y="1" z="0" angle="200"/>
                 <translate x="16.42" y="0" z="0"/>
                 <scale x="0.0231" y="0.0231" z="0.0231"/>
             </transform>
@@ -330,6 +348,8 @@
         <!-- OBERON -->
         <group>
             <transform>
+            	<rotate x="0" y="0" z="1" angle="20"/> 
+                <rotate x="0" y="1" z="0" angle="240"/>
                 <translate x="36.11" y="0" z="0"/>
                 <scale x="0.03" y="0.03" z="0.03"/>
             </transform>
@@ -341,6 +361,8 @@
         <!-- TITANIA -->
         <group>
             <transform>
+            	<rotate x="0" y="0" z="1" angle="80"/> 
+                <rotate x="0" y="1" z="0" angle="20"/>
                 <translate x="27.05" y="0" z="0"/>
                 <scale x="0.0312" y="0.0312" z="0.0312"/>
             </transform>
@@ -365,10 +387,12 @@
         <!-- PROTEUS -->
         <group>
             <transform>
+            	<rotate x="0" y="0" z="1" angle="50"/> 
+                <rotate x="0" y="1" z="0" angle="30"/>
                 <translate x="8" y="0" z="0"/>
                 <scale x="0.0085" y="0.0085" z="0.0085"/>
             </transform>
-            <color R="43" G="43" B="43"/> <!-- LIGHT (60, 80, 100) -->
+            <color R="115" G="115" B="125"/> <!-- LIGHT (60, 80, 100) -->
             <models>
                 <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
             </models>
@@ -376,6 +400,8 @@
         <!-- TRITON -->
         <group>
             <transform>
+            	<rotate x="0" y="0" z="1" angle="120"/> 
+                <rotate x="0" y="1" z="0" angle="50"/>
                 <translate x="24.23" y="0" z="0"/>
                 <scale x="0.0550" y="0.0550" z="0.0550"/>
             </transform>
@@ -384,5 +410,20 @@
                 <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
             </models>
         </group>
+    </group>
+
+    <!-- ASTEROIDS BELTS -->
+    <group>
+        <models>
+            <!-- ASTEROIDS BELT -->
+            <belt file="asteroid.3d" n="2000" seed="51" radiusIn="20" radiusOut="90" verticalAngle="5"> <!-- ./generator sphere 0.15 20 20 asteroid.3d   -->
+                <color R="147" G="146" B="140"/>            
+            </belt>
+            
+            <!-- KUIPER BELT-->
+            <belt file="asteroid.3d" n="2000" seed="51" radiusIn="300" radiusOut="1200" verticalAngle="5"> <!-- ./generator sphere 0.15 20 20 asteroid.3d   -->
+                <color R="147" G="146" B="140"/>            
+            </belt>
+        </models>
     </group>
 </world>

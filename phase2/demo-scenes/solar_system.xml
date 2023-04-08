@@ -132,7 +132,7 @@
         <group>
             <transform>
 		<rotate x="0" y="0" z="1" angle="-40"/> 
-                <rotate x="0" y="1" z="0" angle="120"/>
+                <rotate x="0" y="1" z="0" angle="150'"/>
                 <translate x="12.7" y="0" z="0"/>
                 <scale x="0.022" y="0.022" z="0.022"/>
             </transform>

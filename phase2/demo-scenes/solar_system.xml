@@ -118,6 +118,8 @@
         <!-- IO -->
         <group>
             <transform>
+		<rotate x="0" y="0" z="1" angle="80"/> 
+                <rotate x="0" y="1" z="0" angle="-30"/>
                 <translate x="8" y="0" z="0"/>
                 <scale x="0.026" y="0.026" z="0.026"/>
             </transform>
@@ -129,6 +131,8 @@
         <!-- EUROPA -->
         <group>
             <transform>
+		<rotate x="0" y="0" z="1" angle="-40"/> 
+                <rotate x="0" y="1" z="0" angle="120"/>
                 <translate x="12.7" y="0" z="0"/>
                 <scale x="0.022" y="0.022" z="0.022"/>
             </transform>
@@ -140,6 +144,8 @@
         <!-- GANYMEDE -->
         <group>
             <transform>
+		<rotate x="0" y="0" z="1" angle="20"/> 
+                <rotate x="0" y="1" z="0" angle="-100"/>
                 <translate x="20.32" y="0" z="0"/>
                 <scale x="0.038" y="0.038" z="0.038"/>
             </transform>
@@ -151,6 +157,8 @@
         <!-- CALLISTO -->
         <group>
             <transform>
+		<rotate x="0" y="0" z="1" angle="-70"/> 
+                <rotate x="0" y="1" z="0" angle="60"/>
                 <translate x="35.7" y="0" z="0"/>
                 <scale x="0.034" y="0.034" z="0.034"/>
             </transform>

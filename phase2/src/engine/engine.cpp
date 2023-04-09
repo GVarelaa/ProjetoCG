@@ -98,14 +98,6 @@ void renderScene(void){
 	// set the camera
 	Camera camera = world.camera;
 	glLoadIdentity();
-	GLfloat matriz[4][4];
-	glGetFloatv(GL_MODELVIEW_MATRIX, &matriz[0][0]);
-
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			printf("%f\n", matriz[i][j]);
-		}
-	}
 
 	gluLookAt(camera.position.x, camera.position.y, camera.position.z,
 			  camera.lookAt.x  , camera.lookAt.y  , camera.lookAt.z  ,

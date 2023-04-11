@@ -15,6 +15,7 @@ Camera::Camera(){}
 Camera::Camera(XMLElement *cameraElement){
     up = Point(0, 1, 0); // Default value
     projection = Projection(60, 1, 1000); // Default value
+    explorerCenter = Point(0, 0, 0); // Default value
     mode = STATIC;
     radius = 5;
     alpha = 0;
@@ -22,7 +23,6 @@ Camera::Camera(XMLElement *cameraElement){
     moveSpeed = 3;
     rotationSpeed = 0.01;
     firstTime = true;
-
 
     if(cameraElement->Attribute("mode")){
         string name(cameraElement->Attribute("mode"));
@@ -81,9 +81,9 @@ void Camera::updateLateralDirection(){
 }
 
 void Camera::updateExplorerPosition(){
-    position.x = radius * cos(beta) * sin(alpha);
-    position.y = radius * sin(beta);
-    position.z = radius * cos(beta) * cos(alpha);
+    position.x = radius * cos(beta) * sin(alpha) + explorerCenter.x;
+    position.y = radius * sin(beta) + explorerCenter.y;
+    position.z = radius * cos(beta) * cos(alpha) + explorerCenter.z;
 }
 
 void Camera::updateFPSPosition(int coef){

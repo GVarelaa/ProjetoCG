@@ -145,9 +145,11 @@ void processSpecialKeys(int key, int x, int y){
 	glutPostRedisplay();
 }
 
+
 void processMouseButtons(int button, int state, int x, int y){
 	world.camera.processMouseButtons(button);
 }
+
 
 void processMouseMotion(int x, int y){
 	world.camera.processMouseMotion(x, y);
@@ -162,6 +164,12 @@ void menuCamChoice(int choice){
         case 1:
             world.camera.mode = EXPLORER;
 			world.camera.beta = 0;
+
+			world.camera.explorerCenter = Point(world.camera.position.x, world.camera.position.y, world.camera.position.z);
+			world.camera.lookAt.x = world.camera.position.x;
+			world.camera.lookAt.y = world.camera.position.y;
+			world.camera.lookAt.z = world.camera.position.z;
+
             break;
         case 2:
             world.camera.mode = FPS;
@@ -190,6 +198,7 @@ void modeChoice(int choice){
 	}
 }
 
+
 void menuChoice(int choice) {
 	switch (choice) {
 		case 0:
@@ -197,6 +206,7 @@ void menuChoice(int choice) {
 			break;
 	}
 }
+
 
 void cameraMenu(){
 	int cameraMenu = glutCreateMenu(menuCamChoice);
@@ -247,6 +257,8 @@ int main(int argc, char **argv) {
 	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	world.loadModels();

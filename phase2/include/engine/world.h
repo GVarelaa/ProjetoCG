@@ -21,7 +21,6 @@ class World{
         World(char *path);
         void loadModels();
         void drawModels();
-        Point getResultantPoint(vector<Transform*> transforms);
 };
 
 #endif

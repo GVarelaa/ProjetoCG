@@ -58,6 +58,7 @@ class Camera{
         float startX;
         float startY;
         bool firstTime;
+        Point explorerCenter;
 
         Camera();
         Camera(XMLElement *cameraElement);

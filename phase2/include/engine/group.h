@@ -4,7 +4,7 @@
 #include <vector>
 #include <string.h>
 #include "model.h"
-#include "transform.h"
+#include "transformation.h"
 #include "../point.h"
 #include "../tinyxml2/tinyxml2.h"
 
@@ -15,7 +15,7 @@ class Group{
     public:
         vector<Group> groups;
         vector<Model> models;
-        vector<Transform *> transforms;
+        vector<Transformation *> transforms;
         Point color;
 
         Group();

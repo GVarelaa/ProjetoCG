@@ -1,5 +1,5 @@
-#ifndef __TRANSFORM__
-#define __TRANSFORM__
+#ifndef __TRANSFORMATION__
+#define __TRANSFORMATION__
 
 
 #include "../tinyxml2/tinyxml2.h"
@@ -13,7 +13,7 @@
 
 using namespace tinyxml2;
 
-class Transform{
+class Transformation{
     public:
         float x;
         float y;
@@ -22,14 +22,14 @@ class Transform{
         virtual void transform(){};
 };
 
-class Translate : public Transform{
+class Translate : public Transformation{
     public:
         Translate(float x, float y, float z);
         Translate(XMLElement *elem);
         void transform();
 };
 
-class Rotate : public Transform{
+class Rotate : public Transformation{
     public:
         float angle;
 
@@ -38,7 +38,7 @@ class Rotate : public Transform{
         void transform();
 };
 
-class Scale : public Transform{
+class Scale : public Transformation{
     public:
         Scale(float x, float y, float z);
         Scale(XMLElement *elem);

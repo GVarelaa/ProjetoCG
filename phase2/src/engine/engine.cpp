@@ -239,48 +239,49 @@ int main(int argc, char **argv) {
 		cout << "FPS CAMERA MODE      | MOVE: W, A, S, D      | POINT: mouse" << endl;
 		cout << "EXPLORER CAMERA MODE | MOVE: arrows OR mouse | ZOOM: +/- OR mouse scroll" << endl;
 		cout << "------------------------------------------------------------------------" << endl;
+
+		return 0;
     }
-	else{
-		// init GLUT and the window
-		world = World(argv[1]);
+
+	// init GLUT and the window
+	world = World(argv[1]);
+	
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
+	glutInitWindowPosition(100,100);
+	glutInitWindowSize(world.window.width, world.window.height);
+	window = glutCreateWindow("CG@DI-UM");
 		
-		glutInit(&argc, argv);
-		glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
-		glutInitWindowPosition(100,100);
-		glutInitWindowSize(world.window.width, world.window.height);
-		window = glutCreateWindow("CG@DI-UM");
-			
-		// Required callback registry 
-		glutIdleFunc(renderScene);
-		glutDisplayFunc(renderScene);
-		glutReshapeFunc(changeSize);
-		
-		// registration of the keyboard callbacks
-		glutKeyboardFunc(processNormalKeys);
-		glutSpecialFunc(processSpecialKeys);
-		glutMouseFunc(processMouseButtons);
-		glutPassiveMotionFunc(processMouseMotion);
+	// Required callback registry 
+	glutIdleFunc(renderScene);
+	glutDisplayFunc(renderScene);
+	glutReshapeFunc(changeSize);
+	
+	// registration of the keyboard callbacks
+	glutKeyboardFunc(processNormalKeys);
+	glutSpecialFunc(processSpecialKeys);
+	glutMouseFunc(processMouseButtons);
+	glutPassiveMotionFunc(processMouseMotion);
 
-		// init GLEW
-		#ifndef __APPLE__
-			glewInit();
-		#endif
+	// init GLEW
+	#ifndef __APPLE__
+		glewInit();
+	#endif
 
-		//  OpenGL settings
-		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_CULL_FACE);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//  OpenGL settings
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-		glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_VERTEX_ARRAY);
 
-		world.loadModels();
-		timebase = glutGet(GLUT_ELAPSED_TIME);
+	world.loadModels();
+	timebase = glutGet(GLUT_ELAPSED_TIME);
 
-		cameraMenu();
-		
-		// GLUT's main cycle
-		glutMainLoop();
-	}
+	cameraMenu();
+	
+	// GLUT's main cycle
+	glutMainLoop();
 	
 	return 1;
 }

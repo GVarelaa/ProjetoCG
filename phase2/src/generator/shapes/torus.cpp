@@ -5,12 +5,12 @@ pair<vector<Point>, vector<Triangle> > generateTorus(float radiusIn, float radiu
     vector<Triangle> triangles;
 
     float sliceAngle = (2 * M_PI) / slices;
-    float layerAngle = (2 * M_PI) / stacks;
+    float stackAngle = (2 * M_PI) / stacks;
 
     for(int i = 0; i < slices; i++){
         for(int j = 0; j <= stacks; j++){
-            Point p1 = Point((radiusOut + radiusIn*cos(j*layerAngle))*cos(i*sliceAngle), radiusIn * sin(j*layerAngle), (radiusOut + radiusIn*cos(j*layerAngle))*sin(i*sliceAngle));
-            Point p2 = Point((radiusOut + radiusIn*cos(j*layerAngle))*cos((i+1)*sliceAngle), radiusIn * sin(j*layerAngle), (radiusOut + radiusIn*cos(j*layerAngle))*sin((i+1)*sliceAngle));
+            Point p1 = Point((radiusOut + radiusIn*cos(j*stackAngle))*cos(i*sliceAngle), radiusIn * sin(j*stackAngle), (radiusOut + radiusIn*cos(j*stackAngle))*sin(i*sliceAngle));
+            Point p2 = Point((radiusOut + radiusIn*cos(j*stackAngle))*cos((i+1)*sliceAngle), radiusIn * sin(j*stackAngle), (radiusOut + radiusIn*cos(j*stackAngle))*sin((i+1)*sliceAngle));
 
             vertices.push_back(p1);
             vertices.push_back(p2);

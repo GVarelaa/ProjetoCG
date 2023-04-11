@@ -73,7 +73,7 @@ PROJECT(engine)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} engine/engine.cpp utils/point.cpp utils/triangle.cpp ../include/tinyxml2/tinyxml2.cpp engine/model.cpp engine/world.cpp engine/group.cpp engine/transform.cpp engine/settings.cpp)
+add_executable(${PROJECT_NAME} engine/engine.cpp utils/point.cpp utils/triangle.cpp ../include/tinyxml2/tinyxml2.cpp engine/model.cpp engine/world.cpp engine/group.cpp engine/transformation.cpp engine/settings.cpp)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})

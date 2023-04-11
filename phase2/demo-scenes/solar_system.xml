@@ -9,9 +9,6 @@
 
     <!-- SUN -->
     <group>
-        <transform>
-            <scale x="0.5" y="0.5" z="0.5"/>
-        </transform>
         <color R="255.0" G="122.0" B="24.0"/>
         <models> 
             <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->

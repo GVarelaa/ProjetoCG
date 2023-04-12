@@ -128,18 +128,42 @@ void Camera::processNormalKeys(unsigned char key){
             break;
         case 's':
             if(mode == FPS){
+                int mod = glutGetModifiers();
+                if (mod == GLUT_ACTIVE_SHIFT) {
+                    moveSpeed = 15;
+                }
+                else {
+                    moveSpeed = 3;
+                }
+		    
                 updateDirection();
                 updateFPSPosition(-1);
             }
             break;
         case 'a':
             if(mode == FPS){
+                int mod = glutGetModifiers();
+                if (mod == GLUT_ACTIVE_SHIFT) {
+                    moveSpeed = 15;
+                }
+                else {
+                    moveSpeed = 3;
+                }
+		  
                 updateLateralDirection();
                 updateFPSPosition(-1);
             }
             break;
         case 'd':
             if(mode == FPS){
+                int mod = glutGetModifiers();
+                if (mod == GLUT_ACTIVE_SHIFT) {
+                    moveSpeed = 15;
+                }
+                else {
+                    moveSpeed = 3;
+                }
+		  
                 updateLateralDirection();
                 updateFPSPosition(1);
             }

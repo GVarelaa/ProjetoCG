@@ -211,28 +211,23 @@ void Camera::processMouseMotion(int x, int y){
         }
 
         float deltaX = (x - startX) * rotationSpeed;
-        float deltaY = (y - startY) * rotationSpeed;
+        float deltaY = (startY - y) * rotationSpeed;
 
         startX = x;
         startY = y;
 
         alpha += deltaX;
 
+        if (beta + deltaY <= M_PI_2 && beta + deltaY >= -M_PI_2) {
+            beta += deltaY;
+        }
+
         if(mode == FPS){        
-            if(beta + deltaY <= M_PI && beta + deltaY >= 0){
-                beta += deltaY;
-            }
-            
-            // Criar função para isto
-            lookAt.x = position.x + sin(alpha) * sin(beta);
-            lookAt.y = position.y + cos(beta);
-            lookAt.z = position.z - cos(alpha) * sin(beta);
+            lookAt.x = position.x + sin(alpha) * cos(beta);
+            lookAt.y = position.y + sin(beta);
+            lookAt.z = position.z - cos(alpha) * cos(beta);
         }
         else if(mode == EXPLORER){
-            if(beta + deltaY <= M_PI_2 && beta + deltaY >= -M_PI_2){
-                beta += deltaY;
-            }
-
             updateExplorerPosition();
         }
     }

@@ -2,7 +2,7 @@
 
 
 pair<vector<float>, vector<int> > Model::readFile(char *filename){
-    char path[29] = "../../../demo-scenes/models/";
+    char path[100] = "../../../demo-scenes/models/";
     ifstream file(strcat(path, filename));
 
     string line;

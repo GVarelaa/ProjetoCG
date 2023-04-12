@@ -14,9 +14,11 @@
 
 using namespace std;
 
-void toFile(char* path, pair<vector<Point>, vector<Triangle> > pair){
-    ofstream file; 
-    file.open(path);
+void toFile(char* filename, pair<vector<Point>, vector<Triangle> > pair){
+    ofstream file;
+    char path[29] = "../../../demo-scenes/models/";
+
+    file.open(strcat(path, filename));
     char buffer[1024];
     
     int nVertices = pair.first.size(), nTriangles = pair.second.size();
@@ -76,56 +78,56 @@ int main(int argc, char *argv[]){
     if (regex_match(inp, regex(erPlane))){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
-        char *filePath = argv[4];
+        char *filename = argv[4];
 
         pair<vector<Point>, vector<Triangle> > plane = generatePlane(length, divisions);
-        toFile(filePath, plane);
+        toFile(filename, plane);
     }
     else if(regex_match(inp, regex(erBox))){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
-        char *filePath = argv[4];
+        char *filename = argv[4];
 
         pair<vector<Point>, vector<Triangle> > box = generateBox(length, divisions);
-        toFile(filePath, box);
+        toFile(filename, box);
     }
     else if(regex_match(inp, regex(erCone))){
         float radius = atof(argv[2]);
         float height = atof(argv[3]);
         int slices = atoi(argv[4]);
         int stacks = atoi(argv[5]);
-        char *filePath = argv[6];
+        char *filename = argv[6];
 
         pair<vector<Point>, vector<Triangle> > cone = generateCone(radius, height, slices, stacks);
-        toFile(filePath, cone);
+        toFile(filename, cone);
     }
     else if(regex_match(inp, regex(erSphere))){
         float radius = atof(argv[2]);
         int slices = atoi(argv[3]);
         int stacks = atoi(argv[4]);
-        char *filePath = argv[5];
+        char *filename = argv[5];
 
         pair<vector<Point>, vector<Triangle> > sphere = generateSphere(radius, slices, stacks);
-        toFile(filePath, sphere);
+        toFile(filename, sphere);
     }
     else if(regex_match(inp, regex(erCylinder))){
         float radius = atof(argv[2]);
         float height = atof(argv[3]);
         int slices = atoi(argv[4]);
-        char *filePath = argv[5];
+        char *filename = argv[5];
 
         pair<vector<Point>, vector<Triangle> > cylinder = generateCylinder(radius, height, slices);
-        toFile(filePath, cylinder);
+        toFile(filename, cylinder);
     }
     else if(regex_match(inp, regex(erTorus))){
         float radiusIn = atof(argv[2]);
         float radiusOut = atof(argv[3]);
         int slices = atoi(argv[4]);
         int stacks = atoi(argv[5]);
-        char *filePath = argv[6];
+        char *filename = argv[6];
 
         pair<vector<Point>, vector<Triangle> > torus = generateTorus(radiusIn, radiusOut, slices, stacks);
-        toFile(filePath, torus);
+        toFile(filename, torus);
     }
     else if(regex_match(inp, regex(erEllipsoid))){
         float a = atof(argv[2]);
@@ -133,10 +135,10 @@ int main(int argc, char *argv[]){
         float c = atof(argv[4]);
         int slices = atoi(argv[5]);
         int stacks = atoi(argv[6]);
-        char *filePath = argv[7];
+        char *filename = argv[7];
 
         pair<vector<Point>, vector<Triangle> > ellipsoid = generateEllipsoid(a, b, c, slices, stacks);
-        toFile(filePath, ellipsoid);
+        toFile(filename, ellipsoid);
     }
     else cout << "Invalid input!" << endl;
 

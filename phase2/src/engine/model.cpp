@@ -1,8 +1,9 @@
 #include "../../include/engine/model.h"
 
 
-pair<vector<float>, vector<int> > Model::readFile(char *path){
-    ifstream file(path);
+pair<vector<float>, vector<int> > Model::readFile(char *filename){
+    char path[29] = "../../../demo-scenes/models/";
+    ifstream file(strcat(path, filename));
 
     string line;
     getline(file, line);

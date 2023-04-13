@@ -5,6 +5,13 @@ pair<vector<float>, vector<int> > Model::readFile(char *filename){
     char path[100] = "../../../demo-scenes/models/";
     ifstream file(strcat(path, filename));
 
+    vector<float> points;
+    vector<int> indexes;
+
+    if (!file.is_open()) {
+        return pair<vector<float>, vector<int> >(points, indexes);
+    }
+
     string line;
     getline(file, line);
     
@@ -14,8 +21,6 @@ pair<vector<float>, vector<int> > Model::readFile(char *filename){
 
     int nVertices = stoi(nVerticesStr);
     int nTriangles = stoi(nTrianglesStr);
-    vector<float> points;
-    vector<int> indexes;
     
     for(int i = 0; i < nVertices; i++){
         getline(file, line);

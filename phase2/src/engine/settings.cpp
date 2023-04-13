@@ -221,10 +221,7 @@ void Camera::processMouseButtons(int button){
             break;
         case 4:
             if (mode == EXPLORER){
-                if (radius -= 5 < 0)
-                    radius -= 0;
-                else radius -= 5;
-                radius -= 5;
+                radius += 5;
                 updateExplorerPosition();
             }
             break;

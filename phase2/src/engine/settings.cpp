@@ -108,7 +108,9 @@ void Camera::processNormalKeys(unsigned char key){
             break;
         case '+':
             if(mode == EXPLORER){
-                radius -= 5;
+                if (radius - 5 < 0)
+                    radius = 0;
+                else radius -= 5;
                 updateExplorerPosition();
             }
             break;
@@ -211,12 +213,17 @@ void Camera::processMouseButtons(int button){
     switch (button) {
         case 3:
             if (mode == EXPLORER){
-                radius += 5;
+                if (radius - 5 < 0)
+                    radius = 0;
+                else radius -= 5;
                 updateExplorerPosition();
             }
             break;
         case 4:
             if (mode == EXPLORER){
+                if (radius -= 5 < 0)
+                    radius -= 0;
+                else radius -= 5;
                 radius -= 5;
                 updateExplorerPosition();
             }

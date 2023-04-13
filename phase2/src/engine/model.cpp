@@ -97,6 +97,8 @@ void Model::load(){
 
 
 void Model::draw(){
+    glPushAttrib(GL_CURRENT_BIT);
+
     if(color != NULL){
         glColor3f(color->x, color->y, color->z);
     }
@@ -106,4 +108,6 @@ void Model::draw(){
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexes_buffer);
     glDrawElements(GL_TRIANGLES, nIndexes, GL_UNSIGNED_INT, NULL);
+
+    glPopAttrib();
 }

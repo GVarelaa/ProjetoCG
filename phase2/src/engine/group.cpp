@@ -5,13 +5,12 @@ Group::Group(){}
 //Construção de um grupo para um único asteróide
 Group::Group(pair<vector<float>, vector<int> > vectors, float radiusIn, float radiusOut, float verticalAngle, Point *newColor){
     if(newColor != NULL){
-        color.x = newColor->x;
-        color.y = newColor->y;
-        color.z = newColor->z;
+        color->x = newColor->x;
+        color->y = newColor->y;
+        color->z = newColor->z;
     }
-    else{
-        color = Point(255.0f, 255.0f, 255.0f); // Cor default -> branco    
-    }
+    else color = NULL;
+  
     
     models.push_back(Model(vectors.first, vectors.second));
 
@@ -32,7 +31,7 @@ Group::Group(pair<vector<float>, vector<int> > vectors, float radiusIn, float ra
 
 
 Group::Group(XMLElement *groupElement){
-    color = Point(255.0f, 255.0f, 255.0f); // Cor default -> branco
+    color = NULL;
 
     for(XMLElement *elem = groupElement->FirstChildElement(); elem; elem = elem->NextSiblingElement()){
         string name(elem->Name());
@@ -93,9 +92,7 @@ Group::Group(XMLElement *groupElement){
             groups.push_back(Group(elem));
         }
         else if(name == "color"){
-            color.x = atof((char *)elem->Attribute("R"));
-            color.y = atof((char *)elem->Attribute("G"));
-            color.z = atof((char *)elem->Attribute("B"));
+            color = new Point(atof((char*)elem->Attribute("R")), atof((char*)elem->Attribute("G")), atof((char*)elem->Attribute("B")));
         }
     }
 }
@@ -115,12 +112,15 @@ void Group::loadModels(){
 void Group::drawModels(){
     glPushMatrix();
 
+    if (color != NULL) {
+        glColor3f(color->x / 255.0, color->y / 255.0, color->z / 255.0);
+    }
+
     for(int i = 0; i < transforms.size(); i++){
         transforms[i]->transform();
     }
     
     for(int i = 0; i < models.size(); i++){
-        glColor3f(color.x/255.0, color.y/255.0, color.z/255.0);
         models[i].draw();
     }    
 

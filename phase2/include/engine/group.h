@@ -16,7 +16,7 @@ class Group{
         vector<Group> groups;
         vector<Model> models;
         vector<Transformation *> transforms;
-        Point color;
+        Point *color;
 
         Group();
         Group(XMLElement *groupElement);

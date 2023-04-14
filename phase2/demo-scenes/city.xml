@@ -10,7 +10,7 @@
 		<!-- optional, use these values as default-->
 	</camera>
 
-	<!-- STREET -->
+	<!-- CITY -->
 	<group>
 
 		<!-- FLOOR -->
@@ -834,7 +834,7 @@
 					</models>
 				</group>
 
-				<!-- 1บ FACHADA -->
+				<!-- 1ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -972,7 +972,7 @@
 
 				</group>
 
-				<!-- 2บ FACHADA -->
+				<!-- 2ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -1113,7 +1113,7 @@
 
 				</group>
 
-				<!-- 3บ FACHADA -->
+				<!-- 3ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -1254,7 +1254,7 @@
 
 				</group>
 
-				<!-- 4บ FACHADA -->
+				<!-- 4ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -1492,7 +1492,7 @@
 					</models>
 				</group>
 
-				<!-- 1บ FACHADA -->
+				<!-- 1ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -1630,7 +1630,7 @@
 
 				</group>
 
-				<!-- 2บ FACHADA -->
+				<!-- 2ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -1771,7 +1771,7 @@
 
 				</group>
 
-				<!-- 3บ FACHADA -->
+				<!-- 3ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -1912,7 +1912,7 @@
 
 				</group>
 
-				<!-- 4บ FACHADA -->
+				<!-- 4ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -2150,7 +2150,7 @@
 					</models>
 				</group>
 
-				<!-- 1บ FACHADA -->
+				<!-- 1ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -2288,7 +2288,7 @@
 
 				</group>
 
-				<!-- 2บ FACHADA -->
+				<!-- 2ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -2429,7 +2429,7 @@
 
 				</group>
 
-				<!-- 3บ FACHADA -->
+				<!-- 3ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -2570,7 +2570,7 @@
 
 				</group>
 
-				<!-- 4บ FACHADA -->
+				<!-- 4ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -2808,7 +2808,7 @@
 					</models>
 				</group>
 
-				<!-- 1บ FACHADA -->
+				<!-- 1ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -2946,7 +2946,7 @@
 
 				</group>
 
-				<!-- 2บ FACHADA -->
+				<!-- 2ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -3087,7 +3087,7 @@
 
 				</group>
 
-				<!-- 3บ FACHADA -->
+				<!-- 3ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>
@@ -3228,7 +3228,7 @@
 
 				</group>
 
-				<!-- 4บ FACHADA -->
+				<!-- 4ยบ FACHADA -->
 				<!-- 3 JANELAS -->
 				<group>
 					<transform>

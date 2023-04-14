@@ -230,15 +230,15 @@ void cameraMenu(){
 
 int main(int argc, char **argv) {
 	if (argc == 1 || (argc == 2 && strcmp(argv[1], "--help") == 0)){
-        cout << "----------------------------------HELP----------------------------------" << endl;
+        cout << "----------------------------------HELP---------------------------------" << endl;
         cout << "USAGE: ./engine {FILEPATH}.xml" << endl;
 		cout << "note: the filepath must be relative to 'build' folder" << endl;
-        cout << "------------------------------------------------------------------------" << endl;
+        cout << "-----------------------------------------------------------------------" << endl;
 		cout << "OPEN MENU: mouse right button" << endl;
-		cout << "------------------------------------------------------------------------" << endl;
+		cout << "-----------------------------------------------------------------------" << endl;
 		cout << "FPS CAMERA MODE      | MOVE: W, A, S, D      | POINT: mouse" << endl;
-		cout << "EXPLORER CAMERA MODE | MOVE: arrows OR mouse | ZOOM: +/- OR mouse scroll" << endl;
-		cout << "------------------------------------------------------------------------" << endl;
+		cout << "EXPLORER CAMERA MODE | MOVE: arrows OR mouse | ZOOM: +/- OR mouse wheel" << endl;
+		cout << "-----------------------------------------------------------------------" << endl;
 
 		return 0;
     }

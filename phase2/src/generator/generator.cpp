@@ -44,7 +44,7 @@ void toFile(char* filename, pair<vector<Point>, vector<Triangle> > pair){
 int main(int argc, char *argv[]){
     if (argc == 1 || (argc == 2 && strcmp(argv[1], "--help") == 0)){
         cout << "--------------------------------------HELP--------------------------------------" << endl;
-        cout << "USAGE: ./generator {GRAPHICAL PRIMITIVE} {ARGS} {OUTPUT FILE}" << endl;
+        cout << "USAGE: ./generator {GRAPHICAL PRIMITIVE} {ARGUMENTS} {OUTPUT FILE}" << endl;
         cout << "--------------------------------------------------------------------------------" << endl;
         cout << "GRAPHICAL PRIMITIVE | ARGUMENTS                                  | OUTPUT FILE" << endl;
         cout << "plane               | {length} {divisions}                       | {filename}.3d" << endl;

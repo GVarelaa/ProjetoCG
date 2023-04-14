@@ -244,7 +244,6 @@
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
-
             <!-- RHEA -->
             <group>
                 <transform>
@@ -258,7 +257,6 @@
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
-
             <!-- TETHYS -->
             <group>
                 <transform>
@@ -272,7 +270,6 @@
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
-
             <!-- DIONE -->
             <group>
                 <transform>
@@ -286,7 +283,6 @@
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
-
             <!-- ENCELADUS -->
             <group>
                 <transform>
@@ -300,7 +296,6 @@
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
-
             <!-- IAPETUS -->
             <group>
                 <transform>
@@ -314,7 +309,6 @@
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
-
             <!-- MIMAS -->
             <group>
                 <transform>
@@ -327,7 +321,6 @@
                 </models>
             </group>
         </group>
-    
 
         <!-- URANUS -->
         <group>
@@ -353,7 +346,6 @@
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
-
             <!-- ARIEL -->
             <group>
                 <transform>
@@ -367,7 +359,6 @@
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
-
             <!-- UMBRIEL -->
             <group>
                 <transform>
@@ -381,7 +372,6 @@
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
-
             <!-- OBERON -->
             <group>
                 <transform>
@@ -395,7 +385,6 @@
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
-            
             <!-- TITANIA -->
             <group>
                 <transform>

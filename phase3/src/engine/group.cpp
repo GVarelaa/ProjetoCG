@@ -4,6 +4,11 @@ Group::Group(){}
 
 Group::Group(XMLElement *groupElement){
     color = NULL;
+    label = NULL;
+
+    if (groupElement->Attribute("label")) {
+        label = strdup((char*)groupElement->Attribute("label"));
+    }
 
     for(XMLElement *elem = groupElement->FirstChildElement(); elem; elem = elem->NextSiblingElement()){
         string name(elem->Name());
@@ -35,7 +40,7 @@ Group::Group(XMLElement *groupElement){
         else if(name == "group"){
             groups.push_back(Group(elem));
         }
-        else if(name == "color"){
+        else if (name == "color") {
             color = new Point(atof((char*)elem->Attribute("R")), atof((char*)elem->Attribute("G")), atof((char*)elem->Attribute("B")));
         }
     }

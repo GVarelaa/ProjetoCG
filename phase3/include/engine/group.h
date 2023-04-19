@@ -13,6 +13,7 @@ using namespace std;
 
 class Group{
     public:
+        char *label;
         vector<Group> groups;
         vector<Model> models;
         vector<Transformation *> transforms;

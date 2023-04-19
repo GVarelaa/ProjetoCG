@@ -8,6 +8,7 @@ World::World(Window newWindow, Camera newCamera, vector<Group> newGroups){
     groups = newGroups;
 }
 
+
 World::World(char *path){
     XMLDocument xmlDoc;
 	XMLError result = xmlDoc.LoadFile(path);

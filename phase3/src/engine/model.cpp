@@ -1,28 +1,54 @@
 #include "../../include/engine/model.h"
 
 
-pair<vector<float>, vector<int> > Model::readFile(char *filename){
-    char path[100] = "../../../demo-scenes/models/";
-    ifstream file(strcat(path, filename));
+Model::Model(XMLElement* elem) {
+    path = strdup((char*)elem->Attribute("file"));
+    color = NULL;
+
+    XMLElement* child = elem->FirstChildElement();
+    if (child != NULL) {
+        string name(child->Name());
+        if (name == "color") {
+            float r = atof((char*)child->Attribute("R"));
+            float g = atof((char*)child->Attribute("G"));
+            float b = atof((char*)child->Attribute("B"));
+            color = new Point(r, g, b);
+        }
+    }
+}
+
+
+Model::Model(char* newPath) {
+    path = strdup(newPath);
+    color = NULL;
+}
+
+
+void Model::load() {
+    glGenBuffers(1, &vertices_buffer);
+    glGenBuffers(1, &indexes_buffer);
 
     vector<float> points;
     vector<int> indexes;
 
+    char newPath[100] = "../../../demo-scenes/models/";
+    ifstream file(strcat(newPath, path));
+
     if (!file.is_open()) {
-        return pair<vector<float>, vector<int> >(points, indexes);
+        return; // caso em que nao há o modelo gerado no .3d
     }
 
     string line;
     getline(file, line);
-    
+
     stringstream ss(line);
     string nVerticesStr, nTrianglesStr;
     ss >> nVerticesStr >> nTrianglesStr;
 
     int nVertices = stoi(nVerticesStr);
     int nTriangles = stoi(nTrianglesStr);
-    
-    for(int i = 0; i < nVertices; i++){
+
+    for (int i = 0; i < nVertices; i++) {
         getline(file, line);
         stringstream ss(line);
         string x, y, z;
@@ -32,7 +58,7 @@ pair<vector<float>, vector<int> > Model::readFile(char *filename){
         points.push_back(stof(z));
     }
 
-    for(int i = 0; i < nTriangles; i++){
+    for (int i = 0; i < nTriangles; i++) {
         getline(file, line);
         stringstream ss(line);
         string indP1, indP2, indP3;
@@ -44,62 +70,20 @@ pair<vector<float>, vector<int> > Model::readFile(char *filename){
 
     file.close();
 
-    return pair<vector<float>, vector<int> >(points, indexes);
-}
-
-
-Model::Model(XMLElement *elem){
-    char *path = strdup((char *)elem->Attribute("file"));
-    color = NULL;
-
-    XMLElement *child = elem->FirstChildElement();
-    if(child != NULL){
-        string name(child->Name());
-        if(name == "color"){
-            float r = atof((char *)child->Attribute("R"));
-            float g = atof((char *)child->Attribute("G"));
-            float b = atof((char *)child->Attribute("B"));
-            color = new Point(r, g, b);
-        }
-    }
-
-    pair<vector<float>, vector<int> > vectors = Model::readFile(path);
-
-    points = vectors.first;
-    indexes = vectors.second;
-    nVertices = points.size();
-    nIndexes = indexes.size();
-}
-
-
-Model::Model(vector<float> newPoints, vector<int> newIndexes){
-    points = newPoints;
-    indexes = newIndexes;
-    nVertices = points.size();
-    nIndexes = indexes.size();
-    color = NULL;
-}
-
-
-void Model::load(){
-    glGenBuffers(1, &vertices_buffer);
-    glGenBuffers(1, &indexes_buffer);
-
     glBindBuffer(GL_ARRAY_BUFFER, vertices_buffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * nVertices, points.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * points.size(), points.data(), GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexes_buffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * nIndexes, indexes.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * indexes.size(), indexes.data(), GL_STATIC_DRAW);
 
-    points.clear();
-    indexes.clear();
+    nIndexes = indexes.size();
 }
 
 
-void Model::draw(){
+void Model::draw() {
     glPushAttrib(GL_CURRENT_BIT);
 
-    if(color != NULL){
+    if (color != NULL) {
         glColor3f(color->x, color->y, color->z);
     }
 

@@ -22,21 +22,18 @@ using namespace std;
 
 class Model{
     public:
-        vector<float> points;
-        vector<int> indexes;
-        Point *color;
-
-        int nVertices;
+        char* path;
+        Point* color;
         int nIndexes;
         GLuint vertices_buffer;
-        GLuint indexes_buffer;        
+        GLuint indexes_buffer;
+
 
         Model();
-        Model(XMLElement *elem);
-        Model(vector<float> points, vector<int> indexes);
+        Model(XMLElement* elem);
+        Model(char* path);
         void load();
         void draw();
-        static pair<vector<float>, vector<int> > readFile(char *path);
 };
 
 #endif

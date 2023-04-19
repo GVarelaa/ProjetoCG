@@ -276,6 +276,7 @@ int main(int argc, char **argv) {
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	world.loadModels();
+	printf("aqui\n");
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 
 	cameraMenu();

@@ -18,12 +18,9 @@
         <group>
             <color R="147" G="146" B="140"/>    
             <models>
-                <!-- ASTEROIDS BELT -->
-                <belt file="asteroid.3d" n="2000" seed="51" radiusIn="20" radiusOut="90" verticalAngle="5"/> <!-- ./generator sphere 0.15 20 20 asteroid.3d   -->
-
-                <!-- KUIPER BELT-->
-                <belt file="asteroid.3d" n="20000" seed="12" radiusIn="300" radiusOut="1200" verticalAngle="1"/> <!-- ./generator sphere 0.15 20 20 asteroid.3d   -->
-            </models>
+				<model file="beltt.3d"/> <!-- ./generator belt 2000 20 90 5 39 belt1.3d --> -->
+				<model file="belt2.3d"/> <!-- ./generator belt 20000 375 1275 5 174 belt2.3d -->
+			</models>
         </group>
 
         <!-- ORBITS -->

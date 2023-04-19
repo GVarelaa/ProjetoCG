@@ -11,6 +11,7 @@
 #include "../../include/generator/cylinder.h"
 #include "../../include/generator/torus.h"
 #include "../../include/generator/ellipsoid.h"
+#include "../../include/generator/belt.h"
 
 using namespace std;
 
@@ -76,7 +77,7 @@ int main(int argc, char *argv[]){
     char erCylinder[] = "cylinder ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erTorus[] = "torus ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erEllipsoid[] = "ellipsoid ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
-    char erBelt[] = "belt [0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
+    char erBelt[] = "belt [0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erBezier[] = "bezier [a-zA-Z0-9_]+\\.patch [0-9]+ [a-zA-Z0-9_]+\\.patch$";
 
     if (regex_match(inp, regex(erPlane))){
@@ -128,6 +129,7 @@ int main(int argc, char *argv[]){
         float radiusOut = atof(argv[3]);
         int slices = atoi(argv[4]);
         int stacks = atoi(argv[5]);
+
         char *filename = argv[6];
 
         pair<vector<Point>, vector<Triangle> > torus = generateTorus(radiusIn, radiusOut, slices, stacks);
@@ -148,11 +150,12 @@ int main(int argc, char *argv[]){
         int n = atoi(argv[2]);
         float radiusIn = atof(argv[3]);
         float radiusOut = atof(argv[4]);
-        int seed = atoi(argv[5]);
-        char *filename = argv[6];
+        float height = atof(argv[5]);
+        int seed = atoi(argv[6]);
+        char *filename = argv[7];
 
-        //pair<vector<Point>, vector<Triangle> > belt = generateBelt(n, radiusIn, radiusOut, seed);
-        //toFile(filename, belt);
+        pair<vector<Point>, vector<Triangle> > belt = generateBelt(n, radiusIn, radiusOut, height, seed);
+        toFile(filename, belt);
     }
     else if(regex_match(inp, regex(erBezier))){
         char *ctrlpoints_file = argv[2];

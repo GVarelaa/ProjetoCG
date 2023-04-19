@@ -8,14 +8,14 @@
     </camera>
 
     <!-- SUN -->
-    <group>
+    <group label="Sun">
         <color R="255.0" G="122.0" B="24.0"/>
         <models> 
             <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
         </models>   
 
         <!-- BELTS -->
-        <group>
+        <group label="Belts">
             <color R="147" G="146" B="140"/>    
             <models>
 				<model file="belt1.3d"/> <!-- ./generator belt 2000 20 90 5 39 belt1.3d --> -->
@@ -24,7 +24,7 @@
         </group>
 
         <!-- ORBITS -->
-        <group>
+        <group label="Orbits">
             <color R="255" G="255" B="255"/>
             <models>
                 <model file="mercury_orbit.3d"/> <!-- ./generator torus 0.01 12 80 80 mercury_orbit.3d -->
@@ -39,7 +39,7 @@
         </group>
 
         <!-- MERCURY -->
-        <group>
+        <group label="Mercury">
             <transform> 
                 <translate x="0" y="0" z="-12"/>
                 <scale x="0.017" y="0.017" z="0.017"/>
@@ -51,7 +51,7 @@
         </group>
 
         <!-- VENUS -->
-        <group>
+        <group label="Venus">
             <transform> 
                 <translate x="0" y="0" z="-21" />
                 <scale x="0.043" y="0.043" z="0.043"/>
@@ -63,7 +63,7 @@
         </group>
 
         <!-- EARTH -->
-        <group>
+        <group label="Earth">
             <transform> 
                 <translate x="0" y="0" z="-30" />
                 <scale x="0.0455" y="0.0455" z="0.0455"/>
@@ -74,7 +74,7 @@
             </models>
 
             <!-- MOON -->
-            <group>
+            <group label="Moon">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="45"/>
                     <rotate x="0" y="1" z="0" angle="45"/>
@@ -90,7 +90,7 @@
 
 
         <!-- MARS -->
-        <group>
+        <group label="Mars">
             <transform> 
                 <translate x="0" y="0" z="-45" />
                 <scale x="0.024" y="0.024" z="0.024"/>
@@ -101,7 +101,7 @@
             </models>  
 
             <!-- PHOBOS -->
-            <group>
+            <group label="Phobos">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="40"/>
                     <rotate x="0" y="1" z="0" angle="60"/>
@@ -114,7 +114,7 @@
                 </models>
             </group>
             <!-- DEIMOS -->
-            <group>
+            <group label="Deimos">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="-20"/> 
                     <rotate x="0" y="1" z="0" angle="-100"/>
@@ -129,7 +129,7 @@
         </group>
 
         <!-- JUPITER -->
-        <group>
+        <group label="Jupiter">
             <transform> 
                 <translate x="0" y="0" z="-156" />
                 <scale x="0.5" y="0.5" z="0.5"/>
@@ -140,7 +140,7 @@
             </models> 
 
             <!-- IO -->
-            <group>
+            <group label="Io">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="80"/> 
                     <rotate x="0" y="1" z="0" angle="-30"/>
@@ -153,7 +153,7 @@
                 </models>
             </group>
             <!-- EUROPA -->
-            <group>
+            <group label="Europa">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="-40"/> 
                     <rotate x="0" y="1" z="0" angle="150'"/>
@@ -166,7 +166,7 @@
                 </models>
             </group>
             <!-- GANYMEDE -->
-            <group>
+            <group label="Ganymede">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="50"/> 
                     <rotate x="0" y="1" z="0" angle="-130"/>
@@ -179,7 +179,7 @@
                 </models>
             </group>
             <!-- CALLISTO -->
-            <group>
+            <group label="Callisto">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="-30"/> 
                     <rotate x="0" y="1" z="0" angle="30"/>
@@ -194,7 +194,7 @@
         </group>
 
         <!-- SATURN -->
-        <group>
+        <group label="Saturn">
             <transform> 
                 <translate x="0" y="0" z="-285" />
                 <scale x="0.42" y="0.42" z="0.42"/>
@@ -205,7 +205,7 @@
             </models>
             
             <!-- INNER RING -->
-            <group> 
+            <group label="Inner Ring"> 
                 <transform>
                     <scale x="2.38" y="2.38" z="2.38"/>
                     <rotate angle="45" x="0" y="0" z="1"/>
@@ -217,7 +217,7 @@
             </group>
             
             <!-- OUTER RING -->
-            <group> 
+            <group label="Outer Ring"> 
                 <transform>
                     <scale x="3.2" y="3.2" z="3.2"/>
                     <rotate angle="45" x="0" y="0" z="1"/>
@@ -229,7 +229,7 @@
             </group>
 
             <!-- TITAN -->
-            <group>
+            <group label="Titan">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="20"/> 
                     <rotate x="0" y="1" z="0" angle="30"/>
@@ -242,7 +242,7 @@
                 </models>
             </group>
             <!-- RHEA -->
-            <group>
+            <group label="Rhea">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="60"/> 
                     <rotate x="0" y="1" z="0" angle="110"/>
@@ -255,7 +255,7 @@
                 </models>
             </group>
             <!-- TETHYS -->
-            <group>
+            <group label="Tethys">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="-25"/> 
                     <rotate x="0" y="1" z="0" angle="170"/>            
@@ -268,7 +268,7 @@
                 </models>
             </group>
             <!-- DIONE -->
-            <group>
+            <group label="Dione">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="-75"/> 
                     <rotate x="0" y="1" z="0" angle="240"/>
@@ -281,7 +281,7 @@
                 </models>
             </group>
             <!-- ENCELADUS -->
-            <group>
+            <group label="Enceladus">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="90"/> 
                     <rotate x="0" y="1" z="0" angle="290"/>
@@ -294,7 +294,7 @@
                 </models>
             </group>
             <!-- IAPETUS -->
-            <group>
+            <group label="Iapetus">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="30"/> 
                     <rotate x="0" y="1" z="0" angle="330"/>
@@ -307,7 +307,7 @@
                 </models>
             </group>
             <!-- MIMAS -->
-            <group>
+            <group label="Mimas">
                 <transform>
                     <translate x="8" y="0" z="0"/>
                     <scale x="0.0034" y="0.0034" z="0.0034"/>
@@ -320,7 +320,7 @@
         </group>
 
         <!-- URANUS -->
-        <group>
+        <group label="Uranus">
             <transform> 
                 <translate x="0" y="0" z="-570" />
                 <scale x="0.17" y="0.17" z="0.17"/>
@@ -331,7 +331,7 @@
             </models>
 
             <!-- MIRANDA -->
-            <group>
+            <group label="Miranda">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="-30"/> 
                     <rotate x="0" y="1" z="0" angle="70"/>
@@ -344,7 +344,7 @@
                 </models>
             </group>
             <!-- ARIEL -->
-            <group>
+            <group label="Ariel">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="-50"/> 
                     <rotate x="0" y="1" z="0" angle="150"/>
@@ -357,7 +357,7 @@
                 </models>
             </group>
             <!-- UMBRIEL -->
-            <group>
+            <group label="Umbriel">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="40"/> 
                     <rotate x="0" y="1" z="0" angle="200"/>
@@ -370,7 +370,7 @@
                 </models>
             </group>
             <!-- OBERON -->
-            <group>
+            <group label="Oberon">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="20"/> 
                     <rotate x="0" y="1" z="0" angle="240"/>
@@ -383,7 +383,7 @@
                 </models>
             </group>
             <!-- TITANIA -->
-            <group>
+            <group label="Titania">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="80"/> 
                     <rotate x="0" y="1" z="0" angle="20"/>
@@ -398,7 +398,7 @@
         </group>
 
         <!-- NEPTUNE -->
-        <group>
+        <group label="Neptune">
             <transform> 
                 <translate x="0" y="0" z="-900" />
                 <scale x="0.165" y="0.165" z="0.165"/>
@@ -409,7 +409,7 @@
             </models>
 
             <!-- PROTEUS -->
-            <group>
+            <group label="Proteus">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="50"/> 
                     <rotate x="0" y="1" z="0" angle="30"/>
@@ -422,7 +422,7 @@
                 </models>
             </group>
             <!-- TRITON -->
-            <group>
+            <group label="Triton">
                 <transform>
                     <rotate x="0" y="0" z="1" angle="120"/> 
                     <rotate x="0" y="1" z="0" angle="50"/>

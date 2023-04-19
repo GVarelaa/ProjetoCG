@@ -23,6 +23,7 @@ class Group{
         Group(XMLElement *groupElement);
         void loadModels();
         void drawModels();
+        void getLabels(vector<string> *labels);
 };
 
 #endif

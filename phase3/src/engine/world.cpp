@@ -42,3 +42,17 @@ void World::drawModels(){
         groups[i].drawModels();
     }
 }
+
+
+vector<string> World::getLabels() {
+    vector<string> labels;
+
+    for (int i = 0; i < groups.size(); i++) {
+        labels.push_back(string(groups[i].label));
+
+        groups[i].getLabels(&labels);
+    }
+
+    return labels;
+}
+

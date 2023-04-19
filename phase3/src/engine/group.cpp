@@ -79,3 +79,12 @@ void Group::drawModels(){
 
     glPopMatrix();
 }
+
+
+void Group::getLabels(vector<string>* labels) {
+    labels->push_back(label); 
+
+    for (int i = 0; i < groups.size(); i++) {
+        groups[i].getLabels(labels);
+    }
+}

@@ -1,20 +1,23 @@
 #include "../../include/engine/transformation.h"
 
-Translate::Translate(XMLElement *elem){
+TranslateStatic::TranslateStatic(XMLElement *elem){
     x = atof((char *)elem->Attribute("x"));
     y = atof((char *)elem->Attribute("y"));
     z = atof((char *)elem->Attribute("z"));
+}
 
-    curveTime = 0;
-    if (elem->Attribute("time")){
-        curveTime = atof((char *)elem->Attribute("time"));
-    }
+void TranslateStatic::transform(){
+    glTranslatef(x, y, z);
+}
+
+TranslateDynamic::TranslateDynamic(XMLElement *elem){
+    curveTime = atof((char *)elem->Attribute("time"));
     
-    align = false;
-    if (elem->Attribute("align") && !strcmp((char *)elem->Attribute("align"), "True")){
+    if (!strcmp((char *)elem->Attribute("align"), "True")){
         align = true;
+    } else if (!strcmp((char *)elem->Attribute("align"), False)){
+        align = false;
     }
-
     int i=0;
     for(XMLElement *childElem = elem->FirstChildElement(); childElem; childElem = childElem->NextSiblingElement(), i++){
         curvePoints.push_back(Point(childElem));
@@ -25,35 +28,33 @@ Translate::Translate(XMLElement *elem){
     }
 }
 
-void Translate::transform(){
-    glTranslatef(x, y, z);
+void TranslateDynamic::transform(){
+
 }
 
 
-Rotate::Rotate(float newX, float newY, float newZ, float newAngle){
-    x = newX;
-    y = newY;
-    z = newZ;
-    angle = newAngle;    
-}
-
-Rotate::Rotate(XMLElement *elem){
+RotateStatic::RotateStatic(XMLElement *elem){
     x = atof((char *)elem->Attribute("x"));
     y = atof((char *)elem->Attribute("y"));
     z = atof((char *)elem->Attribute("z"));
     angle = atof((char *)elem->Attribute("angle"));
 }
 
-void Rotate::transform(){
+void RotateStatic::transform(){
     glRotatef(angle, x, y, z);
 }
 
-
-Scale::Scale(float newX, float newY, float newZ){
-    x = newX;
-    y = newY;
-    z = newZ;
+RotateDynamic::RotateDynamic(XMLElement *elem){
+    x = atof((char *)elem->Attribute("x"));
+    y = atof((char *)elem->Attribute("y"));
+    z = atof((char *)elem->Attribute("z"));
+    time = atof((char *)elem->Attribute("time"));
 }
+
+void RotateDynamic::transform(){
+    
+}
+
 
 Scale::Scale(XMLElement *elem){
     x = atof((char *)elem->Attribute("x"));

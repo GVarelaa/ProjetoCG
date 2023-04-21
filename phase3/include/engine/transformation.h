@@ -21,26 +21,43 @@ class Transformation{
         float x;
         float y;
         float z;
-        vector<Point> curvePoints;
-        float curveTime;
-        bool align;
 
         virtual void transform(){};
 };
 
-class Translate : public Transformation{
+
+class TranslateStatic : public Transformation{
     public:
-        Translate(float x, float y, float z);
-        Translate(XMLElement *elem);
+        TranslateStatic(XMLElement *elem);
         void transform();
 };
 
-class Rotate : public Transformation{
+
+class TranslateDynamic : public Transformation{
+    public:
+        vector<Point> curvePoints;
+        float curveTime;
+        bool align;
+
+        TranslateDynamic(XMLElement *elem);
+        void transform();
+};
+
+
+class RotateStatic : public Transformation{
     public:
         float angle;
 
-        Rotate(float x, float y, float z, float angle);
-        Rotate(XMLElement *elem);
+        RotateStatic(XMLElement *elem);
+        void transform();
+};
+
+
+class RotateDynamic : public Transformation{
+    public:
+        float time;
+
+        RotateDynamic(XMLElement *elem);
         void transform();
 };
 

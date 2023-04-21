@@ -17,11 +17,12 @@ Group::Group(XMLElement *groupElement){
             for(XMLElement *transformElem = elem->FirstChildElement(); transformElem; transformElem = transformElem->NextSiblingElement()){
                 string transform(transformElem->Name());
 
+                // Distinguir dinamico e estatico
                 if(transform == "translate"){
-                    transforms.push_back(new Translate(transformElem));
+                    transforms.push_back(new TranslateDynamic(transformElem));
                 }
                 else if(transform == "rotate"){
-                    transforms.push_back(new Rotate(transformElem));
+                    transforms.push_back(new RotateStatic(transformElem));
                 }
                 else if(transform == "scale"){
                     transforms.push_back(new Scale(transformElem));

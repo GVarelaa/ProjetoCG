@@ -35,12 +35,19 @@ class TranslateStatic : public Transformation{
 
 class TranslateDynamic : public Transformation{
     public:
-        vector<Point> curvePoints;
-        float curveTime;
+        vector<Point> points;
+        float time;
         bool align;
+        int pointCount;
+        // Y Vector
+        Point yi;
 
         TranslateDynamic(XMLElement *elem);
         void transform();
+        void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv);
+        void getCatmullRomPoint(float t, int *indexes, float *pos, float *deriv);
+        static void multMatrixVector(float *m, float *v, float *res);
+        static void buildRotMatrix(Point x, Point y, Point z, float *m);
 };
 
 

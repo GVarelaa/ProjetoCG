@@ -294,7 +294,7 @@ int main(int argc, char **argv) {
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 
 	cameraMenu();
-	
+
 	// GLUT's main cycle
 	glutMainLoop();
 	

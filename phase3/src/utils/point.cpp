@@ -6,6 +6,12 @@ Point::Point(){
     z = 0;
 }
 
+Point::Point(XMLElement *elem){
+    x = atof((char *)elem->Attribute("x"));
+    y = atof((char *)elem->Attribute("y"));
+    z = atof((char *)elem->Attribute("z"));
+}
+
 Point::Point(float x1, float y1, float z1){
     x = x1;
     y = y1;

@@ -1,8 +1,10 @@
 #ifndef __TRANSFORMATION__
 #define __TRANSFORMATION__
 
-
+#include <vector>
+#include <iostream>
 #include "../tinyxml2/tinyxml2.h"
+#include "../point.h"
 
 #ifdef __APPLE__
 #include <GLUT/glut.h>
@@ -11,6 +13,7 @@
 #include <GL/glut.h>
 #endif
 
+using namespace std;
 using namespace tinyxml2;
 
 class Transformation{
@@ -18,6 +21,9 @@ class Transformation{
         float x;
         float y;
         float z;
+        vector<Point> curvePoints;
+        float curveTime;
+        bool align;
 
         virtual void transform(){};
 };

@@ -217,9 +217,15 @@ void cameraMenu(){
 	int explorerMenu = glutCreateMenu(explorerChoice);
 	glutAddMenuEntry("Closest group", 0);
 	// Meter menus
-	vector<string> labels = world.getLabels();
-	for (int i = 0; i < labels.size(); i++) {
-		glutAddMenuEntry(labels[i].c_str(), i+1);
+	vector<char *> labels = world.getLabels();
+	for (int i=0; i < labels.size(); i++) {
+		char *label = labels[i];
+		if(!label){
+			string aux = "Group " + to_string(i+1);
+			label = (char *)aux.c_str();	
+		}
+		
+		glutAddMenuEntry(label, i+1);
 	}
 
 

@@ -21,7 +21,7 @@ class World{
         World(char *path);
         void loadModels();
         void drawModels();
-        vector<string> getLabels();
+        vector<char *> getLabels();
 };
 
 #endif

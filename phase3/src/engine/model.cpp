@@ -4,6 +4,7 @@
 Model::Model(XMLElement* elem) {
     path = strdup((char*)elem->Attribute("file"));
     color = NULL;
+    nIndexes = 0;
 
     XMLElement* child = elem->FirstChildElement();
     if (child != NULL) {
@@ -35,7 +36,7 @@ void Model::load() {
     ifstream file(strcat(newPath, path));
 
     if (!file.is_open()) {
-        return; // caso em que nao h· o modelo gerado no .3d
+        return; // caso em que nao h√° o modelo gerado no .3d
     }
 
     string line;

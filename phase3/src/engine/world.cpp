@@ -44,12 +44,10 @@ void World::drawModels(){
 }
 
 
-vector<string> World::getLabels() {
-    vector<string> labels;
+vector<char *> World::getLabels() {
+    vector<char *> labels;
 
     for (int i = 0; i < groups.size(); i++) {
-        labels.push_back(string(groups[i].label));
-
         groups[i].getLabels(&labels);
     }
 

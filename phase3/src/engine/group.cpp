@@ -94,7 +94,7 @@ void Group::drawModels(){
 }
 
 
-void Group::getLabels(vector<string>* labels) {
+void Group::getLabels(vector<char *> *labels) {
     labels->push_back(label); 
 
     for (int i = 0; i < groups.size(); i++) {

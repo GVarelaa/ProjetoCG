@@ -1,7 +1,6 @@
 #include "../../include/engine/transformation.h"
 
-
-
+// STATIC TRANSLATION
 TranslateStatic::TranslateStatic(XMLElement *elem){
     x = atof((char *)elem->Attribute("x"));
     y = atof((char *)elem->Attribute("y"));
@@ -14,15 +13,15 @@ void TranslateStatic::transform(){
 }
 
 
+// DYNAMIC TRANSLATION
 TranslateDynamic::TranslateDynamic(XMLElement *elem){
     time = atof((char *)elem->Attribute("time"));
     yi = Point(0,1,0);
     
-    // Ver o lowercase
-    if (!strcmp((char *)elem->Attribute("align"), "True")){
+    if (!strcasecmp((char *)elem->Attribute("align"), "True")){
         align = true;
     } 
-    else if (!strcmp((char *)elem->Attribute("align"), "False")){
+    else if (!strcasecmp((char *)elem->Attribute("align"), "False")){
         align = false;
     }
 
@@ -65,18 +64,20 @@ void TranslateDynamic::getCatmullRomPoint(float t, int *indexes, float *pos, flo
 						{-0.5f,  0.0f,  0.5f,  0.0f},
 						{ 0.0f,  1.0f,  0.0f,  0.0f}};
 			
-	// Compute A = M * P
 	float T[4] = {pow(t,3), pow(t,2), t, 1};
 	float TL[4] = {3*pow(t,2), 2*t, 1, 0};
 
     float Point::*coordinates[3] = { &Point::x, &Point::y, &Point::z };
     for (int i = 0; i < 3; i++) {
+        // A = M * P
         float P[4] = {points[indexes[0]].*coordinates[i], points[indexes[1]].*coordinates[i], points[indexes[2]].*coordinates[i], points[indexes[3]].*coordinates[i]};
         float A[4];
-
         multMatrixVector(&m[0][0], P, A);
 
+        // pos = T * A
 		pos[i] = T[0] * A[0] + T[1] * A[1] + T[2] * A[2] + T[3] * A[3]; 
+
+        // deriv = T' * A
 		deriv[i] = TL[0] * A[0] + TL[1] * A[1] + TL[2] * A[2] + TL[3] * A[3];
     }
 }
@@ -98,7 +99,6 @@ void TranslateDynamic::getGlobalCatmullRomPoint(float gt, float *pos, float *der
 
 
 void TranslateDynamic::transform(){
-    // Draw curve
     float pos[3];
 	float deriv[3];
 
@@ -108,10 +108,8 @@ void TranslateDynamic::transform(){
 			glVertex3f(pos[0], pos[1], pos[2]);
 		}
 	glEnd();
-
     
-    // Translate e rotation
-    float t = (glutGet(GLUT_ELAPSED_TIME) / 1000.0) / (float)time; /// time;
+    float t = (glutGet(GLUT_ELAPSED_TIME) / 1000.0) / (float)time;
     getGlobalCatmullRomPoint(t, pos, deriv);
 	glTranslatef(pos[0], pos[1], pos[2]);
 
@@ -135,6 +133,7 @@ void TranslateDynamic::transform(){
 }
 
 
+// STATIC ROTATION
 RotateStatic::RotateStatic(XMLElement *elem){
     x = atof((char *)elem->Attribute("x"));
     y = atof((char *)elem->Attribute("y"));
@@ -148,6 +147,7 @@ void RotateStatic::transform(){
 }
 
 
+// DYNAMIC ROTATION
 RotateDynamic::RotateDynamic(XMLElement *elem){
     x = atof((char *)elem->Attribute("x"));
     y = atof((char *)elem->Attribute("y"));
@@ -156,10 +156,12 @@ RotateDynamic::RotateDynamic(XMLElement *elem){
 }
 
 void RotateDynamic::transform(){
-    
+    float t = (glutGet(GLUT_ELAPSED_TIME) / 1000.0) / (float)time;
+    glRotatef(t*360, x, y, z);
 }
 
 
+// SCALE
 Scale::Scale(XMLElement *elem){
     x = atof((char *)elem->Attribute("x"));
     y = atof((char *)elem->Attribute("y"));

@@ -17,12 +17,24 @@ Group::Group(XMLElement *groupElement){
             for(XMLElement *transformElem = elem->FirstChildElement(); transformElem; transformElem = transformElem->NextSiblingElement()){
                 string transform(transformElem->Name());
 
-                // Distinguir dinamico e estatico
                 if(transform == "translate"){
-                    transforms.push_back(new TranslateDynamic(transformElem));
+                    if(transformElem->Attribute("x") && transformElem->Attribute("y") && transformElem->Attribute("z")){
+                        transforms.push_back(new TranslateStatic(transformElem));
+                    }
+                    else if(transformElem->Attribute("time") && transformElem->Attribute("align")){
+                        transforms.push_back(new TranslateDynamic(transformElem));
+                    }
+                    else cout << "ERROR: Invalid type of translation!" << endl;
                 }
+                
                 else if(transform == "rotate"){
-                    transforms.push_back(new RotateStatic(transformElem));
+                    if(transformElem->Attribute("angle") && transformElem->Attribute("x") && transformElem->Attribute("y") && transformElem->Attribute("z")){
+                        transforms.push_back(new RotateStatic(transformElem));
+                    }
+                    else if(transformElem->Attribute("time") && transformElem->Attribute("x") && transformElem->Attribute("y") && transformElem->Attribute("z")){
+                        transforms.push_back(new RotateDynamic(transformElem));
+                    }
+                    else cout << "ERROR: Invalid type of rotation!" << endl;
                 }
                 else if(transform == "scale"){
                     transforms.push_back(new Scale(transformElem));

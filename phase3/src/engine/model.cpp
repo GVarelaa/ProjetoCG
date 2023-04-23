@@ -85,7 +85,7 @@ void Model::draw() {
     glPushAttrib(GL_CURRENT_BIT);
 
     if (color != NULL) {
-        glColor3f(color->x, color->y, color->z);
+        glColor3f(color->x / 255.0, color->y / 255.0, color->z / 255.0);
     }
 
     glBindBuffer(GL_ARRAY_BUFFER, vertices_buffer);

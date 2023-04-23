@@ -103,7 +103,7 @@ void TranslateDynamic::transform(){
 	float deriv[3];
 
 	glBegin(GL_LINE_LOOP);
-		for (float gt = 0; gt < 1; gt += 0.01) {
+		for (float gt = 0; gt < 1; gt += 0.0001) {
 			getGlobalCatmullRomPoint(gt, pos, deriv);
 			glVertex3f(pos[0], pos[1], pos[2]);
 		}

@@ -24,6 +24,7 @@ class Group{
         void loadModels();
         void drawModels();
         void getLabels(vector<char *> *labels);
+        //void calculateTransfMatrix(float matrix[4]);
 };
 
 #endif

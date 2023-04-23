@@ -12,6 +12,7 @@
 #include "../../include/generator/torus.h"
 #include "../../include/generator/ellipsoid.h"
 #include "../../include/generator/belt.h"
+#include "../../include/generator/bezier.h"
 
 using namespace std;
 
@@ -78,7 +79,7 @@ int main(int argc, char *argv[]){
     char erTorus[] = "torus ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erEllipsoid[] = "ellipsoid ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erBelt[] = "belt [0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
-    char erBezier[] = "bezier [a-zA-Z0-9_]+\\.patch [0-9]+ [a-zA-Z0-9_]+\\.patch$";
+    char erBezier[] = "patch [a-zA-Z0-9_]+\\.patch [0-9]+ [a-zA-Z0-9_]+\\.3d$";
 
     if (regex_match(inp, regex(erPlane))){
         float length = atof(argv[2]);
@@ -162,8 +163,8 @@ int main(int argc, char *argv[]){
         int level = atoi(argv[3]);
         char *filename = argv[4];
 
-        //generatebezier
-        //toFile(filename, bezier)
+        pair<vector<Point>, vector<Triangle> > bezier = generateBezier(ctrlpoints_file, level);
+        toFile(filename, bezier);
     }
     else cout << "Invalid input!" << endl;
 

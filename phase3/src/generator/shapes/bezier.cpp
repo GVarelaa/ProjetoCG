@@ -126,7 +126,7 @@ pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level){
     int n;
     Point (*patches)[4][4] = readFile(path, &n);
     float step = 1 / (float)level;
-    int nPoints = pow(level+1, 2); //N ª pontos num patch
+    int nPoints = (float)pow(level+1, 2); //N ª pontos num patch
 
     for(int i=0; i<n; i++){
         Point res[4][4];
@@ -144,7 +144,7 @@ pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level){
             }
         }
     }
-    
+
     delete[] patches;
 
     return pair<vector<Point>, vector<Triangle> >(vertices, triangles);

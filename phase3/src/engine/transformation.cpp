@@ -64,8 +64,8 @@ void TranslateDynamic::getCatmullRomPoint(float t, int *indexes, float *pos, flo
 						{-0.5f,  0.0f,  0.5f,  0.0f},
 						{ 0.0f,  1.0f,  0.0f,  0.0f}};
 			
-	float T[4] = {pow(t,3), pow(t,2), t, 1};
-	float TL[4] = {3*pow(t,2), 2*t, 1, 0};
+	float T[4] = {(float)pow(t,3), (float)pow(t,2), t, 1};
+	float TL[4] = {3*(float)pow(t,2), 2*t, 1, 0};
 
     float Point::*coordinates[3] = { &Point::x, &Point::y, &Point::z };
     for (int i = 0; i < 3; i++) {

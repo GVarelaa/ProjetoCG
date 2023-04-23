@@ -63,7 +63,7 @@ Point patchPoint(float u, float v, Point M[4][4]){
 }
 
 
-vector<Point[4][4]> readFile(char *path){
+Point(*readFile(char *path, int *n))[4][4]{
     ifstream file(path);
 
     if(!file.is_open()){
@@ -107,15 +107,14 @@ vector<Point[4][4]> readFile(char *path){
         points[i] = Point(stof(x), stof(y), stof(z));
     }
 
-    vector<Point[4][4]> patches;
-    //Point patches[nPatches][4][4];
+    Point patches[nPatches][4][4];
     for(int i=0; i<nPatches; i++){
-        Point patchPoints[4][4];
         for(int j=0; j<16; j++){
-            patchPoints[j/4][j%4] = points[indexes[i][j]];
+            patches[i][j/4][j%4] = points[indexes[i][j]];
         }
-        patches.push_back(patchPoints);
     }
+    *n = nPatches;
+
     return patches;
 }
 
@@ -123,9 +122,10 @@ vector<Point[4][4]> readFile(char *path){
 pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level){
     vector<Point> vertices;
     vector<Triangle> triangles;
-    vector<Point[4][4]> patches;
+    Point (*patches)[4][4];
+    int n;
 
-    patches = readFile(path);
+    patches = readFile(path, &n);
 
     float step = 1 / (float)level;
     int nTessel = pow(level+1, 2); //N ª pontos num patch

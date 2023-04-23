@@ -39,8 +39,8 @@ void computeMatrix(Point points[4][4], Point res[4][4]){
 
 
 Point patchPoint(float u, float v, Point M[4][4]){
-    float U[4] = {pow(u, 3), pow(u, 2), u, 1};
-    float V[4] = {pow(v, 3), pow(v, 2), v, 1};
+    float U[4] = {(float)pow(u, 3), (float)pow(u, 2), u, 1};
+    float V[4] = {(float)pow(v, 3), (float)pow(v, 2), v, 1};
 
     Point res[4];
     for(int i=0; i<4; i++){
@@ -107,7 +107,7 @@ Point(*readFile(char *path, int *n))[4][4]{
         points[i] = Point(stof(x), stof(y), stof(z));
     }
 
-    Point patches[nPatches][4][4];
+    Point (*patches)[4][4] = new Point[nPatches][4][4];
     for(int i=0; i<nPatches; i++){
         for(int j=0; j<16; j++){
             patches[i][j/4][j%4] = points[indexes[i][j]];
@@ -144,6 +144,8 @@ pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level){
             }
         }
     }
+    
+    delete[] patches;
 
     return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }

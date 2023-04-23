@@ -10,12 +10,12 @@ void computeMatrix(Point points[4][4], Point res[4][4]){
     };
 
     Point aux[4][4];
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i=0; i<4; i++) {
+        for (int j=0; j < 4; j++) {
             aux[i][j].x = 0.0f;
             aux[i][j].y = 0.0f;
             aux[i][j].z = 0.0f;
-            for (int k = 0; k < 4; k++) {
+            for (int k=0; k<4; k++) {
                 aux[i][j].x += M[i][k] * points[k][j].x;                
                 aux[i][j].y += M[i][k] * points[k][j].y;
                 aux[i][j].z += M[i][k] * points[k][j].z;
@@ -23,12 +23,12 @@ void computeMatrix(Point points[4][4], Point res[4][4]){
         }
     }
 
-    for (int i = 0; i < 4; i++) {
+    for (int i=0; i<4; i++) {
         for (int j = 0; j < 4; j++) {
             res[i][j].x = 0.0f;
             res[i][j].y = 0.0f;
             res[i][j].z = 0.0f;
-            for (int k = 0; k < 4; k++) {
+            for (int k=0; k<4; k++) {
                 res[i][j].x += aux[i][k].x * M[k][j];
                 res[i][j].y += aux[i][k].y * M[k][j];
                 res[i][j].z += aux[i][k].z * M[k][j];
@@ -76,34 +76,34 @@ Point(*readFile(char *path, int *n))[4][4]{
     string nPointsStr;
 
     getline(file, line);
-    stringstream ss(line);
-    ss >> nPatchesStr;
+    stringstream stream(line);
+    stream >> nPatchesStr;
 
     int nPatches = stoi(nPatchesStr);
     int indexes[nPatches][16];
     for(int i=0; i<nPatches; i++){
         getline(file, line);
-        stringstream ss(line);
+        stringstream stream(line);
         string token;
 
         for(int j=0; j<16; j++) {
-            getline(ss, token, ',');
+            getline(stream, token, ',');
             indexes[i][j] = stoi(token);
         }
     }
 
     getline(file, line);
-    ss = stringstream(line);
-    ss >> nPointsStr;
+    stream = stringstream(line);
+    stream >> nPointsStr;
 
     int nPoints = stoi(nPointsStr);
     Point points[nPoints];
     for(int i=0; i<nPoints; i++){
         getline(file, line);
-        stringstream ss(line);
-
+        stringstream stream(line);
         string x, y, z;
-        ss >> x >> y >> z;
+        stream >> x >> y >> z;
+
         points[i] = Point(stof(x), stof(y), stof(z));
     }
 
@@ -113,6 +113,7 @@ Point(*readFile(char *path, int *n))[4][4]{
             patches[i][j/4][j%4] = points[indexes[i][j]];
         }
     }
+
     *n = nPatches;
 
     return patches;
@@ -122,13 +123,10 @@ Point(*readFile(char *path, int *n))[4][4]{
 pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level){
     vector<Point> vertices;
     vector<Triangle> triangles;
-    Point (*patches)[4][4];
     int n;
-
-    patches = readFile(path, &n);
-
+    Point (*patches)[4][4] = readFile(path, &n);
     float step = 1 / (float)level;
-    int nTessel = pow(level+1, 2); //N ª pontos num patch
+    int nPoints = pow(level+1, 2); //N ª pontos num patch
 
     for(int i=0; i<n; i++){
         Point res[4][4];
@@ -136,18 +134,16 @@ pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level){
 
         for(int v=0; v <= level; v++){
             for(int u=0; u <= level; u++){  
-                Point p = patchPoint(u*step, v*step, res);
-                vertices.push_back(p);
+                vertices.push_back(patchPoint(u*step, v*step, res));
                 
                 if(u != level && v != level){
-                    triangles.push_back(Triangle(i*nTessel + v*(level+1) + u, i*nTessel + (v+1)*(level+1) + u, i*nTessel + (v+1)*(level+1) + u+1));
-                    triangles.push_back(Triangle(i*nTessel + v*(level+1) + u, i*nTessel + (v+1)*(level+1) + u+1, i*nTessel + v*(level+1) + u+1));
+                    triangles.push_back(Triangle(i*nPoints + v*(level+1) + u, i*nPoints + (v+1)*(level+1) + u, i*nPoints + (v+1)*(level+1) + u+1));
+                    triangles.push_back(Triangle(i*nPoints + v*(level+1) + u, i*nPoints + (v+1)*(level+1) + u+1, i*nPoints + v*(level+1) + u+1));
                 }
 
             }
         }
     }
-
 
     return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }

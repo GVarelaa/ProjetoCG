@@ -115,12 +115,17 @@ void TranslateDynamic::transform(){
     if (show) {
         float step = 1/(float)tesselation;
 
+        glPushAttrib(GL_CURRENT_BIT);
+        glColor3f(1,1,1);
+
         glBegin(GL_LINE_LOOP);
 		    for (float gt = 0; gt < 1; gt += step) {
 		    	getGlobalCatmullRomPoint(gt, pos, deriv);
 		    	glVertex3f(pos[0], pos[1], pos[2]);
 		    }
 	    glEnd();
+
+        glPopAttrib();
     }
 	
     

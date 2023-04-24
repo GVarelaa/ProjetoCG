@@ -41,6 +41,7 @@ class TranslateDynamic : public Transformation{
         int pointCount;
         Point yi; // Y Vector
         int tesselation;
+        bool show;
 
         TranslateDynamic(XMLElement *elem);
         void transform();

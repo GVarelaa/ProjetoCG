@@ -22,6 +22,8 @@ class World{
         void loadModels();
         void drawModels();
         vector<char *> getLabels();
+        void calculatePositions();
+        Point getGroupPosition(int i);
 };
 
 #endif

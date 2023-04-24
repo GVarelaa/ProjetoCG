@@ -59,7 +59,6 @@ Group::Group(XMLElement *groupElement){
     }
 }
 
-
 void Group::loadModels(){
     for(int i = 0; i < models.size(); i++){
         models[i].load();
@@ -100,4 +99,93 @@ void Group::getLabels(vector<char *> *labels) {
     for (int i = 0; i < groups.size(); i++) {
         groups[i].getLabels(labels);
     }
+}
+
+
+void multiplyMatrices(float m[4][4], float n[4][4], float res[4][4]) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            res[i][j] = 0.0f; 
+            for (int k=0; k < 4; k++) {
+                res[i][j] += m[i][k] * n[k][j];
+            }
+        }
+    }
+}
+
+
+void Group::calculatePositions(Point point){
+    float matrix[4][4] = {
+        {1, 0, 0, 0},
+        {0, 1, 0, 0},
+        {0, 0, 1, 0},
+        {0, 0, 0, 1}
+    };
+
+    for(int i=0; i<transforms.size(); i++){
+        if(dynamic_cast<TranslateStatic*>(transforms[i])){
+            float transf[4][4] = {
+                {1, 0, 0, transforms[i]->x},
+                {0, 1, 0, transforms[i]->y},
+                {0, 0, 1, transforms[i]->z},
+                {0, 0, 0, 1}
+            };
+
+            float aux[4][4];
+            multiplyMatrices(matrix, transf, aux);
+            memcpy(matrix, aux, sizeof(float) * 16);
+        }
+        else if(dynamic_cast<RotateStatic*>(transforms[i])){
+            RotateStatic *rotate = dynamic_cast<RotateStatic*>(transforms[i]);
+            float angle = 2 * M_PI * (rotate->angle/360.0);
+
+            float transf[4][4] = {
+                {pow(rotate->x, 2) + (1 - pow(rotate->x, 2)) * cos(angle), rotate->x * rotate->y * (1-cos(angle)) - rotate->z * sin(angle), rotate->x * rotate->z * (1-cos(angle)) + rotate->y*sin(angle), 0},
+                {rotate->x*rotate->y*(1-cos(angle)) + rotate->z*sin(angle), pow(rotate->y, 2) + (1 - pow(rotate->y, 2))*cos(angle), rotate->y*rotate->z*(1-cos(angle)) - rotate->x*sin(angle), 0},
+                {rotate->x*rotate->z*(1-cos(angle)) - rotate->y*sin(angle), rotate->y*rotate->z*(1-cos(angle)) + rotate->x*sin(angle), pow(rotate->z, 2) + (1 - pow(rotate->z, 2))*cos(angle), 0},
+                {0, 0, 0, 1}
+            };  
+
+            float aux[4][4];
+            multiplyMatrices(matrix, transf, aux);
+            memcpy(matrix, aux, sizeof(float) * 16);  
+        }
+        else if(dynamic_cast<Scale*>(transforms[i])){
+            float transf[4][4] = {
+                {transforms[i]->x, 0, 0, 0},
+                {0, transforms[i]->y, 0, 0},
+                {0, 0, transforms[i]->z, 0},
+                {0, 0, 0, 1}
+            };
+            
+            float aux[4][4];
+            multiplyMatrices(matrix, transf, aux);
+            memcpy(matrix, aux, sizeof(float) * 16);
+        }
+    }
+
+    position.x = matrix[0][3] + point.x;
+    position.y = matrix[1][3] + point.y;
+    position.z = matrix[2][3] + point.z;  
+
+    for(int i=0; i<groups.size(); i++){
+        groups[i].calculatePositions(Point(position.x, position.y, position.z));
+    }     
+}
+
+
+Point* Group::getGroupPosition(int *i){
+    if(*i == 0){
+        return new Point(position.x, position.y, position.z);
+    }
+    
+    (*i)--;
+
+    for(int j=0; j<groups.size(); j++){
+        Point *p = groups[j].getGroupPosition(i);
+
+        if(p) return p;
+    }
+
+    return NULL;
 }

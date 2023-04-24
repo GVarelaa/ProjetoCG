@@ -17,6 +17,7 @@ void TranslateStatic::transform(){
 TranslateDynamic::TranslateDynamic(XMLElement *elem){
     time = atof((char *)elem->Attribute("time"));
     yi = Point(0,1,0);
+    tesselation = 100;
     
     if (!strcasecmp((char *)elem->Attribute("align"), "True")){
         align = true;
@@ -36,6 +37,10 @@ TranslateDynamic::TranslateDynamic(XMLElement *elem){
     }
     
     pointCount = points.size();
+
+    if (elem->Attribute("tesselation")){
+        tesselation = atoi((char *)elem->Attribute("tesselation"));
+    }
 }
 
 
@@ -101,9 +106,10 @@ void TranslateDynamic::getGlobalCatmullRomPoint(float gt, float *pos, float *der
 void TranslateDynamic::transform(){
     float pos[3];
 	float deriv[3];
+    float step = 1/(float)tesselation;
 
 	glBegin(GL_LINE_LOOP);
-		for (float gt = 0; gt < 1; gt += 0.0001) {
+		for (float gt = 0; gt < 1; gt += step) {
 			getGlobalCatmullRomPoint(gt, pos, deriv);
 			glVertex3f(pos[0], pos[1], pos[2]);
 		}

@@ -157,7 +157,17 @@ void processMouseMotion(int x, int y){
 
 
 void explorerChoice(int choice) {
+	Point p = world.getGroupPosition(choice-1);
+	printf("%d\n", choice);
+	printf("%f %f %f\n", p.x, p.y, p.z);
 
+	world.camera.mode = EXPLORER;
+	world.camera.beta = 0;
+
+	world.camera.explorerCenter = Point(p.x, p.y, p.z);
+	world.camera.lookAt.x = p.x;
+	world.camera.lookAt.y = p.y;
+	world.camera.lookAt.z = p.z;
 }
 
 
@@ -167,16 +177,6 @@ void menuCamChoice(int choice){
             world.camera.mode = STATIC;
             break;
         case 1:
-            world.camera.mode = EXPLORER;
-			world.camera.beta = 0;
-
-			world.camera.explorerCenter = Point(world.camera.position.x, world.camera.position.y, world.camera.position.z);
-			world.camera.lookAt.x = world.camera.position.x;
-			world.camera.lookAt.y = world.camera.position.y;
-			world.camera.lookAt.z = world.camera.position.z;
-
-            break;
-        case 2:
             world.camera.mode = FPS;
 			world.camera.beta = 0;
 			world.camera.firstTime = true;
@@ -231,9 +231,8 @@ void cameraMenu(){
 
 	int cameraMenu = glutCreateMenu(menuCamChoice);
 	glutAddMenuEntry("Static Camera", 0);
-    glutAddMenuEntry("Explorer Camera", 1);
 	glutAddSubMenu("Explorer Camera", explorerMenu);
-	glutAddMenuEntry("FPS Camera", 2);
+	glutAddMenuEntry("FPS Camera", 1);
 
 	int modeMenu = glutCreateMenu(modeChoice);
 	glutAddMenuEntry("Lines", 0);
@@ -297,6 +296,7 @@ int main(int argc, char **argv) {
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	world.loadModels();
+	world.calculatePositions(); // posições dos grupos
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 
 	cameraMenu();

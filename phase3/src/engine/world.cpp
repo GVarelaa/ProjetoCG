@@ -54,3 +54,21 @@ vector<char *> World::getLabels() {
     return labels;
 }
 
+
+void World::calculatePositions(){
+    for(int i=0; i<groups.size(); i++){
+        groups[i].calculatePositions(Point(0, 0, 0));
+    }
+}
+
+
+Point World::getGroupPosition(int n){
+    for(int i=0; i<groups.size(); i++){
+        Point *p = groups[i].getGroupPosition(&n);
+
+        if(p) return Point(p->x, p->y, p->z);
+    }
+
+    return Point(0, 0, 0);
+}
+

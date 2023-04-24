@@ -7,12 +7,15 @@
         <projection fov="60" near="1" far="1200" /> <!-- optional, use these values as default-->
     </camera>
 
-    <!-- SUN -->
-    <group label="Sun">
-        <color R="255.0" G="122.0" B="24.0"/>
-        <models> 
-            <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
-        </models>   
+    <!-- SOLAR SYSTEM -->
+    <group label="Solar System">
+        <group label="SUN">
+            <color R="255.0" G="122.0" B="24.0"/>
+
+            <models> 
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>   
+        </group>
 
         <!-- COMET -->
         <group>
@@ -108,7 +111,7 @@
         <!-- EARTH -->
         <group label="Earth">
             <transform>
-                <translate time="12312312312" align="True">
+                <translate time="20" align="True">
                     <point x="22.5" y="0" z="0.0"/>
                     <point x="20.55477279695852" y="0" z="12.202099292274005"/>
                     <point x="15.05543864307431" y="0" z="22.294344764321824"/>

@@ -64,6 +64,7 @@ class RotateStatic : public Transformation{
 class RotateDynamic : public Transformation{
     public:
         float time;
+        bool clockwise;
 
         RotateDynamic(XMLElement *elem);
         void transform();

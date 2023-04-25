@@ -128,20 +128,22 @@ pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level){
     float step = 1 / (float)level;
     int nPoints = (float)pow(level+1, 2); //N ª pontos num patch
 
+    int index = 0;
     for(int i=0; i<n; i++){
         Point res[4][4];
         computeMatrix(patches[i], res);
 
-        for(int v=0; v <= level; v++){
-            for(int u=0; u <= level; u++){  
+        for(int u=0; u < level; u++){
+            for(int v=0; v <= level; v++){  
                 vertices.push_back(patchPoint(u*step, v*step, res));
-                
-                if(u != level && v != level){
-                    triangles.push_back(Triangle(i*nPoints + v*(level+1) + u, i*nPoints + (v+1)*(level+1) + u, i*nPoints + (v+1)*(level+1) + u+1));
-                    triangles.push_back(Triangle(i*nPoints + v*(level+1) + u, i*nPoints + (v+1)*(level+1) + u+1, i*nPoints + v*(level+1) + u+1));
-                }
+                vertices.push_back(patchPoint((u+1)*step, v*step, res));
 
+                if(v != level){
+                    triangles.push_back(Triangle(index, index+2, index+1));
+                    triangles.push_back(Triangle(index+1, index+2, index+3));
+                }
             }
+            index+=2;
         }
     }
 

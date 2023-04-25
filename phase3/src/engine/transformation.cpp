@@ -169,15 +169,24 @@ void RotateStatic::transform(){
 
 // DYNAMIC ROTATION
 RotateDynamic::RotateDynamic(XMLElement *elem){
+    clockwise = false;
     x = atof((char *)elem->Attribute("x"));
     y = atof((char *)elem->Attribute("y"));
     z = atof((char *)elem->Attribute("z"));
     time = atof((char *)elem->Attribute("time"));
+    
+    if (elem->Attribute("clockwise") && !strcasecmp((char *)elem->Attribute("clockwise"),"True")){
+        clockwise = true;
+    }
 }
 
 void RotateDynamic::transform(){
     float t = (glutGet(GLUT_ELAPSED_TIME) / 1000.0) / (float)time;
-    glRotatef(t*360, x, y, z);
+
+    if(clockwise)
+        glRotatef(-t*360, x, y, z);
+    else
+        glRotatef(t*360, x, y, z);
 }
 
 

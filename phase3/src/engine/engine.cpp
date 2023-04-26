@@ -158,8 +158,6 @@ void processMouseMotion(int x, int y){
 
 void explorerChoice(int choice) {
 	Point p = world.getGroupPosition(choice-1);
-	printf("%d\n", choice);
-	printf("%f %f %f\n", p.x, p.y, p.z);
 
 	world.camera.mode = EXPLORER;
 	world.camera.beta = 0;
@@ -219,13 +217,10 @@ void cameraMenu(){
 	// Meter menus
 	vector<char *> labels = world.getLabels();
 	for (int i=0; i < labels.size(); i++) {
-		char *label = labels[i];
-		if(!label){
-			string aux = "Group " + to_string(i+1);
-			label = (char *)aux.c_str();	
+		if(labels[i]){
+			char *label = labels[i];
+			glutAddMenuEntry(label, i+1);
 		}
-		
-		glutAddMenuEntry(label, i+1);
 	}
 
 

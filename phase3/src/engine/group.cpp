@@ -140,9 +140,9 @@ void Group::calculatePositions(Point point){
             float angle = 2 * M_PI * (rotate->angle/360.0);
 
             float transf[4][4] = {
-                {pow(rotate->x, 2) + (1 - pow(rotate->x, 2)) * cos(angle), rotate->x * rotate->y * (1-cos(angle)) - rotate->z * sin(angle), rotate->x * rotate->z * (1-cos(angle)) + rotate->y*sin(angle), 0},
-                {rotate->x*rotate->y*(1-cos(angle)) + rotate->z*sin(angle), pow(rotate->y, 2) + (1 - pow(rotate->y, 2))*cos(angle), rotate->y*rotate->z*(1-cos(angle)) - rotate->x*sin(angle), 0},
-                {rotate->x*rotate->z*(1-cos(angle)) - rotate->y*sin(angle), rotate->y*rotate->z*(1-cos(angle)) + rotate->x*sin(angle), pow(rotate->z, 2) + (1 - pow(rotate->z, 2))*cos(angle), 0},
+                {(float)pow(rotate->x, 2) + (1 - (float)pow(rotate->x, 2)) * cos(angle), rotate->x * rotate->y * (1-cos(angle)) - rotate->z * sin(angle), rotate->x * rotate->z * (1-cos(angle)) + rotate->y*sin(angle), 0},
+                {rotate->x*rotate->y*(1-cos(angle)) + rotate->z*sin(angle), (float)pow(rotate->y, 2) + (1 - (float)pow(rotate->y, 2))*cos(angle), rotate->y*rotate->z*(1-cos(angle)) - rotate->x*sin(angle), 0},
+                {rotate->x*rotate->z*(1-cos(angle)) - rotate->y*sin(angle), rotate->y*rotate->z*(1-cos(angle)) + rotate->x*sin(angle), (float)pow(rotate->z, 2) + (1 - (float)pow(rotate->z, 2))*cos(angle), 0},
                 {0, 0, 0, 1}
             };  
 

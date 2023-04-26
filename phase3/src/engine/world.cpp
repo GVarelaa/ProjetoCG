@@ -57,7 +57,13 @@ vector<char *> World::getLabels() {
 
 void World::calculatePositions(){
     for(int i=0; i<groups.size(); i++){
-        groups[i].calculatePositions(Point(0, 0, 0));
+        float matrix[4][4] = {
+            {1, 0, 0, 0},
+            {0, 1, 0, 0},
+            {0, 0, 1, 0},
+            {0, 0, 0, 1}
+        };
+        groups[i].calculatePositions(matrix);
     }
 }
 

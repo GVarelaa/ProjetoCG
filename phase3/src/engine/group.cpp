@@ -114,14 +114,7 @@ void multiplyMatrices(float m[4][4], float n[4][4], float res[4][4]) {
 }
 
 
-void Group::calculatePositions(Point point){
-    float matrix[4][4] = {
-        {1, 0, 0, 0},
-        {0, 1, 0, 0},
-        {0, 0, 1, 0},
-        {0, 0, 0, 1}
-    };
-
+void Group::calculatePositions(float matrix[4][4]){
     for(int i=0; i<transforms.size(); i++){
         if(dynamic_cast<TranslateStatic*>(transforms[i])){
             float transf[4][4] = {
@@ -164,12 +157,14 @@ void Group::calculatePositions(Point point){
         }
     }
 
-    position.x = matrix[0][3] + point.x;
-    position.y = matrix[1][3] + point.y;
-    position.z = matrix[2][3] + point.z;  
+    position.x = matrix[0][3];
+    position.y = matrix[1][3];
+    position.z = matrix[2][3];
 
     for(int i=0; i<groups.size(); i++){
-        groups[i].calculatePositions(Point(position.x, position.y, position.z));
+        float main[4][4];
+        memcpy(main, matrix, sizeof(float) * 16);
+        groups[i].calculatePositions(main);
     }     
 }
 

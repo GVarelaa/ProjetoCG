@@ -7,13 +7,16 @@ pair<vector<Point>, vector<Triangle> > generateSphere(float radius, int slices, 
     float alpha = (2 * M_PI) / slices;
     float beta = M_PI / stacks;
 
+    int index = 0;
     for(int i = 0; i < slices; i++){
         //Ponto superior
         Point centralBottomPoint = Point(0, -radius, 0);
         vertices.push_back(centralBottomPoint);   
 
-        Triangle baseTriangle = Triangle(i*(2*stacks), i*(2*stacks) + 2, i*(2*stacks) + 1);
+        Triangle baseTriangle = Triangle(index, index+2, index+1);
         triangles.push_back(baseTriangle);
+
+        index++;
 
         for(int j = 1; j < stacks; j++){
             Point p1 = Point(radius * cos(j*beta-M_PI_2) * sin(i*alpha), radius * sin(j*beta-M_PI_2), radius * cos(j*beta-M_PI_2) * cos(i*alpha));
@@ -22,11 +25,13 @@ pair<vector<Point>, vector<Triangle> > generateSphere(float radius, int slices, 
             vertices.push_back(p2);
             
             if(j!=stacks-1){
-                Triangle t1 = Triangle(i*(2*stacks) + j*2 - 1, i*(2*stacks) + j*2, i*(2*stacks) + j*2 + 1);
-                Triangle t2 = Triangle(i*(2*stacks) + j*2, i*(2*stacks) + j*2 + 2, i*(2*stacks) + j*2 + 1);
+                Triangle t1 = Triangle(index, index+1, index+2);
+                Triangle t2 = Triangle(index+1, index+3, index+2);
 
                 triangles.push_back(t1);
                 triangles.push_back(t2);
+
+                index+=2;
             }
         }
 
@@ -34,8 +39,10 @@ pair<vector<Point>, vector<Triangle> > generateSphere(float radius, int slices, 
         Point topCentralPoint = Point(0, radius, 0);
         vertices.push_back(topCentralPoint);
 
-        Triangle topTriangle = Triangle(i*(2*stacks) + stacks*2 - 3, i*(2*stacks) + stacks*2 - 2, i*(2*stacks) + stacks*2 - 1);
+        Triangle topTriangle = Triangle(index, index+1, index+2);
         triangles.push_back(topTriangle);
+
+        index+=3;
     }
 
     return pair<vector<Point>, vector<Triangle> >(vertices, triangles);

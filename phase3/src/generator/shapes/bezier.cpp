@@ -142,8 +142,8 @@ pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level){
                     triangles.push_back(Triangle(index, index+2, index+1));
                     triangles.push_back(Triangle(index+1, index+2, index+3));
                 }
+                index+=2;
             }
-            index+=2;
         }
     }
 

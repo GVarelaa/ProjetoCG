@@ -1,13 +1,10 @@
 from math import sin, cos, pi
 
 step = (2*pi)/15
-a = 8.44
-b = 6.33
-c = 5
-beta = 0
+a = 9
+b = 12
 
 for i in range(0,15):
-    x = a * cos(i * step) * cos(beta)
-    y = c * sin(i * step)
-    z = b * cos(i * step) * sin(beta)
-    print('<point x="' + str(x) + '" y="' + str(z) +  '" z="' + str(y) + '"/>')
+    x = a * cos(i*step)
+    y = b * sin(i*step)
+    print('<point x="' + str(x) + '" y="0" z="' + str(y) + '"/>')

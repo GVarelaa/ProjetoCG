@@ -13,7 +13,7 @@ pair<vector<Point>, vector<Triangle> > generateEllipsoid(float a, float b, float
         Point centralTopPoint = Point(0, b, 0);
         vertices.push_back(centralTopPoint);   
 
-        Triangle topTriangle = Triangle(i*(2*stacks), i*(2*stacks) + 2, i*(2*stacks) + 1);
+        Triangle topTriangle = Triangle(index, index+2, index+1);
         triangles.push_back(topTriangle);
 
         index++;
@@ -26,7 +26,7 @@ pair<vector<Point>, vector<Triangle> > generateEllipsoid(float a, float b, float
             
             if(j!=stacks-1){
                 Triangle t1 = Triangle(index, index+1, index+2);
-                Triangle t2 = Triangle(index, index+2, index+1);
+                Triangle t2 = Triangle(index+1, index+3, index+2);
 
                 triangles.push_back(t1);
                 triangles.push_back(t2);
@@ -39,7 +39,7 @@ pair<vector<Point>, vector<Triangle> > generateEllipsoid(float a, float b, float
         Point centralBottomPoint = Point(0, -b, 0);
         vertices.push_back(centralBottomPoint);
 
-        Triangle baseTriangle = Triangle(i*(2*stacks) + stacks*2 - 3, i*(2*stacks) + stacks*2 - 2, i*(2*stacks) + stacks*2 - 1);
+        Triangle baseTriangle = Triangle(index, index+1, index+2);
         triangles.push_back(baseTriangle);
 
         index+=3;

@@ -31,20 +31,21 @@ pair<vector<Point>, vector<Triangle> > generateXZplane(Point initialPoint, float
 
             Triangle t1, t2;
             if(isVisible){
-                t1 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + 2 + *index);
-                t2 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + 3 + *index);
+                t1 = Triangle(*index, *index+1, *index+2);
+                t2 = Triangle(*index, *index+2, *index+3);
             }
             else {
-                t1 = Triangle(i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index);
-                t2 = Triangle(i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 3 + *index);
+                t1 = Triangle(*index+1, *index, *index+2);
+                t2 = Triangle(*index+2, *index, *index+3);
             }
 
             triangles.push_back(t1);
             triangles.push_back(t2);
+
+            *index+=4;
         }
     }
 
-    *index += vertices.size();
     return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }
 
@@ -80,20 +81,21 @@ pair<vector<Point>, vector<Triangle> > generateYZplane(Point initialPoint, float
 
             Triangle t1, t2;
             if(isVisible){
-                t1 = Triangle(i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index);
-                t2 = Triangle(i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 3 + *index);
+                t1 = Triangle(*index+1, *index, *index+2);
+                t2 = Triangle(*index+2, *index, *index+3);
             }
             else {
-                t1 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + 2 + *index);
-                t2 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + 3 + *index);
+                t1 = Triangle(*index, *index+1, *index+2);
+                t2 = Triangle(*index, *index+2, *index+3);
             }
 
             triangles.push_back(t1);
             triangles.push_back(t2);
+
+            *index+=4;
         }
     }
 
-    *index += vertices.size();
     return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }
 
@@ -129,20 +131,21 @@ pair<vector<Point>, vector<Triangle> > generateXYplane(Point initialPoint, float
 
             Triangle t1, t2;
             if(isVisible){
-                t1 = Triangle(i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index);
-                t2 = Triangle(i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 3 + *index);
+                t1 = Triangle(*index+1, *index, *index+2);
+                t2 = Triangle(*index+2, *index, *index+3);
             }
             else {
-                t1 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 1 + *index, i*4*divisions + 4*j + 2 + *index);
-                t2 = Triangle(i*4*divisions + 4*j + *index, i*4*divisions + 4*j + 2 + *index, i*4*divisions + 4*j + 3 + *index);
+                t1 = Triangle(*index, *index+1, *index+2);
+                t2 = Triangle(*index, *index+2, *index+3);
             }
 
             triangles.push_back(t1);
             triangles.push_back(t2);
+            
+            *index+=4;
         }
     }
 
-    *index += vertices.size();
     return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }
 

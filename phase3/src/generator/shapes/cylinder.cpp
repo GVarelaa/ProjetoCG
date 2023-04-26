@@ -7,6 +7,7 @@ pair<vector<Point>, vector<Triangle> > generateCylinder(float radius, float heig
     float h_2 = height / 2.0;
     float alpha = (2 * M_PI) / slices;
 
+    int index = 0;
     for(int i = 0; i < slices; i++){
         Point topPoint = Point(0, h_2, 0);
         Point p1 = Point(radius * sin(i*alpha), h_2, radius * cos(i*alpha));
@@ -22,15 +23,17 @@ pair<vector<Point>, vector<Triangle> > generateCylinder(float radius, float heig
         points.push_back(p4);
         points.push_back(bottomPoint);
 
-        Triangle topTriangle = Triangle(i*6, i*6 + 1, i*6 + 2);
-        Triangle t1 = Triangle(i*6 + 1, i*6 + 4, i*6 + 2);
-        Triangle t2 = Triangle(i*6 + 1, i*6 + 3, i*6 + 4);
-        Triangle bottomTriangle = Triangle(i*6 + 3, i*6 + 5, i*6 + 4);
+        Triangle topTriangle = Triangle(index, index+1, index+2);
+        Triangle t1 = Triangle(index+1, index+4, index+2);
+        Triangle t2 = Triangle(index+1, index+3, index+4);
+        Triangle bottomTriangle = Triangle(index+3, index+5, index+4);
 
         triangles.push_back(topTriangle);
         triangles.push_back(t1);
         triangles.push_back(t2);
         triangles.push_back(bottomTriangle);
+
+        index+=6;
 	}
 
     return pair<vector<Point>, vector<Triangle> >(points, triangles);

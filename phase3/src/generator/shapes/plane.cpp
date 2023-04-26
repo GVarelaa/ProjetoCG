@@ -11,6 +11,7 @@ pair<vector<Point>, vector<Triangle> > generatePlane(float length, int divisions
     float x = initialX;
     float z = initialZ;
 
+    int index=0;
     for(int i = 0; i < divisions; i++){
         x = initialX;
         z = initialZ - i*squareLength;
@@ -28,11 +29,13 @@ pair<vector<Point>, vector<Triangle> > generatePlane(float length, int divisions
             vertices.push_back(p3);
             vertices.push_back(p4);
 
-            Triangle t1 = Triangle(i*4*divisions + 4*j, i*4*divisions + 4*j + 1, i*4*divisions + 4*j + 2);
-            Triangle t2 = Triangle(i*4*divisions + 4*j, i*4*divisions + 4*j + 2, i*4*divisions + 4*j + 3);
+            Triangle t1 = Triangle(index, index+1, index+2);
+            Triangle t2 = Triangle(index, index+2, index+3);
 
             triangles.push_back(t1);
             triangles.push_back(t2);
+
+            index+=4;
         }
     }
 

@@ -3,7 +3,6 @@
 pair<vector<Point>, vector<Triangle> > generateBelt(int n, float radiusIn, float radiusOut, float height, int seed) {
     vector<Point> vertices;
     vector<Triangle> triangles;
-    int index = 0;
 
     int slices = 10;
     int stacks = 10;
@@ -25,7 +24,7 @@ pair<vector<Point>, vector<Triangle> > generateBelt(int n, float radiusIn, float
             Point centralBottomPoint = Point(center.x, center.y - radius, center.z);
             vertices.push_back(centralBottomPoint);
 
-            Triangle baseTriangle = Triangle(index + i * (2 * stacks), index + i * (2 * stacks) + 2, index + i * (2 * stacks) + 1);
+            Triangle baseTriangle = Triangle(index, index+2, index+1);
             triangles.push_back(baseTriangle);
 
             index++;
@@ -51,7 +50,7 @@ pair<vector<Point>, vector<Triangle> > generateBelt(int n, float radiusIn, float
             Point topCentralPoint = Point(center.x, center.y + radius, center.z);
             vertices.push_back(topCentralPoint);
 
-            Triangle topTriangle = Triangle(index + i * (2 * stacks) + stacks * 2 - 3, index + i * (2 * stacks) + stacks * 2 - 2, index + i * (2 * stacks) + stacks * 2 - 1);
+            Triangle topTriangle = Triangle(index, index+1, index+2);
             triangles.push_back(topTriangle);
 
             index+=3;

@@ -56,7 +56,7 @@ int main(int argc, char *argv[]){
         cout << "cylinder  | {radius} {height} {slices}                          | {filename}.3d" << endl;
         cout << "torus     | {radius_in} {radius_out} {slices} {stacks}          | {filename}.3d" << endl;
         cout << "ellipsoid | {a} {b} {c} {slices} {stacks}                       | {filename}.3d" << endl;
-        cout << "belt      | {n} {radiusIn} {radiusOut                           | {filename}.3d" << endl;
+        cout << "belt      | {n} {radiusIn} {radiusOut} {height} {seed}          | {filename}.3d" << endl;
         cout << "bezier    | {control_points_filename}.patch {tesselation_level} | {filename}.patch" << endl;
         cout << "----------------------------------------------------------------------------------" << endl;
         

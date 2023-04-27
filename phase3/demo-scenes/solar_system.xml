@@ -7,20 +7,20 @@
         <projection fov="60" near="1" far="1200" /> <!-- optional, use these values as default-->
     </camera>
 
+
     <!-- SOLAR SYSTEM -->
     <group label="Solar System">
         <group label="SUN">
             <color R="255.0" G="122.0" B="24.0"/>
-
             <models> 
                 <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
             </models>   
         </group>
 
+
         <!-- COMET -->
         <group>
             <color R="255.0" G="255.0" B="255.0"/>
-
             <transform>
                 <translate time="30" align="True" show="false">
                     <point x="71.962085688603" y="0" z="119.3495565700528" /> <!-- (71.962085688603,119.3495565700528) -->
@@ -44,13 +44,13 @@
                     <point x="-28.4779827076126" y="0" z="112.4175848756175"/> <!-- (-28.4779827076126,112.4175848756175)-->
                 </translate>
             </transform>
-
             <models> 
                 <model file="teste.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
                     <color R="255.0" G="122.0" B="24.0"/>
                 </model>
             </models>   
         </group>
+
 
         <!-- MERCURY -->
         <group label="Mercury">
@@ -75,13 +75,12 @@
                 <rotate time="590" x="0" y="1" z="0"/>
                 <scale x="0.017" y="0.017" z="0.017"/>
             </transform>
-
             <color R="206.0" G="204.0" B="209.0"/>
-
             <models> 
                 <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
             </models>  
         </group>
+
 
         <!-- VENUS -->
         <group label="Venus">
@@ -116,7 +115,7 @@
         <!-- EARTH'S GROUP -->
         <group>
             <transform>
-                <translate time="2000" align="True">
+                <translate time="20" align="True">
                     <point x="22.5" y="0" z="0.0"/>
                     <point x="20.55477279695852" y="0" z="12.202099292274005"/>
                     <point x="15.05543864307431" y="0" z="22.294344764321824"/>
@@ -136,14 +135,12 @@
                 <scale x="0.0455" y="0.0455" z="0.0455"/>
             </transform>
 
-            <!-- EARTH-->
+            <!-- EARTH -->
             <group label="Earth">
                 <transform>
                     <rotate time="10" x="0" y="1" z="0"/>
                 </transform>
-
                 <color R="159.0" G="193.0" B="100.0"/>
-
                 <models> 
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -152,7 +149,7 @@
             <!-- MOON -->
             <group label="Moon">
                 <transform>
-                    <translate time="5" align="True" show="false">
+                    <translate time="273" align="True" show="false">
                         <point x="5.967981233214461" y="7.957308310952613" z="0.0"/>
                         <point x="5.452022146899358" y="7.269362862532476" z="4.5771430234130035"/>
                         <point x="3.993358901319079" y="5.324478535092104" z="8.36285643603894"/>
@@ -172,9 +169,7 @@
                     <rotate time="273" x="0" y="1" z="0"/>
                     <scale x="0.25" y="0.25" z="0.25"/>
                 </transform>
-
                 <color R="246" G="241" B="213"/>
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -205,24 +200,21 @@
                 <scale x="0.024" y="0.024" z="0.024"/>
             </transform>
 
-
+            <!-- MARS -->
             <group label="Mars">
                 <transform>
                     <rotate time="10.3" x="0" y="1" z="0"/>
                 </transform>
-
                 <color R="193.0" G="68.0" B="14.0"/>
-
                 <models> 
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>  
             </group>
-            
 
             <!-- PHOBOS -->
             <group label="Phobos">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="3.2" align="True">
                         <point x="5.656854249492381" y="7.542472332656506" z="0.0"/>
                         <point x="5.1677935041700085" y="6.890391338893343" z="4.338524192808535"/>
                         <point x="3.7851743140465204" y="5.04689908539536" z="7.926878138425537"/>
@@ -242,19 +234,16 @@
                     <rotate time="3.2" x="0" y="1" z="0"/>
                     <scale x="0.1" y="0.1" z="0.1"/>
                 </transform>
-
                 <color R="32" G="32" B="32"/>
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
 
-
             <!-- DEIMOS -->
             <group label="Deimos">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="12.6" align="True">
                         <point x="14.212846301849607" y="-18.950461735799472" z="0.0"/>
                         <point x="12.984081179227147" y="-17.312108238969525" z="10.900542034431444"/>
                         <point x="9.510250464041883" y="-12.680333952055841" z="19.916281322794163"/>
@@ -274,9 +263,7 @@
                     <rotate time="12.6" x="0" y="1" z="0"/>
                     <scale x="0.06" y="0.06" z="0.06"/>
                 </transform>
-
                 <color R="168" G="124" B="74"/>
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -312,9 +299,7 @@
                 <transform>
                     <rotate time="4.1" x="0" y="1" z="0"/>
                 </transform>
-
                 <color R="165.0" G="145.0" B="134.0"/>
-
                 <models> 
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -323,7 +308,7 @@
             <!-- IO -->
             <group label="Io">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="17.7" align="True">
                         <point x="5.656854249492381" y="7.542472332656506" z="0.0"/>
                         <point x="5.1677935041700085" y="6.890391338893343" z="4.338524192808535"/>
                         <point x="3.7851743140465204" y="5.04689908539536" z="7.926878138425537"/>
@@ -343,19 +328,16 @@
                     <rotate time="17.7" x="0" y="1" z="0"/>
                     <scale x="0.026" y="0.026" z="0.026"/>
                 </transform>
-
                 <color R="237" G="200" B="142"/>
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
 
-
             <!-- EUROPA -->
             <group label="Europa">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="35.5" align="True">
                         <point x="10.998522628062371" y="8.466666666666663" z="0.0"/>
                         <point x="10.04765038764574" y="7.7346848747073516" z="6.8874071560835475"/>
                         <point x="7.359448115166997" y="5.665305800504997" z="12.583919044750537"/>
@@ -375,9 +357,7 @@
                     <rotate time="35.5" x="0" y="1" z="0"/>
                     <scale x="0.022" y="0.022" z="0.022"/>
                 </transform>
-
                 <color R="229" G="229" B="229"/>
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -386,7 +366,7 @@
             <!-- GANYMEDE -->
             <group label="Ganymede">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="71.5" align="True">
                         <point x="16.43922532569893" y="-15.925061768777406" z="0.0"/>
                         <point x="15.017979623455465" y="-14.548267841544442" z="11.019851449733679"/>
                         <point x="10.999988810254825" y="-10.655946237644295" z="20.134270471600864"/>
@@ -406,9 +386,7 @@
                     <rotate time="71.5" x="0" y="1" z="0"/>
                     <scale x="0.038" y="0.038" z="0.038"/>
                 </transform>
-
                 <color R="181" G="186" B="197"/> <!-- LIGHT (232, 226, 206) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -417,7 +395,7 @@
             <!-- CALLISTO -->
             <group label="Callisto">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="167" align="True">
                         <point x="17.850000000000005" y="41.222809220139276" z="0.0"/>
                         <point x="16.30678641892043" y="37.658910114325764" z="19.36066421040809"/>
                         <point x="11.943981323505623" y="27.583443329287327" z="35.37369369272396"/>
@@ -468,34 +446,28 @@
                 <scale x="0.42" y="0.42" z="0.42"/>
             </transform>
 
-
+            <!-- SATURN -->
             <group label="Saturn">
                 <transform>
                     <rotate time="4.5" x="0" y="1" z="0"/>
                 </transform>
-
                 <color R="234.0" G="214.0" B="184.0"/>
-
                 <models> 
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
             
-
             <!-- INNER RING -->
             <group label="Inner Ring"> 
                 <transform>
                     <scale x="2.38" y="2.38" z="2.38"/>
                     <rotate angle="45" x="0" y="0" z="1"/>
                 </transform>
-
                 <color R="180.0" G="196.0" B="211.0"/>
-
                 <models> 
                     <model file="ring.3d"/> <!-- generator torus 0.5 4 100 2 ring.3d -->
                 </models>
             </group>
-            
 
             <!-- OUTER RING -->
             <group label="Outer Ring"> 
@@ -503,19 +475,16 @@
                     <scale x="3.2" y="3.2" z="3.2"/>
                     <rotate angle="45" x="0" y="0" z="1"/>
                 </transform>
-
                 <color R="201.0" G="183.0" B="150.0"/>
-
                 <models> 
                     <model file="ring.3d"/> <!-- generator torus 0.5 4 100 2 ring.3d -->
                 </models>
             </group>
 
-
             <!-- TITAN -->
             <group label="Titan">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="160" align="True">
                         <point x="26.450000000000006" y="61.0836584802624" z="0.0"/>
                         <point x="24.163277354646798" y="55.80269874083565" z="28.688491224946436"/>
                         <point x="17.698504538191802" y="40.87294543751539" z="52.41648169033886"/>
@@ -535,19 +504,16 @@
                     <rotate time="160" x="0" y="1" z="0"/>
                     <scale x="0.044" y="0.044" z="0.044"/>
                 </transform>
-
                 <color R="157" G="123" B="92"/> <!-- LIGHT (230, 212, 170) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
 
-
             <!-- RHEA -->
             <group label="Rhea">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="45" align="True">
                         <point x="19.658776665906757" y="-15.133333333333331" z="0.0"/>
                         <point x="17.959186125949472" y="-13.824987925658025" z="12.310562397094218"/>
                         <point x="13.154289150731563" y="-10.126176509564052" z="22.49251671778246"/>
@@ -567,19 +533,16 @@
                     <rotate time="45" x="0" y="1" z="0"/>
                     <scale x="0.013" y="0.013" z="0.013"/>
                 </transform>
-
                 <color R="183" G="182" B="180"/> <!-- LIGHT (90, 54, 38) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
 
-
             <!-- TETHYS -->
             <group label="Tethys">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="19" align="True">
                         <point x="10.298786338393082" y="9.976675015577577" z="0.0"/>
                         <point x="9.408409478670674" y="9.11414614285732" z="6.903676621806581"/>
                         <point x="6.891233147369287" y="6.675698602618695" z="12.613644837769636"/>
@@ -599,19 +562,16 @@
                     <rotate time="19" x="0" y="1" z="0"/>
                     <scale x="0.0091" y="0.0091" z="0.0091"/>
                 </transform>
-
                 <color R="212" G="212" B="212"/> <!-- LIGHT (188, 109, 44) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
 
-
             <!-- DIONE -->
             <group label="Dione">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="27" align="True">
                         <point x="11.568266940211918" y="15.424355920282554" z="0.0"/>
                         <point x="10.568137716027667" y="14.090850288036886" z="8.872281974293454"/>
                         <point x="7.740681472225134" y="10.32090862963351" z="16.210465793080225"/>
@@ -631,19 +591,16 @@
                     <rotate time="27" x="0" y="1" z="0"/>
                     <scale x="0.0096" y="0.0096" z="0.0096"/>
                 </transform>
-
                 <color R="219" G="219" B="219"/> <!-- LIGHT (152, 168, 184) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
 
-
             <!-- ENCELADUS -->
             <group label="Enceladus">
                 <transform>
-                    <translate time="5" align="True">                        ✔ 
+                    <translate time="14" align="True">                        ✔ 
                         <point x="9.334037471469061" y="-5.993380716343869" z="0.0"/>
                         <point x="8.52706753352639" y="-5.475225729338699" z="5.618388829687053"/>
                         <point x="6.245690153060397" y="-4.010354472866662" z="10.26530718926107"/>
@@ -663,19 +620,16 @@
                     <rotate time="14" x="0" y="1" z="0"/>
                     <scale x="0.0043" y="0.0043" z="0.0043"/>
                 </transform>
-
                 <color R="235" G="235" B="235"/> <!-- LIGHT  (155, 170, 183) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
 
-
             <!-- IAPETUS -->
             <group label="Iapetus">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="790" align="True">
                         <point x="142.4437463225902" y="78.66950880273272" z="0.0"/>
                         <point x="130.12883742259723" y="71.86817242171108" z="83.61420750590248"/>
                         <point x="95.31347034886215" y="52.640176127126075" z="152.77075892280615"/>
@@ -695,19 +649,16 @@
                     <rotate time="790" x="0" y="1" z="0"/>
                     <scale x="0.0126" y="0.0126" z="0.0126"/>
                 </transform>
-
                 <color R="80" G="46" B="37"/> <!-- LIGHT (220, 220, 220) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
 
-
             <!-- MIMAS -->
             <group label="Mimas">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="9" align="True">
                         <point x="5.656854249492381" y="-7.542472332656506" z="0.0"/>
                         <point x="5.1677935041700085" y="-6.890391338893343" z="4.338524192808535"/>
                         <point x="3.7851743140465204" y="-5.04689908539536" z="7.926878138425537"/>
@@ -727,9 +678,7 @@
                     <rotate time="9" x="0" y="1" z="0"/>
                     <scale x="0.0034" y="0.0034" z="0.0034"/>
                 </transform>
-                
                 <color R="222" G="222" B="222"/> <!-- LIGHT (153, 166, 183) -->
-                
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -765,9 +714,7 @@
                 <transform>
                     <rotate time="7.2" x="0" y="1" z="0"/>
                 </transform>
-
                 <color R="206.0" G="204.0" B="209.0"/>
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -776,7 +723,7 @@
             <!-- MIRANDA -->
             <group label="Miranda">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="14.3" align="True">
                         <point x="5.656854249492381" y="-7.542472332656506" z="0.0"/>
                         <point x="5.1677935041700085" y="-6.890391338893343" z="4.338524192808535"/>
                         <point x="3.7851743140465204" y="-5.04689908539536" z="7.926878138425537"/>
@@ -796,7 +743,6 @@
                     <rotate time="14.3" x="0" y="1" z="0"/>
                     <scale x="0.0093" y="0.0093" z="0.0093"/>
                 </transform>
-                
                 <color R="212" G="212" B="212"/> <!-- LIGHT (152, 168, 184)-->
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
@@ -806,7 +752,7 @@
             <!-- ARIEL -->
             <group label="Ariel">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="25" align="True">
                         <point x="8.372144289248723" y="11.162859052331628" z="0.0"/>
                         <point x="7.648334386171612" y="10.197779181562147" z="6.421015805356631"/>
                         <point x="5.602057984788851" y="7.469410646385132" z="11.731779644869794"/>
@@ -826,9 +772,7 @@
                     <rotate time="25" x="0" y="1" z="0"/>
                     <scale x="0.0228" y="0.0228" z="0.0228"/>
                 </transform>
-
                 <color R="219" G="219" B="219"/> <!-- LIGHT (153, 166, 183) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -837,7 +781,7 @@
             <!-- UMBRIEL -->
             <group label="Umbriel">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="41" align="True">
                         <point x="8.210000000000003" y="18.96018284018731" z="0.0"/>
                         <point x="7.500208207245755" y="17.320988909726303" z="8.904820905739518"/>
                         <point x="5.493562278206228" y="12.686838640529354" z="16.269917379118418"/>
@@ -857,9 +801,7 @@
                     <rotate time="41" x="0" y="1" z="0"/>
                     <scale x="0.0231" y="0.0231" z="0.0231"/>
                 </transform>
-
                 <color R="61" G="54" B="47"/> <!-- LIGHT (100, 120, 135) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -868,7 +810,7 @@
             <!-- OBERON -->
             <group label="Oberon">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="135" align="True">
                         <point x="31.27217733065608" y="24.073333333333327" z="0.0"/>
                         <point x="28.56855555101478" y="21.992084316982872" z="19.583013575289524"/>
                         <point x="20.925170979423644" y="16.108204130412243" z="35.77994619731827"/>
@@ -888,9 +830,7 @@
                     <rotate time="135" x="0" y="1" z="0"/>
                     <scale x="0.03" y="0.03" z="0.03"/>
                 </transform>
-
                 <color R="89" G="70" B="59"/> <!-- LIGHT (120, 140, 160) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -899,7 +839,7 @@
             <!-- TITANIA -->
             <group label="Titania">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="87" align="True">
                         <point x="21.88390969784233" y="-21.199454766015197" z="0.0"/>
                         <point x="19.991946299924724" y="-19.366665605992967" z="14.669634926933858"/>
                         <point x="14.643193765619737" y="-14.185204022060935" z="26.802756705551346"/>
@@ -919,9 +859,7 @@
                     <rotate time="87" x="0" y="1" z="0"/>
                     <scale x="0.0312" y="0.0312" z="0.0312"/>
                 </transform>
-
                 <color R="217" G="217" B="217"/> <!-- LIGHT (153, 166, 183) -->
-                
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -929,7 +867,7 @@
         </group>
 
 
-        <!-- NEPTUNE -->
+        <!-- NEPTUNE'S GROUP -->
         <group>
             <transform> 
                 <translate time="3299.95" align="True">
@@ -952,13 +890,12 @@
                 <scale x="0.165" y="0.165" z="0.165"/>
             </transform>
 
+            <!-- NEPTUNE -->
             <group label="Neptune">
                 <transform>
                     <rotate time="6.7" x="0" y="1" z="0"/>
                 </transform>
-
                 <color R="91.0" G="93.0" B="223.0"/>
-
                 <models> 
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
@@ -967,7 +904,7 @@
             <!-- PROTEUS -->
             <group label="Proteus">
                 <transform>
-                    <translate time="5" align="True">                       ✔ 
+                    <translate time="11.2" align="True">
                         <point x="6.92820323027551" y="5.333333333333332" z="0.0"/>
                         <point x="6.329228590642986" y="4.8722424407605365" z="4.338524192808535"/>
                         <point x="4.635872828451652" y="3.5686965672472435" z="7.926878138425537"/>
@@ -987,19 +924,16 @@
                     <rotate time="11.2" x="0" y="1" z="0"/>
                     <scale x="0.0085" y="0.0085" z="0.0085"/>
                 </transform>
-
                 <color R="115" G="115" B="125"/> <!-- LIGHT (60, 80, 100) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>
             </group>
 
-
             <!-- TRITON -->
             <group label="Triton">
                 <transform>
-                    <translate time="5" align="True">
+                    <translate time="58.8" align="True">
                         <point x="12.115000000000004" y="27.97839404492926" z="0.0"/>
                         <point x="11.06760321934011" y="25.559534791879923" z="13.14030514896885"/>
                         <point x="8.10651729603757" y="18.721199772230584" z="24.008532161756346"/>
@@ -1019,9 +953,7 @@
                     <rotate time="58.8" x="0" y="1" z="0"/>
                     <scale x="0.0550" y="0.0550" z="0.0550"/>
                 </transform>
-
                 <color R="218" G="193" B="172"/> <!-- LIGHT (110, 125, 145) -->
-
                 <models>
                     <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
                 </models>

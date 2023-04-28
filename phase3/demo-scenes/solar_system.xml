@@ -166,7 +166,7 @@
             <!-- MOON -->
             <group label="Moon">
                 <transform>
-                    <translate time="273" align="True" show="false">
+                    <translate time="546" align="True" show="false">
                         <point x="-0.6238239071181022" y="-0.8317652094908029" z="11.191686395877635"/>
                         <point x="-2.983990616607229" y="-3.978654155476305" z="9.745672543920882"/>
                         <point x="-4.828198239781255" y="-6.4375976530416725" z="6.614543372464632"/>
@@ -231,7 +231,7 @@
             <!-- PHOBOS -->
             <group label="Phobos">
                 <transform>
-                    <translate time="3.2" align="True" show="false">
+                    <translate time="6.4" align="True" show="false">
                         <point x="5.656854249492381" y="7.542472332656506" z="0.0"/>
                         <point x="5.1677935041700085" y="6.890391338893343" z="4.338524192808535"/>
                         <point x="3.7851743140465204" y="5.04689908539536" z="7.926878138425537"/>
@@ -260,7 +260,7 @@
             <!-- DEIMOS -->
             <group label="Deimos">
                 <transform>
-                    <translate time="12.6" align="True" show="false">
+                    <translate time="25.2" align="True" show="false">
                         <point x="14.212846301849607" y="-18.950461735799472" z="0.0"/>
                         <point x="12.984081179227147" y="-17.312108238969525" z="10.900542034431444"/>
                         <point x="9.510250464041883" y="-12.680333952055841" z="19.916281322794163"/>
@@ -325,7 +325,7 @@
             <!-- IO -->
             <group label="Io">
                 <transform>
-                    <translate time="17.7" align="True" show="false">
+                    <translate time="35.4" align="True" show="false">
                         <point x="5.656854249492381" y="7.542472332656506" z="0.0"/>
                         <point x="5.1677935041700085" y="6.890391338893343" z="4.338524192808535"/>
                         <point x="3.7851743140465204" y="5.04689908539536" z="7.926878138425537"/>
@@ -354,7 +354,7 @@
             <!-- EUROPA -->
             <group label="Europa">
                 <transform>
-                    <translate time="35.5" align="True" show="false">
+                    <translate time="71" align="True" show="false">
                         <point x="10.998522628062371" y="8.466666666666663" z="0.0"/>
                         <point x="10.04765038764574" y="7.7346848747073516" z="6.8874071560835475"/>
                         <point x="7.359448115166997" y="5.665305800504997" z="12.583919044750537"/>
@@ -383,7 +383,7 @@
             <!-- GANYMEDE -->
             <group label="Ganymede">
                 <transform>
-                    <translate time="71.5" align="True" show="false">
+                    <translate time="143" align="True" show="false">
                         <point x="16.43922532569893" y="-15.925061768777406" z="0.0"/>
                         <point x="15.017979623455465" y="-14.548267841544442" z="11.019851449733679"/>
                         <point x="10.999988810254825" y="-10.655946237644295" z="20.134270471600864"/>
@@ -412,7 +412,7 @@
             <!-- CALLISTO -->
             <group label="Callisto">
                 <transform>
-                    <translate time="167" align="True" show="false">
+                    <translate time="334" align="True" show="false">
                         <point x="17.850000000000005" y="41.222809220139276" z="0.0"/>
                         <point x="16.30678641892043" y="37.658910114325764" z="19.36066421040809"/>
                         <point x="11.943981323505623" y="27.583443329287327" z="35.37369369272396"/>
@@ -501,7 +501,7 @@
             <!-- TITAN -->
             <group label="Titan">
                 <transform>
-                    <translate time="160" align="True" show="False">
+                    <translate time="320" align="True" show="False">
                         <point x="26.450000000000006" y="61.0836584802624" z="0.0"/>
                         <point x="24.163277354646798" y="55.80269874083565" z="28.688491224946436"/>
                         <point x="17.698504538191802" y="40.87294543751539" z="52.41648169033886"/>
@@ -530,7 +530,7 @@
             <!-- RHEA -->
             <group label="Rhea">
                 <transform>
-                    <translate time="45" align="True" show="False">
+                    <translate time="90" align="True" show="False">
                         <point x="19.658776665906757" y="-15.133333333333331" z="0.0"/>
                         <point x="17.959186125949472" y="-13.824987925658025" z="12.310562397094218"/>
                         <point x="13.154289150731563" y="-10.126176509564052" z="22.49251671778246"/>
@@ -559,7 +559,7 @@
             <!-- TETHYS -->
             <group label="Tethys">
                 <transform>
-                    <translate time="19" align="True" show="False">
+                    <translate time="38" align="True" show="False">
                         <point x="10.298786338393082" y="9.976675015577577" z="0.0"/>
                         <point x="9.408409478670674" y="9.11414614285732" z="6.903676621806581"/>
                         <point x="6.891233147369287" y="6.675698602618695" z="12.613644837769636"/>
@@ -588,7 +588,7 @@
             <!-- DIONE -->
             <group label="Dione">
                 <transform>
-                    <translate time="27" align="True" show="False">
+                    <translate time="54" align="True" show="False">
                         <point x="11.568266940211918" y="15.424355920282554" z="0.0"/>
                         <point x="10.568137716027667" y="14.090850288036886" z="8.872281974293454"/>
                         <point x="7.740681472225134" y="10.32090862963351" z="16.210465793080225"/>
@@ -617,7 +617,7 @@
             <!-- ENCELADUS -->
             <group label="Enceladus">
                 <transform>
-                    <translate time="14" align="True" show="False">                         
+                    <translate time="28" align="True" show="False">                         
                         <point x="9.334037471469061" y="-5.993380716343869" z="0.0"/>
                         <point x="8.52706753352639" y="-5.475225729338699" z="5.618388829687053"/>
                         <point x="6.245690153060397" y="-4.010354472866662" z="10.26530718926107"/>
@@ -646,7 +646,7 @@
             <!-- IAPETUS -->
             <group label="Iapetus">
                 <transform>
-                    <translate time="790" align="True" show="False">
+                    <translate time="1580" align="True" show="False">
                         <point x="142.4437463225902" y="78.66950880273272" z="0.0"/>
                         <point x="130.12883742259723" y="71.86817242171108" z="83.61420750590248"/>
                         <point x="95.31347034886215" y="52.640176127126075" z="152.77075892280615"/>
@@ -675,7 +675,7 @@
             <!-- MIMAS -->
             <group label="Mimas">
                 <transform>
-                    <translate time="9" align="True" show="False">
+                    <translate time="18" align="True" show="False">
                         <point x="5.656854249492381" y="-7.542472332656506" z="0.0"/>
                         <point x="5.1677935041700085" y="-6.890391338893343" z="4.338524192808535"/>
                         <point x="3.7851743140465204" y="-5.04689908539536" z="7.926878138425537"/>
@@ -740,7 +740,7 @@
             <!-- MIRANDA -->
             <group label="Miranda">
                 <transform>
-                    <translate time="14.3" align="True" show="False">
+                    <translate time="28.6" align="True" show="False">
                         <point x="5.656854249492381" y="-7.542472332656506" z="0.0"/>
                         <point x="5.1677935041700085" y="-6.890391338893343" z="4.338524192808535"/>
                         <point x="3.7851743140465204" y="-5.04689908539536" z="7.926878138425537"/>
@@ -769,7 +769,7 @@
             <!-- ARIEL -->
             <group label="Ariel">
                 <transform>
-                    <translate time="25" align="True" show="False">
+                    <translate time="50" align="True" show="False">
                         <point x="8.372144289248723" y="11.162859052331628" z="0.0"/>
                         <point x="7.648334386171612" y="10.197779181562147" z="6.421015805356631"/>
                         <point x="5.602057984788851" y="7.469410646385132" z="11.731779644869794"/>
@@ -798,7 +798,7 @@
             <!-- UMBRIEL -->
             <group label="Umbriel">
                 <transform>
-                    <translate time="41" align="True" show="False">
+                    <translate time="82" align="True" show="False">
                         <point x="8.210000000000003" y="18.96018284018731" z="0.0"/>
                         <point x="7.500208207245755" y="17.320988909726303" z="8.904820905739518"/>
                         <point x="5.493562278206228" y="12.686838640529354" z="16.269917379118418"/>
@@ -827,7 +827,7 @@
             <!-- OBERON -->
             <group label="Oberon">
                 <transform>
-                    <translate time="135" align="True" show="False">
+                    <translate time="270" align="True" show="False">
                         <point x="31.27217733065608" y="24.073333333333327" z="0.0"/>
                         <point x="28.56855555101478" y="21.992084316982872" z="19.583013575289524"/>
                         <point x="20.925170979423644" y="16.108204130412243" z="35.77994619731827"/>
@@ -856,7 +856,7 @@
             <!-- TITANIA -->
             <group label="Titania">
                 <transform>
-                    <translate time="87" align="True" show="False">
+                    <translate time="174" align="True" show="False">
                         <point x="21.88390969784233" y="-21.199454766015197" z="0.0"/>
                         <point x="19.991946299924724" y="-19.366665605992967" z="14.669634926933858"/>
                         <point x="14.643193765619737" y="-14.185204022060935" z="26.802756705551346"/>
@@ -921,7 +921,7 @@
             <!-- PROTEUS -->
             <group label="Proteus">
                 <transform>
-                    <translate time="11.2" align="True" show="False">
+                    <translate time="22.4" align="True" show="False">
                         <point x="6.92820323027551" y="5.333333333333332" z="0.0"/>
                         <point x="6.329228590642986" y="4.8722424407605365" z="4.338524192808535"/>
                         <point x="4.635872828451652" y="3.5686965672472435" z="7.926878138425537"/>
@@ -950,7 +950,7 @@
             <!-- TRITON -->
             <group label="Triton">
                 <transform>
-                    <translate time="58.8" align="True" show="False">
+                    <translate time="117.6" align="True" show="False">
                         <point x="12.115000000000004" y="27.97839404492926" z="0.0"/>
                         <point x="11.06760321934011" y="25.559534791879923" z="13.14030514896885"/>
                         <point x="8.10651729603757" y="18.721199772230584" z="24.008532161756346"/>

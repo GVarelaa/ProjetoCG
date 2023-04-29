@@ -98,13 +98,13 @@ void renderScene(void){
 
 	// set the camera
 	glLoadIdentity();
-
-	Camera camera = world.camera;
 	
 	if(world.camera.mode == EXPLORER){
 		Point p = world.getGroupPosition(world.camera.groupIndex);
-		camera.updateExplorer(p);
+		world.camera.updateExplorer(p);
 	}
+
+	Camera camera = world.camera;
 
 	gluLookAt(camera.position.x, camera.position.y, camera.position.z,
 			  camera.lookAt.x  , camera.lookAt.y  , camera.lookAt.z  ,

@@ -32,3 +32,11 @@ void Point::crossProduct(Point v){
     y = zAux * v.x - xAux * v.z; 
     z = xAux * v.y - yAux * v.x;
 }
+
+
+float Point::distanceTo(Point p){
+  float dx = x - p.x;
+  float dy = y - p.y;
+  float dz = z - p.z;
+  return sqrt(dx*dx + dy*dy + dz*dz);
+}

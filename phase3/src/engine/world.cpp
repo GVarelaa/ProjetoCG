@@ -78,3 +78,23 @@ Point World::getGroupPosition(int n){
     return Point(0, 0, 0);
 }
 
+
+
+Point World::getClosestGroupPosition(){
+    vector<Point> points;
+    for(int i=0; i<groups.size(); i++){
+        groups[i].getGroupPositions(&points);
+    }
+    
+    if(points.size() > 0){
+        Point p = points[0];
+        for(int i=0; i<points.size(); i++){
+            if(points[i].distanceTo(camera.position) < p.distanceTo(camera.position)){
+                p = points[i];
+            }
+        }
+
+        return p;
+    }
+    else return Point(0, 0, 0);
+}

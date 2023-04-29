@@ -157,7 +157,13 @@ void processMouseMotion(int x, int y){
 
 
 void explorerChoice(int choice) {
-	Point p = world.getGroupPosition(choice-1);
+	Point p;
+	if(choice == 0){
+		p = world.getClosestGroupPosition();
+	}
+	else{
+		p = world.getGroupPosition(choice-1);
+	}
 
 	world.camera.mode = EXPLORER;
 	world.camera.beta = 0;

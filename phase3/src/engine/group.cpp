@@ -184,3 +184,15 @@ Point* Group::getGroupPosition(int *i){
 
     return NULL;
 }
+
+
+void Group::getGroupPositions(vector<Point> *points){
+    if(label)
+        points->push_back(position);
+    
+        
+
+    for(int i=0; i<groups.size(); i++){
+        groups[i].getGroupPositions(points);
+    }
+}

@@ -18,6 +18,7 @@ class Point {
         Point(float x1, float y1, float z1);
         void normalizeVector();
         void crossProduct(Point v);
+        float distanceTo(Point p);
 };
 
 #endif

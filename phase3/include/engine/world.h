@@ -24,6 +24,7 @@ class World{
         vector<char *> getLabels();
         void calculatePositions();
         Point getGroupPosition(int i);
+        Point getClosestGroupPosition();
 };
 
 #endif

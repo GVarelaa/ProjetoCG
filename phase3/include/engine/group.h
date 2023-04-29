@@ -27,6 +27,7 @@ class Group{
         void getLabels(vector<char *> *labels);
         void calculatePositions(float matrix[4][4]);
         Point* getGroupPosition(int *i);
+        void getGroupPositions(vector<Point> *points);
 };
 
 #endif

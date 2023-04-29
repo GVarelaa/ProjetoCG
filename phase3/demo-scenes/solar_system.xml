@@ -39,7 +39,7 @@
         <group>
             <color R="255.0" G="255.0" B="255.0"/>
             <transform>
-                <translate time="30" align="True" show="true">
+                <translate time="300" align="True" show="true">
                     <point x="12.132034355964265" y="0.0" z="512.1320343559643"/>
                     <point x="-176.14985567308423" y="42.37744611642271" z="663.7343684858348"/>
                     <point x="-368.55565232801564" y="77.4274468123041" z="752.4437258815046"/>
@@ -56,9 +56,11 @@
                     <point x="252.44372588150466" y="-77.42744681230413" z="131.44434767198408"/>
                     <point x="163.73436848583512" y="-42.377446116422796" z="323.85014432691526"/>
                 </translate>
+                <rotate angle="90" x="0" y="0" z="1"/>
+                <scale x="0.5" y="0.5" z="0.5"/>
             </transform>
             <models> 
-                <model file="teste.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+                <model file="comet.3d"> <!-- generator comet.patch 10 comet.3d-->
                     <color R="255.0" G="122.0" B="24.0"/>
                 </model>
             </models>   

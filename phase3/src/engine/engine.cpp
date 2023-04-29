@@ -24,6 +24,7 @@ int window;
 int timebase = 0, frames = 0;
 int group;
 bool axis = true;
+bool debug = false;
 
 
 void showFPS(){
@@ -38,6 +39,42 @@ void showFPS(){
         sprintf(title, "CG@G48 | %d FPS", fps);
         glutSetWindowTitle(title);
     }
+}
+
+
+void renderText() {
+	// save projection
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+
+	// set projection so that coordinates match window pixels
+	gluOrtho2D(0, world.window.width, world.window.height, 0);
+	glMatrixMode(GL_MODELVIEW);
+
+	// disable depth test (assuming text is written in the end)
+	glDisable(GL_DEPTH_TEST);
+
+	// set modelview matrix
+	glPushMatrix();
+	glLoadIdentity();
+	glRasterPos2d(10, 20); // text position in pixels
+
+	// render text
+	char text[100];
+	sprintf(text, "Position: (%f, %f, %f)   |   LookAt: (%f, %f, %f)", world.camera.position.x, world.camera.position.y, world.camera.position.z, 
+																       world.camera.lookAt.x, world.camera.lookAt.y, world.camera.lookAt.z);
+
+	for (char *c = text; *c != '\0'; c++) {
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *c);
+	}
+
+	// Restore matrices and reenable depth test
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glEnable(GL_DEPTH_TEST);
 }
 
 
@@ -121,6 +158,9 @@ void renderScene(void){
 	world.drawModels();
 
 	showFPS();
+	if (debug){
+		renderText();
+	}
 
 	//  End of frame
 	glutSwapBuffers();
@@ -211,13 +251,17 @@ void modeChoice(int choice){
 void menuChoice(int choice) {
 	switch (choice) {
 		case 0:
-			axis = axis ^ 1;
+			axis ^= 1;
+			break;
+		
+		case 1:
+			debug ^= 1;
 			break;
 	}
 }
 
 
-void cameraMenu(){
+void visualizationMenu(){
 	int explorerMenu = glutCreateMenu(explorerChoice);
 	glutAddMenuEntry("Closest group", 0);
 	// Meter menus
@@ -242,6 +286,7 @@ void cameraMenu(){
 
 	glutCreateMenu(menuChoice);
 	glutAddMenuEntry("Toggle axis", 0);
+	glutAddMenuEntry("Toggle debug", 1);
 
 	glutAddSubMenu("Camera", cameraMenu);
 	glutAddSubMenu("Mode", modeMenu);
@@ -299,7 +344,7 @@ int main(int argc, char **argv) {
 	world.loadModels();
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 
-	cameraMenu();
+	visualizationMenu();
 
 	// GLUT's main cycle
 	glutMainLoop();

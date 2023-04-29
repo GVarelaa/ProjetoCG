@@ -18,16 +18,15 @@ class Group{
         vector<Model> models;
         vector<Transformation *> transforms;
         Point *color;
-        Point position;
 
         Group();
         Group(XMLElement *groupElement);
         void loadModels();
         void drawModels();
         void getLabels(vector<char *> *labels);
-        void calculatePositions(float matrix[4][4]);
-        Point* getGroupPosition(int *i);
+        Point* getGroupPosition(float matrix[4][4], int *i);
         void getGroupPositions(vector<Point> *points);
+        void getGroupsNumber(int *n);
 };
 
 #endif

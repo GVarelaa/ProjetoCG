@@ -55,7 +55,7 @@ vector<char *> World::getLabels() {
 }
 
 
-void World::calculatePositions(){
+Point World::getGroupPosition(int n){
     for(int i=0; i<groups.size(); i++){
         float matrix[4][4] = {
             {1, 0, 0, 0},
@@ -63,14 +63,7 @@ void World::calculatePositions(){
             {0, 0, 1, 0},
             {0, 0, 0, 1}
         };
-        groups[i].calculatePositions(matrix);
-    }
-}
-
-
-Point World::getGroupPosition(int n){
-    for(int i=0; i<groups.size(); i++){
-        Point *p = groups[i].getGroupPosition(&n);
+        Point *p = groups[i].getGroupPosition(matrix, &n);
 
         if(p) return Point(p->x, p->y, p->z);
     }
@@ -79,22 +72,26 @@ Point World::getGroupPosition(int n){
 }
 
 
-
-Point World::getClosestGroupPosition(){
-    vector<Point> points;
+int World::getClosestGroupIndex(){
+    int n=0;
     for(int i=0; i<groups.size(); i++){
-        groups[i].getGroupPositions(&points);
+        groups[i].getGroupsNumber(&n);
+    }
+    
+    vector<Point> points;
+    for(int i=0; i<n; i++){
+        points.push_back(getGroupPosition(i));
     }
     
     if(points.size() > 0){
-        Point p = points[0];
+        int n = 0;
         for(int i=0; i<points.size(); i++){
-            if(points[i].distanceTo(camera.position) < p.distanceTo(camera.position)){
-                p = points[i];
+            if(points[i].distanceTo(camera.position) < points[n].distanceTo(camera.position)){
+                n = i;
             }
         }
 
-        return p;
+        return n;
     }
-    else return Point(0, 0, 0);
+    else return 0;
 }

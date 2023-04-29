@@ -80,11 +80,23 @@ void Camera::updateLateralDirection(){
     direction.normalizeVector();
 }
 
+
 void Camera::updateExplorerPosition(){
     position.x = radius * cos(beta) * sin(alpha) + explorerCenter.x;
     position.y = radius * sin(beta) + explorerCenter.y;
     position.z = radius * cos(beta) * cos(alpha) + explorerCenter.z;
 }
+
+
+void Camera::updateExplorer(Point p){
+    explorerCenter = p;
+    lookAt.x = p.x;
+	lookAt.y = p.y;
+	lookAt.z = p.z;
+
+    updateExplorerPosition();
+}
+
 
 void Camera::updateFPSPosition(int coef){
     position.x = position.x + coef * moveSpeed * direction.x;
@@ -95,6 +107,7 @@ void Camera::updateFPSPosition(int coef){
     lookAt.y = lookAt.y + coef * moveSpeed * direction.y;
     lookAt.z = lookAt.z + coef * moveSpeed * direction.z;
 }
+
 
 void Camera::processNormalKeys(unsigned char key){
     key = tolower(key);

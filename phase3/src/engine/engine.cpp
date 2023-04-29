@@ -22,6 +22,7 @@ using namespace std;
 World world;
 int window;
 int timebase = 0, frames = 0;
+int group;
 bool axis = true;
 
 
@@ -96,8 +97,14 @@ void renderScene(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// set the camera
-	Camera camera = world.camera;
 	glLoadIdentity();
+
+	Camera camera = world.camera;
+	
+	if(world.camera.mode == EXPLORER){
+		Point p = world.getGroupPosition(world.camera.groupIndex);
+		camera.updateExplorer(p);
+	}
 
 	gluLookAt(camera.position.x, camera.position.y, camera.position.z,
 			  camera.lookAt.x  , camera.lookAt.y  , camera.lookAt.z  ,
@@ -158,20 +165,13 @@ void processMouseMotion(int x, int y){
 
 void explorerChoice(int choice) {
 	Point p;
-	if(choice == 0){
-		p = world.getClosestGroupPosition();
-	}
-	else{
-		p = world.getGroupPosition(choice-1);
-	}
-
+	if(choice == 0)
+		world.camera.groupIndex = world.getClosestGroupIndex();
+	else
+		world.camera.groupIndex = choice-1;
+		
 	world.camera.mode = EXPLORER;
 	world.camera.beta = 0;
-
-	world.camera.explorerCenter = Point(p.x, p.y, p.z);
-	world.camera.lookAt.x = p.x;
-	world.camera.lookAt.y = p.y;
-	world.camera.lookAt.z = p.z;
 }
 
 
@@ -297,7 +297,6 @@ int main(int argc, char **argv) {
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	world.loadModels();
-	world.calculatePositions(); // posições dos grupos
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 
 	cameraMenu();

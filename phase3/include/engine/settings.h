@@ -59,6 +59,7 @@ class Camera{
         float startY;
         bool firstTime;
         Point explorerCenter;
+        int groupIndex;
 
         Camera();
         Camera(XMLElement *cameraElement);
@@ -69,6 +70,7 @@ class Camera{
         void updateDirection();
         void updateLateralDirection();
         void updateExplorerPosition();
+        void updateExplorer(Point p);
         void updateFPSPosition(int coef);
 };
 

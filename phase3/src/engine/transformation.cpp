@@ -29,7 +29,34 @@ TranslateDynamic::TranslateDynamic(XMLElement *elem){
 
     int i=0;
     for(XMLElement *childElem = elem->FirstChildElement(); childElem; childElem = childElem->NextSiblingElement(), i++){
-        points.push_back(Point(childElem));
+        string name(childElem->Name());
+
+        if (name == "ellipsepoints"){
+            int n=0, a=0, b=0, xrotation=0, yrotation=0, xcenter=0, zcenter=0;
+            float step=0;
+
+            if (childElem->Attribute("n")){
+                n = atoi((char *)childElem->Attribute("n"));
+                step = 2*M_PI / n;
+            }
+            if (childElem->Attribute("a")) a = atoi((char *)childElem->Attribute("a"));
+            if (childElem->Attribute("b")) b = atoi((char *)childElem->Attribute("b"));
+            if (childElem->Attribute("xRotationAngle")) xrotation = atoi((char *)childElem->Attribute("xRotationAngle"));
+            if (childElem->Attribute("yRotationAngle")) yrotation = atoi((char *)childElem->Attribute("yRotationAngle"));
+            if (childElem->Attribute("xCenter")) xcenter = atoi((char *)childElem->Attribute("xCenter"));
+            if (childElem->Attribute("zCenter")) zcenter = atoi((char *)childElem->Attribute("zCenter"));
+
+            for (int j=0; j<n; j++){
+                float x = xcenter + a * cos(yrotation*M_PI / 180.0) * cos(j*step) - b * sin(yrotation*M_PI / 180.0) * sin(j*step) * cos(xrotation*M_PI / 180.0);
+                float y = b * sin(j*step) * sin(xrotation*M_PI / 180.0);
+                float z = zcenter + a * sin(yrotation*M_PI / 180.0) * cos(j*step) + b * cos(yrotation*M_PI / 180.0) * sin(j*step) * cos(xrotation*M_PI / 180.0);
+                points.push_back(Point(x, y, z));
+            }
+            i+=n;
+        }
+        else if (name == "point"){
+            points.push_back(Point(childElem));
+        }
     }
 
     if (i < 4){

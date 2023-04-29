@@ -45,9 +45,9 @@ void toFile(char* filename, pair<vector<Point>, vector<Triangle> > pair){
 
 int main(int argc, char *argv[]){
     if (argc == 1 || (argc == 2 && strcmp(argv[1], "--help") == 0)){
-        cout << "---------------------------------------HELP---------------------------------------" << endl;
+        cout << "-------------------------------------HELP--------------------------------------" << endl;
         cout << "USAGE: ./generator {MODEL} {ARGUMENTS} {OUTPUT FILE}" << endl;
-        cout << "----------------------------------------------------------------------------------" << endl;
+        cout << "-------------------------------------------------------------------------------" << endl;
         cout << "MODEL     | ARGUMENTS                                           | OUTPUT FILE" << endl;
         cout << "plane     | {length} {divisions}                                | {filename}.3d" << endl;
         cout << "box       | {length} {divisions}                                | {filename}.3d" << endl;
@@ -57,8 +57,8 @@ int main(int argc, char *argv[]){
         cout << "torus     | {radius_in} {radius_out} {slices} {stacks}          | {filename}.3d" << endl;
         cout << "ellipsoid | {a} {b} {c} {slices} {stacks}                       | {filename}.3d" << endl;
         cout << "belt      | {n} {radiusIn} {radiusOut} {height} {seed}          | {filename}.3d" << endl;
-        cout << "bezier    | {control_points_filename}.patch {tesselation_level} | {filename}.patch" << endl;
-        cout << "----------------------------------------------------------------------------------" << endl;
+        cout << "patch     | {filepath}.patch {tesselation_level}                | {filename}.3d" << endl;
+        cout << "-------------------------------------------------------------------------------" << endl;
         
         return 1;
     }
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]){
     char erTorus[] = "torus ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erEllipsoid[] = "ellipsoid ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erBelt[] = "belt [0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
-    char erBezier[] = "patch [a-zA-Z0-9_]+\\.patch [0-9]+ [a-zA-Z0-9_]+\\.3d$";
+    char erBezier[] = "patch [a-zA-Z0-9_/.-]+\\.patch [0-9]+ [a-zA-Z0-9_]+\\.3d$";
 
     if (regex_match(inp, regex(erPlane))){
         float length = atof(argv[2]);

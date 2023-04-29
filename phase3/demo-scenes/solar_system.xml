@@ -86,7 +86,7 @@
         <group>
             <transform>
                 <translate time="20" align="True">
-                    <ellipsepoints n="15" a="9" b="12"/>
+                    <ellipsepoints n="15" a="22.5" b="30"/>
                 </translate>
                 <scale x="0.0455" y="0.0455" z="0.0455"/>
             </transform>
@@ -137,7 +137,7 @@
         <group>
             <transform> 
                 <translate time="37.64" align="True">
-                    <ellipsepoints n="15" a="30" b="45"/>
+                    <ellipsepoints n="15" a="33.75" b="45"/>
                 </translate>
                 <scale x="0.024" y="0.024" z="0.024"/>
             </transform>
@@ -217,7 +217,7 @@
         <group>
             <transform> 
                 <translate time="237.42" align="True">
-                    <ellipsepoints n="15" a="104" b="156"/>
+                    <ellipsepoints n="15" a="117" b="156"/>
                 </translate>
                 <scale x="0.5" y="0.5" z="0.5"/>
             </transform>
@@ -355,7 +355,7 @@
         <group>
             <transform> 
                 <translate time="589.53" align="True">
-                    <ellipsepoints n="15" a="190" b="285"/>
+                    <ellipsepoints n="15" a="213.75" b="285"/>
                 </translate>
                 <scale x="0.42" y="0.42" z="0.42"/>
             </transform>
@@ -604,7 +604,7 @@
         <group>
             <transform> 
                 <translate time="1681.53" align="True">
-                    <ellipsepoints n="15" a="380" b="570"/>
+                    <ellipsepoints n="15" a="427.5" b="570"/>
                 </translate>
                 <scale x="0.17" y="0.17" z="0.17"/>
             </transform>
@@ -771,7 +771,7 @@
         <group>
             <transform> 
                 <translate time="3299.95" align="True">
-                    <ellipsepoints n="15" a="600" b="900"/>
+                    <ellipsepoints n="15" a="675" b="900"/>
                 </translate>
                 <scale x="0.165" y="0.165" z="0.165"/>
             </transform>

@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "../point.h"
 #include "../triangle.h"
+#include "../generator/ellipsoid.h"
 
 using namespace std;
 

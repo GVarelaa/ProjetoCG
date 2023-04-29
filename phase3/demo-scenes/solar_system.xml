@@ -36,7 +36,7 @@
         <group label="Comet">
             <color R="255.0" G="255.0" B="255.0"/>
             <transform>
-                <translate time="300" align="True" show="true">
+                <translate time="300" align="True" show="true" tesselation="1000">
                     <ellipsepoints n="15" a="300" b="600" xRotationAngle="10" yRotationAngle="45" xCenter="-200" zCenter="300"/>
                 </translate>
                 <rotate angle="90" x="0" y="0" z="1"/>
@@ -44,7 +44,7 @@
             </transform>
             <models> 
                 <model file="comet.3d"> <!-- generator patch comet.patch 10 comet.3d-->
-                    <color R="255.0" G="122.0" B="24.0"/>
+                    <color R="33.0" G="41.0" B="71.0"/>
                 </model>
             </models>   
         </group>

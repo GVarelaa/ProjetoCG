@@ -56,7 +56,7 @@ int main(int argc, char *argv[]){
         cout << "cylinder  | {radius} {height} {slices}                                           | {filename}.3d" << endl;
         cout << "torus     | {radius_in} {radius_out} {slices} {stacks}                           | {filename}.3d" << endl;
         cout << "ellipsoid | {a} {b} {c} {slices} {stacks}                                        | {filename}.3d" << endl;
-        cout << "belt      | {n} {radiusIn} {radiusOut} {height} {seed} {lengthMin} {lengthMax}   | {filename}.3d" << endl;
+        cout << "belt      | {n} {radiusIn} {radiusOut} {height} {lengthMin} {lengthMax} {seed}   | {filename}.3d" << endl;
         cout << "patch     | {filepath}.patch {tesselation_level}                                 | {filename}.3d" << endl;
         cout << "----------------------------------------------------------------------------------" << endl;
         

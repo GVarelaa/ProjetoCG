@@ -152,10 +152,12 @@ int main(int argc, char *argv[]){
         float radiusIn = atof(argv[3]);
         float radiusOut = atof(argv[4]);
         float height = atof(argv[5]);
-        int seed = atoi(argv[6]);
-        char *filename = argv[7];
+        float lengthMin = atof(argv[6]);
+        float lengthMax = atof(argv[7]);
+        int seed = atoi(argv[8]);
+        char *filename = argv[9];
 
-        pair<vector<Point>, vector<Triangle> > belt = generateBelt(n, radiusIn, radiusOut, height, seed);
+        pair<vector<Point>, vector<Triangle> > belt = generateBelt(n, radiusIn, radiusOut, height, lengthMin, lengthMax, seed);
         toFile(filename, belt);
     }
     else if(regex_match(inp, regex(erBezier))){

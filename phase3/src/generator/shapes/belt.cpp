@@ -1,15 +1,15 @@
 #include "../../../include/generator/belt.h"
 
-pair<vector<Point>, vector<Triangle> > generateBelt(int n, float radiusIn, float radiusOut, float height, int seed) {
+pair<vector<Point>, vector<Triangle> > generateBelt(int n, float radiusIn, float radiusOut, float height, float lengthMin, float lengthMax, int seed) {
     vector<Point> vertices;
     vector<Triangle> triangles;
 
     srand(seed);
     int index=0;
     for (int k = 0; k < n; k++){
-        float a = ((float)rand() / RAND_MAX) * 0.15;
-        float b = ((float)rand() / RAND_MAX) * 0.15;
-        float c = ((float)rand() / RAND_MAX) * 0.15;
+        float a = (((float)rand() / RAND_MAX) * (lengthMax - lengthMin)) + lengthMax;
+        float b = (((float)rand() / RAND_MAX) * (lengthMax - lengthMin)) + lengthMax;
+        float c = (((float)rand() / RAND_MAX) * (lengthMax - lengthMin)) + lengthMax;
         pair<vector<Point>, vector<Triangle> > pair = generateEllipsoid(a, b, c, 10, 10);
                 
         float alphaRandom = ((float)rand() / RAND_MAX) * (2 * M_PI);

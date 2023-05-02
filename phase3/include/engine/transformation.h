@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <stdio.h>
 #include "../tinyxml2/tinyxml2.h"
 #include "../point.h"
 
@@ -11,6 +12,10 @@
 #else
 #include <GL/glew.h>
 #include <GL/glut.h>
+#endif
+
+#ifdef _WIN32
+#define strcasecmp stricmp
 #endif
 
 using namespace std;

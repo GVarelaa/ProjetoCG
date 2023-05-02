@@ -9,6 +9,6 @@
 
 using namespace std;
 
-pair<vector<Point>, vector<Triangle> > generateBelt(int n, float radiusIn, float radiusOut, float height, int seed);
+pair<vector<Point>, vector<Triangle> > generateBelt(int n, float radiusIn, float radiusOut, float height, float lengthMin, float lengthMax, int seed);
 
 #endif

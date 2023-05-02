@@ -28,8 +28,8 @@
             <color R="147" G="146" B="140"/> 
 
             <models>
-                <model file="belt1.3d"/> <!-- ./generator belt 2000 20 90 5 39 belt1.3d -->
-                <model file="belt2.3d"/> <!-- ./generator belt 10000 375 1275 5 174 belt2.3d -->
+                <model file="belt1.3d"/> <!-- ./generator belt 2000 20 90 5 39 0 0.15 belt1.3d -->
+                <model file="belt2.3d"/> <!-- ./generator belt 10000 375 1275 5 174 0 0.15 belt2.3d -->
             </models>
         </group>
 

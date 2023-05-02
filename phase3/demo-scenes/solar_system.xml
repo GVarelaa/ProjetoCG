@@ -114,7 +114,7 @@
             <!-- MOON -->
             <group label="Moon">
                 <transform>
-                    <translate time="546" align="True" show="True">
+                    <translate time="546" align="True" show="False">
                         <ellipsepoints n="15" a="8.44" b="11.25" xRotationAngle="30" yRotationAngle="60"/>
                     </translate>
                     <rotate time="546" x="0" y="1" z="0"/>
@@ -155,7 +155,7 @@
             <!-- PHOBOS -->
             <group label="Phobos">
                 <transform>
-                    <translate time="6.4" align="True" show="True">
+                    <translate time="6.4" align="True" show="False">
                         <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="20" yRotationAngle="40"/>
                     </translate>
                     <rotate time="6.4" x="0" y="1" z="0"/>
@@ -172,7 +172,7 @@
             <!-- DEIMOS -->
             <group label="Deimos">
                 <transform>
-                    <translate time="25.2" align="True" show="True">
+                    <translate time="25.2" align="True" show="False">
                         <ellipsepoints n="15" a="20.1" b="26.8" xRotationAngle="50" yRotationAngle="70"/>
                     </translate>
                     <rotate time="25.2" x="0" y="1" z="0"/>
@@ -213,7 +213,7 @@
             <!-- IO -->
             <group label="Io">
                 <transform>
-                    <translate time="35.4" align="True" show="True">
+                    <translate time="35.4" align="True" show="False">
                         <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="50" yRotationAngle="20"/>
                     </translate>
                     <rotate time="35.4" x="0" y="1" z="0"/>
@@ -230,7 +230,7 @@
             <!-- EUROPA -->
             <group label="Europa">
                 <transform>
-                    <translate time="71" align="True" show="True">
+                    <translate time="71" align="True" show="False">
                         <ellipsepoints n="15" a="12.7" b="16.93" xRotationAngle="25" yRotationAngle="65"/>
                     </translate>
                     <rotate time="71" x="0" y="1" z="0"/>
@@ -247,7 +247,7 @@
             <!-- GANYMEDE -->
             <group label="Ganymede">
                 <transform>
-                    <translate time="143" align="True" show="True">
+                    <translate time="143" align="True" show="False">
                         <ellipsepoints n="15" a="20.32" b="27.09" xRotationAngle="120" yRotationAngle="75"/>
                     </translate>
                     <rotate time="143" x="0" y="1" z="0"/>
@@ -264,7 +264,7 @@
             <!-- CALLISTO -->
             <group label="Callisto">
                 <transform>
-                    <translate time="334" align="True" show="True">
+                    <translate time="334" align="True" show="False">
                         <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="140" yRotationAngle="30"/>
                     </translate>
                     <rotate time="334" x="0" y="1" z="0"/>
@@ -333,7 +333,7 @@
             <!-- TITAN -->
             <group label="Titan">
                 <transform>
-                    <translate time="320" align="True" show="True">
+                    <translate time="320" align="True" show="False">
                         <ellipsepoints n="15" a="52.9" b="70.53" xRotationAngle="90" yRotationAngle="50"/>
                     </translate>
                     <rotate time="320" x="0" y="1" z="0"/>
@@ -350,7 +350,7 @@
             <!-- RHEA -->
             <group label="Rhea">
                 <transform>
-                    <translate time="90" align="True" show="True">
+                    <translate time="90" align="True" show="False">
                         <ellipsepoints n="15" a="22.7" b="30.27" xRotationAngle="40" yRotationAngle="60"/>
                     </translate>
                     <rotate time="90" x="0" y="1" z="0"/>
@@ -367,7 +367,7 @@
             <!-- TETHYS -->
             <group label="Tethys">
                 <transform>
-                    <translate time="38" align="True" show="True">
+                    <translate time="38" align="True" show="False">
                         <ellipsepoints n="15" a="12.73" b="16.97" xRotationAngle="170" yRotationAngle="20"/>
                     </translate>
                     <rotate time="38" x="0" y="1" z="0"/>
@@ -384,7 +384,7 @@
             <!-- DIONE -->
             <group label="Dione">
                 <transform>
-                    <translate time="54" align="True" show="True">
+                    <translate time="54" align="True" show="False">
                         <ellipsepoints n="15" a="16.36" b="21.82" xRotationAngle="110" yRotationAngle="70"/>
                     </translate>
                     <rotate time="54" x="0" y="1" z="0"/>
@@ -401,7 +401,7 @@
             <!-- ENCELADUS -->
             <group label="Enceladus">
                 <transform>
-                    <translate time="28" align="True" show="True">                         
+                    <translate time="28" align="True" show="False">                         
                         <ellipsepoints n="15" a="10.36" b="13.81" xRotationAngle="70" yRotationAngle="30"/>
                     </translate>
                     <rotate time="28" x="0" y="1" z="0"/>
@@ -418,7 +418,7 @@
             <!-- IAPETUS -->
             <group label="Iapetus">
                 <transform>
-                    <translate time="1580" align="True" show="True">
+                    <translate time="1580" align="True" show="False">
                         <ellipsepoints n="15" a="154.18" b="205.57" xRotationAngle="130" yRotationAngle="20"/>
                     </translate>
                     <rotate time="1580" x="0" y="1" z="0"/>
@@ -435,7 +435,7 @@
             <!-- MIMAS -->
             <group label="Mimas">
                 <transform>
-                    <translate time="18" align="True" show="True">
+                    <translate time="18" align="True" show="False">
                         <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="20" yRotationAngle="40"/>
                     </translate>
                     <rotate time="18" x="0" y="1" z="0"/>
@@ -476,7 +476,7 @@
             <!-- MIRANDA -->
             <group label="Miranda">
                 <transform>
-                    <translate time="28.6" align="True" show="True">
+                    <translate time="28.6" align="True" show="False">
                         <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="60" yRotationAngle="80"/>
                     </translate>
                     <rotate time="28.6" x="0" y="1" z="0"/>
@@ -493,7 +493,7 @@
             <!-- ARIEL -->
             <group label="Ariel">
                 <transform>
-                    <translate time="50" align="True" show="True">
+                    <translate time="50" align="True" show="False">
                         <ellipsepoints n="15" a="11.84" b="15.79" xRotationAngle="50" yRotationAngle="40"/>
                     </translate>
                     <rotate time="50" x="0" y="1" z="0"/>
@@ -510,7 +510,7 @@
             <!-- UMBRIEL -->
             <group label="Umbriel">
                 <transform>
-                    <translate time="82" align="True" show="True">
+                    <translate time="82" align="True" show="False">
                         <ellipsepoints n="15" a="16.42" b="21.89" xRotationAngle="100" yRotationAngle="70"/>
                     </translate>
                     <rotate time="82" x="0" y="1" z="0"/>
@@ -527,7 +527,7 @@
             <!-- OBERON -->
             <group label="Oberon">
                 <transform>
-                    <translate time="270" align="True" show="True">
+                    <translate time="270" align="True" show="False">
                         <ellipsepoints n="15" a="36.11" b="48.15" xRotationAngle="40" yRotationAngle="65"/>
                     </translate>
                     <rotate time="270" x="0" y="1" z="0"/>
@@ -544,7 +544,7 @@
             <!-- TITANIA -->
             <group label="Titania">
                 <transform>
-                    <translate time="174" align="True" show="True">
+                    <translate time="174" align="True" show="False">
                         <ellipsepoints n="15" a="27.05" b="36.07" xRotationAngle="20" yRotationAngle="40"/>
                     </translate>
                     <rotate time="194" x="0" y="1" z="0"/>
@@ -585,7 +585,7 @@
             <!-- PROTEUS -->
             <group label="Proteus">
                 <transform>
-                    <translate time="22.4" align="True" show="True">
+                    <translate time="22.4" align="True" show="False">
                         <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="20" yRotationAngle="70"/>
                     </translate>
                     <rotate time="22.4" x="0" y="1" z="0"/>
@@ -602,7 +602,7 @@
             <!-- TRITON -->
             <group label="Triton">
                 <transform>
-                    <translate time="117.6" align="True" show="True">
+                    <translate time="117.6" align="True" show="False">
                         <ellipsepoints n="15" a="24.23" b="32.31" xRotationAngle="160" yRotationAngle="20"/>
                     </translate>
                     <rotate time="117.6" x="0" y="1" z="0"/>

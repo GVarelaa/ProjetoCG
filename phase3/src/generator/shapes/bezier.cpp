@@ -80,12 +80,13 @@ Point(*readFile(char *path, int *n))[4][4]{
     stream >> nPatchesStr;
 
     int nPatches = stoi(nPatchesStr);
-    int indexes[nPatches][16];
+    int **indexes = new int*[nPatches];
     for(int i=0; i<nPatches; i++){
         getline(file, line);
         stringstream stream(line);
         string token;
 
+        indexes[i] = new int[16];
         for(int j=0; j<16; j++) {
             getline(stream, token, ',');
             indexes[i][j] = stoi(token);
@@ -97,7 +98,7 @@ Point(*readFile(char *path, int *n))[4][4]{
     stream >> nPointsStr;
 
     int nPoints = stoi(nPointsStr);
-    Point points[nPoints];
+    Point *points = new Point[nPoints];
     for(int i=0; i<nPoints; i++){
         getline(file, line);
         stringstream stream(line);

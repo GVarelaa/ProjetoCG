@@ -223,7 +223,7 @@ Point* Group::getGroupPosition(float matrix[4][4], int *i){
     }
 
 
-    if(*i == 0)
+    if(*i == 0 && label)
         return new Point(matrix[0][3], matrix[1][3], matrix[2][3]);
     
     (*i)--;

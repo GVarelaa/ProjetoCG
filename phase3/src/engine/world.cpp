@@ -55,7 +55,7 @@ vector<char *> World::getLabels() {
 }
 
 
-Point World::getGroupPosition(int n){
+Point* World::getGroupPosition(int n){
     for(int i=0; i<groups.size(); i++){
         float matrix[4][4] = {
             {1, 0, 0, 0},
@@ -65,10 +65,10 @@ Point World::getGroupPosition(int n){
         };
         Point *p = groups[i].getGroupPosition(matrix, &n);
 
-        if(p) return Point(p->x, p->y, p->z);
+        if(p) return new Point(p->x, p->y, p->z);
     }
 
-    return Point(0, 0, 0);
+    return NULL;
 }
 
 
@@ -78,20 +78,23 @@ int World::getClosestGroupIndex(){
         groups[i].getGroupsNumber(&n);
     }
     
-    vector<Point> points;
+    vector<pair<Point*, int> > labeledGroups;
     for(int i=0; i<n; i++){
-        points.push_back(getGroupPosition(i));
+        Point *p = getGroupPosition(i);
+        if(p){
+            labeledGroups.push_back(pair<Point*, int>(p, i));
+        }
     }
     
-    if(points.size() > 0){
+    if(labeledGroups.size() > 0){
         int n = 0;
-        for(int i=0; i<points.size(); i++){
-            if(points[i].distanceTo(camera.position) < points[n].distanceTo(camera.position)){
+        for(int i=0; i<labeledGroups.size(); i++){
+            if(labeledGroups[i].first->distanceTo(camera.position) < labeledGroups[n].first->distanceTo(camera.position)){
                 n = i;
             }
         }
 
-        return n;
+        return labeledGroups[n].second;
     }
     else return 0;
 }

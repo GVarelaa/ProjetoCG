@@ -137,8 +137,8 @@ void renderScene(void){
 	glLoadIdentity();
 	
 	if(world.camera.mode == EXPLORER){
-		Point p = world.getGroupPosition(world.camera.groupIndex);
-		world.camera.updateExplorer(p);
+		Point *p = world.getGroupPosition(world.camera.groupIndex);
+		world.camera.updateExplorer(Point(p->x, p->y, p->z));
 	}
 
 	Camera camera = world.camera;

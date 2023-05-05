@@ -22,7 +22,7 @@ class World{
         void loadModels();
         void drawModels();
         vector<char *> getLabels();
-        Point getGroupPosition(int i);
+        Point* getGroupPosition(int i);
         int getClosestGroupIndex();
 };
 

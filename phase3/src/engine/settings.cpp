@@ -115,15 +115,15 @@ void Camera::processNormalKeys(unsigned char key){
     switch(key){
         case '-':
             if(mode == EXPLORER){
-                radius += 5;
+                radius += 0.5;
                 updateExplorerPosition();
             }
             break;
         case '+':
             if(mode == EXPLORER){
-                if (radius - 5 < 0)
+                if (radius - 0.5 < 0)
                     radius = 0;
-                else radius -= 5;
+                else radius -= 0.5;
                 updateExplorerPosition();
             }
             break;

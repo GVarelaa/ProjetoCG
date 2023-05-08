@@ -1,0 +1,622 @@
+<world> <!-- a world can have a camera, a window definition, and a single group -->
+    <window width="512" height="512" />
+    <camera mode="fps"> 
+	    <position x="10" y="10" z="10" />
+	    <lookAt x="0" y="0" z="0" />
+	    <up x="0" y="1" z="0" /> <!-- optional, use these values as default-->
+        <projection fov="60" near="1" far="1200" /> <!-- optional, use these values as default-->
+    </camera>
+
+
+    <!-- SOLAR SYSTEM -->
+    <group>
+        <!-- SUN -->
+        <group label="Sun">
+            <transform>
+                <rotate time="244.7" x="0" y="1" z="0"/>
+            </transform>
+
+            <color R="255.0" G="122.0" B="24.0"/>
+
+            <models> 
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>   
+        </group>
+
+        <!-- BELTS -->
+        <group>
+            <color R="147" G="146" B="140"/> 
+
+            <models>
+                <model file="belt1.3d"/> <!-- ./generator belt 2000 20 90 5 0 0.1 51 belt1.3d -->
+                <model file="belt2.3d"/> <!-- ./generator belt 10000 375 1275 5 0 0.1 39 belt2.3d -->
+            </models>
+        </group>
+
+        <!-- COMET -->
+        <group label="Comet">
+            <color R="255.0" G="255.0" B="255.0"/>
+
+            <transform>
+                <translate time="300" align="True" show="true" tesselation="1000">
+                    <ellipsepoints n="15" a="300" b="600" xRotationAngle="10" yRotationAngle="45" xCenter="-200" zCenter="300"/>
+                </translate>
+                <rotate angle="90" x="0" y="0" z="1"/>
+                <scale x="0.5" y="0.5" z="0.5"/>
+            </transform>
+
+            <models> 
+                <model file="comet.3d"> <!-- generator patch comet.patch 10 comet.3d-->
+                    <color R="33.0" G="41.0" B="71.0"/>
+                </model>
+            </models>   
+        </group>
+
+
+        <!-- MERCURY -->
+        <group label="Mercury">
+            <transform>
+                <translate time="4.82" align="True">
+                    <ellipsepoints n="15" a="9" b="12"/>
+                </translate>
+                <rotate time="590" x="0" y="1" z="0"/>
+                <scale x="0.017" y="0.017" z="0.017"/>
+            </transform>
+
+            <color R="206.0" G="204.0" B="209.0"/>
+
+            <models> 
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>  
+        </group>
+
+
+        <!-- VENUS -->
+        <group label="Venus">
+            <transform> 
+                <translate time="12.33" align="True">
+                    <ellipsepoints n="15" a="15.75" b="21"/>
+                </translate>
+                <rotate time="2430" x="0" y="1" z="0"/>
+                <scale x="0.043" y="0.043" z="0.043"/>
+            </transform>
+
+            <color R="165.0" G="124.0" B="27.0"/>
+
+            <models> 
+                <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+            </models>  
+        </group>
+
+
+        <!-- EARTH'S GROUP -->
+        <group>
+            <transform>
+                <translate time="20" align="True">
+                    <ellipsepoints n="15" a="22.5" b="30"/>
+                </translate>
+                <scale x="0.0455" y="0.0455" z="0.0455"/>
+            </transform>
+
+            <!-- EARTH -->
+            <group label="Earth">
+                <transform>
+                    <rotate time="10" x="0" y="1" z="0"/>
+                </transform>
+
+                <color R="159.0" G="193.0" B="100.0"/>
+
+                <models> 
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- MOON -->
+            <group label="Moon">
+                <transform>
+                    <translate time="273.2" align="True" show="False">
+                        <ellipsepoints n="15" a="8.44" b="11.25" xRotationAngle="30" yRotationAngle="60"/>
+                    </translate>
+                    <rotate time="273.2" x="0" y="1" z="0"/>
+                    <scale x="0.25" y="0.25" z="0.25"/>
+                </transform>
+
+                <color R="246" G="241" B="213"/>
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+        </group>
+
+
+        <!-- MARS' GROUP -->
+        <group>
+            <transform> 
+                <translate time="37.64" align="True">
+                    <ellipsepoints n="15" a="33.75" b="45"/>
+                </translate>
+                <scale x="0.024" y="0.024" z="0.024"/>
+            </transform>
+
+            <!-- MARS -->
+            <group label="Mars">
+                <transform>
+                    <rotate time="10.3" x="0" y="1" z="0"/>
+                </transform>
+
+                <color R="193.0" G="68.0" B="14.0"/>
+
+                <models> 
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>  
+            </group>
+
+            <!-- PHOBOS -->
+            <group label="Phobos">
+                <transform>
+                    <translate time="3.2" align="True" show="False">
+                        <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="20" yRotationAngle="40"/>
+                    </translate>
+                    <rotate time="3.2" x="0" y="1" z="0"/>
+                    <scale x="0.1" y="0.1" z="0.1"/>
+                </transform>
+
+                <color R="32" G="32" B="32"/>
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- DEIMOS -->
+            <group label="Deimos">
+                <transform>
+                    <translate time="12.6" align="True" show="False">
+                        <ellipsepoints n="15" a="20.1" b="26.8" xRotationAngle="50" yRotationAngle="70"/>
+                    </translate>
+                    <rotate time="12.6" x="0" y="1" z="0"/>
+                    <scale x="0.06" y="0.06" z="0.06"/>
+                </transform>
+
+                <color R="168" G="124" B="74"/>
+                
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+        </group>
+
+
+        <!-- JUPITER'S GROUP -->
+        <group>
+            <transform> 
+                <translate time="237.42" align="True">
+                    <ellipsepoints n="15" a="117" b="156"/>
+                </translate>
+                <scale x="0.5" y="0.5" z="0.5"/>
+            </transform>
+
+            <!-- JUPITER -->
+            <group label="Jupiter">
+                <transform>
+                    <rotate time="4.1" x="0" y="1" z="0"/>
+                </transform>
+
+                <color R="165.0" G="145.0" B="134.0"/>
+
+                <models> 
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- IO -->
+            <group label="Io">
+                <transform>
+                    <translate time="17.7" align="True" show="False">
+                        <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="50" yRotationAngle="20"/>
+                    </translate>
+                    <rotate time="17.7" x="0" y="1" z="0"/>
+                    <scale x="0.026" y="0.026" z="0.026"/>
+                </transform>
+
+                <color R="237" G="200" B="142"/>
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- EUROPA -->
+            <group label="Europa">
+                <transform>
+                    <translate time="35.5" align="True" show="False">
+                        <ellipsepoints n="15" a="12.7" b="16.93" xRotationAngle="25" yRotationAngle="65"/>
+                    </translate>
+                    <rotate time="35.5" x="0" y="1" z="0"/>
+                    <scale x="0.022" y="0.022" z="0.022"/>
+                </transform>
+
+                <color R="229" G="229" B="229"/>
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- GANYMEDE -->
+            <group label="Ganymede">
+                <transform>
+                    <translate time="71.6" align="True" show="False">
+                        <ellipsepoints n="15" a="20.32" b="27.09" xRotationAngle="120" yRotationAngle="75"/>
+                    </translate>
+                    <rotate time="71.6" x="0" y="1" z="0"/>
+                    <scale x="0.038" y="0.038" z="0.038"/>
+                </transform>
+
+                <color R="181" G="186" B="197"/> <!-- LIGHT (232, 226, 206) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+            
+            <!-- CALLISTO -->
+            <group label="Callisto">
+                <transform>
+                    <translate time="166.9" align="True" show="False">
+                        <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="140" yRotationAngle="30"/>
+                    </translate>
+                    <rotate time="166.9" x="0" y="1" z="0"/>
+                    <scale x="0.034" y="0.034" z="0.034"/>
+                </transform>
+
+                <color R="59" G="57" B="55"/> <!-- LIGHT (150, 150, 150) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+        </group>
+
+
+        <!-- SATURN'S GROUP -->
+        <group>
+            <transform> 
+                <translate time="589.53" align="True">
+                    <ellipsepoints n="15" a="213.75" b="285"/>
+                </translate>
+                <scale x="0.42" y="0.42" z="0.42"/>
+            </transform>
+
+            <!-- SATURN -->
+            <group label="Saturn">
+                <transform>
+                    <rotate time="4.5" x="0" y="1" z="0"/>
+                </transform>
+
+                <color R="234.0" G="214.0" B="184.0"/>
+
+                <models> 
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+            
+            <!-- INNER RING -->
+            <group label="Inner Ring"> 
+                <transform>
+                    <scale x="2.38" y="2.38" z="2.38"/>
+                    <rotate angle="45" x="0" y="0" z="1"/>
+                    <rotate time="4.5" x="0" y="1" z="0"/>
+                </transform>
+
+                <color R="180.0" G="196.0" B="211.0"/>
+
+                <models> 
+                    <model file="ring.3d"/> <!-- generator torus 0.5 4 100 2 ring.3d -->
+                </models>
+            </group>
+
+            <!-- OUTER RING -->
+            <group label="Outer Ring"> 
+                <transform>
+                    <scale x="3.2" y="3.2" z="3.2"/>
+                    <rotate angle="45" x="0" y="0" z="1"/>
+                    <rotate time="4.5" x="0" y="1" z="0"/>
+                </transform>
+
+                <color R="201.0" G="183.0" B="150.0"/>
+
+                <models> 
+                    <model file="ring.3d"/> <!-- generator torus 0.5 4 100 2 ring.3d -->
+                </models>
+            </group>
+
+            <!-- TITAN -->
+            <group label="Titan">
+                <transform>
+                    <translate time="159.4" align="True" show="False">
+                        <ellipsepoints n="15" a="52.9" b="70.53" xRotationAngle="90" yRotationAngle="50"/>
+                    </translate>
+                    <rotate time="159.4" x="0" y="1" z="0"/>
+                    <scale x="0.044" y="0.044" z="0.044"/>
+                </transform>
+
+                <color R="157" G="123" B="92"/> <!-- LIGHT (230, 212, 170) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- RHEA -->
+            <group label="Rhea">
+                <transform>
+                    <translate time="45.2" align="True" show="False">
+                        <ellipsepoints n="15" a="22.7" b="30.27" xRotationAngle="40" yRotationAngle="60"/>
+                    </translate>
+                    <rotate time="45.2" x="0" y="1" z="0"/>
+                    <scale x="0.013" y="0.013" z="0.013"/>
+                </transform>
+
+                <color R="183" G="182" B="180"/> <!-- LIGHT (90, 54, 38) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- TETHYS -->
+            <group label="Tethys">
+                <transform>
+                    <translate time="18.9" align="True" show="False">
+                        <ellipsepoints n="15" a="12.73" b="16.97" xRotationAngle="170" yRotationAngle="20"/>
+                    </translate>
+                    <rotate time="18.9" x="0" y="1" z="0"/>
+                    <scale x="0.0091" y="0.0091" z="0.0091"/>
+                </transform>
+
+                <color R="212" G="212" B="212"/> <!-- LIGHT (188, 109, 44) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- DIONE -->
+            <group label="Dione">
+                <transform>
+                    <translate time="27.4" align="True" show="False">
+                        <ellipsepoints n="15" a="16.36" b="21.82" xRotationAngle="110" yRotationAngle="70"/>
+                    </translate>
+                    <rotate time="27.4" x="0" y="1" z="0"/>
+                    <scale x="0.0096" y="0.0096" z="0.0096"/>
+                </transform>
+
+                <color R="219" G="219" B="219"/> <!-- LIGHT (152, 168, 184) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- ENCELADUS -->
+            <group label="Enceladus">
+                <transform>
+                    <translate time="13.7" align="True" show="False">                         
+                        <ellipsepoints n="15" a="10.36" b="13.81" xRotationAngle="70" yRotationAngle="30"/>
+                    </translate>
+                    <rotate time="13.7" x="0" y="1" z="0"/>
+                    <scale x="0.0043" y="0.0043" z="0.0043"/>
+                </transform>
+
+                <color R="235" G="235" B="235"/> <!-- LIGHT  (155, 170, 183) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- IAPETUS -->
+            <group label="Iapetus">
+                <transform>
+                    <translate time="793.2" align="True" show="False">
+                        <ellipsepoints n="15" a="154.18" b="205.57" xRotationAngle="130" yRotationAngle="20"/>
+                    </translate>
+                    <rotate time="793.2" x="0" y="1" z="0"/>
+                    <scale x="0.0126" y="0.0126" z="0.0126"/>
+                </transform>
+
+                <color R="80" G="46" B="37"/> <!-- LIGHT (220, 220, 220) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- MIMAS -->
+            <group label="Mimas">
+                <transform>
+                    <translate time="9.4" align="True" show="False">
+                        <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="20" yRotationAngle="40"/>
+                    </translate>
+                    <rotate time="9.4" x="0" y="1" z="0"/>
+                    <scale x="0.0034" y="0.0034" z="0.0034"/>
+                </transform>
+
+                <color R="222" G="222" B="222"/> <!-- LIGHT (153, 166, 183) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+        </group>
+
+
+        <!-- URANUS' GROUP -->
+        <group>
+            <transform> 
+                <translate time="1681.53" align="True">
+                    <ellipsepoints n="15" a="427.5" b="570"/>
+                </translate>
+                <scale x="0.17" y="0.17" z="0.17"/>
+            </transform>
+
+            <!-- URANUS -->
+            <group label="Uranus">
+                <transform>
+                    <rotate time="7.2" x="0" y="1" z="0"/>
+                </transform>
+
+                <color R="206.0" G="204.0" B="209.0"/>
+                
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+    
+            <!-- MIRANDA -->
+            <group label="Miranda">
+                <transform>
+                    <translate time="14.1" align="True" show="False">
+                        <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="60" yRotationAngle="80"/>
+                    </translate>
+                    <rotate time="14.1" x="0" y="1" z="0"/>
+                    <scale x="0.0093" y="0.0093" z="0.0093"/>
+                </transform>
+
+                <color R="212" G="212" B="212"/> <!-- LIGHT (152, 168, 184)-->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- ARIEL -->
+            <group label="Ariel">
+                <transform>
+                    <translate time="25.2" align="True" show="False">
+                        <ellipsepoints n="15" a="11.84" b="15.79" xRotationAngle="50" yRotationAngle="40"/>
+                    </translate>
+                    <rotate time="25.2" x="0" y="1" z="0"/>
+                    <scale x="0.0228" y="0.0228" z="0.0228"/>
+                </transform>
+
+                <color R="219" G="219" B="219"/> <!-- LIGHT (153, 166, 183) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- UMBRIEL -->
+            <group label="Umbriel">
+                <transform>
+                    <translate time="41.2" align="True" show="False">
+                        <ellipsepoints n="15" a="16.42" b="21.89" xRotationAngle="100" yRotationAngle="70"/>
+                    </translate>
+                    <rotate time="41.2" x="0" y="1" z="0"/>
+                    <scale x="0.0231" y="0.0231" z="0.0231"/>
+                </transform>
+
+                <color R="61" G="54" B="47"/> <!-- LIGHT (100, 120, 135) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- OBERON -->
+            <group label="Oberon">
+                <transform>
+                    <translate time="134.6" align="True" show="False">
+                        <ellipsepoints n="15" a="36.11" b="48.15" xRotationAngle="40" yRotationAngle="65"/>
+                    </translate>
+                    <rotate time="134.6" x="0" y="1" z="0"/>
+                    <scale x="0.03" y="0.03" z="0.03"/>
+                </transform>
+
+                <color R="89" G="70" B="59"/> <!-- LIGHT (120, 140, 160) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- TITANIA -->
+            <group label="Titania">
+                <transform>
+                    <translate time="87.1" align="True" show="False">
+                        <ellipsepoints n="15" a="27.05" b="36.07" xRotationAngle="20" yRotationAngle="40"/>
+                    </translate>
+                    <rotate time="87.1" x="0" y="1" z="0"/>
+                    <scale x="0.0312" y="0.0312" z="0.0312"/>
+                </transform>
+                
+                <color R="217" G="217" B="217"/> <!-- LIGHT (153, 166, 183) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+        </group>
+
+
+        <!-- NEPTUNE'S GROUP -->
+        <group>
+            <transform> 
+                <translate time="3299.95" align="True">
+                    <ellipsepoints n="15" a="675" b="900"/>
+                </translate>
+                <scale x="0.165" y="0.165" z="0.165"/>
+            </transform>
+
+            <!-- NEPTUNE -->
+            <group label="Neptune">
+                <transform>
+                    <rotate time="6.7" x="0" y="1" z="0"/>
+                </transform>
+
+                <color R="91.0" G="93.0" B="223.0"/>
+
+                <models> 
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- PROTEUS -->
+            <group label="Proteus">
+                <transform>
+                    <translate time="11.2" align="True" show="False">
+                        <ellipsepoints n="15" a="8" b="10.67" xRotationAngle="20" yRotationAngle="70"/>
+                    </translate>
+                    <rotate time="11.2" x="0" y="1" z="0"/>
+                    <scale x="0.0085" y="0.0085" z="0.0085"/>
+                </transform>
+
+                <color R="115" G="115" B="125"/> <!-- LIGHT (60, 80, 100) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+
+            <!-- TRITON -->
+            <group label="Triton">
+                <transform>
+                    <translate time="58.8" align="True" show="False">
+                        <ellipsepoints n="15" a="24.23" b="32.31" xRotationAngle="160" yRotationAngle="20"/>
+                    </translate>
+                    <rotate time="58.8" x="0" y="1" z="0"/>
+                    <scale x="0.0550" y="0.0550" z="0.0550"/>
+                </transform>
+
+                <color R="218" G="193" B="172"/> <!-- LIGHT (110, 125, 145) -->
+
+                <models>
+                    <model file="sphere.3d"/> <!-- generator sphere 6 50 50 sphere.3d -->
+                </models>
+            </group>
+        </group>
+    </group>
+</world>

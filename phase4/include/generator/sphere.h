@@ -8,6 +8,6 @@
 
 using namespace std;
 
-pair<vector<Point>, vector<Triangle> > generateSphere(float radius, int slices, int stacks);
+void generateSphere(float radius, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals);
 
 #endif

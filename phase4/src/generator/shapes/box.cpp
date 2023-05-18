@@ -52,9 +52,6 @@ void generateXZplane(Point initialPoint, float length, int divisions, int *index
 
 
 void generateYZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
-    vector<Point> vertices;
-    vector<Triangle> triangles;
-
     float squareLength = length/divisions;
     float initialX = initialPoint.x;
     float initialY = initialPoint.y;
@@ -106,9 +103,6 @@ void generateYZplane(Point initialPoint, float length, int divisions, int *index
 
 
 void generateXYplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
-    vector<Point> vertices;
-    vector<Triangle> triangles;
-
     float squareLength = length/divisions;
     float initialX = initialPoint.x;
     float initialY = initialPoint.y;

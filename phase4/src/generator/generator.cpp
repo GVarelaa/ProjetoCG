@@ -42,12 +42,12 @@ void toFile(char* filename, vector<Point> *vertices, vector<Triangle> *triangles
         file << buffer;
     }
 
-
+/*
     //Normals
     for(int i = 0; i < nVertices; i++){
         sprintf(buffer, "%f %f %f\n", (*normals)[i].x, (*normals)[i].y, (*normals)[i].z);
         file << buffer;
-    }
+    }*/
 
     file.close();
 }
@@ -117,7 +117,7 @@ int main(int argc, char *argv[]){
         int stacks = atoi(argv[5]);
         char *filename = argv[6];
 
-        pair<vector<Point>, vector<Triangle> > cone = generateCone(radius, height, slices, stacks);
+        generateCone(radius, height, slices, stacks, vertices, triangles, normals);
         toFile(filename, vertices, triangles, normals);
     }
     else if(regex_match(inp, regex(erSphere))){
@@ -135,7 +135,7 @@ int main(int argc, char *argv[]){
         int slices = atoi(argv[4]);
         char *filename = argv[5];
 
-        pair<vector<Point>, vector<Triangle> > cylinder = generateCylinder(radius, height, slices);
+        generateCylinder(radius, height, slices, vertices, triangles, normals);
         toFile(filename, vertices, triangles, normals);
     }
     else if(regex_match(inp, regex(erTorus))){

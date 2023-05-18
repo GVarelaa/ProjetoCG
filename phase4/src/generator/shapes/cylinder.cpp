@@ -1,40 +1,53 @@
 #include "../../../include/generator/cylinder.h"
 
-pair<vector<Point>, vector<Triangle> > generateCylinder(float radius, float height, int slices) {
-    vector<Point> points;
-    vector<Triangle> triangles;
-
+void generateCylinder(float radius, float height, int slices, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals) {
     float h_2 = height / 2.0;
     float alpha = (2 * M_PI) / slices;
 
     int index = 0;
     for(int i = 0; i < slices; i++){
-        Point topPoint = Point(0, h_2, 0);
-        Point p1 = Point(radius * sin(i*alpha), h_2, radius * cos(i*alpha));
-        Point p2 = Point(radius * sin((i+1)*alpha), h_2, radius * cos((i+1)*alpha));
-        Point p3 = Point(radius * sin(i*alpha), -h_2, radius * cos(i*alpha));
-        Point p4 = Point(radius * sin((i+1)*alpha), -h_2, radius * cos((i+1)*alpha));
-        Point bottomPoint = Point(0, -h_2, 0);
+        // Top base        
+        vertices->push_back(Point(0, h_2, 0));
+        vertices->push_back(Point(radius * sin(i*alpha), h_2, radius * cos(i*alpha)));
+        vertices->push_back(Point(radius * sin((i+1)*alpha), h_2, radius * cos((i+1)*alpha)));
+
+        // Body
+        vertices->push_back(Point(radius * sin(i*alpha), h_2, radius * cos(i*alpha)));
+        vertices->push_back(Point(radius * sin((i+1)*alpha), h_2, radius * cos((i+1)*alpha)));
+        vertices->push_back(Point(radius * sin(i*alpha), -h_2, radius * cos(i*alpha)));
+        vertices->push_back(Point(radius * sin((i+1)*alpha), -h_2, radius * cos((i+1)*alpha)));
+
+        // Bottom base
+        vertices->push_back(Point(0, -h_2, 0));
+        vertices->push_back(Point(radius * sin((i+1)*alpha), -h_2, radius * cos((i+1)*alpha)));
+        vertices->push_back(Point(radius * sin(i*alpha), -h_2, radius * cos(i*alpha)));
         
-        points.push_back(topPoint);
-        points.push_back(p1);
-        points.push_back(p2);
-        points.push_back(p3);
-        points.push_back(p4);
-        points.push_back(bottomPoint);
+        
+        // Normals
+        normals->push_back(Point(0, 1, 0));
+        normals->push_back(Point(0, 1, 0));
+        normals->push_back(Point(0, 1, 0));
 
-        Triangle topTriangle = Triangle(index, index+1, index+2);
-        Triangle t1 = Triangle(index+1, index+4, index+2);
-        Triangle t2 = Triangle(index+1, index+3, index+4);
-        Triangle bottomTriangle = Triangle(index+3, index+5, index+4);
+        normals->push_back(Point(sin(i*alpha), 0, cos(i*alpha)));
+        normals->push_back(Point(sin((i+1)*alpha), 0, cos((i+1)*alpha)));
+        normals->push_back(Point(sin(i*alpha), 0, cos(i*alpha)));
+        normals->push_back(Point(sin((i+1)*alpha), 0, cos((i+1)*alpha)));
 
-        triangles.push_back(topTriangle);
-        triangles.push_back(t1);
-        triangles.push_back(t2);
-        triangles.push_back(bottomTriangle);
+        normals->push_back(Point(0, -1, 0));
+        normals->push_back(Point(0, -1, 0));
+        normals->push_back(Point(0, -1, 0));
 
-        index+=6;
+
+        // Top triangle
+        triangles->push_back(Triangle(index, index+1, index+2));
+
+        // Body triangles
+        triangles->push_back(Triangle(index+3, index+6, index+4));
+        triangles->push_back(Triangle(index+3, index+5, index+6));
+
+        // Bottom triangle
+        triangles->push_back(Triangle(index+7, index+8, index+9));
+
+        index+=10;
 	}
-
-    return pair<vector<Point>, vector<Triangle> >(points, triangles);
 }

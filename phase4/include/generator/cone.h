@@ -8,6 +8,6 @@
 
 using namespace std;
 
-pair<vector<Point>, vector<Triangle> > generateCone(float radius, float height, int slices, int stacks);
+void generateCone(float radius, float height, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals);
 
 #endif

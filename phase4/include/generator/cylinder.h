@@ -8,6 +8,6 @@
 
 using namespace std;
 
-pair<vector<Point>, vector<Triangle> > generateCylinder(float radius, float height, int slices);
+void generateCylinder(float radius, float height, int slices, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals);
 
 #endif

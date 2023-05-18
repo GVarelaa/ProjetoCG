@@ -1,9 +1,6 @@
 #include "../../../include/generator/box.h"
 
-pair<vector<Point>, vector<Triangle> > generateXZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible){
-    vector<Point> vertices;
-    vector<Triangle> triangles;
-
+void generateXZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
     float squareLength = length/divisions;
     float initialX = initialPoint.x;
     float initialY = initialPoint.y;
@@ -24,33 +21,37 @@ pair<vector<Point>, vector<Triangle> > generateXZplane(Point initialPoint, float
             Point p3 = Point(x-squareLength, initialY, z-squareLength);
             Point p4 = Point(x-squareLength, initialY, z);
             
-            vertices.push_back(p1);
-            vertices.push_back(p2);
-            vertices.push_back(p3);
-            vertices.push_back(p4);
+            vertices->push_back(p1);
+            vertices->push_back(p2);
+            vertices->push_back(p3);
+            vertices->push_back(p4);
 
             Triangle t1, t2;
             if(isVisible){
+                for(int k = 0; k < 4; k++)
+                    normals->push_back(Point(0, 1, 0));
+
                 t1 = Triangle(*index, *index+1, *index+2);
                 t2 = Triangle(*index, *index+2, *index+3);
             }
             else {
+                for(int k = 0; k < 4; k++)
+                    normals->push_back(Point(0, -1, 0));
+
                 t1 = Triangle(*index+1, *index, *index+2);
                 t2 = Triangle(*index+2, *index, *index+3);
             }
 
-            triangles.push_back(t1);
-            triangles.push_back(t2);
+            triangles->push_back(t1);
+            triangles->push_back(t2);
 
             *index+=4;
         }
     }
-
-    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }
 
 
-pair<vector<Point>, vector<Triangle> > generateYZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible){
+void generateYZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
     vector<Point> vertices;
     vector<Triangle> triangles;
 
@@ -74,33 +75,37 @@ pair<vector<Point>, vector<Triangle> > generateYZplane(Point initialPoint, float
             Point p3 = Point(initialX, y-squareLength, z-squareLength);
             Point p4 = Point(initialX, y-squareLength, z);
             
-            vertices.push_back(p1);
-            vertices.push_back(p2);
-            vertices.push_back(p3);
-            vertices.push_back(p4);
+            vertices->push_back(p1);
+            vertices->push_back(p2);
+            vertices->push_back(p3);
+            vertices->push_back(p4);
 
             Triangle t1, t2;
             if(isVisible){
+                for(int k = 0; k < 4; k++)
+                    normals->push_back(Point(1, 0, 0));
+
                 t1 = Triangle(*index+1, *index, *index+2);
                 t2 = Triangle(*index+2, *index, *index+3);
             }
             else {
+                for(int k = 0; k < 4; k++)
+                    normals->push_back(Point(-1, 0, 0));
+
                 t1 = Triangle(*index, *index+1, *index+2);
                 t2 = Triangle(*index, *index+2, *index+3);
             }
 
-            triangles.push_back(t1);
-            triangles.push_back(t2);
+            triangles->push_back(t1);
+            triangles->push_back(t2);
 
             *index+=4;
         }
     }
-
-    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }
 
 
-pair<vector<Point>, vector<Triangle> > generateXYplane(Point initialPoint, float length, int divisions, int *index, bool isVisible){
+void generateXYplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
     vector<Point> vertices;
     vector<Triangle> triangles;
 
@@ -124,60 +129,46 @@ pair<vector<Point>, vector<Triangle> > generateXYplane(Point initialPoint, float
             Point p3 = Point(x+squareLength, y+squareLength, initialZ);
             Point p4 = Point(x+squareLength, y, initialZ);
             
-            vertices.push_back(p1);
-            vertices.push_back(p2);
-            vertices.push_back(p3);
-            vertices.push_back(p4);
+            vertices->push_back(p1);
+            vertices->push_back(p2);
+            vertices->push_back(p3);
+            vertices->push_back(p4);
 
             Triangle t1, t2;
             if(isVisible){
+                for(int k = 0; k < 4; k++)
+                    normals->push_back(Point(0, 0, 1));
+
                 t1 = Triangle(*index+1, *index, *index+2);
                 t2 = Triangle(*index+2, *index, *index+3);
             }
             else {
+                for(int k = 0; k < 4; k++)
+                    normals->push_back(Point(0, 0, -1));
+
                 t1 = Triangle(*index, *index+1, *index+2);
                 t2 = Triangle(*index, *index+2, *index+3);
             }
 
-            triangles.push_back(t1);
-            triangles.push_back(t2);
+            triangles->push_back(t1);
+            triangles->push_back(t2);
             
             *index+=4;
         }
     }
-
-    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }
 
 
-pair<vector<Point>, vector<Triangle> > generateBox(float length, int divisions){
-    vector<Point> vertices;
-    vector<Triangle> triangles;
+void generateBox(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
     int index = 0;
     float hl = length/2;
 
-    pair<vector<Point>, vector<Triangle> > xzPlane1  = generateXZplane(Point(hl, hl, hl), length, divisions, &index, true);
-    pair<vector<Point>, vector<Triangle> > xzPlane2  = generateXZplane(Point(hl, -hl, hl), length, divisions, &index, false);
+    generateXZplane(Point(hl, hl, hl), length, divisions, &index, true, vertices, triangles, normals);
+    generateXZplane(Point(hl, -hl, hl), length, divisions, &index, false, vertices, triangles, normals);
 
-    pair<vector<Point>, vector<Triangle> > yzPlane1 = generateYZplane(Point(hl, hl, hl), length, divisions, &index, true);
-    pair<vector<Point>, vector<Triangle> > yzPlane2 = generateYZplane(Point(-hl, hl, hl), length, divisions, &index, false);
+    generateYZplane(Point(hl, hl, hl), length, divisions, &index, true, vertices, triangles, normals);
+    generateYZplane(Point(-hl, hl, hl), length, divisions, &index, false, vertices, triangles, normals);
 
-    pair<vector<Point>, vector<Triangle> > xyPlane1 = generateXYplane(Point(-hl, -hl, hl), length, divisions, &index, true);
-    pair<vector<Point>, vector<Triangle> > xyPlane2 = generateXYplane(Point(-hl, -hl, -hl), length, divisions, &index, false);
-
-    vertices.insert(vertices.end(), xzPlane1.first.begin(), xzPlane1.first.end());
-    vertices.insert(vertices.end(), xzPlane2.first.begin(), xzPlane2.first.end());
-    vertices.insert(vertices.end(), yzPlane1.first.begin(), yzPlane1.first.end());
-    vertices.insert(vertices.end(), yzPlane2.first.begin(), yzPlane2.first.end());
-    vertices.insert(vertices.end(), xyPlane1.first.begin(), xyPlane1.first.end());
-    vertices.insert(vertices.end(), xyPlane2.first.begin(), xyPlane2.first.end());
-
-    triangles.insert(triangles.end(), xzPlane1.second.begin(), xzPlane1.second.end());
-    triangles.insert(triangles.end(), xzPlane2.second.begin(), xzPlane2.second.end());
-    triangles.insert(triangles.end(), yzPlane1.second.begin(), yzPlane1.second.end());
-    triangles.insert(triangles.end(), yzPlane2.second.begin(), yzPlane2.second.end());
-    triangles.insert(triangles.end(), xyPlane1.second.begin(), xyPlane1.second.end());
-    triangles.insert(triangles.end(), xyPlane2.second.begin(), xyPlane2.second.end());
-
-    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
+    generateXYplane(Point(-hl, -hl, hl), length, divisions, &index, true, vertices, triangles, normals);
+    generateXYplane(Point(-hl, -hl, -hl), length, divisions, &index, false, vertices, triangles, normals);
 }

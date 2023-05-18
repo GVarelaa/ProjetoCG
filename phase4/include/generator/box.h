@@ -7,6 +7,6 @@
 
 using namespace std;
 
-pair<vector<Point>, vector<Triangle> > generateBox(float length, int divisions);
+void generateBox(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals);
 
 #endif

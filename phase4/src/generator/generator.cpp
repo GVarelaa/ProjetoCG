@@ -90,14 +90,14 @@ int main(int argc, char *argv[]){
     char erBelt[] = "belt [0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erBezier[] = "patch [a-zA-Z0-9_/.-]+\\.patch [0-9]+ [a-zA-Z0-9_]+\\.3d$";
 
+    vector<Point> *vertices = new vector<Point>;
+    vector<Triangle> *triangles = new vector<Triangle>;
+    vector<Point> *normals = new vector<Point>;
+
     if (regex_match(inp, regex(erPlane))){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
         char *filename = argv[4];
-
-        vector<Point> *vertices = new vector<Point>;
-        vector<Triangle> *triangles = new vector<Triangle>;
-        vector<Point> *normals = new vector<Point>;
 
         generatePlane(length, divisions, vertices, triangles, normals);
         toFile(filename, vertices, triangles, normals);
@@ -107,11 +107,7 @@ int main(int argc, char *argv[]){
         int divisions = atoi(argv[3]);
         char *filename = argv[4];
 
-        vector<Point> *vertices = new vector<Point>;
-        vector<Triangle> *triangles = new vector<Triangle>;
-        vector<Point> *normals = new vector<Point>;
-
-        pair<vector<Point>, vector<Triangle> > box = generateBox(length, divisions);
+        generateBox(length, divisions, vertices, triangles, normals);
         toFile(filename, vertices, triangles, normals);
     }
     else if(regex_match(inp, regex(erCone))){
@@ -120,10 +116,6 @@ int main(int argc, char *argv[]){
         int slices = atoi(argv[4]);
         int stacks = atoi(argv[5]);
         char *filename = argv[6];
-        
-        vector<Point> *vertices = new vector<Point>;
-        vector<Triangle> *triangles = new vector<Triangle>;
-        vector<Point> *normals = new vector<Point>;
 
         pair<vector<Point>, vector<Triangle> > cone = generateCone(radius, height, slices, stacks);
         toFile(filename, vertices, triangles, normals);
@@ -134,10 +126,6 @@ int main(int argc, char *argv[]){
         int stacks = atoi(argv[4]);
         char *filename = argv[5];
 
-        vector<Point> *vertices = new vector<Point>;
-        vector<Triangle> *triangles = new vector<Triangle>;
-        vector<Point> *normals = new vector<Point>;
-
         pair<vector<Point>, vector<Triangle> > sphere = generateSphere(radius, slices, stacks);
         toFile(filename, vertices, triangles, normals);
     }
@@ -147,10 +135,6 @@ int main(int argc, char *argv[]){
         int slices = atoi(argv[4]);
         char *filename = argv[5];
 
-        vector<Point> *vertices = new vector<Point>;
-        vector<Triangle> *triangles = new vector<Triangle>;
-        vector<Point> *normals = new vector<Point>;
-
         pair<vector<Point>, vector<Triangle> > cylinder = generateCylinder(radius, height, slices);
         toFile(filename, vertices, triangles, normals);
     }
@@ -159,12 +143,7 @@ int main(int argc, char *argv[]){
         float radiusOut = atof(argv[3]);
         int slices = atoi(argv[4]);
         int stacks = atoi(argv[5]);
-
         char *filename = argv[6];
-
-        vector<Point> *vertices = new vector<Point>;
-        vector<Triangle> *triangles = new vector<Triangle>;
-        vector<Point> *normals = new vector<Point>;
 
         pair<vector<Point>, vector<Triangle> > torus = generateTorus(radiusIn, radiusOut, slices, stacks);
         toFile(filename, vertices, triangles, normals);
@@ -176,10 +155,6 @@ int main(int argc, char *argv[]){
         int slices = atoi(argv[5]);
         int stacks = atoi(argv[6]);
         char *filename = argv[7];
-
-        vector<Point> *vertices = new vector<Point>;
-        vector<Triangle> *triangles = new vector<Triangle>;
-        vector<Point> *normals = new vector<Point>;
 
         pair<vector<Point>, vector<Triangle> > ellipsoid = generateEllipsoid(a, b, c, slices, stacks);
         toFile(filename, vertices, triangles, normals);
@@ -194,10 +169,6 @@ int main(int argc, char *argv[]){
         int seed = atoi(argv[8]);
         char *filename = argv[9];
 
-        vector<Point> *vertices = new vector<Point>;
-        vector<Triangle> *triangles = new vector<Triangle>;
-        vector<Point> *normals = new vector<Point>;
-
         pair<vector<Point>, vector<Triangle> > belt = generateBelt(n, radiusIn, radiusOut, height, lengthMin, lengthMax, seed);
         toFile(filename, vertices, triangles, normals);
     }
@@ -205,10 +176,6 @@ int main(int argc, char *argv[]){
         char *ctrlpoints_file = argv[2];
         int level = atoi(argv[3]);
         char *filename = argv[4];
-
-        vector<Point> *vertices = new vector<Point>;
-        vector<Triangle> *triangles = new vector<Triangle>;
-        vector<Point> *normals = new vector<Point>;
 
         pair<vector<Point>, vector<Triangle> > bezier = generateBezier(ctrlpoints_file, level);
         toFile(filename, vertices, triangles, normals);

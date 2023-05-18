@@ -27,10 +27,8 @@ void generatePlane(float length, int divisions, vector<Point> *vertices, vector<
             vertices->push_back(p3);
             vertices->push_back(p4);
 
-            for(int z = 0; z < 4; z++){
-                Point n = Point(0, 1, 0);
-                normals->push_back(n);
-            }
+            for(int z = 0; z < 4; z++)
+                normals->push_back(Point(0, 1, 0));
 
             Triangle t1 = Triangle(index, index+1, index+2);
             Triangle t2 = Triangle(index, index+2, index+3);

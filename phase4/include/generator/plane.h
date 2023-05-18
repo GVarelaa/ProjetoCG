@@ -7,6 +7,6 @@
 
 using namespace std;
 
-pair<vector<Point>, vector<Triangle> > generatePlane(float length, int divisions);
+void generatePlane(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals);
 
 #endif

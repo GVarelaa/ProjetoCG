@@ -1,9 +1,7 @@
 #include "../../../include/generator/plane.h"
 
-pair<vector<Point>, vector<Triangle> > generatePlane(float length, int divisions){
-    vector<Point> vertices;
-    vector<Triangle> triangles;
 
+void generatePlane(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
     float squareLength = length/divisions;
     float initialX = length/2.0;
     float initialZ = length/2.0;
@@ -24,20 +22,23 @@ pair<vector<Point>, vector<Triangle> > generatePlane(float length, int divisions
             Point p3 = Point(x-squareLength, 0, z-squareLength);
             Point p4 = Point(x-squareLength, 0, z);
 
-            vertices.push_back(p1);
-            vertices.push_back(p2);
-            vertices.push_back(p3);
-            vertices.push_back(p4);
+            vertices->push_back(p1);
+            vertices->push_back(p2);
+            vertices->push_back(p3);
+            vertices->push_back(p4);
+
+            for(int z = 0; z < 4; z++){
+                Point n = Point(0, 1, 0);
+                normals->push_back(n);
+            }
 
             Triangle t1 = Triangle(index, index+1, index+2);
             Triangle t2 = Triangle(index, index+2, index+3);
 
-            triangles.push_back(t1);
-            triangles.push_back(t2);
+            triangles->push_back(t1);
+            triangles->push_back(t2);
 
             index+=4;
         }
     }
-
-    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }

@@ -93,13 +93,14 @@ int main(int argc, char *argv[]){
     vector<Point> *vertices = new vector<Point>;
     vector<Triangle> *triangles = new vector<Triangle>;
     vector<Point> *normals = new vector<Point>;
+    vector<Point> *texCoords = new vector<Point>;
 
     if (regex_match(inp, regex(erPlane))){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
         char *filename = argv[4];
 
-        generatePlane(length, divisions, vertices, triangles, normals);
+        generatePlane(length, divisions, vertices, triangles, normals, texCoords);
         toFile(filename, vertices, triangles, normals);
     }
     else if(regex_match(inp, regex(erBox))){

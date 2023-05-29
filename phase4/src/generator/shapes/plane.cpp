@@ -8,6 +8,7 @@ void generatePlane(float length, int divisions, vector<Point> *vertices, vector<
 
     float x = initialX;
     float z = initialZ;
+    float texPart = 1.0 / (float)divisions;
 
     int index=0;
     for(int i = 0; i < divisions; i++){
@@ -25,10 +26,10 @@ void generatePlane(float length, int divisions, vector<Point> *vertices, vector<
             for(int z = 0; z < 4; z++)
                 normals->push_back(Point(0, 1, 0));
 
-            texCoords->push_back(Point(i, j, 0));
-            texCoords->push_back(Point(i+1, j, 0));
-            texCoords->push_back(Point(i+1, j+1, 0));
-            texCoords->push_back(Point(i, j+1, 0));
+            texCoords->push_back(Point(i*texPart, j*texPart, 0));
+            texCoords->push_back(Point((i+1)*texPart, j*texPart, 0));
+            texCoords->push_back(Point((i+1)*texPart, (j+1)*texPart, 0));
+            texCoords->push_back(Point(i*texPart, (j+1)*texPart, 0));
 
             triangles->push_back(Triangle(index, index+1, index+2));
             triangles->push_back(Triangle(index, index+2, index+3));

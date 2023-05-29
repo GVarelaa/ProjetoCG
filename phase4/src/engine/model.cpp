@@ -125,7 +125,7 @@ void Model::loadTexture() {
 	unsigned char *texData;
 	ilGenImages(1, &t);
 	ilBindImage(t);
-	ilLoadImage((ILstring)"relva.jpg");
+	ilLoadImage((ILstring)texturePath);
 	tw = ilGetInteger(IL_IMAGE_WIDTH);
 	th = ilGetInteger(IL_IMAGE_HEIGHT);
 	ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);

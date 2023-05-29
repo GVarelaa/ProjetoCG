@@ -115,7 +115,7 @@ int main(int argc, char *argv[]){
         int divisions = atoi(argv[3]);
         char *filename = argv[4];
 
-        generateBox(length, divisions, vertices, triangles, normals);
+        generateBox(length, divisions, vertices, triangles, normals, texCoords);
         toFile(filename, vertices, triangles, normals, texCoords);
     }
     else if(regex_match(inp, regex(erCone))){

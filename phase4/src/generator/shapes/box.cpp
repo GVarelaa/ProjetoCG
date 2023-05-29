@@ -1,6 +1,6 @@
 #include "../../../include/generator/box.h"
 
-void generateXZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
+void generateXZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
     float squareLength = length/divisions;
     float initialX = initialPoint.x;
     float initialY = initialPoint.y;
@@ -8,6 +8,7 @@ void generateXZplane(Point initialPoint, float length, int divisions, int *index
 
     float x = initialX;
     float z = initialZ;
+    float texPart = 1.0 / (float)divisions;
 
     for(int i = 0; i < divisions; i++){
         x = initialX;
@@ -42,6 +43,11 @@ void generateXZplane(Point initialPoint, float length, int divisions, int *index
                 t2 = Triangle(*index+2, *index, *index+3);
             }
 
+            texCoords->push_back(Point(i*texPart, j*texPart, 0));
+            texCoords->push_back(Point((i+1)*texPart, j*texPart, 0));
+            texCoords->push_back(Point((i+1)*texPart, (j+1)*texPart, 0));
+            texCoords->push_back(Point(i*texPart, (j+1)*texPart, 0));
+
             triangles->push_back(t1);
             triangles->push_back(t2);
 
@@ -51,7 +57,7 @@ void generateXZplane(Point initialPoint, float length, int divisions, int *index
 }
 
 
-void generateYZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
+void generateYZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
     float squareLength = length/divisions;
     float initialX = initialPoint.x;
     float initialY = initialPoint.y;
@@ -59,6 +65,7 @@ void generateYZplane(Point initialPoint, float length, int divisions, int *index
 
     float y = initialY;
     float z = initialZ;
+    float texPart = 1.0 / (float)divisions;
 
     for(int i = 0; i < divisions; i++){
         z = initialZ;
@@ -93,6 +100,11 @@ void generateYZplane(Point initialPoint, float length, int divisions, int *index
                 t2 = Triangle(*index, *index+2, *index+3);
             }
 
+            texCoords->push_back(Point(j*texPart, (divisions-i)*texPart, 0));
+            texCoords->push_back(Point((j+1)*texPart, (divisions-i)*texPart, 0));
+            texCoords->push_back(Point((j+1)*texPart, (divisions-(i+1))*texPart, 0));
+            texCoords->push_back(Point(j*texPart, (divisions-(i+1))*texPart, 0));
+
             triangles->push_back(t1);
             triangles->push_back(t2);
 
@@ -102,7 +114,7 @@ void generateYZplane(Point initialPoint, float length, int divisions, int *index
 }
 
 
-void generateXYplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
+void generateXYplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
     float squareLength = length/divisions;
     float initialX = initialPoint.x;
     float initialY = initialPoint.y;
@@ -110,6 +122,7 @@ void generateXYplane(Point initialPoint, float length, int divisions, int *index
 
     float x = initialX;
     float y = initialY;
+    float texPart = 1.0 / (float)divisions;
 
     for(int i = 0; i < divisions; i++){
         y = initialY;
@@ -144,6 +157,11 @@ void generateXYplane(Point initialPoint, float length, int divisions, int *index
                 t2 = Triangle(*index, *index+2, *index+3);
             }
 
+            texCoords->push_back(Point(i*texPart, j*texPart, 0));
+            texCoords->push_back(Point(i*texPart, (j+1)*texPart, 0));
+            texCoords->push_back(Point((i+1)*texPart, (j+1)*texPart, 0));
+            texCoords->push_back(Point((i+1)*texPart, j*texPart, 0));
+
             triangles->push_back(t1);
             triangles->push_back(t2);
             
@@ -153,16 +171,16 @@ void generateXYplane(Point initialPoint, float length, int divisions, int *index
 }
 
 
-void generateBox(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
+void generateBox(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
     int index = 0;
     float hl = length/2;
 
-    generateXZplane(Point(hl, hl, hl), length, divisions, &index, true, vertices, triangles, normals);
-    generateXZplane(Point(hl, -hl, hl), length, divisions, &index, false, vertices, triangles, normals);
+    generateXZplane(Point(hl, hl, hl), length, divisions, &index, true, vertices, triangles, normals, texCoords);
+    generateXZplane(Point(hl, -hl, hl), length, divisions, &index, false, vertices, triangles, normals, texCoords);
 
-    generateYZplane(Point(hl, hl, hl), length, divisions, &index, true, vertices, triangles, normals);
-    generateYZplane(Point(-hl, hl, hl), length, divisions, &index, false, vertices, triangles, normals);
+    generateYZplane(Point(hl, hl, hl), length, divisions, &index, true, vertices, triangles, normals, texCoords);
+    generateYZplane(Point(-hl, hl, hl), length, divisions, &index, false, vertices, triangles, normals, texCoords);
 
-    generateXYplane(Point(-hl, -hl, hl), length, divisions, &index, true, vertices, triangles, normals);
-    generateXYplane(Point(-hl, -hl, -hl), length, divisions, &index, false, vertices, triangles, normals);
+    generateXYplane(Point(-hl, -hl, hl), length, divisions, &index, true, vertices, triangles, normals, texCoords);
+    generateXYplane(Point(-hl, -hl, -hl), length, divisions, &index, false, vertices, triangles, normals, texCoords);
 }

@@ -7,13 +7,16 @@
 #include <fstream>
 #include <sstream>
 #include "../point.h"
+#include "color.h"
 #include "../tinyxml2/tinyxml2.h"
 
 #ifdef __APPLE__
 #include <GLUT/glut.h>
+#include </opt/homebrew/opt/devil/include/IL/il.h>
 #else
 #include <GL/glew.h>
 #include <GL/glut.h>
+#include <IL/il.h>
 #endif
 
 
@@ -22,13 +25,15 @@ using namespace std;
 
 class Model{
     public:
-        char* path;
-        Point* color;
+        char* modelPath;
+        char* texturePath;
+        Color color;
+        unsigned int texture;
         int nIndexes;
-        GLuint vertices_buffer;
-        GLuint indexes_buffer;
-        GLuint normals_buffer;
-        GLuint tex_coords_buffer;
+        GLuint verticesBuffer;
+        GLuint indexesBuffer;
+        GLuint normalsBuffer;
+        GLuint texCoordsBuffer;
 
 
         Model();
@@ -36,6 +41,9 @@ class Model{
         Model(char* path);
         void load();
         void draw();
+    
+    private:
+        void loadTexture();
 };
 
 #endif

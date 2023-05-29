@@ -1,5 +1,5 @@
-#ifndef __MODEL__
-#define __MODEL__
+#ifndef __COLOR__
+#define __COLOR__
 
 #include <sstream>
 #include "../tinyxml2/tinyxml2.h"
@@ -15,6 +15,7 @@ class Color{
         float emissive[4] = {0, 0, 0, 1};
         float shininess = 0;
 
+        Color();
         Color(XMLElement* elem);
 };
 

@@ -1,6 +1,9 @@
 #include "../../include/engine/color.h"
 
 
+Color::Color(){}
+
+
 Color::Color(XMLElement* elem) {
     XMLElement* child = elem->FirstChildElement();
     

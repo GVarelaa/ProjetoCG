@@ -11,10 +11,14 @@
 
 #ifdef __APPLE__
 #include <GLUT/glut.h>
+#include </opt/homebrew/opt/devil/include/IL/il.h>
 #else
 #include <GL/glew.h>
 #include <GL/glut.h>
+#include <IL/il.h>
 #endif
+
+
 
 using namespace tinyxml2;
 using namespace std;
@@ -294,6 +298,22 @@ void visualizationMenu(){
 }
 
 
+void init() {
+	ilInit();
+	ilEnable(IL_ORIGIN_SET); 
+	ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
+
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_TEXTURE_2D);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
+
 int main(int argc, char **argv) {
 	if (argc == 1 || (argc == 2 && strcmp(argv[1], "--help") == 0)){
         cout << "-------------------------------------------------HELP-----------------------------------------------" << endl;
@@ -335,11 +355,7 @@ int main(int argc, char **argv) {
 	#endif
 
 	//  OpenGL settings
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	glEnableClientState(GL_VERTEX_ARRAY);
+	init();
 
 	world.loadModels();
 	timebase = glutGet(GLUT_ELAPSED_TIME);

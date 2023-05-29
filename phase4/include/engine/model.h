@@ -27,6 +27,8 @@ class Model{
         int nIndexes;
         GLuint vertices_buffer;
         GLuint indexes_buffer;
+        GLuint normals_buffer;
+        GLuint tex_coords_buffer;
 
 
         Model();

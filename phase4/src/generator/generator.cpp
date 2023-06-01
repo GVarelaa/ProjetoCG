@@ -134,7 +134,7 @@ int main(int argc, char *argv[]){
         int stacks = atoi(argv[4]);
         char *filename = argv[5];
 
-        generateSphere(radius, slices, stacks, vertices, triangles, normals);
+        generateSphere(radius, slices, stacks, vertices, triangles, normals, texCoords);
         toFile(filename, vertices, triangles, normals, texCoords);
     }
     else if(regex_match(inp, regex(erCylinder))){

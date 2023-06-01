@@ -121,12 +121,10 @@ Point(*readFile(char *path, int *n))[4][4]{
 }
 
 
-pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level){
-    vector<Point> vertices;
-    vector<Triangle> triangles;
+void generateBezier(char *path, int level, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
     int n;
     Point (*patches)[4][4] = readFile(path, &n);
-    float step = 1 / (float)level;
+    float step = 1.0 / (float)level;
     int nPoints = (float)pow(level+1, 2); //N ª pontos num patch
 
     int index = 0;
@@ -136,12 +134,16 @@ pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level){
 
         for(int u=0; u < level; u++){
             for(int v=0; v <= level; v++){  
-                vertices.push_back(patchPoint(u*step, v*step, res));
-                vertices.push_back(patchPoint((u+1)*step, v*step, res));
+                vertices->push_back(patchPoint(u*step, v*step, res));
+                vertices->push_back(patchPoint((u+1)*step, v*step, res));
+                normals->push_back(Point(0, 1, 0));
+                normals->push_back(Point(0, 1, 0));
+                texCoords->push_back(Point(u*step, v*step, 0));
+                texCoords->push_back(Point((u+1)*step, v*step, 0));
 
                 if(v != level){
-                    triangles.push_back(Triangle(index, index+2, index+1));
-                    triangles.push_back(Triangle(index+1, index+2, index+3));
+                    triangles->push_back(Triangle(index, index+2, index+1));
+                    triangles->push_back(Triangle(index+1, index+2, index+3));
                 }
                 index+=2;
             }
@@ -149,6 +151,4 @@ pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level){
     }
 
     delete[] patches;
-
-    return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }

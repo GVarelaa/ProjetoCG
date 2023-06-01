@@ -10,6 +10,6 @@
 
 using namespace std;
 
-pair<vector<Point>, vector<Triangle> > generateBezier(char *path, int level);
+void generateBezier(char *path, int level, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords);
 
 #endif

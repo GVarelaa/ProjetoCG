@@ -185,7 +185,7 @@ int main(int argc, char *argv[]){
         int level = atoi(argv[3]);
         char *filename = argv[4];
 
-        pair<vector<Point>, vector<Triangle> > bezier = generateBezier(ctrlpoints_file, level);
+        generateBezier(ctrlpoints_file, level, vertices, triangles, normals, texCoords);
         toFile(filename, vertices, triangles, normals, texCoords);
     }
     else cout << "Invalid input!" << endl;

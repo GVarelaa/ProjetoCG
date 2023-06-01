@@ -30,8 +30,8 @@ World::World(char *path){
             for(XMLElement *child = elem->FirstChildElement(); child; child=child->NextSiblingElement()){
                 string childName(child->Name());
 
-                if (childName == "lights"){
-                    if ((char *)child->Attribute("type") == "point"){
+                if (childName == "light"){
+                    if (!strcmp((char *)child->Attribute("type"), "point")){
                         const char *posX = child->Attribute("posX");
                         const char *posY = child->Attribute("posY");
                         const char *posZ = child->Attribute("posZ");
@@ -39,13 +39,15 @@ World::World(char *path){
                         if (posY == NULL) posY = child->Attribute("posy");
                         if (posZ == NULL) posZ = child->Attribute("posz");
 
-                        float pos[4] = {atof(posX), atof(posY), atof(posZ), 1.0};
+                        float pos[4] = {stof(posX), stof(posY), stof(posZ), 1.0};
                         float quad_att = 1.0f;
 
                         glLightfv(GL_LIGHT0, GL_POSITION, pos);
                         glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, quad_att);
+
+                        //printf("point %f %f %f\n", pos[0], pos[1], pos[2]);
                     }
-                    else if ((char *)child->Attribute("type") == "directional"){
+                    else if (!strcmp((char *)child->Attribute("type"), "directional")){
                         const char *dirX = child->Attribute("dirX");
                         const char *dirY = child->Attribute("dirY");
                         const char *dirZ = child->Attribute("dirZ");
@@ -53,10 +55,12 @@ World::World(char *path){
                         if (dirY == NULL) dirY = child->Attribute("diry");
                         if (dirZ == NULL) dirZ = child->Attribute("dirz");
 
-                        float dir[4] = {atof(dirX), atof(dirY), atof(dirZ), 1.0};
+                        GLfloat dir[4] = {stof(dirX), stof(dirY), stof(dirZ), 0.0};
                         glLightfv(GL_LIGHT0, GL_POSITION, dir);
+
+                        printf("diretional %f %f %f\n", dir[0], dir[1], dir[2]);
                     }
-                    else if ((char *)child->Attribute("type") == "spotlight"){
+                    else if (!strcmp((char *)child->Attribute("type"), "spotlight")){
                         const char *posX = child->Attribute("posX");
                         const char *posY = child->Attribute("posY");
                         const char *posZ = child->Attribute("posZ");
@@ -71,13 +75,15 @@ World::World(char *path){
                         if (dirY == NULL) dirY = child->Attribute("diry");
                         if (dirZ == NULL) dirZ = child->Attribute("dirz");
 
-                        GLfloat pos[4] = {atof(posX), atof(posY), atof(posZ), 1.0};
-                        GLfloat spotDir[3] = {atof(dirX), atof(dirY), atof(dirZ)};
+                        GLfloat pos[4] = {stof(posX), stof(posY), stof(posZ), 1.0};
+                        GLfloat spotDir[3] = {stof(dirX), stof(dirY), stof(dirZ)};
 
                         glLightfv(GL_LIGHT0, GL_POSITION, pos);
                         glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spotDir);
                         glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, atof((char *)child->Attribute("cutoff")));
-                        glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 0);                    
+                        glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 0);    
+
+                        //printf("spotlight %f %f %f %f %f %f\n", pos[0], pos[1], pos[2], spotDir[0], spotDir[1], spotDir[2]);                
                     }
                 }
             }

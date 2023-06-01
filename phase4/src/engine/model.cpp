@@ -9,13 +9,11 @@ Model::Model(XMLElement* elem) {
     XMLElement* child = elem->FirstChildElement();
     if (child != NULL) {
         string name(child->Name());
-        /*if (name == "color") {
-            float r = atof((char*)child->Attribute("R"));
-            float g = atof((char*)child->Attribute("G"));
-            float b = atof((char*)child->Attribute("B"));
-            //color = new Point(r, g, b);
-        }*/
-        if(name == "texture"){
+
+        if (name == "color") {
+           color = Color(child);
+        }
+        else if(name == "texture"){
             texturePath = strdup((char*)child->Attribute("file"));
         }
     }
@@ -29,7 +27,6 @@ Model::Model(char* newPath) {
 
 
 void Model::load() {
-    printf("aqui\n");
     printf("%s\n", texturePath);
     glGenBuffers(1, &verticesBuffer);
     glGenBuffers(1, &indexesBuffer);
@@ -155,6 +152,12 @@ void Model::draw() {
     if(texturePath){
         glBindTexture(GL_TEXTURE_2D, texture);
     }
+    
+    printf("%f %f %f %f\n", color.diffuse[0], color.diffuse[1], color.diffuse[2], color.diffuse[3]);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, color.diffuse);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, color.ambient);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, color.specular);
+    glMaterialf(GL_FRONT, GL_SHININESS, color.shininess);
 
     glBindBuffer(GL_ARRAY_BUFFER, verticesBuffer);
     glVertexPointer(3, GL_FLOAT, 0, 0);

@@ -156,6 +156,11 @@ void Model::draw() {
         glBindTexture(GL_TEXTURE_2D, texture);
     }
 
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, color.diffuse);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, color.ambient);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, color.specular);
+    glMaterialf(GL_FRONT, GL_SHININESS, color.shininess);
+
     glBindBuffer(GL_ARRAY_BUFFER, verticesBuffer);
     glVertexPointer(3, GL_FLOAT, 0, 0);
 

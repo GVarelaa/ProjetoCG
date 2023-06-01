@@ -96,7 +96,6 @@ void Model::load() {
 
     file.close();
 
-
     glBindBuffer(GL_ARRAY_BUFFER, verticesBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * points.size(), points.data(), GL_STATIC_DRAW);
 
@@ -135,7 +134,8 @@ void Model::loadTexture() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_LINEAR_MIPMAP_NEAREST, GL_LINEAR); // Ver isto
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	//glTexParameteri(GL_TEXTURE_2D, GL_LINEAR_MIPMAP_NEAREST, GL_LINEAR); // Ver isto
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
 
@@ -153,7 +153,7 @@ void Model::draw() {
         glBindTexture(GL_TEXTURE_2D, texture);
     }
     
-    printf("%f %f %f %f\n", color.diffuse[0], color.diffuse[1], color.diffuse[2], color.diffuse[3]);
+    //printf("%f %f %f %f\n", color.diffuse[0], color.diffuse[1], color.diffuse[2], color.diffuse[3]);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, color.diffuse);
     glMaterialfv(GL_FRONT, GL_AMBIENT, color.ambient);
     glMaterialfv(GL_FRONT, GL_SPECULAR, color.specular);

@@ -27,7 +27,6 @@ Model::Model(char* newPath) {
 
 
 void Model::load() {
-    printf("%s\n", texturePath);
     glGenBuffers(1, &verticesBuffer);
     glGenBuffers(1, &indexesBuffer);
     glGenBuffers(1, &normalsBuffer);

@@ -26,6 +26,49 @@ World::World(char *path){
         else if(name == "group"){
             groups.push_back(Group(elem));
         }
+        else if (name == "lights"){
+            for(XMLElement *child = elem->FirstChildElement(); child; child=child->NextSiblingElement()){
+                string childName(child->Name());
+
+                if (childName == "lights"){
+                    if ((char *)child->Attribute("type") == "point"){
+                        float posX = atof((char *)child->Attribute("posX"));
+                        float posY = atof((char *)child->Attribute("posY"));
+                        float posZ = atof((char *)child->Attribute("posZ"));
+
+                        float pos[4] = {posX, posY, posZ, 1.0};
+                        float quad_att = 1.0f;
+
+                        glLightfv(GL_LIGHT0, GL_POSITION, pos);
+                        glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, quad_att);
+                    }
+                    else if ((char *)child->Attribute("type") == "directional"){
+                        float dirX = atof((char *)child->Attribute("dirX"));
+                        float dirY = atof((char *)child->Attribute("dirY"));
+                        float dirZ = atof((char *)child->Attribute("dirZ"));
+
+                        float dir[4] = {dirX, dirY, dirZ, 1.0};
+                        glLightfv(GL_LIGHT0, GL_POSITION, dir);
+                    }
+                    else if ((char *)child->Attribute("type") == "spotlight"){
+                        float posX = atof((char *)child->Attribute("posX"));
+                        float posY = atof((char *)child->Attribute("posY"));
+                        float posZ = atof((char *)child->Attribute("posZ"));
+                        float dirX = atof((char *)child->Attribute("dirX"));
+                        float dirY = atof((char *)child->Attribute("dirY"));
+                        float dirZ = atof((char *)child->Attribute("dirZ"));
+
+                        GLfloat pos[4] = {posX, posY, posZ, 1.0};
+                        GLfloat spotDir[3] = {dirX, dirY, dirZ};
+
+                        glLightfv(GL_LIGHT0, GL_POSITION, pos);
+                        glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spotDir);
+                        glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, atof((char *)child->Attribute("cutoff")));
+                        glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 0);                    
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -159,6 +159,7 @@ void renderScene(void){
 	// geometric transformations
 
 	// drawing instructions
+	world.applyLights();
 	world.drawModels();
 
 	showFPS();

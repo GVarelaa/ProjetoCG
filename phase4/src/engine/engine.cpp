@@ -159,17 +159,10 @@ void renderScene(void){
 		showAxis();
 	}
 
-	// geometric transformations
+	world.applyLights();
 
 	// drawing instructions
-	//printf("A aplicar luzes...\n");
-	world.applyLights();
-	//printf("Acabei de aplicar luzes...\n");
-
-
-	//printf("A renderizar...\n");
 	world.drawModels();
-	//printf("Acabei de renderizar...\n");
 
 	showFPS();
 	if (debug){
@@ -376,9 +369,7 @@ int main(int argc, char **argv) {
 	init();
 
 	world.setupLights();
-	//printf("A carregar modelos...\n");
 	world.loadModels();
-	//printf("Acabei de carregar modelos...\n");
 
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 

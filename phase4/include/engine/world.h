@@ -5,6 +5,7 @@
 #include "group.h"
 #include "settings.h"
 #include "../point.h"
+#include "light.h"
 #include "../tinyxml2/tinyxml2.h"
 
 using namespace std;
@@ -15,6 +16,7 @@ class World{
         Window window;
         Camera camera;
         vector<Group> groups;
+        vector<Light *> lights;
         
         World();
         World(Window newWindow, Camera newCamera, vector<Group> newGroup);
@@ -24,6 +26,7 @@ class World{
         vector<char *> getLabels();
         Point* getGroupPosition(int i);
         int getClosestGroupIndex();
+        void applyLights();
 };
 
 #endif

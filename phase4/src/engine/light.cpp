@@ -1,8 +1,8 @@
 #include "../../include/engine/light.h"
 
 void Light::setup() {
-    float dark[4] = { 0.2, 0.2, 0.2, 1.0 };
-    float white[4] = { 1.0, 1.0, 1.0, 1.0 };
+    float dark[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
+    float white[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
     // light colors
     glEnable(light);
@@ -69,7 +69,7 @@ SpotLight::SpotLight(XMLElement* elem, int index){
 
     elem->Attribute("dirX") ? spotDir[0] = atof((char *)elem->Attribute("dirX")) : spotDir[0] = atof((char *)elem->Attribute("dirx"));
     elem->Attribute("dirY") ? spotDir[1] = atof((char *)elem->Attribute("dirY")) : spotDir[1] = atof((char *)elem->Attribute("diry"));
-    elem->Attribute("dirZ") ? spotDir[2] = atof((char *)elem->Attribute("dirZ")) : spotDir[2] = atof((char *)elem->Attribute("dirz"));
+    elem->Attribute("dirZ") ? spotDir[2] = atof((char*)elem->Attribute("dirZ")) : spotDir[2] = atof((char*)elem->Attribute("dirz"));
 
     cutoff = atof((char *)elem->Attribute("cutoff"));
     light = getLight(index);
@@ -79,5 +79,5 @@ void SpotLight::apply(){
     glLightfv(light, GL_POSITION, pos);
     glLightfv(light, GL_SPOT_DIRECTION, spotDir);
     glLightf(light, GL_SPOT_CUTOFF, cutoff);
-    glLightf(light, GL_SPOT_EXPONENT, 0);
+    //glLightf(light, GL_SPOT_EXPONENT, 0);
 }

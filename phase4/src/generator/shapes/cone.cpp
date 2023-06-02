@@ -1,5 +1,24 @@
 #include "../../../include/generator/cone.h"
 
+Point computeNormal(int slice, float alpha, float radius, float height) {
+    Point previousPoint = Point(radius * sin((slice - 1) * alpha), 0, radius * cos((slice - 1) * alpha));
+    Point nextPoint = Point(radius * sin((slice + 1) * alpha), 0, radius * cos((slice + 1) * alpha));
+
+    Point uVector = Point(nextPoint.x - previousPoint.x, nextPoint.y - previousPoint.y, nextPoint.z - previousPoint.z);
+
+    Point topPoint = Point(0, height, 0);
+    Point basePoint = Point(radius * sin(slice * alpha), 0, radius * cos(slice * alpha));
+
+    Point vVector = Point(topPoint.x - basePoint.x, topPoint.y - basePoint.y, topPoint.z - basePoint.z);
+
+    Point normal = uVector;
+    normal.crossProduct(vVector);
+    normal.normalizeVector();
+
+    return normal;
+}
+
+
 void generateCone(float radius, float height, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
     float alpha = (2 * M_PI) / slices;
     float hPart = height / stacks;
@@ -26,14 +45,15 @@ void generateCone(float radius, float height, int slices, int stacks, vector<Poi
 
         index+=3;
 
-        for(int j = 0; j < stacks; j++){
-            Point p1 = Point((radius - j*rPart) * sin(i*alpha), j*hPart, (radius - j*rPart) * cos(i*alpha));
-            Point p2 = Point((radius - j*rPart) * sin((i+1)*alpha), j*hPart, (radius - j*rPart) * cos((i+1)*alpha));
-            vertices->push_back(p1);
-            vertices->push_back(p2);
+        Point actualSliceNormal = computeNormal(i, alpha, radius, height);
+        Point nextSliceNormal = computeNormal(i+1, alpha, radius, height);
 
-            normals->push_back(Point(0, 1, 0));
-            normals->push_back(Point(0, 1, 0));
+        for(int j = 0; j < stacks; j++){
+            vertices->push_back(Point((radius - j * rPart) * sin(i * alpha), j * hPart, (radius - j * rPart) * cos(i * alpha)));
+            vertices->push_back(Point((radius - j * rPart) * sin((i + 1) * alpha), j * hPart, (radius - j * rPart) * cos((i + 1) * alpha)));
+
+            normals->push_back(actualSliceNormal);
+            normals->push_back(nextSliceNormal);
 
             texCoords->push_back(Point(i * xTexPart, j * yTexPart, 0));
             texCoords->push_back(Point((i + 1) * xTexPart, j * yTexPart, 0));
@@ -48,7 +68,7 @@ void generateCone(float radius, float height, int slices, int stacks, vector<Poi
 
         vertices->push_back(Point(0, height, 0));
 
-        normals->push_back(Point(0, 1, 0));
+        normals->push_back(actualSliceNormal);
 
         texCoords->push_back(Point(0, 0, 0));
 

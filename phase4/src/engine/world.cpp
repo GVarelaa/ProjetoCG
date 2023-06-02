@@ -38,7 +38,7 @@ World::World(char *path){
                     else if (!strcmp((char *)child->Attribute("type"), "directional")){
                         lights.push_back(new DirectionalLight(child, i));
                     }
-                    else if (!strcmp((char *)child->Attribute("type"), "spotlight")){
+                    else if (!strcmp((char *)child->Attribute("type"), "spotlight") || !strcmp((char*)child->Attribute("type"), "spot")){
                         lights.push_back(new SpotLight(child, i));               
                     }
                 }

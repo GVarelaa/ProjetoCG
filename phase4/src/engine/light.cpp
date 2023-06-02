@@ -2,7 +2,7 @@
 
 //POINT
 PointLight::PointLight(XMLElement *elem){
-    const char *posX = elem->Attribute("posX");
+    const char *posX = elem->Attribute("posX") ? elem->Attribute("posX") : elem->Attribute("posx");
     const char *posY = elem->Attribute("posY");
     const char *posZ = elem->Attribute("posZ");
 

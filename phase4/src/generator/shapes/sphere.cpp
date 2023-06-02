@@ -24,6 +24,8 @@ void generateSphere(float radius, int slices, int stacks, vector<Point> *vertice
 
             Point n1 = Point(cos(j*beta-M_PI_2) * sin(i*alpha), sin(j*beta-M_PI_2), cos(j*beta-M_PI_2) * cos(i*alpha));
             Point n2 = Point(cos(j*beta-M_PI_2) * sin((i+1)*alpha), sin(j*beta-M_PI_2), cos(j*beta-M_PI_2) * cos((i+1)*alpha));
+            //n1.normalizeVector();
+            //n2.normalizeVector();
             normals->push_back(n1);
             normals->push_back(n2);
 

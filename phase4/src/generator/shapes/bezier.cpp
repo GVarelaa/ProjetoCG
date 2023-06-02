@@ -107,6 +107,12 @@ Point getNormal(float u, float v, Point M[4][4]) {
     normal.crossProduct(vectorU); // mão direita
     normal.normalizeVector();
 
+    if (isnan(normal.x) || isnan(normal.y) || isnan(normal.z)) {
+        normal.x = 0;
+        normal.y = 1; // MUDAR ISTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+        normal.z = 0;
+    }
+
     return normal;
 }
 

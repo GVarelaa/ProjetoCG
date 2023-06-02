@@ -82,6 +82,8 @@ void Model::load() {
         normals.push_back(stof(x));
         normals.push_back(stof(y));
         normals.push_back(stof(z));
+
+
     }
 
     for(int i = 0; i < nVertices; i++) {
@@ -94,6 +96,7 @@ void Model::load() {
     }
 
     file.close();
+
 
     glBindBuffer(GL_ARRAY_BUFFER, verticesBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * points.size(), points.data(), GL_STATIC_DRAW);

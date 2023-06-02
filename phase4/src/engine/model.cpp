@@ -148,11 +148,23 @@ void Model::draw() {
     //if (color != NULL) {
     //    glColor3f(color->x / 255.0, color->y / 255.0, color->z / 255.0);
     //}
-    //if (texturePath) {
-    //    glBindTexture(GL_TEXTURE_2D, texture);
-    //}
+    if (texturePath) {
+        glBindTexture(GL_TEXTURE_2D, texture);
+    }
     
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, color.diffuse);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, color.ambient);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, color.specular);
+    glMaterialfv(GL_FRONT, GL_EMISSION, color.emissive);
+    glMaterialf(GL_FRONT, GL_SHININESS, color.shininess);
 
+    /*printf("-------------");
+    printf("Diffuse : %f %f %f %f\n", color.diffuse[0], color.diffuse[1], color.diffuse[2], color.diffuse[3]);
+    printf("Ambient : %f %f %f %f\n", color.ambient[0], color.ambient[1], color.ambient[2], color.ambient[3]);
+    printf("Specular : %f %f %f %f\n", color.specular[0], color.specular[1], color.specular[2], color.specular[3]);
+    printf("Emission : %f %f %f %f\n", color.emissive[0], color.emissive[1], color.emissive[2], color.emissive[3]);
+    printf("Shine : %f \n", color.shininess);
+    printf("-------------");*/
 
     glBindBuffer(GL_ARRAY_BUFFER, verticesBuffer);
     glVertexPointer(3, GL_FLOAT, 0, 0);
@@ -161,24 +173,8 @@ void Model::draw() {
     glNormalPointer(GL_FLOAT,0,0);
 
     //if(texturePath)
-    //glBindBuffer(GL_ARRAY_BUFFER, texCoordsBuffer); 
-    //glTexCoordPointer(2,GL_FLOAT,0,0);
-
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, color.diffuse);
-    glMaterialfv(GL_FRONT, GL_AMBIENT, color.ambient);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, color.specular);
-    glMaterialfv(GL_FRONT, GL_EMISSION, color.emissive);
-    glMaterialf(GL_FRONT, GL_SHININESS, color.shininess);
-
-    printf("-------------");
-    printf("Diffuse : %f %f %f %f\n", color.diffuse[0], color.diffuse[1], color.diffuse[2], color.diffuse[3]);
-    printf("Ambient : %f %f %f %f\n", color.ambient[0], color.ambient[1], color.ambient[2], color.ambient[3]);
-    printf("Specular : %f %f %f %f\n", color.specular[0], color.specular[1], color.specular[2], color.specular[3]);
-    printf("Emission : %f %f %f %f\n", color.emissive[0], color.emissive[1], color.emissive[2], color.emissive[3]);
-    printf("Shine : %f \n", color.shininess);
-    printf("-------------");
-
-
+    glBindBuffer(GL_ARRAY_BUFFER, texCoordsBuffer); 
+    glTexCoordPointer(2,GL_FLOAT,0,0);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexesBuffer);
     glDrawElements(GL_TRIANGLES, nIndexes, GL_UNSIGNED_INT, NULL);

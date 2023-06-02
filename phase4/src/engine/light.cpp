@@ -17,6 +17,18 @@ PointLight::PointLight(XMLElement *elem){
 }
 
 void PointLight::apply(){
+    float dark[4] = { 0.2, 0.2, 0.2, 1.0 };
+    float white[4] = { 1.0, 1.0, 1.0, 1.0 };
+    float black[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+
+    // light colors
+    glLightfv(GL_LIGHT0, GL_AMBIENT, dark);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, white);
+
+    // controls global ambient light
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, white);
+
     float quad_att = 1.0f;
     glLightfv(GL_LIGHT0, GL_POSITION, pos);
     glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, quad_att);
@@ -40,6 +52,18 @@ DirectionalLight::DirectionalLight(XMLElement *elem){
 }
 
 void DirectionalLight::apply(){
+    float dark[4] = { 0.2, 0.2, 0.2, 1.0 };
+    float white[4] = { 1.0, 1.0, 1.0, 1.0 };
+    float black[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+
+    // light colors
+    glLightfv(GL_LIGHT0, GL_AMBIENT, dark);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, white);
+
+    // controls global ambient light
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, white);
+
     glLightfv(GL_LIGHT0, GL_POSITION, dir);
 }
 
@@ -73,6 +97,18 @@ SpotLight::SpotLight(XMLElement* elem){
 }
 
 void SpotLight::apply(){
+    float dark[4] = { 0.2, 0.2, 0.2, 1.0 };
+    float white[4] = { 1.0, 1.0, 1.0, 1.0 };
+    float black[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+
+    // light colors
+    glLightfv(GL_LIGHT0, GL_AMBIENT, dark);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, white);
+
+    // controls global ambient light
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, white);
+
     glLightfv(GL_LIGHT0, GL_POSITION, pos);
     glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spotDir);
     glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, cutoff);

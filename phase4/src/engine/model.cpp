@@ -5,7 +5,7 @@ Model::Model(XMLElement* elem) {
     modelPath = strdup((char*)elem->Attribute("file"));
     texturePath = NULL;
     nIndexes = 0;
-    
+    printf("A ler ficheiro ...\n");
     XMLElement* child = elem->FirstChildElement();
     if (child != NULL) {
         string name(child->Name());
@@ -17,6 +17,7 @@ Model::Model(XMLElement* elem) {
             texturePath = strdup((char*)child->Attribute("file"));
         }
     }
+    printf("Acabei de ler modelo\n");
 }
 
 
@@ -27,11 +28,6 @@ Model::Model(char* newPath) {
 
 
 void Model::load() {
-    glGenBuffers(1, &verticesBuffer);
-    glGenBuffers(1, &indexesBuffer);
-    glGenBuffers(1, &normalsBuffer);
-    glGenBuffers(1, &texCoordsBuffer);
-
     vector<float> points;
     vector<int> indexes;
     vector<float> normals;
@@ -82,8 +78,6 @@ void Model::load() {
         normals.push_back(stof(x));
         normals.push_back(stof(y));
         normals.push_back(stof(z));
-
-
     }
 
     for(int i = 0; i < nVertices; i++) {
@@ -98,23 +92,27 @@ void Model::load() {
     file.close();
 
 
+    glGenBuffers(1, &verticesBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, verticesBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * points.size(), points.data(), GL_STATIC_DRAW);
 
+    glGenBuffers(1, &normalsBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, normalsBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * points.size(), normals.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * normals.size(), normals.data(), GL_STATIC_DRAW);
 
-    glBindBuffer(GL_ARRAY_BUFFER, texCoordsBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * points.size(), texCoords.data(), GL_STATIC_DRAW);
-
+    glGenBuffers(1, &indexesBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexesBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * indexes.size(), indexes.data(), GL_STATIC_DRAW);
 
-    nIndexes = indexes.size();
-
     if(texturePath){
+        glGenBuffers(1, &texCoordsBuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, texCoordsBuffer);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * texCoords.size(), texCoords.data(), GL_STATIC_DRAW);
+
         loadTexture();
     }
+
+    nIndexes = indexes.size();
 }
 
 
@@ -146,45 +144,33 @@ void Model::loadTexture() {
 
 
 void Model::draw() {
-    //glPushAttrib(GL_CURRENT_BIT);
 
-    //if (color != NULL) {
-    //    glColor3f(color->x / 255.0, color->y / 255.0, color->z / 255.0);
-    //}
-    if (texturePath) {
-        glBindTexture(GL_TEXTURE_2D, texture);
-    }
     
     glMaterialfv(GL_FRONT, GL_DIFFUSE, color.diffuse);
     glMaterialfv(GL_FRONT, GL_AMBIENT, color.ambient);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, color.specular);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, color.specular);    
     glMaterialfv(GL_FRONT, GL_EMISSION, color.emissive);
     glMaterialf(GL_FRONT, GL_SHININESS, color.shininess);
 
-    /*printf("-------------");
-    printf("Diffuse : %f %f %f %f\n", color.diffuse[0], color.diffuse[1], color.diffuse[2], color.diffuse[3]);
-    printf("Ambient : %f %f %f %f\n", color.ambient[0], color.ambient[1], color.ambient[2], color.ambient[3]);
-    printf("Specular : %f %f %f %f\n", color.specular[0], color.specular[1], color.specular[2], color.specular[3]);
-    printf("Emission : %f %f %f %f\n", color.emissive[0], color.emissive[1], color.emissive[2], color.emissive[3]);
-    printf("Shine : %f \n", color.shininess);
-    printf("-------------");*/
 
     glBindBuffer(GL_ARRAY_BUFFER, verticesBuffer);
     glVertexPointer(3, GL_FLOAT, 0, 0);
 
     glBindBuffer(GL_ARRAY_BUFFER, normalsBuffer);
-    glNormalPointer(GL_FLOAT,0,0);
+    glNormalPointer(GL_FLOAT, 0, 0);
 
-    //if(texturePath)
-    glBindBuffer(GL_ARRAY_BUFFER, texCoordsBuffer); 
-    glTexCoordPointer(2,GL_FLOAT,0,0);
+    if (texturePath) {
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glBindBuffer(GL_ARRAY_BUFFER, texCoordsBuffer);
+        glTexCoordPointer(2, GL_FLOAT, 0, 0);
+    }
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexesBuffer);
     glDrawElements(GL_TRIANGLES, nIndexes, GL_UNSIGNED_INT, NULL);
 
-    //if(texturePath){
-    //    glBindTexture(GL_TEXTURE_2D, 0);
-    //}
+    if(texturePath){
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
 
-    //glPopAttrib();
+;
 }

@@ -17,8 +17,11 @@ using namespace std;
 
 class Light{
     public:
-        int getLightN(int nLight);
-        virtual void apply(int ind){};
+        int light;
+
+        int getLight(int index);
+        void setup();
+        virtual void apply(){};
 };
 
 
@@ -26,8 +29,8 @@ class PointLight : public Light{
     public:
         float pos[4];
 
-        PointLight(XMLElement *elem);
-        void apply(int ind);
+        PointLight(XMLElement *elem, int index);
+        void apply();
 };
 
 
@@ -35,8 +38,8 @@ class DirectionalLight : public Light{
     public:
         GLfloat dir[4];
 
-        DirectionalLight(XMLElement *elem);
-        void apply(int ind);
+        DirectionalLight(XMLElement *elem, int index);
+        void apply();
 };
 
 
@@ -46,8 +49,8 @@ class SpotLight : public Light{
         GLfloat spotDir[3];
         float cutoff;
 
-        SpotLight(XMLElement *elem);
-        void apply(int ind);
+        SpotLight(XMLElement *elem, int index);
+        void apply();
 };
 
 #endif

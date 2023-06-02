@@ -27,18 +27,19 @@ World::World(char *path){
             groups.push_back(Group(elem));
         }
         else if (name == "lights"){
-            for(XMLElement *child = elem->FirstChildElement(); child; child=child->NextSiblingElement()){
+            int i = 0;
+            for(XMLElement *child = elem->FirstChildElement(); child; child=child->NextSiblingElement(), i++) {
                 string childName(child->Name());
 
                 if (childName == "light"){
                     if (!strcmp((char *)child->Attribute("type"), "point")){
-                        lights.push_back(new PointLight(child));
+                        lights.push_back(new PointLight(child, i));
                     }
                     else if (!strcmp((char *)child->Attribute("type"), "directional")){
-                        lights.push_back(new DirectionalLight(child));
+                        lights.push_back(new DirectionalLight(child, i));
                     }
                     else if (!strcmp((char *)child->Attribute("type"), "spotlight")){
-                        lights.push_back(new SpotLight(child));               
+                        lights.push_back(new SpotLight(child, i));               
                     }
                 }
             }
@@ -119,6 +120,14 @@ int World::getClosestGroupIndex(){
 
 void World::applyLights(){
     for(int i=0; i<lights.size(); i++){
-        lights[i]->apply(i);
+        lights[i]->apply();
     }
 }
+
+
+void World::setupLights() {
+    for (int i = 0; i < lights.size(); i++) {
+        lights[i]->setup();
+    }
+}
+

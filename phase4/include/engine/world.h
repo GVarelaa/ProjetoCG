@@ -27,6 +27,7 @@ class World{
         Point* getGroupPosition(int i);
         int getClosestGroupIndex();
         void applyLights();
+        void setupLights();
 };
 
 #endif

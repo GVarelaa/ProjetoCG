@@ -19,7 +19,6 @@
 #endif
 
 
-
 using namespace tinyxml2;
 using namespace std;
 
@@ -83,7 +82,7 @@ void renderText() {
 
 
 void showAxis(){
-	glDisable(GL_LIGHTING);
+	//glDisable(GL_LIGHTING);
 	glBegin(GL_LINES);
 	// X axis in red
 	glColor3f(1.0f, 0.0f, 0.0f);
@@ -103,7 +102,7 @@ void showAxis(){
 	glColor3f(255.0f, 255.0f, 255.0f);
 		
 	glEnd();
-	glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHTING);
 }
 
 
@@ -161,8 +160,14 @@ void renderScene(void){
 	// geometric transformations
 
 	// drawing instructions
+	//printf("A aplicar luzes...\n");
 	world.applyLights();
+	//printf("Acabei de aplicar luzes...\n");
+
+
+	//printf("A renderizar...\n");
 	world.drawModels();
+	//printf("Acabei de renderizar...\n");
 
 	showFPS();
 	if (debug){
@@ -308,11 +313,10 @@ void init() {
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
+	glEnable(GL_RESCALE_NORMAL);
+	glEnable(GL_TEXTURE_2D);
 
 	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-
-	glEnable(GL_TEXTURE_2D);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
@@ -363,7 +367,11 @@ int main(int argc, char **argv) {
 	//  OpenGL settings
 	init();
 
+	world.setupLights();
+	//printf("A carregar modelos...\n");
 	world.loadModels();
+	//printf("Acabei de carregar modelos...\n");
+
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 
 	visualizationMenu();

@@ -217,13 +217,19 @@ void processMouseMotion(int x, int y){
 
 void explorerChoice(int choice) {
 	Point p;
-	if(choice == 0)
-		world.camera.groupIndex = world.getClosestGroupIndex();
-	else
+	if(choice == 0){
+		int index = world.getClosestGroupIndex();
+		if (index != -1){
+			world.camera.groupIndex = index;
+			world.camera.mode = EXPLORER;
+			world.camera.beta = 0;
+		}
+	}
+	else{
 		world.camera.groupIndex = choice-1;
-		
-	world.camera.mode = EXPLORER;
-	world.camera.beta = 0;
+		world.camera.mode = EXPLORER;
+		world.camera.beta = 0;
+	}
 }
 
 

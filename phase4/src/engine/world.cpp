@@ -114,7 +114,7 @@ int World::getClosestGroupIndex(){
 
         return labeledGroups[n].second;
     }
-    else return 0;
+    else return -1;
 }
 
 

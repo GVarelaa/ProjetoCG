@@ -1,6 +1,6 @@
 #include "../../../include/generator/cone.h"
 
-void generateCone(float radius, float height, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals){
+void generateCone(float radius, float height, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
     float alpha = (2 * M_PI) / slices;
     float hPart = height / stacks;
     float rPart = radius / stacks;

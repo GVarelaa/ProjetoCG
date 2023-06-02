@@ -38,7 +38,7 @@ void computeMatrix(Point points[4][4], Point res[4][4]){
 }
 
 
-Point patchPoint(float u, float v, Point M[4][4]){
+Point getPatchPoint(float u, float v, Point M[4][4]){
     float U[4] = {(float)pow(u, 3), (float)pow(u, 2), u, 1};
     float V[4] = {(float)pow(v, 3), (float)pow(v, 2), v, 1};
 
@@ -60,6 +60,54 @@ Point patchPoint(float u, float v, Point M[4][4]){
     p.z = res[0].z * V[0] + res[1].z * V[1] + res[2].z * V[2] + res[3].z * V[3];
 
     return p;
+}
+
+
+Point getNormal(float u, float v, Point M[4][4]) {
+    float U[4] = {(float)pow(u, 3), (float)pow(u, 2), u, 1 };
+    float V[4] = { (float)pow(v, 3), (float)pow(v, 2), v, 1 };
+    float dU[4] = {(float)pow(u,2) * 3, u * 2, 1, 0};
+    float dV[4] = {(float)pow(v,2) * 3, v * 2, 1, 0 };
+
+    Point res1[4]; // dU * M
+    for (int i = 0; i < 4; i++) {
+        res1[i].x = 0.0f;
+        res1[i].y = 0.0f;
+        res1[i].z = 0.0f;
+        for (int j = 0; j < 4; j++) {
+            res1[i].x += dU[j] * M[j][i].x;
+            res1[i].y += dU[j] * M[j][i].y;
+            res1[i].z += dU[j] * M[j][i].z;
+        }
+    }
+
+    Point vectorU;
+    vectorU.x = res1[0].x * V[0] + res1[1].x * V[1] + res1[2].x * V[2] + res1[3].x * V[3];
+    vectorU.y = res1[0].y * V[0] + res1[1].y * V[1] + res1[2].y * V[2] + res1[3].y * V[3];
+    vectorU.z = res1[0].z * V[0] + res1[1].z * V[1] + res1[2].z * V[2] + res1[3].z * V[3];
+
+    Point res2[4]; // U * M
+    for (int i = 0; i < 4; i++) {
+        res2[i].x = 0.0f;
+        res2[i].y = 0.0f;
+        res2[i].z = 0.0f;
+        for (int j = 0; j < 4; j++) {
+            res2[i].x += U[j] * M[j][i].x;
+            res2[i].y += U[j] * M[j][i].y;
+            res2[i].z += U[j] * M[j][i].z;
+        }
+    }
+
+    Point vectorV;
+    vectorV.x = res2[0].x * dV[0] + res2[1].x * dV[1] + res2[2].x * dV[2] + res2[3].x * dV[3];
+    vectorV.y = res2[0].y * dV[0] + res2[1].y * dV[1] + res2[2].y * dV[2] + res2[3].y * dV[3];
+    vectorV.z = res2[0].z * dV[0] + res2[1].z * dV[1] + res2[2].z * dV[2] + res2[3].z * dV[3];
+
+    Point normal = vectorV;
+    normal.crossProduct(vectorU); // mão direita
+    normal.normalizeVector();
+
+    return normal;
 }
 
 
@@ -134,10 +182,10 @@ void generateBezier(char *path, int level, vector<Point> *vertices, vector<Trian
 
         for(int u=0; u < level; u++){
             for(int v=0; v <= level; v++){  
-                vertices->push_back(patchPoint(u*step, v*step, res));
-                vertices->push_back(patchPoint((u+1)*step, v*step, res));
-                normals->push_back(Point(0, 1, 0));
-                normals->push_back(Point(0, 1, 0));
+                vertices->push_back(getPatchPoint(u*step, v*step, res));
+                vertices->push_back(getPatchPoint((u+1)*step, v*step, res));
+                normals->push_back(getNormal(u*step, v*step, res));
+                normals->push_back(getNormal((u+1)*step, v * step, res));
                 texCoords->push_back(Point(u*step, v*step, 0));
                 texCoords->push_back(Point((u+1)*step, v*step, 0));
 

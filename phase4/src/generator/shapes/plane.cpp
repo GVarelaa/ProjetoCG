@@ -20,21 +20,17 @@ void generatePlane(float length, int divisions, vector<Point> *vertices, vector<
 
             vertices->push_back(Point(x, 0, z));
             vertices->push_back(Point(x, 0, z-squareLength));
-            //vertices->push_back(Point(x-squareLength, 0, z-squareLength));
-            //vertices->push_back(Point(x-squareLength, 0, z));
 
             for(int k = 0; k < 2; k++)
                 normals->push_back(Point(0, 1, 0));
-
-            texCoords->push_back(Point(i*texPart, j*texPart, 0));
-            texCoords->push_back(Point((i+1)*texPart, j*texPart, 0));
-            //texCoords->push_back(Point((i+1)*texPart, (j+1)*texPart, 0));
-            //texCoords->push_back(Point(i*texPart, (j+1)*texPart, 0));
 
             if (divisions != j) {
                 triangles->push_back(Triangle(index, index + 1, index + 2));
                 triangles->push_back(Triangle(index+1, index + 3, index + 2));
             }
+
+            texCoords->push_back(Point(i * texPart, j * texPart, 0));
+            texCoords->push_back(Point((i + 1) * texPart, j * texPart, 0));
 
             index+=2;
         }

@@ -14,44 +14,37 @@ void generateXZplane(Point initialPoint, float length, int divisions, int *index
         x = initialX;
         z = initialZ - i*squareLength;
         
-        for(int j = 0; j < divisions; j++){
-            x = initialX - j*squareLength;
-            
-            Point p1 = Point(x, initialY, z);
-            Point p2 = Point(x, initialY, z-squareLength);
-            Point p3 = Point(x-squareLength, initialY, z-squareLength);
-            Point p4 = Point(x-squareLength, initialY, z);
-            
-            vertices->push_back(p1);
-            vertices->push_back(p2);
-            vertices->push_back(p3);
-            vertices->push_back(p4);
+        for(int j = 0; j <= divisions; j++){
+            x = initialX - j * squareLength;
+
+            vertices->push_back(Point(x, initialY, z));
+            vertices->push_back(Point(x, initialY, z - squareLength));
 
             Triangle t1, t2;
             if(isVisible){
-                for(int k = 0; k < 4; k++)
+                for(int k = 0; k < 2; k++)
                     normals->push_back(Point(0, 1, 0));
 
                 t1 = Triangle(*index, *index+1, *index+2);
-                t2 = Triangle(*index, *index+2, *index+3);
+                t2 = Triangle(*index+1, *index+3, *index+2);
             }
             else {
-                for(int k = 0; k < 4; k++)
+                for(int k = 0; k < 2; k++)
                     normals->push_back(Point(0, -1, 0));
 
                 t1 = Triangle(*index+1, *index, *index+2);
-                t2 = Triangle(*index+2, *index, *index+3);
+                t2 = Triangle(*index+3, *index+1, *index+2);
+            }
+            
+            if (divisions != j) {
+                triangles->push_back(t1);
+                triangles->push_back(t2);
             }
 
-            texCoords->push_back(Point(i*texPart, j*texPart, 0));
-            texCoords->push_back(Point((i+1)*texPart, j*texPart, 0));
-            texCoords->push_back(Point((i+1)*texPart, (j+1)*texPart, 0));
-            texCoords->push_back(Point(i*texPart, (j+1)*texPart, 0));
+            texCoords->push_back(Point(i * texPart, j * texPart, 0));
+            texCoords->push_back(Point((i + 1) * texPart, j * texPart, 0));
 
-            triangles->push_back(t1);
-            triangles->push_back(t2);
-
-            *index+=4;
+            *index+=2;
         }
     }
 }
@@ -71,44 +64,37 @@ void generateYZplane(Point initialPoint, float length, int divisions, int *index
         z = initialZ;
         y = initialY - i*squareLength;
         
-        for(int j = 0; j < divisions; j++){
+        for(int j = 0; j <= divisions; j++){
             z = initialZ - j*squareLength;
 
-            Point p1 = Point(initialX, y, z);
-            Point p2 = Point(initialX, y, z-squareLength);
-            Point p3 = Point(initialX, y-squareLength, z-squareLength);
-            Point p4 = Point(initialX, y-squareLength, z);
-            
-            vertices->push_back(p1);
-            vertices->push_back(p2);
-            vertices->push_back(p3);
-            vertices->push_back(p4);
+            vertices->push_back(Point(initialX, y, z));
+            vertices->push_back(Point(initialX, y-squareLength, z));
 
             Triangle t1, t2;
             if(isVisible){
-                for(int k = 0; k < 4; k++)
+                for(int k = 0; k < 2; k++)
                     normals->push_back(Point(1, 0, 0));
 
-                t1 = Triangle(*index+1, *index, *index+2);
-                t2 = Triangle(*index+2, *index, *index+3);
+                t1 = Triangle(*index, *index + 1, *index + 2);
+                t2 = Triangle(*index + 1, *index + 3, *index + 2);
             }
             else {
-                for(int k = 0; k < 4; k++)
+                for(int k = 0; k < 2; k++)
                     normals->push_back(Point(-1, 0, 0));
 
-                t1 = Triangle(*index, *index+1, *index+2);
-                t2 = Triangle(*index, *index+2, *index+3);
+                t1 = Triangle(*index + 1, *index, *index + 2);
+                t2 = Triangle(*index + 3, *index + 1, *index + 2);
             }
 
-            texCoords->push_back(Point(j*texPart, (divisions-i)*texPart, 0));
-            texCoords->push_back(Point((j+1)*texPart, (divisions-i)*texPart, 0));
-            texCoords->push_back(Point((j+1)*texPart, (divisions-(i+1))*texPart, 0));
-            texCoords->push_back(Point(j*texPart, (divisions-(i+1))*texPart, 0));
+            if (divisions != j) {
+                triangles->push_back(t1);
+                triangles->push_back(t2);
+            }
 
-            triangles->push_back(t1);
-            triangles->push_back(t2);
+            texCoords->push_back(Point(j * texPart, (divisions - i) * texPart, 0));
+            texCoords->push_back(Point(j * texPart, (divisions - 1 - i) * texPart, 0));
 
-            *index+=4;
+            *index += 2;
         }
     }
 }
@@ -128,44 +114,37 @@ void generateXYplane(Point initialPoint, float length, int divisions, int *index
         y = initialY;
         x = initialX + i*squareLength;
         
-        for(int j = 0; j < divisions; j++){
+        for(int j = 0; j <= divisions; j++){
             y = initialY + j*squareLength;
-
-            Point p1 = Point(x, y, initialZ);
-            Point p2 = Point(x, y+squareLength, initialZ);
-            Point p3 = Point(x+squareLength, y+squareLength, initialZ);
-            Point p4 = Point(x+squareLength, y, initialZ);
             
-            vertices->push_back(p1);
-            vertices->push_back(p2);
-            vertices->push_back(p3);
-            vertices->push_back(p4);
+            vertices->push_back(Point(x, y, initialZ));
+            vertices->push_back(Point(x + squareLength, y, initialZ));
 
             Triangle t1, t2;
             if(isVisible){
                 for(int k = 0; k < 4; k++)
                     normals->push_back(Point(0, 0, 1));
 
-                t1 = Triangle(*index+1, *index, *index+2);
-                t2 = Triangle(*index+2, *index, *index+3);
+                t1 = Triangle(*index, *index + 1, *index + 2);
+                t2 = Triangle(*index + 1, *index + 3, *index + 2);
             }
             else {
                 for(int k = 0; k < 4; k++)
                     normals->push_back(Point(0, 0, -1));
 
-                t1 = Triangle(*index, *index+1, *index+2);
-                t2 = Triangle(*index, *index+2, *index+3);
+                t1 = Triangle(*index + 1, *index, *index + 2);
+                t2 = Triangle(*index + 3, *index + 1, *index + 2);
             }
 
-            texCoords->push_back(Point(i*texPart, j*texPart, 0));
-            texCoords->push_back(Point(i*texPart, (j+1)*texPart, 0));
-            texCoords->push_back(Point((i+1)*texPart, (j+1)*texPart, 0));
-            texCoords->push_back(Point((i+1)*texPart, j*texPart, 0));
+            if (divisions != j) {
+                triangles->push_back(t1);
+                triangles->push_back(t2);
+            }
 
-            triangles->push_back(t1);
-            triangles->push_back(t2);
+            texCoords->push_back(Point(i * texPart, j * texPart, 0));
+            texCoords->push_back(Point((i+1) * texPart, j* texPart, 0));
             
-            *index+=4;
+            *index+=2;
         }
     }
 }

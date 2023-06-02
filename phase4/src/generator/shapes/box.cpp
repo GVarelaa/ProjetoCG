@@ -25,8 +25,8 @@ void generateXZplane(Point initialPoint, float length, int divisions, int *index
                 for(int k = 0; k < 2; k++)
                     normals->push_back(Point(0, 1, 0));
 
-                t1 = Triangle(*index, *index+1, *index+2);
-                t2 = Triangle(*index+1, *index+3, *index+2);
+                t1 = Triangle(*index, *index + 1, *index + 3);
+                t2 = Triangle(*index, *index + 3, *index + 2);
             }
             else {
                 for(int k = 0; k < 2; k++)
@@ -82,8 +82,8 @@ void generateYZplane(Point initialPoint, float length, int divisions, int *index
                 for(int k = 0; k < 2; k++)
                     normals->push_back(Point(-1, 0, 0));
 
-                t1 = Triangle(*index + 1, *index, *index + 2);
-                t2 = Triangle(*index + 3, *index + 1, *index + 2);
+                t1 = Triangle(*index + 1, *index, *index + 3);
+                t2 = Triangle(*index + 3, *index, *index + 2);
             }
 
             if (divisions != j) {
@@ -125,15 +125,15 @@ void generateXYplane(Point initialPoint, float length, int divisions, int *index
                 for(int k = 0; k < 2; k++)
                     normals->push_back(Point(0, 0, 1));
 
-                t1 = Triangle(*index, *index + 1, *index + 2);
-                t2 = Triangle(*index + 1, *index + 3, *index + 2);
+                t1 = Triangle(*index, *index + 1, *index + 3);
+                t2 = Triangle(*index, *index + 3, *index + 2);
             }
             else {
                 for(int k = 0; k < 2; k++)
                     normals->push_back(Point(0, 0, -1));
 
-                t1 = Triangle(*index + 1, *index, *index + 2);
-                t2 = Triangle(*index + 3, *index + 1, *index + 2);
+                t1 = Triangle(*index + 1, *index, *index + 3);
+                t2 = Triangle(*index + 3, *index, *index + 2);
             }
 
             if (divisions != j) {

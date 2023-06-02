@@ -119,6 +119,6 @@ int World::getClosestGroupIndex(){
 
 void World::applyLights(){
     for(int i=0; i<lights.size(); i++){
-        lights[i]->apply();
+        lights[i]->apply(i);
     }
 }

@@ -83,6 +83,7 @@ void renderText() {
 
 
 void showAxis(){
+	glDisable(GL_LIGHTING);
 	glBegin(GL_LINES);
 	// X axis in red
 	glColor3f(1.0f, 0.0f, 0.0f);
@@ -102,6 +103,7 @@ void showAxis(){
 	glColor3f(255.0f, 255.0f, 255.0f);
 		
 	glEnd();
+	glEnable(GL_LIGHTING);
 }
 
 

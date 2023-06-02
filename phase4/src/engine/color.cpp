@@ -9,24 +9,25 @@ Color::Color(XMLElement* elem) {
         string childName(child->Name());
 
         if (childName == "diffuse"){
-            diffuse[0] = atof((char*)child->Attribute("R"));
-            diffuse[1] = atof((char*)child->Attribute("G"));
-            diffuse[2] = atof((char*)child->Attribute("B"));
+            printf("diffuse\n");
+            diffuse[0] = atof((char*)child->Attribute("R")) / 255.0;
+            diffuse[1] = atof((char*)child->Attribute("G")) / 255.0;
+            diffuse[2] = atof((char*)child->Attribute("B")) / 255.0;
         }
         else if (childName == "ambient"){
-            ambient[0] = atof((char*)child->Attribute("R"));
-            ambient[1] = atof((char*)child->Attribute("G"));
-            ambient[2] = atof((char*)child->Attribute("B"));
+            ambient[0] = atof((char*)child->Attribute("R")) / 255.0;
+            ambient[1] = atof((char*)child->Attribute("G")) / 255.0;
+            ambient[2] = atof((char*)child->Attribute("B")) / 255.0;
         }
         else if (childName == "specular"){
-            specular[0] = atof((char*)child->Attribute("R"));
-            specular[1] = atof((char*)child->Attribute("G"));
-            specular[2] = atof((char*)child->Attribute("B"));
+            specular[0] = atof((char*)child->Attribute("R")) / 255.0;
+            specular[1] = atof((char*)child->Attribute("G")) / 255.0;
+            specular[2] = atof((char*)child->Attribute("B")) / 255.0;
         }
         else if (childName == "emissive"){
-            emissive[0] = atof((char*)child->Attribute("R"));
-            emissive[1] = atof((char*)child->Attribute("G"));
-            emissive[2] = atof((char*)child->Attribute("B"));
+            emissive[0] = atof((char*)child->Attribute("R")) / 255.0;
+            emissive[1] = atof((char*)child->Attribute("G")) / 255.0;
+            emissive[2] = atof((char*)child->Attribute("B")) / 255.0;
         }
         else if (childName == "shininess"){
             shininess = atof((char*)child->Attribute("value"));

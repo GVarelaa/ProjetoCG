@@ -9,10 +9,10 @@ using namespace std;
 
 class Color{
     public:
-        float diffuse[4] = {200, 200, 200, 1};
-        float ambient[4] = {50, 50, 50, 1};
-        float specular[4] = {0, 0, 0, 1};
-        float emissive[4] = {0, 0, 0, 1};
+        float diffuse[4] = {200/255.0, 200/255.0, 200/255.0, 1.0};
+        float ambient[4] = {50/255.0, 50/255.0, 50/255.0, 1.0};
+        float specular[4] = {0.0, 0.0, 0.0, 1.0};
+        float emissive[4] = {0.0, 0.0, 0.0, 1.0};
         float shininess = 0;
 
         Color();

@@ -73,9 +73,9 @@ void Group::loadModels(){
 void Group::drawModels(){
     glPushMatrix();
 
-    if (color != NULL) {
-        glColor3f(color->x / 255.0, color->y / 255.0, color->z / 255.0);
-    }
+    //if (color != NULL) {
+    //    glColor3f(color->x / 255.0, color->y / 255.0, color->z / 255.0);
+    //}
 
     for(int i = 0; i < transforms.size(); i++){
         transforms[i]->transform();

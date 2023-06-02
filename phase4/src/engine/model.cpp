@@ -3,10 +3,11 @@
 
 Model::Model(XMLElement* elem) {
     modelPath = strdup((char*)elem->Attribute("file"));
+    const char* textureDir = "../../../demo-scenes/textures/";
     texturePath = NULL;
     nIndexes = 0;
-    printf("A ler ficheiro ...\n");
     XMLElement* child = elem->FirstChildElement();
+
     if (child != NULL) {
         string name(child->Name());
 
@@ -14,10 +15,13 @@ Model::Model(XMLElement* elem) {
            color = Color(child);
         }
         else if(name == "texture"){
-            texturePath = strdup((char*)child->Attribute("file"));
+            const char* textureFile = (char*)child->Attribute("file");
+            int length = strlen(textureDir) + strlen(textureFile) + 1;
+            texturePath = new char[length];
+            strcpy(texturePath, textureDir);
+            strcat(texturePath, textureFile);
         }
     }
-    printf("Acabei de ler modelo\n");
 }
 
 

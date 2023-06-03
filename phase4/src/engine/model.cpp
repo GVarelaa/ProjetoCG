@@ -6,13 +6,12 @@ Model::Model(XMLElement* elem) {
     const char* textureDir = "../../../demo-scenes/textures/";
     texturePath = NULL;
     nIndexes = 0;
-    XMLElement* child = elem->FirstChildElement();
-
-    if (child != NULL) {
+    
+    for(XMLElement *child = elem->FirstChildElement(); child; child=child->NextSiblingElement()){
         string name(child->Name());
 
         if (name == "color") {
-           color = Color(child);
+            color = Color(child);
         }
         else if(name == "texture"){
             const char* textureFile = (char*)child->Attribute("file");

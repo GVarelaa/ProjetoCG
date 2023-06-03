@@ -1,6 +1,6 @@
 #include "../../../include/generator/cylinder.h"
 
-void generateCylinder(float radius, float height, int slices, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals) {
+void generateCylinder(float radius, float height, int slices, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *boundingVolume) {
     float h_2 = height / 2.0;
     float alpha = (2 * M_PI) / slices;
 
@@ -50,4 +50,18 @@ void generateCylinder(float radius, float height, int slices, vector<Point> *ver
 
         index+=10;
 	}
+
+    float maxX = radius;
+    float maxY = height;
+    float maxZ = radius;
+
+    boundingVolume->push_back(Point(maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, -maxZ));
+}
 }

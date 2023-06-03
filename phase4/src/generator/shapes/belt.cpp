@@ -1,7 +1,10 @@
 #include "../../../include/generator/belt.h"
 
-void generateBelt(int n, float radiusIn, float radiusOut, float height, float lengthMin, float lengthMax, int seed, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords) {
+void generateBelt(int n, float radiusIn, float radiusOut, float height, float lengthMin, float lengthMax, int seed, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume) {
     srand(seed);
+    float maxX = 0;
+    float maxY = 0;
+    float maxZ = 0;
     int index=0;
     for (int k = 0; k < n; k++){
         float a = (((float)rand() / RAND_MAX) * (lengthMax - lengthMin)) + lengthMax;
@@ -10,7 +13,8 @@ void generateBelt(int n, float radiusIn, float radiusOut, float height, float le
         
         vector<Point>* verticesTemp = new vector<Point>;
         vector<Triangle>* trianglesTemp = new vector<Triangle>;
-        generateEllipsoid(a, b, c, 10, 10, verticesTemp, trianglesTemp, normals, texCoords);
+        vector<Point>* boundingVolumeTemp = new vector<Point>;
+        generateEllipsoid(a, b, c, 10, 10, verticesTemp, trianglesTemp, normals, texCoords, boundingVolumeTemp);
                 
         float alphaRandom = ((float)rand() / RAND_MAX) * (2 * M_PI);
         float betaRandom = ((float)rand() / RAND_MAX) * (2 * M_PI);
@@ -22,6 +26,10 @@ void generateBelt(int n, float radiusIn, float radiusOut, float height, float le
             p.x += center.x;
             p.y += center.y;
             p.z += center.z;
+
+            if (p.x > maxX) maxX = p.x;
+            if (p.y > maxY) maxY = p.y;
+            if (p.z > maxZ) maxZ = p.z;
 
             vertices->push_back(p);
         }
@@ -37,4 +45,13 @@ void generateBelt(int n, float radiusIn, float radiusOut, float height, float le
 
         index += verticesTemp->size();
     }
+
+    boundingVolume->push_back(Point(maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, -maxZ));
 }

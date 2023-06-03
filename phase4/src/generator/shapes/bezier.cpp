@@ -175,21 +175,34 @@ Point(*readFile(char *path, int *n))[4][4]{
 }
 
 
-void generateBezier(char *path, int level, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
+void generateBezier(char *path, int level, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume){
     int n;
     Point (*patches)[4][4] = readFile(path, &n);
     float step = 1.0 / (float)level;
     int nPoints = (float)pow(level+1, 2); //N ª pontos num patch
 
+    float maxX = 0;
+    float maxY = 0;
+    float maxZ = 0;
     int index = 0;
     for(int i=0; i<n; i++){
         Point res[4][4];
         computeMatrix(patches[i], res);
 
         for(int u=0; u < level; u++){
-            for(int v=0; v <= level; v++){  
-                vertices->push_back(getPatchPoint(u*step, v*step, res));
-                vertices->push_back(getPatchPoint((u+1)*step, v*step, res));
+            for(int v=0; v <= level; v++){
+                Point v1 = getPatchPoint(u * step, v * step, res);
+                Point v2 = getPatchPoint((u + 1) * step, v * step, res);
+
+                if (v1.x > maxX) maxX = v1.x;
+                if (v1.y > maxY) maxY = v1.y;
+                if (v1.z > maxZ) maxZ = v1.z;
+                if (v2.x > maxX) maxX = v2.x;
+                if (v2.y > maxY) maxY = v2.y;
+                if (v2.z > maxZ) maxZ = v2.z;
+
+                vertices->push_back(v1);
+                vertices->push_back(v2);
                 normals->push_back(getNormal(u*step, v*step, res));
                 normals->push_back(getNormal((u+1)*step, v * step, res));
                 texCoords->push_back(Point(u*step, v*step, 0));
@@ -205,4 +218,13 @@ void generateBezier(char *path, int level, vector<Point> *vertices, vector<Trian
     }
 
     delete[] patches;
+
+    boundingVolume->push_back(Point(maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, -maxZ));
 }

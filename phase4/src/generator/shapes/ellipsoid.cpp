@@ -1,6 +1,6 @@
 #include "../../../include/generator/ellipsoid.h"
 
-void generateEllipsoid(float a, float b, float c, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
+void generateEllipsoid(float a, float b, float c, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume){
     float alpha = (2 * M_PI) / slices;
     float beta = M_PI / stacks;
     float xTexPart = 1.0 / (float) slices;
@@ -42,4 +42,18 @@ void generateEllipsoid(float a, float b, float c, int slices, int stacks, vector
 
         index+=3;
     }
+
+
+    float maxX = a;
+    float maxY = b;
+    float maxZ = c;
+
+    boundingVolume->push_back(Point(maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, -maxZ));
 }

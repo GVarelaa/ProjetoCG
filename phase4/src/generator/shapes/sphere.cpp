@@ -1,6 +1,6 @@
 #include "../../../include/generator/sphere.h"
 
-void generateSphere(float radius, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
+void generateSphere(float radius, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume){
     float alpha = (2 * M_PI) / slices;
     float beta = M_PI / stacks;
     float xTexPart = 1.0 / (float) slices;
@@ -42,5 +42,19 @@ void generateSphere(float radius, int slices, int stacks, vector<Point> *vertice
 
         index+=3;
     }
+
+
+    float maxX = radius;
+    float maxY = radius;
+    float maxZ = radius;
+
+    boundingVolume->push_back(Point(maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, -maxZ));
 }
 

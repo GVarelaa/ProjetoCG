@@ -16,18 +16,29 @@
 
 using namespace std;
 
-void toFile(char* filename, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
+void toFile(char* filename, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume){
     ofstream file;
     char path[100] = "../../../demo-scenes/models/";
 
     file.open(strcat(path, filename));
     char buffer[1024];
-    
+
+
+    int nVolume = boundingVolume->size();
+
+    // Número de pontos do bounding volume
+    file << nVolume << "\n";
+
+    // Bounding Volume
+    for (int i = 0; i < nVolume; i++) {
+        sprintf(buffer, "%f %f %f\n", (*boundingVolume)[i].x, (*boundingVolume)[i].y, (*boundingVolume)[i].z);
+        file << buffer;
+    }
+
     int nVertices = vertices->size(), nTriangles = triangles->size();
 
-    //First line (nVertices e nTriangles)
+    // Número de vértices e triângulos
     file << nVertices << " " << nTriangles << "\n";
-
 
     //Vertices
     for(int i = 0; i < nVertices; i++){
@@ -101,22 +112,23 @@ int main(int argc, char *argv[]){
     vector<Triangle> *triangles = new vector<Triangle>;
     vector<Point> *normals = new vector<Point>;
     vector<Point> *texCoords = new vector<Point>;
+    vector<Point>* boundingVolume = new vector<Point>;
 
     if (regex_match(inp, regex(erPlane))){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
         char *filename = argv[4];
 
-        generatePlane(length, divisions, vertices, triangles, normals, texCoords);
-        toFile(filename, vertices, triangles, normals, texCoords);
+        generatePlane(length, divisions, vertices, triangles, normals, texCoords, boundingVolume);
+        toFile(filename, vertices, triangles, normals, texCoords, boundingVolume);
     }
     else if(regex_match(inp, regex(erBox))){
         float length = atof(argv[2]);
         int divisions = atoi(argv[3]);
         char *filename = argv[4];
 
-        generateBox(length, divisions, vertices, triangles, normals, texCoords);
-        toFile(filename, vertices, triangles, normals, texCoords);
+        generateBox(length, divisions, vertices, triangles, normals, texCoords, boundingVolume);
+        toFile(filename, vertices, triangles, normals, texCoords, boundingVolume);
     }
     else if(regex_match(inp, regex(erCone))){
         float radius = atof(argv[2]);
@@ -125,8 +137,8 @@ int main(int argc, char *argv[]){
         int stacks = atoi(argv[5]);
         char *filename = argv[6];
 
-        generateCone(radius, height, slices, stacks, vertices, triangles, normals, texCoords);
-        toFile(filename, vertices, triangles, normals, texCoords);
+        generateCone(radius, height, slices, stacks, vertices, triangles, normals, texCoords, boundingVolume);
+        toFile(filename, vertices, triangles, normals, texCoords, boundingVolume);
     }
     else if(regex_match(inp, regex(erSphere))){
         float radius = atof(argv[2]);
@@ -134,8 +146,8 @@ int main(int argc, char *argv[]){
         int stacks = atoi(argv[4]);
         char *filename = argv[5];
 
-        generateSphere(radius, slices, stacks, vertices, triangles, normals, texCoords);
-        toFile(filename, vertices, triangles, normals, texCoords);
+        generateSphere(radius, slices, stacks, vertices, triangles, normals, texCoords, boundingVolume);
+        toFile(filename, vertices, triangles, normals, texCoords, boundingVolume);
     }
     else if(regex_match(inp, regex(erCylinder))){
         float radius = atof(argv[2]);
@@ -143,8 +155,8 @@ int main(int argc, char *argv[]){
         int slices = atoi(argv[4]);
         char *filename = argv[5];
 
-        generateCylinder(radius, height, slices, vertices, triangles, normals);
-        toFile(filename, vertices, triangles, normals, texCoords);
+        generateCylinder(radius, height, slices, vertices, triangles, normals, boundingVolume);
+        toFile(filename, vertices, triangles, normals, texCoords, boundingVolume);
     }
     else if(regex_match(inp, regex(erTorus))){
         float radiusIn = atof(argv[2]);
@@ -153,8 +165,8 @@ int main(int argc, char *argv[]){
         int stacks = atoi(argv[5]);
         char *filename = argv[6];
 
-        generateTorus(radiusIn, radiusOut, slices, stacks, vertices, triangles, normals, texCoords);
-        toFile(filename, vertices, triangles, normals, texCoords);
+        generateTorus(radiusIn, radiusOut, slices, stacks, vertices, triangles, normals, texCoords, boundingVolume);
+        toFile(filename, vertices, triangles, normals, texCoords, boundingVolume);
     }
     else if(regex_match(inp, regex(erEllipsoid))){
         float a = atof(argv[2]);
@@ -164,8 +176,8 @@ int main(int argc, char *argv[]){
         int stacks = atoi(argv[6]);
         char *filename = argv[7];
 
-        generateEllipsoid(a, b, c, slices, stacks, vertices, triangles, normals, texCoords);
-        toFile(filename, vertices, triangles, normals, texCoords);
+        generateEllipsoid(a, b, c, slices, stacks, vertices, triangles, normals, texCoords, boundingVolume);
+        toFile(filename, vertices, triangles, normals, texCoords, boundingVolume);
     }
     else if(regex_match(inp, regex(erBelt))){
         int n = atoi(argv[2]);
@@ -177,16 +189,16 @@ int main(int argc, char *argv[]){
         int seed = atoi(argv[8]);
         char *filename = argv[9];
 
-        generateBelt(n, radiusIn, radiusOut, height, lengthMin, lengthMax, seed, vertices, triangles, normals, texCoords);
-        toFile(filename, vertices, triangles, normals, texCoords);
+        generateBelt(n, radiusIn, radiusOut, height, lengthMin, lengthMax, seed, vertices, triangles, normals, texCoords, boundingVolume);
+        toFile(filename, vertices, triangles, normals, texCoords, boundingVolume);
     }
     else if(regex_match(inp, regex(erBezier))){
         char *ctrlpoints_file = argv[2];
         int level = atoi(argv[3]);
         char *filename = argv[4];
 
-        generateBezier(ctrlpoints_file, level, vertices, triangles, normals, texCoords);
-        toFile(filename, vertices, triangles, normals, texCoords);
+        generateBezier(ctrlpoints_file, level, vertices, triangles, normals, texCoords, boundingVolume);
+        toFile(filename, vertices, triangles, normals, texCoords, boundingVolume);
     }
     else cout << "Invalid input!" << endl;
 

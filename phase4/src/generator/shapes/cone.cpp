@@ -19,7 +19,7 @@ Point computeNormal(int slice, float alpha, float radius, float height) {
 }
 
 
-void generateCone(float radius, float height, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
+void generateCone(float radius, float height, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume){
     float alpha = (2 * M_PI) / slices;
     float hPart = height / stacks;
     float rPart = radius / stacks;  
@@ -67,14 +67,24 @@ void generateCone(float radius, float height, int slices, int stacks, vector<Poi
         }
 
         vertices->push_back(Point(0, height, 0));
-
         normals->push_back(actualSliceNormal);
-
         texCoords->push_back(Point(i*xTexPart, 1, 0));
-
         triangles->push_back(Triangle(index, index+1, index+2));
 
         index+=3;
     }
+
+    float maxX = radius;
+    float maxY = height;
+    float maxZ = radius;
+
+    boundingVolume->push_back(Point(maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, -maxZ));
 }
 

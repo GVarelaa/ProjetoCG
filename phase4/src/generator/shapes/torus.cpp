@@ -1,6 +1,6 @@
 #include "../../../include/generator/torus.h"
 
-void generateTorus(float radiusIn, float radiusOut, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
+void generateTorus(float radiusIn, float radiusOut, int slices, int stacks, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume){
     float sliceAngle = (2 * M_PI) / slices;
     float stackAngle = (2 * M_PI) / stacks;
     float xTexPart = 1.0 / (float)slices;
@@ -25,4 +25,18 @@ void generateTorus(float radiusIn, float radiusOut, int slices, int stacks, vect
             index+=2;
         }
     }
+
+
+    float maxX = radiusOut + radiusIn;
+    float maxY = radiusIn;
+    float maxZ = radiusOut + radiusIn;
+
+    boundingVolume->push_back(Point(maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, -maxZ));
 }

@@ -150,7 +150,7 @@ void generateXYplane(Point initialPoint, float length, int divisions, int *index
 }
 
 
-void generateBox(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
+void generateBox(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume){
     int index = 0;
     float hl = length/2;
 
@@ -162,4 +162,17 @@ void generateBox(float length, int divisions, vector<Point> *vertices, vector<Tr
 
     generateXYplane(Point(-hl, -hl, hl), length, divisions, &index, true, vertices, triangles, normals, texCoords);
     generateXYplane(Point(-hl, -hl, -hl), length, divisions, &index, false, vertices, triangles, normals, texCoords);
+
+    float maxX = hl;
+    float maxY = hl;
+    float maxZ = hl;
+
+    boundingVolume->push_back(Point(maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, -maxZ));
 }

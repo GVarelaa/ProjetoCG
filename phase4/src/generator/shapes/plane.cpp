@@ -1,7 +1,7 @@
 #include "../../../include/generator/plane.h"
 
 
-void generatePlane(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
+void generatePlane(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume){
     float squareLength = length/divisions;
     float initialX = length/2.0;
     float initialZ = length/2.0;
@@ -35,4 +35,17 @@ void generatePlane(float length, int divisions, vector<Point> *vertices, vector<
             index+=2;
         }
     }
+
+    float maxX = length / 2.0;
+    float maxY = length / 2.0;
+    float maxZ = length / 2.0;
+
+    boundingVolume->push_back(Point(maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, maxZ));
+    boundingVolume->push_back(Point(maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(maxX, -maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, maxY, -maxZ));
+    boundingVolume->push_back(Point(-maxX, -maxY, -maxZ));
 }

@@ -38,7 +38,7 @@ void showFPS(){
     if (time - timebase > 1000){
         fps = frames*1000.0 / (time-timebase);
         timebase = time; frames = 0;
-        char title[20];
+        char title[40];
         sprintf(title, "CG@G48 | %d FPS", fps);
         glutSetWindowTitle(title);
     }
@@ -159,12 +159,18 @@ void renderScene(void){
 		showAxis();
 	}
 
+	printf("A aplicar luzes...\n");
 	world.applyLights();
+	printf("Luzes aplicadas...\n");
 
 	// drawing instructions
+	printf("A desenhar modelos...\n");
 	world.drawModels();
+	printf("Modelos desenhados..\n");
 
+	
 	showFPS();
+	printf("FPS mostrados\n");
 	if (debug){
 		renderText();
 	}
@@ -369,7 +375,9 @@ int main(int argc, char **argv) {
 	init();
 
 	world.setupLights();
+	printf("A ler modelos..\n");
 	world.loadModels();
+	printf("Acabei de ler modelos...\n");
 
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 

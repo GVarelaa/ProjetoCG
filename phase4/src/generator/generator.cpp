@@ -153,7 +153,7 @@ int main(int argc, char *argv[]){
         int stacks = atoi(argv[5]);
         char *filename = argv[6];
 
-        generateTorus(radiusIn, radiusOut, slices, stacks, vertices, triangles, normals);
+        generateTorus(radiusIn, radiusOut, slices, stacks, vertices, triangles, normals, texCoords);
         toFile(filename, vertices, triangles, normals, texCoords);
     }
     else if(regex_match(inp, regex(erEllipsoid))){

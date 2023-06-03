@@ -4,7 +4,7 @@ pair<vector<Point>, vector<Triangle> > generateBelt(int n, float radiusIn, float
     vector<Point> vertices;
     vector<Triangle> triangles;
 
-    srand(seed);
+    /*srand(seed);
     int index=0;
     for (int k = 0; k < n; k++){
         float a = (((float)rand() / RAND_MAX) * (lengthMax - lengthMin)) + lengthMax;
@@ -36,7 +36,7 @@ pair<vector<Point>, vector<Triangle> > generateBelt(int n, float radiusIn, float
         }
 
         index += pair.first.size();
-    }
+    }*/
 
     return pair<vector<Point>, vector<Triangle> >(vertices, triangles);
 }

@@ -84,13 +84,15 @@ void Model::load() {
         normals.push_back(stof(z));
     }
 
-    for(int i = 0; i < nVertices; i++) {
-        getline(file, line);
-        stringstream ss(line);  
-        string x, y;
-        ss >> x >> y;
-        texCoords.push_back(stof(x));
-        texCoords.push_back(stof(y));
+    if (texturePath) { // Ver
+        for (int i = 0; i < nVertices; i++) {
+            getline(file, line);
+            stringstream ss(line);
+            string x, y;
+            ss >> x >> y;
+            texCoords.push_back(stof(x));
+            texCoords.push_back(stof(y));
+        }
     }
 
     file.close();

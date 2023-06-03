@@ -70,7 +70,7 @@ void generateCone(float radius, float height, int slices, int stacks, vector<Poi
 
         normals->push_back(actualSliceNormal);
 
-        texCoords->push_back(Point(0, 0, 0));
+        texCoords->push_back(Point(i*xTexPart, 1, 0));
 
         triangles->push_back(Triangle(index, index+1, index+2));
 

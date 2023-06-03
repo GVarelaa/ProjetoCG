@@ -177,7 +177,7 @@ int main(int argc, char *argv[]){
         int seed = atoi(argv[8]);
         char *filename = argv[9];
 
-        pair<vector<Point>, vector<Triangle> > belt = generateBelt(n, radiusIn, radiusOut, height, lengthMin, lengthMax, seed);
+        generateBelt(n, radiusIn, radiusOut, height, lengthMin, lengthMax, seed, vertices, triangles, normals, texCoords);
         toFile(filename, vertices, triangles, normals, texCoords);
     }
     else if(regex_match(inp, regex(erBezier))){

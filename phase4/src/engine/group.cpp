@@ -80,7 +80,7 @@ void Group::drawModels(){
     for(int i = 0; i < transforms.size(); i++){
         transforms[i]->transform();
     }
-    
+
     for(int i = 0; i < models.size(); i++){
         models[i].draw();
     }    

@@ -159,18 +159,11 @@ void renderScene(void){
 		showAxis();
 	}
 
-	printf("A aplicar luzes...\n");
 	world.applyLights();
-	printf("Luzes aplicadas...\n");
-
 	// drawing instructions
-	printf("A desenhar modelos...\n");
 	world.drawModels();
-	printf("Modelos desenhados..\n");
 
-	
 	showFPS();
-	printf("FPS mostrados\n");
 	if (debug){
 		renderText();
 	}

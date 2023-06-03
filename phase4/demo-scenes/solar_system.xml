@@ -12,6 +12,7 @@
 	<lights>
 		<light type="point" posX="0" posY="0" posZ="0"/>
 	</lights>
+
 	
 	<!-- SOLAR SYSTEM -->
 	<group>
@@ -381,7 +382,7 @@
 					<model file="ring.3d">
 						<texture file="saturnringcolor.jpg"/>
 					</model>
-					
+
 					<!-- generator torus 0.5 4 100 2 ring.3d -->
 				</models>
 			</group>

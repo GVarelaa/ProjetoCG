@@ -83,15 +83,13 @@ void Model::load() {
         normals.push_back(stof(z));
     }
 
-    if (texturePath) { // Ver
-        for (int i = 0; i < nVertices; i++) {
-            getline(file, line);
-            stringstream ss(line);
-            string x, y;
-            ss >> x >> y;
-            texCoords.push_back(stof(x));
-            texCoords.push_back(stof(y));
-        }
+    for (int i = 0; i < nVertices; i++) {
+        getline(file, line);
+        stringstream ss(line);
+        string x, y;
+        ss >> x >> y;
+        texCoords.push_back(stof(x));
+        texCoords.push_back(stof(y));
     }
 
     file.close();
@@ -105,19 +103,19 @@ void Model::load() {
     glBindBuffer(GL_ARRAY_BUFFER, normalsBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * normals.size(), normals.data(), GL_STATIC_DRAW);
 
+    glGenBuffers(1, &texCoordsBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, texCoordsBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * texCoords.size(), texCoords.data(), GL_STATIC_DRAW);
+
     glGenBuffers(1, &indexesBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexesBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * indexes.size(), indexes.data(), GL_STATIC_DRAW);
 
-    if(texturePath){
-        glGenBuffers(1, &texCoordsBuffer);
-        glBindBuffer(GL_ARRAY_BUFFER, texCoordsBuffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * texCoords.size(), texCoords.data(), GL_STATIC_DRAW);
+    nIndexes = indexes.size();
 
+    if (texturePath) {
         loadTexture();
     }
-
-    nIndexes = indexes.size();
 }
 
 
@@ -149,14 +147,15 @@ void Model::loadTexture() {
 
 
 void Model::draw() {
-
-    
     glMaterialfv(GL_FRONT, GL_DIFFUSE, color.diffuse);
     glMaterialfv(GL_FRONT, GL_AMBIENT, color.ambient);
     glMaterialfv(GL_FRONT, GL_SPECULAR, color.specular);    
     glMaterialfv(GL_FRONT, GL_EMISSION, color.emissive);
     glMaterialf(GL_FRONT, GL_SHININESS, color.shininess);
-
+    
+    if (texturePath) {
+        glBindTexture(GL_TEXTURE_2D, texture);
+    }
 
     glBindBuffer(GL_ARRAY_BUFFER, verticesBuffer);
     glVertexPointer(3, GL_FLOAT, 0, 0);
@@ -164,11 +163,8 @@ void Model::draw() {
     glBindBuffer(GL_ARRAY_BUFFER, normalsBuffer);
     glNormalPointer(GL_FLOAT, 0, 0);
 
-    if (texturePath) {
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glBindBuffer(GL_ARRAY_BUFFER, texCoordsBuffer);
-        glTexCoordPointer(2, GL_FLOAT, 0, 0);
-    }
+    glBindBuffer(GL_ARRAY_BUFFER, texCoordsBuffer);
+    glTexCoordPointer(2, GL_FLOAT, 0, 0);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexesBuffer);
     glDrawElements(GL_TRIANGLES, nIndexes, GL_UNSIGNED_INT, NULL);

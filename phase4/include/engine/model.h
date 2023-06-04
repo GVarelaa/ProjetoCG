@@ -28,12 +28,13 @@ class Model{
         char* modelPath;
         char* texturePath;
         Color color;
-        unsigned int texture;
         int nIndexes;
+        unsigned int texture;
         GLuint verticesBuffer;
         GLuint indexesBuffer;
         GLuint normalsBuffer;
         GLuint texCoordsBuffer;
+        vector<Point> boundingVolume;
 
 
         Model();

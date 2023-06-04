@@ -11,6 +11,6 @@
 
 using namespace std;
 
-void generateBezier(char *path, int level, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords);
+void generateBezier(char *path, int level, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point>* boundingVolume);
 
 #endif

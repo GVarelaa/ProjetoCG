@@ -5,7 +5,7 @@ PROJECT(engine)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} engine.cpp ../utils/point.cpp ../utils/triangle.cpp ../../include/tinyxml2/tinyxml2.cpp light.cpp color.cpp model.cpp world.cpp group.cpp transformation.cpp settings.cpp)
+add_executable(${PROJECT_NAME} engine.cpp ../utils/point.cpp ../utils/triangle.cpp ../../include/tinyxml2/tinyxml2.cpp light.cpp color.cpp frustumplane.cpp model.cpp world.cpp group.cpp transformation.cpp settings.cpp)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})

@@ -8,6 +8,6 @@
 
 using namespace std;
 
-void generateTorus(float radiusIn, float radiusOut, int slices, int layers, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords);
+void generateTorus(float radiusIn, float radiusOut, int slices, int layers, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point>* boundingVolume);
 
 #endif

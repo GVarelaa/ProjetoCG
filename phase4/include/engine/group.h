@@ -5,6 +5,7 @@
 #include <string.h>
 #include "model.h"
 #include "transformation.h"
+#include "frustumplane.h"
 #include "../point.h"
 #include "../tinyxml2/tinyxml2.h"
 
@@ -22,7 +23,8 @@ class Group{
         Group();
         Group(XMLElement *groupElement);
         void loadModels();
-        void drawModels();
+        int drawModels();
+        int drawModels(vector<FrustumPlane> frustumPlanes);
         void getLabels(vector<char *> *labels);
         Point* getGroupPosition(float matrix[4][4], int *i);
         void getGroupPositions(vector<Point> *points);

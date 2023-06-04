@@ -70,12 +70,10 @@ void Group::loadModels(){
 }
 
 
-void Group::drawModels(){
-    glPushMatrix();
+int Group::drawModels(){
+    int nIndexes = 0;
 
-    //if (color != NULL) {
-    //    glColor3f(color->x / 255.0, color->y / 255.0, color->z / 255.0);
-    //}
+    glPushMatrix();
 
     for(int i = 0; i < transforms.size(); i++){
         transforms[i]->transform();
@@ -83,13 +81,56 @@ void Group::drawModels(){
 
     for(int i = 0; i < models.size(); i++){
         models[i].draw();
+        nIndexes += models[i].nIndexes;
     }    
 
     for(int i = 0; i < groups.size(); i++){
-        groups[i].drawModels();
+        nIndexes += groups[i].drawModels();
     }
 
     glPopMatrix();
+
+    return nIndexes;
+}
+
+
+int Group::drawModels(vector<FrustumPlane> planes) {
+    int nIndexes = 0;
+
+    glPushMatrix();
+
+    for (int i = 0; i < transforms.size(); i++) {
+        transforms[i]->transform();
+    }
+
+    for (int i = 0; i < models.size(); i++) {
+        bool flag = true;
+
+        for (int j = 0; j < 6 && flag; j++) {
+            int in = 0, out = 0;
+            for (int k = 0; k < 8 && (in == 0 || out == 0); k++) {
+                if (planes[j].distance(models[i].boundingVolume[k]) < 0)  out++;
+                else in++;
+            }
+
+            if (!in) {
+                flag = false;
+            }
+        }
+
+        if (flag) {
+            models[i].draw();
+            nIndexes += models[i].nIndexes;
+        }
+    }
+
+    for (int i = 0; i < groups.size(); i++) {
+        nIndexes += groups[i].drawModels(planes);
+    }
+
+    glPopMatrix();
+
+    return nIndexes;
 }
 
 

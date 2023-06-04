@@ -64,4 +64,3 @@ void generateCylinder(float radius, float height, int slices, vector<Point> *ver
     boundingVolume->push_back(Point(-maxX, maxY, -maxZ));
     boundingVolume->push_back(Point(-maxX, -maxY, -maxZ));
 }
-}

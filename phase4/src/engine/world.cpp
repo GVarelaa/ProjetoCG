@@ -55,10 +55,25 @@ void World::loadModels(){
 }
 
 
-void World::drawModels(){
+int World::drawModels(){
+    int nIndexes = 0;
+
     for(int i = 0; i < groups.size(); i++){
-        groups[i].drawModels();
+        nIndexes += groups[i].drawModels();
     }
+
+    return nIndexes;
+}
+
+
+int World::drawModels(vector<FrustumPlane> planes) {
+    int nIndexes = 0;
+
+    for (int i = 0; i < groups.size(); i++) {
+        nIndexes += groups[i].drawModels(planes);
+    }
+
+    return nIndexes;
 }
 
 
@@ -129,5 +144,93 @@ void World::setupLights() {
     for (int i = 0; i < lights.size(); i++) {
         lights[i]->setup();
     }
+}
+
+
+float* World::computeClipMatrix() {
+    float M[16], P[16], A[16];
+    glGetFloatv(GL_MODELVIEW_MATRIX, M);
+    glGetFloatv(GL_PROJECTION_MATRIX, P);
+
+    glPushMatrix();
+
+    glLoadMatrixf(P);
+    glMultMatrixf(M);
+    glGetFloatv(GL_MODELVIEW_MATRIX, A);
+    
+    glPopMatrix();
+
+    //printf("--------\n");
+    //printf("%f %f %f %f\n %f %f %f %f\n %f %f %f %f\n %f %f %f %f\n", A[0], A[1], A[2], A[3], A[4], A[5], A[6], A[7], A[8], A[9], A[10], A[11], A[12], A[13], A[14], A[15]);
+
+    return A;
+}
+
+
+vector<FrustumPlane> World::computeFrustumPlanes() {
+    float M[16], P[16], matrix[16];
+    glGetFloatv(GL_MODELVIEW_MATRIX, M);
+    glGetFloatv(GL_PROJECTION_MATRIX, P);
+
+    glPushMatrix();
+
+    glLoadMatrixf(P);
+    glMultMatrixf(M);
+    glGetFloatv(GL_MODELVIEW_MATRIX, matrix);
+
+    glPopMatrix();
+
+    vector<FrustumPlane> planes;
+    float vector[4], vectorLength;
+
+    //Plano esquerdo
+    vector[0] = matrix[0] + matrix[3]; 
+    vector[1] = matrix[4] + matrix[7]; 
+    vector[2] = matrix[8] + matrix[11]; 
+    vector[3] = matrix[12] + matrix[15];
+    vectorLength = sqrt(pow(vector[0], 2) + pow(vector[1], 2) + pow(vector[2], 2));
+    planes.push_back(FrustumPlane(vector[0]/vectorLength, vector[1] / vectorLength, vector[2] / vectorLength, vector[3] / vectorLength));
+
+    //Plano direito
+    vector[0] = matrix[3] - matrix[0]; 
+    vector[1] = matrix[7] - matrix[4]; 
+    vector[2] = matrix[11] - matrix[8]; 
+    vector[3] = matrix[15] - matrix[12];
+    vectorLength = sqrt(pow(vector[0], 2) + pow(vector[1], 2) + pow(vector[2], 2));
+    planes.push_back(FrustumPlane(vector[0] / vectorLength, vector[1] / vectorLength, vector[2] / vectorLength, vector[3] / vectorLength));
+
+    //Plano baixo
+    vector[0] = matrix[1] + matrix[3];
+    vector[1] = matrix[5] + matrix[7]; 
+    vector[2] = matrix[9] + matrix[11];
+    vector[3] = matrix[13] + matrix[15];
+    vectorLength = sqrt(pow(vector[0], 2) + pow(vector[1], 2) + pow(vector[2], 2));
+    planes.push_back(FrustumPlane(vector[0] / vectorLength, vector[1] / vectorLength, vector[2] / vectorLength, vector[3] / vectorLength));
+
+    //Plano cima
+    vector[0] = matrix[3] - matrix[1];
+    vector[1] = matrix[7] - matrix[5];
+    vector[2] = matrix[11] - matrix[9];
+    vector[3] = matrix[15] - matrix[13];
+    vectorLength = sqrt(pow(vector[0], 2) + pow(vector[1], 2) + pow(vector[2], 2));
+    planes.push_back(FrustumPlane(vector[0] / vectorLength, vector[1] / vectorLength, vector[2] / vectorLength, vector[3] / vectorLength));
+
+    //Plano near
+    vector[0] = matrix[2] + matrix[3];
+    vector[1] = matrix[6] + matrix[7];
+    vector[2] = matrix[10] + matrix[11]; 
+    vector[3] = matrix[14] + matrix[15];
+    vectorLength = sqrt(pow(vector[0], 2) + pow(vector[1], 2) + pow(vector[2], 2));
+    planes.push_back(FrustumPlane(vector[0] / vectorLength, vector[1] / vectorLength, vector[2] / vectorLength, vector[3] / vectorLength));
+
+    //Plano far
+    vector[0] = matrix[3] - matrix[2]; 
+    vector[1] = matrix[7] - matrix[6]; 
+    vector[2] = matrix[11] - matrix[10];
+    vector[3] = matrix[15] - matrix[14];
+    vectorLength = sqrt(pow(vector[0], 2) + pow(vector[1], 2) + pow(vector[2], 2));
+    planes.push_back(FrustumPlane(vector[0] / vectorLength, vector[1] / vectorLength, vector[2] / vectorLength, vector[3] / vectorLength));
+
+    return planes;
 }
 

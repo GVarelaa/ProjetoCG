@@ -28,9 +28,10 @@ int timebase = 0, frames = 0;
 int group;
 bool axis = true;
 bool debug = false;
+bool viewFrustumCulling = false;
 
 
-void showFPS(){
+void showFPS(int triangles){
 	frames++;
     int fps;
     int time = glutGet(GLUT_ELAPSED_TIME);
@@ -38,8 +39,8 @@ void showFPS(){
     if (time - timebase > 1000){
         fps = frames*1000.0 / (time-timebase);
         timebase = time; frames = 0;
-        char title[40];
-        sprintf(title, "CG@G48 | %d FPS", fps);
+        char title[45];
+        sprintf(title, "CG@G48 | %d FPS | %d Triangles", fps, triangles);
         glutSetWindowTitle(title);
     }
 }
@@ -161,9 +162,16 @@ void renderScene(void){
 
 	world.applyLights();
 	// drawing instructions
-	world.drawModels();
+	int nIndexes = 0;
+	if (viewFrustumCulling) {
+		vector<FrustumPlane> planes = world.computeFrustumPlanes();
+		nIndexes = world.drawModels(planes);
+	}
+	else {
+		nIndexes = world.drawModels();
+	}
 
-	showFPS();
+	showFPS(nIndexes / 3);
 	if (debug){
 		renderText();
 	}
@@ -265,9 +273,11 @@ void menuChoice(int choice) {
 		case 0:
 			axis ^= 1;
 			break;
-		
 		case 1:
 			debug ^= 1;
+			break;
+		case 2:
+			viewFrustumCulling ^= 1;
 			break;
 	}
 }
@@ -299,6 +309,7 @@ void visualizationMenu(){
 	glutCreateMenu(menuChoice);
 	glutAddMenuEntry("Toggle axis", 0);
 	glutAddMenuEntry("Toggle debug", 1);
+	glutAddMenuEntry("Toggle View Frustum Culling", 2);
 
 	glutAddSubMenu("Camera", cameraMenu);
 	glutAddSubMenu("Mode", modeMenu);

@@ -6,6 +6,7 @@
 #include "settings.h"
 #include "../point.h"
 #include "light.h"
+#include "frustumplane.h"
 #include "../tinyxml2/tinyxml2.h"
 
 using namespace std;
@@ -22,12 +23,15 @@ class World{
         World(Window newWindow, Camera newCamera, vector<Group> newGroup);
         World(char *path);
         void loadModels();
-        void drawModels();
+        int drawModels();
+        int drawModels(vector<FrustumPlane> frustumPlanes);
+        void applyLights();
+        void setupLights();
+        float* computeClipMatrix();
+        vector<FrustumPlane> computeFrustumPlanes();
         vector<char *> getLabels();
         Point* getGroupPosition(int i);
         int getClosestGroupIndex();
-        void applyLights();
-        void setupLights();
 };
 
 #endif

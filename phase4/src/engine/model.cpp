@@ -43,12 +43,24 @@ void Model::load() {
         return; // caso em que nao há o modelo gerado no .3d
     }
 
-    string line;
+    string line, nVolumeStr, nVerticesStr, nTrianglesStr;
     getline(file, line);
+    stringstream ss1(line);
+    ss1 >> nVolumeStr;
 
-    stringstream ss(line);
-    string nVerticesStr, nTrianglesStr;
-    ss >> nVerticesStr >> nTrianglesStr;
+    int nVolume = stoi(nVolumeStr);
+
+    for (int i = 0; i < nVolume; i++) {
+        getline(file, line);
+        stringstream ss(line);
+        string x, y, z;
+        ss >> x >> y >> z;
+        boundingVolume.push_back(Point(stof(x), stof(y), stof(z)));
+    }
+
+    getline(file, line);
+    stringstream ss2(line);
+    ss2 >> nVerticesStr >> nTrianglesStr;
 
     int nVertices = stoi(nVerticesStr);
     int nTriangles = stoi(nTrianglesStr);
@@ -116,6 +128,7 @@ void Model::load() {
     if (texturePath) {
         loadTexture();
     }
+
 }
 
 

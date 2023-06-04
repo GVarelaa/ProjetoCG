@@ -98,8 +98,8 @@ int main(int argc, char *argv[]){
     }
     inp.pop_back();
 
-    char erPlane[] = "plane ([0-9]+[.])?[0-9]+ [0-9]+\ ?(full|repeat)? [a-zA-Z0-9_]+\\.3d$";
-    char erBox[] = "box ([0-9]+[.])?[0-9]+ [0-9]+\ ?(full|repeat)? [a-zA-Z0-9_]+\\.3d$";
+    char erPlane[] = "plane ([0-9]+[.])?[0-9]+ [0-9]+\ ?(streched|tiled)? [a-zA-Z0-9_]+\\.3d$";
+    char erBox[] = "box ([0-9]+[.])?[0-9]+ [0-9]+\ ?(streched|tiled)? [a-zA-Z0-9_]+\\.3d$";
     char erCone[] = "cone ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erSphere[] = "sphere ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erCylinder[] = "cylinder ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
@@ -120,7 +120,7 @@ int main(int argc, char *argv[]){
         int mappingType = 1;
         char* filename;
         if (argv[5]) {
-            mappingType = !strcmp(argv[4], "repeat") ? 2 : 1;
+            mappingType = !strcmp(argv[4], "tiled") ? 2 : 1;
             filename = argv[5];
         }
         else filename = argv[4];
@@ -134,7 +134,7 @@ int main(int argc, char *argv[]){
         int mappingType = 1;
         char* filename;
         if (argv[5]) {
-            mappingType = !strcmp(argv[4], "repeat") ? 2 : 1;
+            mappingType = !strcmp(argv[4], "tiled") ? 2 : 1;
             filename = argv[5];
         }
         else filename = argv[4];

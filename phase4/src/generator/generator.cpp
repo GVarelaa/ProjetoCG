@@ -26,7 +26,7 @@ void toFile(char* filename, vector<Point> *vertices, vector<Triangle> *triangles
 
     int nVolume = boundingVolume->size();
 
-    // Número de pontos do bounding volume
+    // Nï¿½mero de pontos do bounding volume
     file << nVolume << "\n";
 
     // Bounding Volume
@@ -37,7 +37,7 @@ void toFile(char* filename, vector<Point> *vertices, vector<Triangle> *triangles
 
     int nVertices = vertices->size(), nTriangles = triangles->size();
 
-    // Número de vértices e triângulos
+    // Nï¿½mero de vï¿½rtices e triï¿½ngulos
     file << nVertices << " " << nTriangles << "\n";
 
     //Vertices
@@ -72,9 +72,11 @@ void toFile(char* filename, vector<Point> *vertices, vector<Triangle> *triangles
 
 int main(int argc, char *argv[]){
     if (argc == 1 || (argc == 2 && strcmp(argv[1], "--help") == 0)){
-        cout << "-------------------------------------HELP-----------------------------------------" << endl;
-        cout << "USAGE: ./generator {MODEL} {ARGUMENTS} {OUTPUT FILE}" << endl;
-        cout << "----------------------------------------------------------------------------------" << endl;
+        cout << "--------------------------------------------HELP------------------------------------------------" << endl;
+        cout << "USAGE: ./generator {MODEL} {ARGUMENTS} {TexMapType} {OUTPUT FILE}" << endl;
+        cout << "TexMapType is an optional parameter which defines the map type for textures" << endl;
+        cout << "- map type can be 'tiled' or 'streched' - by default is 'streched'" << endl;
+        cout << "------------------------------------------------------------------------------------------------" << endl;
         cout << "MODEL     | ARGUMENTS                                                            | OUTPUT FILE" << endl;
         cout << "plane     | {length} {divisions}                                                 | {filename}.3d" << endl;
         cout << "box       | {length} {divisions}                                                 | {filename}.3d" << endl;
@@ -85,7 +87,7 @@ int main(int argc, char *argv[]){
         cout << "ellipsoid | {a} {b} {c} {slices} {stacks}                                        | {filename}.3d" << endl;
         cout << "belt      | {n} {radiusIn} {radiusOut} {height} {lengthMin} {lengthMax} {seed}   | {filename}.3d" << endl;
         cout << "patch     | {filepath}.patch {tesselation_level}                                 | {filename}.3d" << endl;
-        cout << "----------------------------------------------------------------------------------" << endl;
+        cout << "------------------------------------------------------------------------------------------------" << endl;
         
         return 1;
     }
@@ -98,8 +100,8 @@ int main(int argc, char *argv[]){
     }
     inp.pop_back();
 
-    char erPlane[] = "plane ([0-9]+[.])?[0-9]+ [0-9]+\ ?(streched|tiled)? [a-zA-Z0-9_]+\\.3d$";
-    char erBox[] = "box ([0-9]+[.])?[0-9]+ [0-9]+\ ?(streched|tiled)? [a-zA-Z0-9_]+\\.3d$";
+    char erPlane[] = "plane ([0-9]+[.])?[0-9]+ [0-9]+([ ]streched|[ ]tiled)? [a-zA-Z0-9_]+\\.3d$";
+    char erBox[] = "box ([0-9]+[.])?[0-9]+ [0-9]+([ ]streched|[ ]tiled)? [a-zA-Z0-9_]+\\.3d$";
     char erCone[] = "cone ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erSphere[] = "sphere ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erCylinder[] = "cylinder ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";

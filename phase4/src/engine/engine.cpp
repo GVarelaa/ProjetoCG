@@ -156,9 +156,7 @@ void renderScene(void){
 			  camera.up.x      , camera.up.y      , camera.up.z       );
 
 	// axis drawing
-	if (axis) {
-		showAxis();
-	}
+	if (axis) showAxis();
 
 	// lights
 	world.applyLights();
@@ -309,8 +307,8 @@ void visualizationMenu(){
 	glutAddMenuEntry("Points", 2);
 
 	glutCreateMenu(menuChoice);
-	glutAddMenuEntry("Toggle axis", 0);
-	glutAddMenuEntry("Toggle debug", 1);
+	glutAddMenuEntry("Toggle Axis", 0);
+	glutAddMenuEntry("Toggle Debug", 1);
 	glutAddMenuEntry("Toggle View Frustum Culling", 2);
 
 	glutAddSubMenu("Camera", cameraMenu);

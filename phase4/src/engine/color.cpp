@@ -9,7 +9,6 @@ Color::Color(XMLElement* elem) {
         string childName(child->Name());
 
         if (childName == "diffuse"){
-            printf("diffuse\n");
             diffuse[0] = atof((char*)child->Attribute("R")) / 255.0;
             diffuse[1] = atof((char*)child->Attribute("G")) / 255.0;
             diffuse[2] = atof((char*)child->Attribute("B")) / 255.0;

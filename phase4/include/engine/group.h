@@ -24,10 +24,10 @@ class Group{
         Group(XMLElement *groupElement);
         void loadModels();
         int drawModels();
-        int drawModels(vector<FrustumPlane> frustumPlanes);
+        int drawModels(vector<FrustumPlane> planes, float transforms[4][4]);
         void getLabels(vector<char *> *labels);
+        void multTransforms(float matrix[4][4]);
         Point* getGroupPosition(float matrix[4][4], int *i);
-        void getGroupPositions(vector<Point> *points);
         void getGroupsNumber(int *n);
 };
 

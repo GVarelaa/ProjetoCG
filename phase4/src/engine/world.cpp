@@ -70,7 +70,13 @@ int World::drawModels(vector<FrustumPlane> planes) {
     int nIndexes = 0;
 
     for (int i = 0; i < groups.size(); i++) {
-        nIndexes += groups[i].drawModels(planes);
+        float matrix[4][4] = {
+            {1, 0, 0, 0},
+            {0, 1, 0, 0},
+            {0, 0, 1, 0},
+            {0, 0, 0, 1}
+        };
+        nIndexes += groups[i].drawModels(planes, matrix);
     }
 
     return nIndexes;

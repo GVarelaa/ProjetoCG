@@ -153,23 +153,6 @@ void World::setupLights() {
 }
 
 
-float* World::computeClipMatrix() {
-    float M[16], P[16], A[16];
-    glGetFloatv(GL_MODELVIEW_MATRIX, M);
-    glGetFloatv(GL_PROJECTION_MATRIX, P);
-
-    glPushMatrix();
-
-    glLoadMatrixf(P);
-    glMultMatrixf(M);
-    glGetFloatv(GL_MODELVIEW_MATRIX, A);
-    
-    glPopMatrix();
-
-    return A;
-}
-
-
 vector<FrustumPlane> World::computeFrustumPlanes() {
     float M[16], P[16], matrix[16];
     glGetFloatv(GL_MODELVIEW_MATRIX, M);

@@ -27,7 +27,6 @@ class World{
         int drawModels(vector<FrustumPlane> frustumPlanes);
         void applyLights();
         void setupLights();
-        float* computeClipMatrix();
         vector<FrustumPlane> computeFrustumPlanes();
         vector<char *> getLabels();
         Point* getGroupPosition(int i);

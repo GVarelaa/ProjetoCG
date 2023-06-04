@@ -7,6 +7,6 @@
 
 using namespace std;
 
-void generatePlane(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume);
+void generatePlane(float length, int divisions, int mappingType, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume);
 
 #endif

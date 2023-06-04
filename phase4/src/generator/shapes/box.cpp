@@ -1,6 +1,6 @@
 #include "../../../include/generator/box.h"
 
-void generateXZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
+void generateXZplane(Point initialPoint, float length, int divisions, int mappingType, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
     float squareLength = length/divisions;
     float initialX = initialPoint.x;
     float initialY = initialPoint.y;
@@ -41,8 +41,14 @@ void generateXZplane(Point initialPoint, float length, int divisions, int *index
                 triangles->push_back(t2);
             }
 
-            texCoords->push_back(Point(i * texPart, j * texPart, 0));
-            texCoords->push_back(Point((i + 1) * texPart, j * texPart, 0));
+            if (mappingType == 1) {
+                texCoords->push_back(Point(i * texPart, j * texPart, 0));
+                texCoords->push_back(Point((i + 1) * texPart, j * texPart, 0));
+            }
+            else if (mappingType == 2) {
+                texCoords->push_back(Point(i, j, 0));
+                texCoords->push_back(Point(i + 1, j, 0));
+            }
 
             *index+=2;
         }
@@ -50,7 +56,7 @@ void generateXZplane(Point initialPoint, float length, int divisions, int *index
 }
 
 
-void generateYZplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
+void generateYZplane(Point initialPoint, float length, int divisions, int mappingType, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
     float squareLength = length/divisions;
     float initialX = initialPoint.x;
     float initialY = initialPoint.y;
@@ -91,8 +97,14 @@ void generateYZplane(Point initialPoint, float length, int divisions, int *index
                 triangles->push_back(t2);
             }
 
-            texCoords->push_back(Point(j * texPart, (divisions - i) * texPart, 0));
-            texCoords->push_back(Point(j * texPart, (divisions - 1 - i) * texPart, 0));
+            if (mappingType == 1) {
+                texCoords->push_back(Point(j * texPart, (divisions - i) * texPart, 0));
+                texCoords->push_back(Point(j * texPart, (divisions - 1 - i) * texPart, 0));
+            }
+            else if(mappingType == 2){
+                texCoords->push_back(Point(j, divisions - i, 0));
+                texCoords->push_back(Point(j, divisions - 1 - i, 0));
+            }
 
             *index += 2;
         }
@@ -100,7 +112,7 @@ void generateYZplane(Point initialPoint, float length, int divisions, int *index
 }
 
 
-void generateXYplane(Point initialPoint, float length, int divisions, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
+void generateXYplane(Point initialPoint, float length, int divisions, int mappingType, int *index, bool isVisible, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords){
     float squareLength = length/divisions;
     float initialX = initialPoint.x;
     float initialY = initialPoint.y;
@@ -141,8 +153,14 @@ void generateXYplane(Point initialPoint, float length, int divisions, int *index
                 triangles->push_back(t2);
             }
 
-            texCoords->push_back(Point(i * texPart, j * texPart, 0));
-            texCoords->push_back(Point((i+1) * texPart, j* texPart, 0));
+            if (mappingType == 1) {
+                texCoords->push_back(Point(i * texPart, j * texPart, 0));
+                texCoords->push_back(Point((i + 1) * texPart, j * texPart, 0));
+            }
+            else if (mappingType == 2) {
+                texCoords->push_back(Point(i, j, 0));
+                texCoords->push_back(Point(i + 1, j, 0));
+            }
             
             *index+=2;
         }
@@ -150,18 +168,18 @@ void generateXYplane(Point initialPoint, float length, int divisions, int *index
 }
 
 
-void generateBox(float length, int divisions, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume){
+void generateBox(float length, int divisions, int mappingType, vector<Point> *vertices, vector<Triangle> *triangles, vector<Point> *normals, vector<Point> *texCoords, vector<Point> *boundingVolume){
     int index = 0;
     float hl = length/2;
 
-    generateXZplane(Point(hl, hl, hl), length, divisions, &index, true, vertices, triangles, normals, texCoords);
-    generateXZplane(Point(hl, -hl, hl), length, divisions, &index, false, vertices, triangles, normals, texCoords);
+    generateXZplane(Point(hl, hl, hl), length, divisions, mappingType, &index, true, vertices, triangles, normals, texCoords);
+    generateXZplane(Point(hl, -hl, hl), length, divisions, mappingType, &index, false, vertices, triangles, normals, texCoords);
 
-    generateYZplane(Point(hl, hl, hl), length, divisions, &index, true, vertices, triangles, normals, texCoords);
-    generateYZplane(Point(-hl, hl, hl), length, divisions, &index, false, vertices, triangles, normals, texCoords);
+    generateYZplane(Point(hl, hl, hl), length, divisions, mappingType, &index, true, vertices, triangles, normals, texCoords);
+    generateYZplane(Point(-hl, hl, hl), length, divisions, mappingType, &index, false, vertices, triangles, normals, texCoords);
 
-    generateXYplane(Point(-hl, -hl, hl), length, divisions, &index, true, vertices, triangles, normals, texCoords);
-    generateXYplane(Point(-hl, -hl, -hl), length, divisions, &index, false, vertices, triangles, normals, texCoords);
+    generateXYplane(Point(-hl, -hl, hl), length, divisions, mappingType, &index, true, vertices, triangles, normals, texCoords);
+    generateXYplane(Point(-hl, -hl, -hl), length, divisions, mappingType, &index, false, vertices, triangles, normals, texCoords);
 
     float maxX = hl;
     float maxY = hl;

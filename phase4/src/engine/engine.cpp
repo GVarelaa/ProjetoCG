@@ -160,7 +160,9 @@ void renderScene(void){
 		showAxis();
 	}
 
+	// lights
 	world.applyLights();
+
 	// drawing instructions
 	int nIndexes = 0;
 	if (viewFrustumCulling) {
@@ -171,6 +173,7 @@ void renderScene(void){
 		nIndexes = world.drawModels();
 	}
 
+	// FPS and triangles
 	showFPS(nIndexes / 3);
 	if (debug){
 		renderText();
@@ -295,7 +298,6 @@ void visualizationMenu(){
 		}
 	}
 
-
 	int cameraMenu = glutCreateMenu(menuCamChoice);
 	glutAddMenuEntry("Static Camera", 0);
 	glutAddSubMenu("Explorer Camera", explorerMenu);
@@ -379,9 +381,7 @@ int main(int argc, char **argv) {
 	init();
 
 	world.setupLights();
-	printf("A ler modelos..\n");
 	world.loadModels();
-	printf("Acabei de ler modelos...\n");
 
 	timebase = glutGet(GLUT_ELAPSED_TIME);
 

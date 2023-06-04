@@ -107,12 +107,6 @@ Point getNormal(float u, float v, Point M[4][4]) {
     normal.crossProduct(vectorU); // mão direita
     normal.normalizeVector();
 
-    if (isnan(normal.x) || isnan(normal.y) || isnan(normal.z)) {
-        normal.x = 0;
-        normal.y = 1; // MUDAR ISTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-        normal.z = 0;
-    }
-
     return normal;
 }
 
@@ -125,9 +119,7 @@ Point(*readFile(char *path, int *n))[4][4]{
         exit(1);
     }
 
-    string line;
-    string nPatchesStr;
-    string nPointsStr;
+    string line, nPatchesStr, nPointsStr;
 
     getline(file, line);
     stringstream stream(line);
@@ -203,8 +195,28 @@ void generateBezier(char *path, int level, vector<Point> *vertices, vector<Trian
 
                 vertices->push_back(v1);
                 vertices->push_back(v2);
-                normals->push_back(getNormal(u*step, v*step, res));
-                normals->push_back(getNormal((u+1)*step, v * step, res));
+
+                Point n1 = getNormal(u * step, v * step, res);
+                Point n2 = getNormal((u + 1) * step, v * step, res);
+
+                if (isnan(n1.x) || isnan(n1.y) || isnan(n1.z)) {
+                    if ((u - 1) * step >= 0) {
+                        n1 = getNormal((u - 1) * step, v * step, res);
+                    }
+                    else {
+                        n1.x = 0;
+                        n1.y = 1;
+                        n1.z = 0;
+                    }
+                }
+
+                if (isnan(n2.x) || isnan(n2.y) || isnan(n2.z)) {
+                    n2 = getNormal(u * step, v * step, res);
+                }
+
+                normals->push_back(n1);
+                normals->push_back(n2);
+
                 texCoords->push_back(Point(u*step, v*step, 0));
                 texCoords->push_back(Point((u+1)*step, v*step, 0));
 
@@ -212,6 +224,7 @@ void generateBezier(char *path, int level, vector<Point> *vertices, vector<Trian
                     triangles->push_back(Triangle(index, index+2, index+1));
                     triangles->push_back(Triangle(index+1, index+2, index+3));
                 }
+
                 index+=2;
             }
         }

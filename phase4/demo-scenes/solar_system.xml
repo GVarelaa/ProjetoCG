@@ -22,7 +22,7 @@
 				<scale x="-280" y="-280" z="-280"/>
 			</transform>
 			<models>
-				<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+				<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 					<texture file="8k_stars_milky_way.jpg"/>
 					<color>
 						<emissive R="50" G="50" B="50"/>
@@ -37,7 +37,7 @@
 				<rotate time="244.7" x="0" y="1" z="0"/>
 			</transform>
 			<models>
-				<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+				<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 					<texture file="8k_sun.jpg"/>
 					<color>
 						<emissive R="255" G="255" B="255"/>
@@ -84,7 +84,7 @@
 				<scale x="0.017" y="0.017" z="0.017"/>
 			</transform>
 			<models>
-				<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+				<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 					<texture file="8k_mercury.jpg"/>
 				</model>
 			</models>
@@ -101,7 +101,7 @@
 				<scale x="0.043" y="0.043" z="0.043"/>
 			</transform>
 			<models>
-				<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+				<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 					<texture file="8k_venus_surface.jpg"/>
 				</model>
 			</models>
@@ -123,7 +123,7 @@
 					<rotate time="10" x="0" y="1" z="0"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="8k_earth_daymap.jpg"/>
 					</model>
 				</models>
@@ -139,7 +139,7 @@
 					<scale x="0.25" y="0.25" z="0.25"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="8k_moon.jpg"/>
 					</model>
 				</models>
@@ -162,7 +162,7 @@
 					<rotate time="10.3" x="0" y="1" z="0"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="8k_mars.jpg"/>
 					</model>
 				</models>
@@ -178,7 +178,7 @@
 					<scale x="0.1" y="0.1" z="0.1"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="phobos.jpg"/>
 					</model>
 				</models>
@@ -194,7 +194,7 @@
 					<scale x="0.06" y="0.06" z="0.06"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="deimos.jpg"/>
 					</model>
 				</models>
@@ -217,7 +217,7 @@
 					<rotate time="4.1" x="0" y="1" z="0"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="8k_jupiter.jpg"/>
 					</model>
 				</models>
@@ -233,7 +233,7 @@
 					<scale x="0.026" y="0.026" z="0.026"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="io.jpg"/>
 					</model>
 				</models>
@@ -249,7 +249,7 @@
 					<scale x="0.022" y="0.022" z="0.022"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="europa.jpg"/>
 					</model>
 				</models>
@@ -265,7 +265,7 @@
 					<scale x="0.038" y="0.038" z="0.038"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="ganymede.jpg"/>
 					</model>
 				</models>
@@ -281,7 +281,7 @@
 					<scale x="0.034" y="0.034" z="0.034"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="callisto.jpg"/>
 					</model>
 				</models>
@@ -304,7 +304,7 @@
 					<rotate time="4.5" x="0" y="1" z="0"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="8k_saturn.jpg"/>
 					</model>
 				</models>
@@ -348,7 +348,7 @@
 					<scale x="0.044" y="0.044" z="0.044"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="titan.jpg"/>
 					</model>
 				</models>
@@ -364,7 +364,7 @@
 					<scale x="0.013" y="0.013" z="0.013"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="rhea.png"/>
 					</model>
 				</models>
@@ -380,7 +380,7 @@
 					<scale x="0.0091" y="0.0091" z="0.0091"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="tethys.jpg"/>
 					</model>
 				</models>
@@ -396,7 +396,7 @@
 					<scale x="0.0096" y="0.0096" z="0.0096"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="dione.jpg"/>
 					</model>
 				</models>
@@ -412,7 +412,7 @@
 					<scale x="0.0043" y="0.0043" z="0.0043"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="enceladus.jpg"/>
 					</model>
 				</models>
@@ -428,7 +428,7 @@
 					<scale x="0.0126" y="0.0126" z="0.0126"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="iapetus.jpg"/>
 					</model>
 				</models>
@@ -444,7 +444,7 @@
 					<scale x="0.0034" y="0.0034" z="0.0034"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="mimas.jpg"/>
 					</model>
 				</models>
@@ -467,7 +467,7 @@
 					<rotate time="7.2" x="0" y="1" z="0"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="2k_uranus.jpg"/>
 					</model>
 				</models>
@@ -483,7 +483,7 @@
 					<scale x="0.0093" y="0.0093" z="0.0093"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="miranda.jpg"/>
 					</model>
 				</models>
@@ -499,7 +499,7 @@
 					<scale x="0.0228" y="0.0228" z="0.0228"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="ariel.png"/>
 					</model>
 				</models>
@@ -515,7 +515,7 @@
 					<scale x="0.0231" y="0.0231" z="0.0231"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="umbriel.jpg"/>
 					</model>
 				</models>
@@ -531,7 +531,7 @@
 					<scale x="0.03" y="0.03" z="0.03"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="oberon.png"/>
 					</model>
 				</models>
@@ -547,7 +547,7 @@
 					<scale x="0.0312" y="0.0312" z="0.0312"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="titania.jpg"/>
 					</model>
 				</models>
@@ -570,7 +570,7 @@
 					<rotate time="6.7" x="0" y="1" z="0"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="2k_neptune.jpg"/>
 					</model>
 				</models>
@@ -586,7 +586,7 @@
 					<scale x="0.0085" y="0.0085" z="0.0085"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="proteus.jpg"/>
 					</model>
 				</models>
@@ -602,7 +602,7 @@
 					<scale x="0.0550" y="0.0550" z="0.0550"/>
 				</transform>
 				<models>
-					<model file="sphere.3d"> <!-- generator sphere 6 50 50 sphere.3d -->
+					<model file="sphere.3d"> <!-- ./generator sphere 6 50 50 sphere.3d -->
 						<texture file="triton.jpg"/>
 					</model>
 				</models>

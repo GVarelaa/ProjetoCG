@@ -75,7 +75,7 @@ int main(int argc, char *argv[]){
         cout << "--------------------------------------------HELP------------------------------------------------" << endl;
         cout << "USAGE: ./generator {MODEL} {ARGUMENTS} {TexMapType} {OUTPUT FILE}" << endl;
         cout << "TexMapType is an optional parameter which defines the map type for textures" << endl;
-        cout << "- map type can be 'tiled' or 'streched' - by default is 'streched'" << endl;
+        cout << "- map type can be 'tiled' or 'stretched' - by default is 'stretched'" << endl;
         cout << "------------------------------------------------------------------------------------------------" << endl;
         cout << "MODEL     | ARGUMENTS                                                            | OUTPUT FILE" << endl;
         cout << "plane     | {length} {divisions}                                                 | {filename}.3d" << endl;
@@ -100,8 +100,8 @@ int main(int argc, char *argv[]){
     }
     inp.pop_back();
 
-    char erPlane[] = "plane ([0-9]+[.])?[0-9]+ [0-9]+([ ]streched|[ ]tiled)? [a-zA-Z0-9_]+\\.3d$";
-    char erBox[] = "box ([0-9]+[.])?[0-9]+ [0-9]+([ ]streched|[ ]tiled)? [a-zA-Z0-9_]+\\.3d$";
+    char erPlane[] = "plane ([0-9]+[.])?[0-9]+ [0-9]+([ ]stretched|[ ]tiled)? [a-zA-Z0-9_]+\\.3d$";
+    char erBox[] = "box ([0-9]+[.])?[0-9]+ [0-9]+([ ]stretched|[ ]tiled)? [a-zA-Z0-9_]+\\.3d$";
     char erCone[] = "cone ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erSphere[] = "sphere ([0-9]+[.])?[0-9]+ [0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";
     char erCylinder[] = "cylinder ([0-9]+[.])?[0-9]+ ([0-9]+[.])?[0-9]+ [0-9]+ [a-zA-Z0-9_]+\\.3d$";

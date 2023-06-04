@@ -38,8 +38,8 @@ void generateCone(float radius, float height, int slices, int stacks, vector<Poi
         normals->push_back(Point(0, -1, 0));
 
         texCoords->push_back(Point(0.5, 0.5, 0));
-        texCoords->push_back(Point(sin(i * alpha - M_PI_4) + 0.5, cos(i * alpha - M_PI_4) + 0.5, 0));
-        texCoords->push_back(Point(sin((i + 1) * alpha - M_PI_4) + 0.5, cos((i + 1) * alpha - M_PI_4) + 0.5, 0));
+        texCoords->push_back(Point(0.5*sin(i * alpha) + 0.5, 0.5*cos(i * alpha) + 0.5, 0));
+        texCoords->push_back(Point(0.5*sin((i + 1) * alpha) + 0.5, 0.5*cos((i + 1) * alpha) + 0.5, 0));
 
         triangles->push_back(Triangle(index+2, index+1, index));
 

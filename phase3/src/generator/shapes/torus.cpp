@@ -17,8 +17,8 @@ pair<vector<Point>, vector<Triangle> > generateTorus(float radiusIn, float radiu
 
 
             if(j!=stacks){
-                Triangle t1 = Triangle(index, index+1, index+2);
-                Triangle t2 = Triangle(index+1, index + 3, index + 2);
+                Triangle t1 = Triangle(index+1, index, index+2);
+                Triangle t2 = Triangle(index+3, index + 1, index + 2);
 
                 triangles.push_back(t1);
                 triangles.push_back(t2);

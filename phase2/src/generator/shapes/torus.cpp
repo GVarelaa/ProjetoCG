@@ -15,8 +15,8 @@ pair<vector<Point>, vector<Triangle> > generateTorus(float radiusIn, float radiu
             vertices.push_back(p1);
             vertices.push_back(p2);
             if(j!=stacks){
-                Triangle t1 = Triangle(i*(2*stacks + 2) + j*2, i*(2*stacks + 2) + j*2 + 1, i*(2*stacks + 2) + j*2 + 2);
-                Triangle t2 = Triangle(i*(2*stacks + 2) + j*2 + 1, i*(2*stacks + 2) + j*2 + 3, i*(2*stacks + 2) + j*2 + 2);
+                Triangle t1 = Triangle(i*(2*stacks + 2) + j*2 + 1, i*(2*stacks + 2) + j*2, i*(2*stacks + 2) + j*2 + 2);
+                Triangle t2 = Triangle(i*(2*stacks + 2) + j*2 + 3, i*(2*stacks + 2) + j*2 + 2, i*(2*stacks + 2) + j*2 + 2);
 
                 triangles.push_back(t1);
                 triangles.push_back(t2);
